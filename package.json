@@ -1,0 +1,8 @@
+{
+  "name": "skillyards",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
