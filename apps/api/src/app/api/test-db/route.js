@@ -1,19 +1,10 @@
-import { sql } from "@skillyards/db";
+import { db, users } from "@skillyards/db";
 
 export async function GET() {
-  try {
-    const result = await sql`SELECT NOW()`;
+  const result = await db.select().from(users);
 
-    return Response.json({
-      status: "ok",
-      db: "connected",
-      time: result
-    });
-  } catch (error) {
-    return Response.json({
-      status: "error",
-      db: "failed",
-      message: error.message
-    });
-  }
+  return Response.json({
+    status: "ok",
+    users: result
+  });
 }
