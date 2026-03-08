@@ -5,9 +5,18 @@
     "apps/*",
     "packages/*"
   ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w apps/api\" \"npm run dev -w apps/erp\" \"npm run dev -w apps/website\"",
+    "dev:api": "npm run dev -w apps/api",
+    "dev:erp": "npm run dev -w apps/erp",
+    "dev:web": "npm run dev -w apps/website"
+  },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",
     "drizzle-kit": "^0.31.9",
     "drizzle-orm": "^0.45.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }
