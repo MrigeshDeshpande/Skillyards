@@ -15,5 +15,5 @@ export const enquiries = pgTable("enquiries", {
 
     status: text("status").default("new"),
 
-    createdAt: timestamp("created_at").defaultNow()
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow()
 });

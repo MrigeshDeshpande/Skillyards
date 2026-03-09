@@ -4,10 +4,11 @@ import { createEnquiry, getAllEnquiries } from './enquiry.repository';
 
 export async function createEnquiryService(enquiryData) {
     try {
-        const newEnquiry = await createEnquiry(enquiryData);
+        const { captchaToken, ...dbData } = enquiryData;
+        const newEnquiry = await createEnquiry(dbData);
         return newEnquiry;
     } catch (err) {
-        throw new Error("Failed to create enquiry: " + err.message);
+        throw new Error("Failed to create enquiry: " , err.message);
     }
 }
 
@@ -16,6 +17,6 @@ export async function getAllEnquiriesService() {
         const enquiries = await getAllEnquiries();
         return enquiries;
     } catch (err) {
-        throw new Error("Failed to fetch enquiries: " + err.message);
+        throw new Error("Failed to fetch enquiries: " , err.message);
     }
 }

@@ -7,9 +7,9 @@ export async function createEnquiry(enquiryData) {
         const result = await db
             .insert(enquiries)
             .values(enquiryData)
-            .returning();
+            .returning()
 
-        return result[0];
+        return result[0]
 
     } catch (err) {
         throw new Error("Failed to create enquiry: " + err.message);
@@ -28,30 +28,30 @@ export async function getAllEnquiries() {
     }
 }
 
-export async function getEnquiryById(id) {
-    try {
-        const result = await db
-            .select()
-            .from(enquiries)
-            .where("id", id)
-            .first();
+// export async function getEnquiryById(id) {
+//     try {
+//         const result = await db
+//             .select()
+//             .from(enquiries)
+//             .where("id", id)
+//             .first();
 
-        return result;
-    } catch (err) {
-        throw new Error("Failed to fetch enquiry: " + err.message);
-    }
-}
+//         return result;
+//     } catch (err) {
+//         throw new Error("Failed to fetch enquiry: " + err.message);
+//     }
+// }
 
-export async function updateEnquiryStatus(id, status) {
-    try {
-        const result = await db
-            .update(enquiries)
-            .set({ status })
-            .where("id", id)
-            .returning();
-            
-        return result[0];
-    } catch (err) {
-        throw new Error("Failed to update enquiry: " + err.message);
-    }
-}
+// export async function updateEnquiryStatus(id, status) {
+//     try {
+//         const result = await db
+//             .update(enquiries)
+//             .set({ status })
+//             .where("id", id)
+//             .returning();
+
+//         return result[0];
+//     } catch (err) {
+//         throw new Error("Failed to update enquiry: " + err.message);
+//     }
+// }
