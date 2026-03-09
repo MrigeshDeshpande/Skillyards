@@ -1,14 +1,14 @@
-import { db, users } from "@skillyards/db";
+import { db, users, enquiries } from "@skillyards/db";
 import { success, error } from "@/utils/response";
 
 
 export async function GET() {
 
   try {
-    const result = await db.select().from(users);
-    return success(result, "Users fetched successfully");
+    const data = await db.select().from(enquiries); 
+    return success(data, "Enquiries fetched successfully");
   } catch (err) {
-    return error("Failed to fetch users", { error: err.message });
+    return error("Failed to fetch enquiries", { error: err.message });
   }
 
 }
