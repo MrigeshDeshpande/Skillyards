@@ -2,6 +2,10 @@
 
 import { createEnquiry, getAllEnquiries } from "./enquiry.repository";
 import { verifyCaptcha } from "@/utils/captcha";
+import {
+  sendAdminEnquiryNotification,
+  sendUserConfirmation
+} from "@/modules/notifications/email.service";
 
 export async function createEnquiryService(enquiryData) {
   try {
@@ -15,6 +19,10 @@ export async function createEnquiryService(enquiryData) {
     }
 
     const newEnquiry = await createEnquiry(dbData);
+
+    // send emails
+    await sendAdminEnquiryNotification(newEnquiry);
+    await sendUserConfirmation(newEnquiry);
 
     return newEnquiry;
 
