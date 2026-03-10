@@ -1,6 +1,6 @@
 // this file contains database queries for handling enquiries
 
-import { db, enquiries } from "@skillyards/db";
+import { db, enquiries } from "../../../../../packages/db";
 
 export async function createEnquiry(enquiryData) {
     try {
