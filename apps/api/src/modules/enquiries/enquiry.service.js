@@ -1,7 +1,7 @@
 // this file contains the business logic for handling enquiries
 
 import { createEnquiry, getAllEnquiries } from "./enquiry.repository";
-import { verifyCaptcha } from "@/utils/captcha";
+import { verifyCaptcha } from "@/integrations/captcha/captcha";
 import {
   sendAdminEnquiryNotification,
   sendUserConfirmation
