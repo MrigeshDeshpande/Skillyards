@@ -1,0 +1,100 @@
+[
+  {
+    "category": "development",
+    "slug": "full-stack-web-development",
+    "icon": "🌐",
+    "title": "Full-Stack Web Development",
+    "teaser": "End-to-end web products built with modern stacks.",
+    "description": "We design and build robust, scalable web applications from the ground up using React, Next.js, Node.js, and cloud-native databases — tailored to your business goals.",
+    "highlights": [
+      "React, Next.js & Node.js",
+      "REST & GraphQL APIs",
+      "Cloud Deployment",
+      "Performance-first"
+    ]
+  },
+  {
+    "category": "development",
+    "slug": "mobile-app-development",
+    "icon": "📱",
+    "title": "Mobile App Development",
+    "teaser": "iOS & Android apps that users love.",
+    "description": "From idea to App Store — we build polished, high-performance mobile apps using React Native and native SDKs for iOS and Android.",
+    "highlights": [
+      "React Native & Expo",
+      "iOS & Android publishing",
+      "Push notifications",
+      "UI/UX-first approach"
+    ]
+  },
+  {
+    "category": "development",
+    "slug": "custom-software-solutions",
+    "icon": "⚙️",
+    "title": "Custom Software Solutions",
+    "teaser": "Tailored enterprise software for complex problems.",
+    "description": "We build bespoke dashboards, automation tools, CRM systems, and integrations that fit exactly how your business operates.",
+    "highlights": [
+      "Process automation",
+      "Admin dashboards",
+      "ERP & CRM development",
+      "Scalable microservices"
+    ]
+  },
+  {
+    "category": "digital-marketing",
+    "slug": "seo-content-strategy",
+    "icon": "🔍",
+    "title": "SEO & Content Strategy",
+    "teaser": "Rank higher, attract the right audience.",
+    "description": "We craft data-driven SEO strategies and content roadmaps that drive consistent organic traffic and establish brand authority.",
+    "highlights": [
+      "Technical & on-page SEO",
+      "Keyword research",
+      "Content calendars",
+      "Monthly reports"
+    ]
+  },
+  {
+    "category": "digital-marketing",
+    "slug": "social-media-marketing",
+    "icon": "📣",
+    "title": "Social Media Marketing",
+    "teaser": "Build a brand people actually follow.",
+    "description": "From content creation to community management — we grow your social presence across Instagram, LinkedIn, and YouTube.",
+    "highlights": [
+      "Instagram & LinkedIn",
+      "Reel & short-form content",
+      "Community management",
+      "Influencer collabs"
+    ]
+  },
+  {
+    "category": "digital-marketing",
+    "slug": "performance-marketing",
+    "icon": "🎯",
+    "title": "Performance Marketing",
+    "teaser": "ROI-focused paid campaigns that convert.",
+    "description": "We run highly targeted Google Ads and Meta Ads campaigns with continuous optimization to maximise conversions.",
+    "highlights": [
+      "Google Search & Display",
+      "Meta Ads",
+      "Retargeting",
+      "Conversion optimization"
+    ]
+  },
+  {
+    "category": "digital-marketing",
+    "slug": "brand-identity-design",
+    "icon": "✨",
+    "title": "Brand Identity & Design",
+    "teaser": "A brand that stands out in every touchpoint.",
+    "description": "We create cohesive brand identities — from logo and color systems to full UI/UX design kits for your business.",
+    "highlights": [
+      "Logo & visual identity",
+      "Brand style guides",
+      "UI/UX prototyping",
+      "Marketing collateral"
+    ]
+  }
+]
