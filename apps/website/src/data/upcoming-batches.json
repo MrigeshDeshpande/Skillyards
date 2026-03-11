@@ -1,0 +1,20 @@
+[
+  {
+    "program": "On Job Training - Web Development",
+    "startDate": "2025-01-10",
+    "duration": "3 Months",
+    "seats": 20
+  },
+  {
+    "program": "On Job Degree - Fullstack Development",
+    "startDate": "2025-02-01",
+    "duration": "12 Months",
+    "seats": 15
+  },
+  {
+    "program": "Software Development Bootcamp",
+    "startDate": "2025-03-05",
+    "duration": "6 Months",
+    "seats": 25
+  }
+]
