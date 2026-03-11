@@ -7,18 +7,19 @@ import { motion } from "framer-motion";
 export default function OtherTeam() {
     const [members, setMembers] = useState([]);
 
-    useEffect(() => {
-        fetch("https://admin.skillyards.in/api/team/members")
-            .then((res) => res.json())
-            .then((json) => {
-                if (json?.status) {
-                    setMembers(json.data || []);
-                }
-            })
-            .catch((err) => {
-                console.error("Failed to fetch team members:", err);
-            });
-    }, []);
+    // TODO: Re-enable when API is ready
+    // useEffect(() => {
+    //     fetch("https://admin.skillyards.in/api/team/members")
+    //         .then((res) => res.json())
+    //         .then((json) => {
+    //             if (json?.status) {
+    //                 setMembers(json.data || []);
+    //             }
+    //         })
+    //         .catch((err) => {
+    //             console.error("Failed to fetch team members:", err);
+    //         });
+    // }, []);
 
     return (
         <section className="py-20 bg-white dark:bg-neutral-950">

@@ -55,29 +55,32 @@ export default function FeedbackPage() {
     const [suggestions, setSuggestions] = useState("");
     const [currentStep, setCurrentStep] = useState(0);
 
+    // TODO: Re-enable when API is ready
+    // useEffect(() => {
+    //     if (!uuid) return;
+    //     async function fetchEnquiry() {
+    //         try {
+    //             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/feedback/${uuid}`, { cache: "no-store" });
+    //             const json = await res.json();
+    //             if (!res.ok) {
+    //                 if (res.status === 410) throw new Error("Feedback already submitted. Thank you!");
+    //                 throw new Error(json.message || "Invalid or expired feedback link");
+    //             }
+    //             setData(json);
+    //         } catch (err) {
+    //             setError(err.message);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     }
+    //     fetchEnquiry();
+    // }, [uuid]);
+
+    // Demo mode: set data immediately
     useEffect(() => {
-        if (!uuid) return;
-
-        async function fetchEnquiry() {
-            try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/feedback/${uuid}`, { cache: "no-store" });
-                const json = await res.json();
-
-                if (!res.ok) {
-                    if (res.status === 410) throw new Error("Feedback already submitted. Thank you!");
-                    throw new Error(json.message || "Invalid or expired feedback link");
-                }
-
-                setData(json);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchEnquiry();
-    }, [uuid]);
+        setData({ name: "Demo User", programme: "Demo Programme" });
+        setLoading(false);
+    }, []);
 
     const handleNext = () => {
         if (ratings[steps[currentStep].key] === 0) {
@@ -96,14 +99,17 @@ export default function FeedbackPage() {
             return;
         }
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/feedback/${uuid}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ratings, suggestions }),
-        });
+        // TODO: Re-enable when API is ready
+        // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/feedback/${uuid}`, {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify({ ratings, suggestions }),
+        // });
+        // if (res.ok) setSubmitted(true);
+        // else setError("Unable to submit feedback. कृपया पुनः प्रयास करें।");
 
-        if (res.ok) setSubmitted(true);
-        else setError("Unable to submit feedback. कृपया पुनः प्रयास करें।");
+        // Demo mode
+        setSubmitted(true);
     };
 
     if (loading) return <p className="text-center py-10">Loading feedback… / लोड हो रहा है…</p>;

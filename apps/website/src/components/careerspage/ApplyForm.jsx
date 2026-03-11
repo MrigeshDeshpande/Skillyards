@@ -69,29 +69,26 @@ export default function ApplyForm({ job }) {
             formData.append("job_role_id", job.id);
             formData.append("g-recaptcha-response", token);
 
-            const res = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/careers/apply`,
-                {
-                    method: "POST",
-                    body: formData,
-                }
-            );
+            // TODO: Re-enable when API is ready
+            // const res = await fetch(
+            //     `${process.env.NEXT_PUBLIC_API_URL}/careers/apply`,
+            //     {
+            //         method: "POST",
+            //         body: formData,
+            //     }
+            // );
+            // if (res.status === 422) {
+            //     const data = await res.json();
+            //     setErrors(data.errors || {});
+            //     setLoading(false);
+            //     recaptchaRef.current?.reset();
+            //     return;
+            // }
+            // if (!res.ok) {
+            //     throw new Error("Submission failed");
+            // }
 
-            // 🔹 Laravel validation error (422)
-            if (res.status === 422) {
-                const data = await res.json();
-                setErrors(data.errors || {});
-                setLoading(false);
-                recaptchaRef.current?.reset();
-                return;
-            }
-
-            // 🔹 Other server errors
-            if (!res.ok) {
-                throw new Error("Submission failed");
-            }
-
-            // 🔹 Success
+            // Demo mode: show success
             setSuccess(true);
             form.reset();
         } catch (error) {

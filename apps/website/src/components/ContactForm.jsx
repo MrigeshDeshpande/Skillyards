@@ -42,25 +42,25 @@ function ContactForm() {
         };
 
         try {
-            const res = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/contact`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json",
-                    },
-                    body: JSON.stringify(payload),
-                }
-            );
+            // TODO: Re-enable when API is ready
+            // const res = await fetch(
+            //     `${process.env.NEXT_PUBLIC_API_URL}/contact`,
+            //     {
+            //         method: "POST",
+            //         headers: {
+            //             "Content-Type": "application/json",
+            //             Accept: "application/json",
+            //         },
+            //         body: JSON.stringify(payload),
+            //     }
+            // );
+            // const data = await res.json();
+            // if (!res.ok) {
+            //     throw new Error(data.message || "Something went wrong");
+            // }
+            // setSuccess(data.message);
 
-            const data = await res.json();
-
-            if (!res.ok) {
-                throw new Error(data.message || "Something went wrong");
-            }
-
-            setSuccess(data.message);
+            setSuccess("Thank you! Your message has been received. (Demo mode)");
             form.reset();
         } catch (err) {
             setError(err.message);

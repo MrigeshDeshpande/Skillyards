@@ -21,19 +21,20 @@ export default function EnquiryPage() {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
 
-    useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/counsellors`)
-            .then(res => res.json())
-            .then(setCounsellors)
-            .catch(console.error);
-    }, []);
+    // TODO: Re-enable when API is ready
+    // useEffect(() => {
+    //     fetch(`${process.env.NEXT_PUBLIC_API_URL}/counsellors`)
+    //         .then(res => res.json())
+    //         .then(setCounsellors)
+    //         .catch(console.error);
+    // }, []);
 
-    useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/programmes`)
-            .then(res => res.json())
-            .then(setProgrammes)
-            .catch(console.error);
-    }, []);
+    // useEffect(() => {
+    //     fetch(`${process.env.NEXT_PUBLIC_API_URL}/programmes`)
+    //         .then(res => res.json())
+    //         .then(setProgrammes)
+    //         .catch(console.error);
+    // }, []);
 
     const avatarUrl = (avatar) => {
         if (!avatar) return "/avatar-placeholder.png";
@@ -48,27 +49,30 @@ export default function EnquiryPage() {
     const submit = async () => {
         setLoading(true);
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/enquiries`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify({
-                ...form,
-                counselled_by: selectedCounsellor,
-                programme_id: selectedProgramme,
-            }),
-        });
+        // TODO: Re-enable when API is ready
+        // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/enquiries`, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         Accept: "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         ...form,
+        //         counselled_by: selectedCounsellor,
+        //         programme_id: selectedProgramme,
+        //     }),
+        // });
+        // setLoading(false);
+        // if (res.ok) {
+        //     setSuccess(true);
+        // } else {
+        //     const error = await res.json();
+        //     alert(error.message || "Something went wrong");
+        // }
 
+        // Demo mode
         setLoading(false);
-
-        if (res.ok) {
-            setSuccess(true);
-        } else {
-            const error = await res.json();
-            alert(error.message || "Something went wrong");
-        }
+        setSuccess(true);
     };
 
     if (success) {
