@@ -1,63 +1,65 @@
-import HeroCarousel from "@/components/homepage/HeroCarousel";
-import AboutSection from "@/components/homepage/AboutSection";
-import ProgramsSection from "@/components/homepage/ProgramsSection";
-import FeaturesSection from "@/components/homepage/FeaturesSection";
-import LeadersSection from "@/components/common/LeadersSection";
-import SubscribeSection from "@/components/common/SubscribeSection";
-import CTASection from "@/components/homepage/CTASection";
-import FAQSection from "@/components/common/FAQSection";
-import BatchesSection from "@/components/homepage/BatchesSection";
-import { BlogSection } from "@/components/homepage/BlogSection";
-import ServicesSection from "@/components/homepage/ServicesSection";
-import PartnersSlider from "@/components/common/PartnersSlider";
-import ProgramsShowcase from "@/components/homepage/ProgrammeShowcase";
-import HearFromStudents from "@/components/homepage/HearFromStudents";
-import FeaturedRoles from "@/components/homepage/FeaturedRoles";
-import { withPageSEO } from "@/lib/seo";
-
-export const metadata = withPageSEO({
-    title: 'Learn, Train & Get Certified Online',
-    description:
-        'SkillYards.in is a skill-based learning platform offering online courses, live training, and professional certifications. Learn from industry experts and build job-ready skills.',
-    canonical: 'https://www.skillyards.in/',
-    keywords: [
-        'SkillYards',
-        'online courses India',
-        'skill development platform',
-        'professional certifications',
-        'live online training',
-        'job-ready skills',
-        'IT training India',
-        'career growth',
-        'e-learning platform',
-    ],
-    ogImage: '/images/opengraph/home-og.jpg',
-    twitterImage: '/images/opengraph/home-twitter.jpg',
-});
+import Image from "next/image";
 
 export default function Home() {
-    return (
-        <div className="theme-home min-h-screen w-full bg-home-bg text-home-fg transition-colors duration-500">
-
-            <HeroCarousel />
-
-            <AboutSection />
-            <ProgramsShowcase />
-            <ProgramsSection />
-            <FeaturesSection />
-            <HearFromStudents />
-            <LeadersSection />
-            <SubscribeSection />
-            <CTASection />
-            <FAQSection />
-            <BatchesSection />
-            <BlogSection />
-            <FeaturedRoles />
-            <ServicesSection />
-            <PartnersSlider />
-
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+        <Image
+          className="dark:invert"
+          src="/next.svg"
+          alt="Next.js logo"
+          width={100}
+          height={20}
+          priority
+        />
+        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
+          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
+            To get started, edit the page.js file.
+          </h1>
+          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+            Looking for a starting point or more instructions? Head over to{" "}
+            <a
+              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+              className="font-medium text-zinc-950 dark:text-zinc-50"
+            >
+              Templates
+            </a>{" "}
+            or the{" "}
+            <a
+              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+              className="font-medium text-zinc-950 dark:text-zinc-50"
+            >
+              Learning
+            </a>{" "}
+            center.
+          </p>
         </div>
-    );
+        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+          <a
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              className="dark:invert"
+              src="/vercel.svg"
+              alt="Vercel logomark"
+              width={16}
+              height={16}
+            />
+            Deploy Now
+          </a>
+          <a
+            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
+            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Documentation
+          </a>
+        </div>
+      </main>
+    </div>
+  );
 }
-
-
