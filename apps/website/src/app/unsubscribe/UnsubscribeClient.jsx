@@ -19,26 +19,29 @@ export default function UnsubscribeClient() {
         setLoading(true);
         setStatus("loading");
 
-        try {
-            const res = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/unsubscribe/${token}`,
-                { method: "POST" }
-            );
+        // TODO: Re-enable when API is ready
+        // try {
+        //     const res = await fetch(
+        //         `${process.env.NEXT_PUBLIC_API_URL}/unsubscribe/${token}`,
+        //         { method: "POST" }
+        //     );
+        //     const data = await res.json();
+        //     if (!res.ok) {
+        //         throw new Error(data.message || "Unsubscribe failed");
+        //     }
+        //     setStatus("success");
+        //     setMessage(data.message || "You have been unsubscribed.");
+        // } catch (err) {
+        //     setStatus("error");
+        //     setMessage("Unsubscribe failed. Please try again.");
+        // } finally {
+        //     setLoading(false);
+        // }
 
-            const data = await res.json();
-
-            if (!res.ok) {
-                throw new Error(data.message || "Unsubscribe failed");
-            }
-
-            setStatus("success");
-            setMessage(data.message || "You have been unsubscribed.");
-        } catch (err) {
-            setStatus("error");
-            setMessage("Unsubscribe failed. Please try again.");
-        } finally {
-            setLoading(false);
-        }
+        // Demo mode
+        setStatus("success");
+        setMessage("You have been unsubscribed. (Demo mode)");
+        setLoading(false);
     };
 
     return (

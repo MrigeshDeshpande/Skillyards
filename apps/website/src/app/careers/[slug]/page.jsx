@@ -6,20 +6,41 @@ import {withPageSEO} from "@/lib/seo";
 /**
  * Important: Careers job pages must be rendered at runtime
  */
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 /* ----------------------------------------
    Fetch single job by slug
 ----------------------------------------- */
 async function getJob(slug) {
-    try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs/${slug}`, { cache: "no-store" });
-        if (!res.ok) return null;
-        return res.json();
-    } catch (error) {
-        console.error("Job fetch failed:", error);
-        return null;
-    }
+    // TODO: Re-enable when API is ready
+    // try {
+    //     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs/${slug}`, { cache: "no-store" });
+    //     if (!res.ok) return null;
+    //     return res.json();
+    // } catch (error) {
+    //     console.error("Job fetch failed:", error);
+    //     return null;
+    // }
+
+    // Demo mode: return placeholder job
+    return {
+        id: 1,
+        title: "Sample Job Position",
+        slug: slug,
+        department: "Engineering",
+        employment_type: "Full-Time",
+        location: "Lucknow, India",
+        experience_min: 0,
+        experience_max: 2,
+        description: "<p>This is a placeholder job description. Connect the API to see real job postings.</p>",
+        responsibilities: "<ul><li>Collaborate with the team</li><li>Build amazing products</li></ul>",
+        requirements: "<ul><li>Passion for learning</li><li>Strong communication skills</li></ul>",
+        salary_min: null,
+        salary_max: null,
+        apply_deadline: null,
+        created_at: new Date().toISOString(),
+        qr_code: null,
+    };
 }
 
 /* ----------------------------------------

@@ -169,10 +169,7 @@ export default function HearFromStudents() {
 
     return (
         <>
-            <section className="
-                    py-20
-                    bg-background
-                ">
+            <section className="py-20 bg-background">
                 <div className="max-w-7xl mx-auto px-6">
                     {/* Heading */}
                     <motion.h2
@@ -196,14 +193,7 @@ export default function HearFromStudents() {
                             <div className="text-center pt-10">
                                 <Link
                                     href="/testimonials"
-                                    className="
-                                        inline-flex items-center justify-center
-                                        px-8 py-3.5
-                                        bg-primary text-primary-foreground
-                                        rounded-full font-semibold shadow-md
-                                        hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20
-                                        transition-all duration-300
-                                    "
+                                    className="inline-flex items-center justify-center px-8 py-3.5 bg-primary text-primary-foreground rounded-full font-semibold shadow-md hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
                                 >
                                     See All Reviews
                                 </Link>
