@@ -1,88 +1,91 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, MessageCircleQuestion } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Plus, Minus, HelpCircle } from "lucide-react";
 import faqs from "@/data/faqs.json";
 
 export default function FAQSection() {
-    const [openIndex, setOpenIndex] = useState(null);
-
-    const toggle = (idx) => {
-        setOpenIndex(openIndex === idx ? null : idx);
-    };
+    const [openIndex, setOpenIndex] = useState(0);
+    const displayFaqs = faqs.slice(0, 4);
 
     return (
-        <section className="relative py-24 bg-background text-foreground overflow-hidden">
-            {/* Background Blob */}
-            <div className="absolute -left-32 bottom-0 w-[500px] h-[400px] bg-secondary/30 rounded-t-[300px] rounded-br-[300px] -rotate-12 blur-2xl -z-10"></div>
+        <section className="relative py-20 bg-background overflow-hidden">
+            {/* Background Accents */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full -mr-64 -mt-64" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 blur-[120px] rounded-full -ml-64 -mb-64" />
 
-            <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 items-start">
-                {/* Left Column */}
-                <div className="space-y-8 z-10 relative">
-                    <div className="flex">
-                        <div className="inline-block px-3 py-1 bg-secondary/30 text-primary font-bold text-xs rounded-full uppercase tracking-wider">
-                            FAQ
-                        </div>
-                    </div>
+            <div className="relative z-10 max-w-4xl mx-auto px-6">
+                <div className="text-center mb-12 space-y-4">
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest"
+                    >
+                        <HelpCircle size={14} />
+                        <span>Support Center</span>
+                    </motion.div>
                     
-                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground pr-4">
-                        What would you like to know about SkillYards?
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground">
+                        Got <span className="text-primary italic">Questions?</span> We have answers.
                     </h2>
-                    
-                    <div className="flex">
-                        <button className="flex items-center gap-3 px-6 py-3 border border-border/80 hover:border-border rounded-full text-foreground hover:bg-secondary/10 transition-colors font-medium text-sm">
-                            <MessageCircleQuestion className="w-5 h-5 text-muted-foreground" />
-                            <span>Talk to us</span>
-                        </button>
-                    </div>
-                    
-                    {/* Decorative specific sphere from design */}
-                    <div className="hidden lg:block relative mt-16 ml-10 w-full h-80">
-                         {/* Blob continuation */}
-                         <div className="absolute top-10 left-0 w-64 h-32 bg-secondary/30 rounded-full blur-xl"></div>
-                         
-                         {/* Sphere 1 */}
-                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 rounded-full bg-linear-to-br from-secondary via-primary/50 to-primary shadow-[inset_-10px_-10px_20px_rgba(0,0,0,0.2)]"></div>
-                         
-                         {/* Small orange sphere */}
-                         <div className="absolute bottom-8 left-16 w-10 h-10 rounded-full bg-linear-to-br from-orange-300 to-orange-500 shadow-[inset_-3px_-3px_6px_rgba(0,0,0,0.2)]"></div>
-                    </div>
+                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                        Everything you need to know about starting your career with SkillYards.
+                    </p>
                 </div>
 
-                {/* Right Column (Accordion) */}
-                <div className="space-y-3 z-10 lg:mt-4 mt-8">
-                    {faqs.map((faq, idx) => (
-                        <div
-                            key={idx}
-                            className={`rounded-[1.5rem] transition-colors duration-300 ${
-                                openIndex === idx 
-                                ? "bg-secondary/30" 
-                                : "bg-secondary/10 hover:bg-secondary/20"
-                            }`}
-                        >
-                            <button
-                                onClick={() => toggle(idx)}
-                                className="w-full flex justify-between items-center px-6 py-5 text-left font-medium text-foreground transition"
-                            >
-                                <span className="text-[1.05rem] pr-8">{faq.question}</span>
-                                <ChevronDown
-                                    className={`w-5 h-5 text-muted-foreground shrink-0 transition-transform duration-300 ${openIndex === idx ? "rotate-180" : ""}`}
-                                />
-                            </button>
-
-                            <div
-                                className={`grid transition-all duration-300 ease-in-out ${
-                                    openIndex === idx ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                <div className="space-y-4">
+                    {displayFaqs.map((faq, idx) => {
+                        const isOpen = openIndex === idx;
+                        return (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: idx * 0.1 }}
+                                className={`group rounded-[2rem] border transition-all duration-300 ${
+                                    isOpen 
+                                    ? "border-primary/30 bg-card/50 shadow-xl shadow-primary/5" 
+                                    : "border-border/40 bg-card/20 hover:border-border/80"
                                 }`}
                             >
-                                <div className="overflow-hidden">
-                                    <div className="px-6 pb-6 pt-0 text-muted-foreground text-sm sm:text-base pr-12">
-                                        {faq.answer}
+                                <button
+                                    onClick={() => setOpenIndex(isOpen ? null : idx)}
+                                    className="w-full flex justify-between items-center p-6 text-left"
+                                >
+                                    <span className={`text-lg font-bold transition-colors ${isOpen ? "text-primary" : "text-foreground"}`}>
+                                        {faq.question}
+                                    </span>
+                                    <div className={`shrink-0 ml-4 p-2 rounded-full transition-transform duration-300 ${isOpen ? "bg-primary text-primary-foreground rotate-0" : "bg-muted text-muted-foreground rotate-90"}`}>
+                                        {isOpen ? <Minus size={18} /> : <Plus size={18} />}
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                                </button>
+
+                                <AnimatePresence initial={false}>
+                                    {isOpen && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                                        >
+                                            <div className="px-6 pb-6 pt-0 text-muted-foreground text-base leading-relaxed max-w-[90%]">
+                                                {faq.answer}
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </motion.div>
+                        );
+                    })}
+                </div>
+
+                <div className="mt-12 text-center">
+                    <p className="text-sm text-muted-foreground">
+                        Still have questions? <a href="/contact" className="text-primary font-bold underline underline-offset-4 hover:opacity-80">Check all FAQs</a>
+                    </p>
                 </div>
             </div>
         </section>
