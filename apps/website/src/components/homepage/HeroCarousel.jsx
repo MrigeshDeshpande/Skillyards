@@ -28,13 +28,14 @@ export default function HeroCarousel() {
     const particleColor = theme === "light" ? "#14248a" : "#d4c2fc";
     const bgColor = "bg-background text-foreground";
 
-    const autoplay = React.useRef(
-        Autoplay({
+    const autoplay = React.useRef(null);
+    if (!autoplay.current) {
+        autoplay.current = Autoplay({
             delay: AUTOPLAY_DELAY,
             stopOnInteraction: false,
             stopOnMouseEnter: true,
-        })
-    );
+        });
+    }
 
     React.useEffect(() => {
         if (!api) return;
@@ -144,22 +145,15 @@ export default function HeroCarousel() {
 
             {/* 🔥 Progress bar (perfectly synced) */}
             <div className={`absolute bottom-0 left-0 z-30 h-[3px] w-full bg-muted overflow-hidden`}>
-                <div
+                <motion.div
                     key={progressKey}
-                    className="h-full bg-primary origin-right transition-transform duration-6000 ease-linear"
-                    style={{
-                        animation: "progress 6s linear"
-                    }}
+                    initial={{ x: "-100%" }}
+                    animate={{ x: "0%" }}
+                    transition={{ duration: AUTOPLAY_DELAY / 1000, ease: "linear" }}
+                    className="h-full bg-primary"
                 />
             </div>
 
-            {/* Progress Animation Style Injection */}
-            <style jsx>{`
-                @keyframes progress {
-                    from { transform: translateX(-100%); }
-                    to { transform: translateX(0); }
-                }
-            `}</style>
 
 
             {/* Bullets */}
