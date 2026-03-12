@@ -64,7 +64,7 @@ export default function Footer() {
     ].filter(link => Boolean(link.url));
 
     return (
-        <footer className="border-t border-gray-200 bg-white/90 backdrop-blur-md dark:border-gray-800 dark:bg-gray-900/90">
+        <footer className="border-t border-border bg-background/90 backdrop-blur-md">
             {/* Top */}
             <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-12 sm:grid-cols-2 md:grid-cols-4">
                 {/* Brand */}
@@ -73,7 +73,7 @@ export default function Footer() {
                         <Logo />
                     </Link>
 
-                    <address className="not-italic text-sm text-gray-600 dark:text-gray-400">
+                    <address className="not-italic text-sm text-muted-foreground">
                         📍 A3, Behind Manoj Dhaba, Bhagwan Talkies Xing
                         <br />
                         Agra, Uttar Pradesh – 282005, India
@@ -85,16 +85,16 @@ export default function Footer() {
                 {/* Desktop columns */}
                 {footerSections.map(section => (
                     <div key={section.title} className="hidden md:block">
-                        <h3 className="mb-4 text-lg font-semibold text-gray-800 dark:text-gray-100">
+                        <h3 className="mb-4 text-lg font-semibold text-foreground">
                             {section.title}
                         </h3>
 
-                        <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        <ul className="space-y-2 text-sm text-muted-foreground">
                             {section.links.map(link => (
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}
-                                        className="transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+                                        className="transition-colors hover:text-primary"
                                     >
                                         {link.label}
                                     </Link>
@@ -113,12 +113,12 @@ export default function Footer() {
                                     {section.title}
                                 </AccordionTrigger>
                                 <AccordionContent>
-                                    <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                                    <ul className="space-y-2 text-sm text-muted-foreground">
                                         {section.links.map(link => (
                                             <li key={link.href}>
                                                 <Link
                                                     href={link.href}
-                                                    className="transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+                                                    className="transition-colors hover:text-primary"
                                                 >
                                                     {link.label}
                                                 </Link>
@@ -132,9 +132,8 @@ export default function Footer() {
                 </div>
             </div>
 
-            {/* Bottom */}
-            <div className="border-t border-gray-200 py-4 dark:border-gray-800">
-                <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 text-sm text-gray-600 dark:text-gray-400 sm:flex-row">
+            <div className="border-t border-border py-4">
+                <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 text-sm text-muted-foreground sm:flex-row">
                     {/* Left Content */}
                     <div className="text-center sm:text-left">
                         © {year} SkillYards Versatilitty
