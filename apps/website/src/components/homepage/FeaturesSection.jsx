@@ -29,7 +29,6 @@ const transformStyles = [
 ];
 
 export default function FeaturesSection() {
-    // Map existing features into the new format for BounceCards
     const cardsData = features.map((feature, idx) => {
         const Icon = iconMap[feature.icon];
         return {

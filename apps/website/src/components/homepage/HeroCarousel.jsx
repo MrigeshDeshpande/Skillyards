@@ -24,7 +24,7 @@ export default function HeroCarousel() {
     const [progressKey, setProgressKey] = React.useState(0);
     const { theme } = useTheme();
 
-    // Ensure we trigger a re-render/remount on theme change for Particles color
+    
     const particleColor = theme === "light" ? "#14248a" : "#d4c2fc";
     const bgColor = "bg-background text-foreground";
 
@@ -42,7 +42,7 @@ export default function HeroCarousel() {
 
         const onSelect = () => {
             setCurrent(api.selectedScrollSnap());
-            setProgressKey((k) => k + 1); // 🔑 reset progress animation
+            setProgressKey((k) => k + 1); 
         };
 
         api.on("select", onSelect);
@@ -66,7 +66,7 @@ export default function HeroCarousel() {
                 />
             </div>
 
-            {/* Gradient Overlay for Text Readability */}
+            
             <div className={`absolute inset-0 z-0 bg-linear-to-r from-background/50 to-transparent pointer-events-none`} />
 
             <Carousel
@@ -143,7 +143,6 @@ export default function HeroCarousel() {
                 <CarouselNext className="hidden md:flex right-6 bg-background/80 hover:bg-background text-foreground border-border shadow-md pointer-events-auto" />
             </Carousel>
 
-            {/* 🔥 Progress bar (perfectly synced) */}
             <div className={`absolute bottom-0 left-0 z-30 h-[3px] w-full bg-muted overflow-hidden`}>
                 <motion.div
                     key={progressKey}

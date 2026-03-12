@@ -10,20 +10,19 @@ import JsonLd from "@/components/JsonLd";
 import Image from "next/image";
 import Link from "next/link";
 
-// Generate JSON-LD for testimonials with positions
 const testimonialsSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "itemListElement": testimonials.map((t, idx) => ({
         "@type": "ListItem",
-        "position": idx + 1,  // Position in the list
+        "position": idx + 1,
         "item": {
             "@type": "Review",
             "author": {
                 "@type": "Person",
                 "name": t.name
             },
-            "datePublished": new Date().toISOString(), // Replace with real date if available
+            "datePublished": new Date().toISOString(),
             "reviewBody": t.feedback,
             "reviewRating": {
                 "@type": "Rating",
@@ -41,9 +40,7 @@ const testimonialsSchema = {
 
 
 
-/* -----------------------------
-   Quote Card
--------------------------------- */
+
 const QuoteCard = ({ info, truncate = false }) => {
     const fallbackImg = "/images/default-avatar.jpg";
     const [imgSrc, setImgSrc] = useState(info?.avatar || fallbackImg);
@@ -93,9 +90,6 @@ const QuoteCard = ({ info, truncate = false }) => {
 };
 
 
-/* -----------------------------
-   3D Marquee Area
--------------------------------- */
 const Marquee3D = ({ items, onSelectReview }) => {
     const r1 = items.slice(0, 4);
     const r2 = items.slice(4, 7);
@@ -153,9 +147,7 @@ const Marquee3D = ({ items, onSelectReview }) => {
     );
 };
 
-/* -----------------------------
-   Main Section
--------------------------------- */
+
 export default function HearFromStudents() {
     const [selectedReview, setSelectedReview] = useState(null);
 

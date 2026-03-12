@@ -8,7 +8,7 @@ export default function BounceCards({
   containerHeight = 400,
   animationDelay = 0.5,
   animationStagger = 0.06,
-  easeType = [0.175, 0.885, 0.32, 1.275], // approximated back.out
+  easeType = [0.175, 0.885, 0.32, 1.275],
   transformStyles = [
     'rotate(10deg) translate(-170px)',
     'rotate(5deg) translate(-85px)',
@@ -98,13 +98,12 @@ export default function BounceCards({
             variants={cardVariants}
             animate={{
               transform: targetTransform,
-              scale: 1 // Keep scale 1 after initial entrance
+              scale: 1
             }}
             transition={{
               type: 'spring',
               stiffness: 260,
               damping: 20,
-              // Add a slight delay if pushing siblings, mimicking the GSAP delay logic
               delay: hoveredIdx !== null && idx !== hoveredIdx ? Math.abs(hoveredIdx - idx) * 0.05 : 0
             }}
             onMouseEnter={() => enableHover && setHoveredIdx(idx)}
