@@ -47,14 +47,14 @@ export default function Home() {
             <FeaturesSection />
             <HearFromStudents />
             <LeadersSection />
-            <SubscribeSection />
-            <CTASection />
             <FAQSection />
             <BatchesSection />
             <BlogSection />
             <FeaturedRoles />
             <ServicesSection />
             <PartnersSlider />
+            <CTASection />
+            <SubscribeSection />
 
         </div>
     );

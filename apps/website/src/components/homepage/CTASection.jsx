@@ -1,44 +1,70 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ArrowRight} from "lucide-react";
 
 export default function CTASection() {
     return (
-        <section className="relative py-24 bg-primary overflow-hidden">
-            {/* Slanted Background */}
-            <div className="absolute top-0 left-0 w-full h-full -skew-y-3 origin-top-left bg-primary/80 opacity-20 pointer-events-none"></div>
+        <section className="relative py-12 px-6 overflow-hidden bg-background min-h-[40vh] flex items-center">
+            {/* Background Decor */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-primary/10 blur-[100px] rounded-full" />
+                <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-64 h-64 bg-secondary/10 blur-[100px] rounded-full" />
+            </div>
 
-            <div className="relative max-w-4xl mx-auto px-6 text-center space-y-6">
-                <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-primary-foreground drop-shadow-lg">
-                    Ready to Kickstart Your IT Career?
-                </h2>
-                <p className="text-lg sm:text-xl text-primary-foreground/90 max-w-2xl mx-auto drop-shadow-sm">
-                    Join SkillYards today for <span className="font-bold underline decoration-secondary">On Job Training</span>, <span className="font-bold underline decoration-secondary">On Job Degree</span> programs, and hands-on learning in emerging IT technologies. Empower your skills and secure your future!
-                </p>
+            <div className="relative z-10 max-w-5xl mx-auto w-full">
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="relative overflow-hidden rounded-[2.5rem] border border-border/40 bg-card/40 backdrop-blur-md p-8 sm:p-12 text-center shadow-xl"
+                >
+                    <div className="relative space-y-6 max-w-2xl mx-auto">
+                        <motion.div
+                            initial={{ y: -10, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.1 }}
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-1"
+                        >
+                           
+                            <span>Transform Your Future</span>
+                        </motion.div>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                    <Button
-                        asChild
-                        size="lg"
-                        className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold shadow-lg transition-all"
-                    >
-                        <a href="/contact">Enroll Now</a>
-                    </Button>
+                        <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-foreground leading-tight">
+                            Ready to <span className="text-primary italic">Kickstart</span> Your IT Career?
+                        </h2>
+                        
+                        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
+                            Join SkillYards for <span className="text-foreground font-semibold">On-Job Training</span> & 
+                            <span className="text-foreground font-semibold"> Degree</span> programs. 
+                            Hands-on learning in emerging IT technologies.
+                        </p>
 
-                    <Button
-                        asChild
-                        size="lg"
-                        variant="outline"
-                        className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground font-bold shadow-md transition-all"
-                    >
-                        <a href="/programs">Explore Programs</a>
-                    </Button>
-                </div>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+                            <Button
+                                asChild
+                                size="lg"
+                                className="group rounded-full bg-primary px-8 h-12 text-base font-bold text-primary-foreground shadow-lg transition-all hover:scale-105 active:scale-95"
+                            >
+                                <a href="/contact" className="flex items-center gap-2">
+                                    Enroll Now
+                                    <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                                </a>
+                            </Button>
 
-                {/* Optional tiny tagline */}
-                <p className="mt-4 text-primary-foreground/80 text-sm sm:text-base">
-                    🎁 Enroll now and get exclusive access to free e-books and tutorials!
-                </p>
+                            <Button
+                                asChild
+                                size="lg"
+                                variant="outline"
+                                className="rounded-full border-border/60 bg-background/30 backdrop-blur-sm px-8 h-12 text-base font-bold text-foreground transition-all hover:bg-muted hover:scale-105 active:scale-95 shadow-md"
+                            >
+                                <a href="/programs">Explore Programs</a>
+                            </Button>
+                        </div>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
