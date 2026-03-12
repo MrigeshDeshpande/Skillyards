@@ -27,18 +27,6 @@ const cloudImages = [
     "https://cdn.simpleicons.org/semrush/FF642D",
 ];
 
-/*  Bento layout — explicit placement (4 cols × 3 rows, no gaps)
-    ┌──────────────┬────────┬────────┐
-    │   Web Dev    │ Mobile │ Custom │  row 1
-    │  (2 cols)    │(2 rows)│        │
-    ├───────┬──────┤        ├────────┤
-    │  SEO  │Social│        │ Perf   │  row 2
-    │       │      │        │(2 rows)│
-    ├───────┴──────┴────────┤        │
-    │   Brand Identity      │        │  row 3
-    │      (3 cols)         │        │
-    └───────────────────────┴────────┘  */
-
 const services = [
     {
         icon: Code2,
@@ -211,7 +199,6 @@ export default function ServicesSection() {
                     </div>
                 </div>
 
-                {/* Bento Grid — 4 cols × 3 rows, explicit placement */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"

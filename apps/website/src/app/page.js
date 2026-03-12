@@ -6,7 +6,7 @@ import LeadersSection from "@/components/common/LeadersSection";
 import SubscribeSection from "@/components/common/SubscribeSection";
 import CTASection from "@/components/homepage/CTASection";
 import FAQSection from "@/components/common/FAQSection";
-import BatchesSection from "@/components/homepage/BatchesSection";
+
 import { BlogSection } from "@/components/homepage/BlogSection";
 import ServicesSection from "@/components/homepage/ServicesSection";
 import PartnersSlider from "@/components/common/PartnersSlider";
@@ -46,15 +46,14 @@ export default function Home() {
             <ProgramsSection />
             <FeaturesSection />
             <HearFromStudents />
-            <LeadersSection />
-            <SubscribeSection />
-            <CTASection />
-            <FAQSection />
-            <BatchesSection />
-            <BlogSection />
             <FeaturedRoles />
             <ServicesSection />
+            <BlogSection />
+            <LeadersSection />
             <PartnersSlider />
+            <CTASection />
+            <FAQSection />
+            <SubscribeSection />
 
         </div>
     );

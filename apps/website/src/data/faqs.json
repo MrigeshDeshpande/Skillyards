@@ -1,18 +1,38 @@
 [
   {
-    "question": "What is On Job Training?",
-    "answer": "On Job Training at SkillYards allows you to learn and apply IT skills while working on real projects, gaining hands-on experience with guidance from experts."
+    "question": "What is On Job Training (OJT)?",
+    "answer": "On Job Training at SkillYards allows you to learn and apply IT skills while working on real projects, gaining hands-on experience with guidance from industry experts."
   },
   {
-    "question": "What is On Job Degree?",
-    "answer": "On Job Degree combines formal education with practical work experience, enabling you to earn a recognized degree while contributing to live projects."
+    "question": "What is the On Job Degree program?",
+    "answer": "The On Job Degree combines formal university education with practical work experience, enabling you to earn a recognized degree while contributing to live industry projects."
+  },
+  {
+    "question": "Do you provide placement assistance?",
+    "answer": "Yes, we provide 100% placement assistance. Our network of 20+ partner companies and dedicated placement cell help students secure high-paying jobs in the IT industry."
   },
   {
     "question": "Which technologies do you train in?",
-    "answer": "We offer training in Web Development, Software Development, Data Science, AI/ML, Cloud Computing, and other emerging IT technologies."
+    "answer": "We offer comprehensive training in Web Development (MERN/Java), Data Science, AI/ML, Cloud Computing, Cyber Security, and UI/UX Design."
+  },
+  {
+    "question": "Is there any certification provided?",
+    "answer": "Yes, upon successful completion of the training or degree program, you receive industry-recognized certifications that are highly valued by top IT employers."
+  },
+  {
+    "question": "What is the duration of the training programs?",
+    "answer": "Our short-term training programs typically range from 3 to 6 months, while the On Job Degree programs follow standard academic timelines (3 or 4 years) integrated with work."
+  },
+  {
+    "question": "Are the classes online or offline?",
+    "answer": "We offer both online and offline (Agra campus) modes of learning to ensure flexibility. Our offline campus provides direct mentorship and laboratory access."
+  },
+  {
+    "question": "Who is eligible to join SkillYards?",
+    "answer": "Students pursuing or having completed their 12th, BCA, B.Tech, MCA, or any degree with a passion for IT are eligible to join our various programs."
   },
   {
     "question": "Where is SkillYards located?",
-    "answer": "SkillYards is based in Agra, at A3, Behind Manoj Dhaba, Bhagwan Talkies Xing, Agra, Uttar Pradesh – 282005, India."
+    "answer": "Our main center is located at A3, Behind Manoj Dhaba, Bhagwan Talkies Xing, Agra, Uttar Pradesh – 282005, India."
   }
 ]

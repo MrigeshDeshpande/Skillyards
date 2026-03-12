@@ -39,14 +39,14 @@ export default function PartnersSlider() {
                     </p>
                 </motion.div>
 
-              
+
                 <div className="relative">
                     {/* Edge fade masks */}
                     <div className="pointer-events-none absolute left-0 inset-y-0 w-32 z-10 bg-linear-to-r from-background to-transparent" />
                     <div className="pointer-events-none absolute right-0 inset-y-0 w-32 z-10 bg-linear-to-l from-background to-transparent" />
 
                     {/* Single row — scrolls left */}
-                    <div className="overflow-hidden py-3">
+                    <div className="overflow-hidden py-4">
                         <motion.div
                             className="flex gap-5 w-max"
                             animate={{ x: ["0%", "-50%"] }}
@@ -58,14 +58,14 @@ export default function PartnersSlider() {
                                     href={partner.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group shrink-0 flex items-center justify-center w-36 h-16 rounded-2xl border border-border/40 bg-card hover:scale-120 hover:border-primary/30 hover:shadow-md hover:shadow-primary/8 transition-all duration-300 px-4"
+                                    className="group shrink-0 flex items-center justify-center w-44 h-20 rounded-2xl border border-border/40 bg-card hover:scale-110 focus-within:scale-110 hover:border-primary/40 hover:bg-primary/5 hover:shadow-lg transition-all duration-300 px-6 overflow-hidden outline-none"
                                 >
                                     <Image
                                         src={partner.image}
                                         alt={partner.name}
-                                        width={160}
-                                        height={64}
-                                        className="object-contain max-h-9 w-auto grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-300"
+                                        width={250}
+                                        height={100}
+                                        className="object-contain max-h-13 w-auto opacity-80 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-500 rounded-[inherit]"
                                     />
                                 </a>
                             ))}
@@ -83,9 +83,9 @@ export default function PartnersSlider() {
                 >
                     <div className="grid grid-cols-3 divide-x divide-border/50 rounded-2xl border border-border/50 bg-card overflow-hidden">
                         {[
-                            { stat: "20+",  label: "Partner Companies" },
+                            { stat: "20+", label: "Partner Companies" },
                             { stat: "500+", label: "Students Placed" },
-                            { stat: "98%",  label: "Placement Rate" },
+                            { stat: "98%", label: "Placement Rate" },
                         ].map(({ stat, label }) => (
                             <div key={stat} className="flex flex-col items-center py-6 px-4 gap-1">
                                 <span className="font-mono text-3xl font-bold text-primary">{stat}</span>

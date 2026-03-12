@@ -125,7 +125,7 @@ const ProgramsShowcase = () => {
                                     {/* Overlay */}
                                     <div className="absolute inset-0 bg-linear-to-r from-black/70 to-black/40" />
 
-                                    {/* Default state */}
+                                    
                                     <div
                                         className={`
                       flex items-center justify-center w-full h-full
