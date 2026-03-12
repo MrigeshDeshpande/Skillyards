@@ -1,24 +1,24 @@
-import { NextResponse } from "next/server";
-import { sendTestEmail } from "@/modules/notifications/email.service";
+// import { NextResponse } from "next/server";
+// import { sendTestEmail } from "@/modules/notifications/email.service";
 
-export async function GET() {
+// export async function GET() {
 
-    try {
+//     try {
 
-        const result = await sendTestEmail();
+//         const result = await sendTestEmail();
 
-        return NextResponse.json({
-            success: true,
-            data: result
-        });
+//         return NextResponse.json({
+//             success: true,
+//             data: result
+//         });
 
-    } catch (err) {
+//     } catch (err) {
 
-        return NextResponse.json({
-            success: false,
-            message: err.message
-        });
+//         return NextResponse.json({
+//             success: false,
+//             message: err.message
+//         });
 
-    }
+//     }
 
-}
+// }
