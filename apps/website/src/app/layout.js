@@ -1,4 +1,4 @@
-    import { Inter, Playfair_Display, Source_Sans_3 } from "next/font/google";
+import { Inter, Playfair_Display, Source_Sans_3 } from "next/font/google";
 import "@/app/styles/globals.css";
 
 import { ThemeProvider } from "@/app/context/ThemeContext";
@@ -10,6 +10,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { GoogleTagManager } from "@next/third-parties/google";
 import RegisterSW from "@/components/RegisterSW";
+
+import ReCaptchaProvider from "@/components/providers/ReCaptchaProvider"; 
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -37,28 +39,31 @@ export default function RootLayout({ children }) {
         <html lang="en" suppressHydrationWarning>
             <body
                 className={`${inter.variable} ${sourceSans.variable} ${playfair.variable} 
-  antialiased 
-  bg-white dark:bg-neutral-950 
-  text-neutral-900 dark:text-neutral-100 
-  transition-colors duration-500 ease-in-out`}
+                antialiased 
+                bg-white dark:bg-neutral-950 
+                text-neutral-900 dark:text-neutral-100 
+                transition-colors duration-500 ease-in-out`}
             >
-                <RegisterSW />
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                >
-                    {/* Optional global background gradient for subtle polish */}
-                    <div className="min-h-screen bg-linear-to-b from-white via-zinc-50 to-zinc-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-black transition-colors duration-500">
-                        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
-                        <Header />
+                <ReCaptchaProvider> 
+                    <RegisterSW />
 
-                        <main className="relative z-10">{children}</main>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                    >
+                        <div className="min-h-screen bg-linear-to-b from-white via-zinc-50 to-zinc-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-black transition-colors duration-500">
+                            <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
 
-                        <Footer />
-                        <BackToTop />
-                    </div>
-                </ThemeProvider>
+                            <Header />
+
+                            <main className="relative z-10">{children}</main>
+
+                            <Footer />
+                            <BackToTop />
+                        </div>
+                    </ThemeProvider>
+                </ReCaptchaProvider>
 
                 {/* Structured Data */}
                 <JsonLd schema={globalSchema} id="global-schema" />
