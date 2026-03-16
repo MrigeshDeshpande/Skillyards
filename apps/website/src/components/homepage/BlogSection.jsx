@@ -1,50 +1,48 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import posts from "@/data/posts.json"; 
+import { sanityClient } from "@/lib/sanity/client";
+import { POSTS_QUERY } from "@/lib/sanity/queries";
+import { urlFor } from "@/lib/sanity/image";
 
 const BlogCard = ({ post }) => {
+    // Determine the image URL. Use a placeholder if not found.
+    const imageUrl = post.coverImage ? urlFor(post.coverImage).url() : "/images/placeholder.jpg";
+    
+    // Format date string from Sanity's publishedAt or use a default
+    const formattedDate = post.publishedAt 
+        ? new Date(post.publishedAt).toLocaleDateString("en-US", { month: "short", year: "numeric", day: "numeric" })
+        : "Recent";
+
     return (
         <div className="group relative w-full h-[450px] sm:h-[480px] rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 cursor-pointer bg-muted">
 
             {/* ── Background Image ── */}
             <Image
-                src={post.image}
-                alt={post.title}
+                src={imageUrl}
+                alt={post.title || "Blog Post"}
                 fill
                 className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.35,0.13,0.0,0.99)] group-hover:scale-105"
             />
 
             {/* ── Thumbnail strip: starts hidden at bottom edge (behind content panel), slides up on hover ── */}
-            {/*
-                Key insight: the thumbnail MUST stay inside the card's overflow boundary.
-                We position it at the very bottom (bottom-0), behind the content panel (z-10).
-                On hover it slides UP by the height of the content panel (~160px) via translateY.
-            */}
             <div
                 className={[
-                    // Positioned at bottom-left, snug against the content panel
                     "absolute bottom-0 left-0 z-10",
                     "w-[100px] h-[130px]",
                     "bg-white dark:bg-zinc-900",
                     "rounded-tr-2xl",
                     "flex items-center justify-center",
                     "pointer-events-none select-none",
-                    // Hidden: translated down so it's behind the content panel
                     "translate-y-0",
-                    // On hover: slide UP to sit above the content panel
                     "group-hover:-translate-y-[140px]",
                     "transition-transform duration-500 ease-[cubic-bezier(0.35,0.13,0.0,0.99)]",
                     "hidden sm:flex",
                 ].join(" ")}
             >
                 <div className="relative w-[90px] h-[120px] rounded-lg overflow-hidden shadow ring-1 ring-white/10">
-                    <Image src={post.image} alt="Thumbnail" fill className="object-cover" />
+                    <Image src={imageUrl} alt="Thumbnail" fill className="object-cover" />
                 </div>
-
-              
             </div>
 
             {/* ── Content panel ── */}
@@ -60,26 +58,26 @@ const BlogCard = ({ post }) => {
                     <path d="M 0 12 L 12 12 C 5.373 12 0 6.627 0 0 Z" />
                 </svg>
 
-                {/* Author — Inter (sans), uppercase label style */}
+                {/* Author defaults to SkillYards Team */}
                 <span className="font-sans text-xs font-semibold text-muted-foreground tracking-widest uppercase">
-                    {post.author || "SkillYards Team"}
+                    SkillYards Team
                 </span>
 
-                {/* Title — Playfair Display (serif), matches site headings */}
+                {/* Title */}
                 <h3 className="font-serif text-lg sm:text-xl font-semibold text-foreground leading-snug line-clamp-2">
                     {post.title}
                 </h3>
 
-                {/* Category + Date / Arrow — Inter (sans), small UI labels */}
+                {/* Category + Date / Arrow */}
                 <div className="flex items-center justify-between pt-1">
                     <span className="font-sans bg-secondary/60 text-secondary-foreground px-3 py-1 rounded-full text-xs font-medium">
-                        {post.category || "Education"}
+                        Education
                     </span>
 
                     <div className="flex items-center overflow-hidden">
                         <div className="flex items-center gap-1.5 translate-x-10 group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.35,0.13,0.0,0.99)]">
                             <span className="font-sans text-xs font-medium text-foreground whitespace-nowrap">
-                                {post.date || "Oct '25"}
+                                {formattedDate}
                             </span>
                             <span className="flex items-center justify-center bg-foreground text-background w-5 h-5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0">
                                 <ArrowUpRight className="w-3 h-3" />
@@ -90,31 +88,37 @@ const BlogCard = ({ post }) => {
             </div>
 
             {/* Full-card accessible link */}
-            <Link href={post.url} className="absolute inset-0 z-30">
+            <Link href={`/blog/${post.slug || post.slug?.current}`} className="absolute inset-0 z-30">
                 <span className="sr-only">Read {post.title}</span>
             </Link>
         </div>
     );
 };
 
-export function BlogSection() {
+export async function BlogSection() {
+    // Fetch posts dynamically from Sanity
+    const posts = await sanityClient.fetch(POSTS_QUERY);
+    
+    // Only safely grab up to 3 posts for the homepage section
+    const recentPosts = posts ? posts.slice(0, 3) : [];
+
     return (
         <section className="py-16 bg-background">
             <div className="max-w-[1200px] mx-auto px-12 space-y-12">
                 <div className="text-center space-y-4">
-                    {/* Section heading — Playfair Display matches hero/section headings */}
+                    {/* Section heading */}
                     <h2 className="font-serif text-4xl sm:text-5xl font-bold text-foreground">
                         Latest Blogs & Tips
                     </h2>
-                    {/* Subheading — Inter (sans), muted body copy */}
+                    {/* Subheading */}
                     <p className="font-sans text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
                         Explore our latest insights, tips, and guides to stay ahead in your IT career.
                     </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {posts.map((post, idx) => (
-                        <BlogCard key={idx} post={post} />
+                    {recentPosts.map((post) => (
+                        <BlogCard key={post._id} post={post} />
                     ))}
                 </div>
             </div>

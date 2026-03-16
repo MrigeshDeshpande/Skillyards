@@ -26,8 +26,8 @@ export default async function BlogPostPage({ params }) {
 
     if (!post) {
         return (
-            <div className="min-h-screen bg-white dark:bg-[#0a0a0a] flex items-center justify-center transition-colors duration-300">
-                <p className="text-gray-500 dark:text-gray-400 text-lg">Post not found</p>
+            <div className="min-h-screen bg-background flex items-center justify-center transition-colors duration-300">
+                <p className="text-muted-foreground text-lg">Post not found</p>
             </div>
         );
     }
@@ -37,26 +37,27 @@ export default async function BlogPostPage({ params }) {
     const headings = extractHeadings(post.content);
 
     return (
-        <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-colors duration-300">
+        <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
 
-            <div className="relative w-full bg-gray-50 dark:bg-[#0f0f0f] border-b border-gray-200 dark:border-white/5 pt-28 pb-10 px-4 transition-colors duration-300">
+            {/* Hero Section */}
+            <div className="relative w-full bg-muted/30 border-b border-border pt-24 pb-12 px-6 transition-colors duration-300">
                 <div className="max-w-6xl mx-auto">
 
-                    <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-500 dark:text-blue-400 bg-blue-50 dark:bg-blue-400/10 border border-blue-200 dark:border-blue-400/20 rounded-full px-3 py-1 mb-5">
+                    <span className="inline-block text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-6">
                         Blog Article
                     </span>
 
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white max-w-4xl mb-6">
+                    <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight text-foreground max-w-4xl mb-8">
                         {post.title}
                     </h1>
 
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
-                        <span className="flex items-center gap-1.5">
-                            <span>✍️</span>
-                            <span>By <strong className="text-gray-900 dark:text-white font-semibold">Skillyards Team</strong></span>
+                    <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
+                        <span className="flex items-center gap-2">
+                            <span className="text-lg">✍️</span>
+                            <span>By <strong className="text-foreground font-semibold">SkillYards Team</strong></span>
                         </span>
-                        <span className="text-gray-300 dark:text-gray-700">•</span>
-                        <span className="flex items-center gap-1.5">
+                        <span className="text-border hidden sm:inline">•</span>
+                        <span className="flex items-center gap-2">
                             <span>
                                 {post.publishedAt &&
                                     new Date(post.publishedAt).toLocaleDateString("en-IN", {
@@ -66,14 +67,14 @@ export default async function BlogPostPage({ params }) {
                                     })}
                             </span>
                         </span>
-                        <span className="text-gray-300 dark:text-gray-700">•</span>
-                        <span className="flex items-center gap-1.5">
-                            <span>⏱</span>
+                        <span className="text-border hidden sm:inline">•</span>
+                        <span className="flex items-center gap-2">
+                            <span className="text-lg">⏱</span>
                             <span>{readingTime} min read</span>
                         </span>
                     </div>
 
-                    <div className="mt-6">
+                    <div className="mt-8">
                         <Breadcrumbs
                             items={[
                                 { label: "Home", href: "/" },
@@ -85,74 +86,71 @@ export default async function BlogPostPage({ params }) {
                 </div>
             </div>
 
-            <div className="max-w-6xl mx-auto px-4 py-12">
+            {/* Main Content Area */}
+            <div className="max-w-6xl mx-auto px-6 py-16">
 
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-10 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12 items-start">
 
-                    <div>
+                    <div className="w-full max-w-none overflow-hidden">
 
                         {post.coverImage && (
-                            <div className="mb-10 rounded-2xl overflow-hidden shadow-xl shadow-black/10 dark:shadow-black/60">
+                            <div className="mb-14 rounded-3xl overflow-hidden shadow-2xl shadow-black/5 dark:shadow-black/40 border border-border/50">
                                 <Image
                                     src={urlFor(post.coverImage).width(1400).url()}
                                     alt={post.title}
                                     width={1400}
                                     height={600}
-                                    className="w-full aspect-[16/7] object-cover rounded-xl mb-12"
+                                    className="w-full aspect-16/7 md:aspect-2/1 object-cover"
                                     priority
                                 />
                             </div>
                         )}
 
-
                         <article
                             className="
-                                prose prose-gray dark:prose-invert max-w-none
+                                prose dark:prose-invert max-w-none
+                                prose-headings:font-serif
                                 prose-headings:font-bold
                                 prose-headings:tracking-tight
-                                prose-headings:text-gray-900
-                                dark:prose-headings:text-white
+                                prose-headings:text-foreground
                                 prose-h2:text-2xl
                                 prose-h2:mt-12
                                 prose-h2:mb-4
                                 prose-h2:pb-3
                                 prose-h2:border-b
-                                prose-h2:border-gray-200
-                                dark:prose-h2:border-white/10
+                                prose-h2:border-border
                                 prose-h3:text-xl
                                 prose-h3:mt-8
                                 prose-h3:mb-3
-                                prose-h3:text-gray-800
-                                dark:prose-h3:text-gray-100
-                                prose-p:text-gray-600
-                                dark:prose-p:text-gray-300
-                                prose-p:leading-[1.85]
-                                prose-p:my-5
-                                prose-li:text-gray-600
-                                dark:prose-li:text-gray-300
+                                prose-h3:text-foreground
+                                prose-p:text-muted-foreground
+                                prose-p:leading-relaxed
+                                prose-p:my-6
+                                prose-li:text-muted-foreground
                                 prose-li:leading-relaxed
-                                prose-ul:my-5
-                                prose-ul:space-y-1
-                                prose-li:marker:text-blue-500
-                                dark:prose-li:marker:text-blue-400
-                                prose-strong:text-gray-900
-                                dark:prose-strong:text-white
+                                prose-ul:my-6
+                                prose-ul:space-y-2
+                                prose-li:marker:text-primary
+                                prose-strong:text-foreground
                                 prose-strong:font-semibold
-                                prose-a:text-blue-500
-                                dark:prose-a:text-blue-400
+                                prose-a:text-primary
                                 prose-a:no-underline
                                 hover:prose-a:underline
-                                prose-code:text-blue-600
-                                dark:prose-code:text-blue-300
-                                prose-code:bg-blue-50
-                                dark:prose-code:bg-white/5
-                                prose-code:px-1.5
-                                prose-code:py-0.5
-                                prose-code:rounded
-                                prose-blockquote:border-l-blue-500
-                                dark:prose-blockquote:border-l-blue-400
-                                prose-blockquote:text-gray-500
-                                dark:prose-blockquote:text-gray-400
+                                prose-code:text-primary
+                                prose-code:bg-primary/10
+                                prose-code:px-2
+                                prose-code:py-1
+                                prose-code:rounded-md
+                                prose-blockquote:border-l-primary
+                                prose-blockquote:text-muted-foreground
+                                prose-blockquote:bg-muted/30
+                                prose-blockquote:px-6
+                                prose-blockquote:py-2
+                                prose-blockquote:rounded-r-xl
+                                prose-blockquote:font-normal
+                                prose-blockquote:italic
+                                prose-img:rounded-2xl
+                                prose-img:shadow-lg
                             "
                         >
                             <PortableText
@@ -161,25 +159,27 @@ export default async function BlogPostPage({ params }) {
                             />
                         </article>
 
-                        <div className="mt-14 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/40 dark:from-blue-500/10 dark:via-blue-400/5 dark:to-transparent border border-blue-200 dark:border-blue-400/20 p-8 transition-colors duration-300">
-                            <p className="text-xl font-bold text-gray-900 dark:text-white mb-1">Get Skill Tips Weekly</p>
-                            <p className="text-sm text-gray-500 dark:text-gray-400 mb-5">Join thousands learning AI &amp; career skills.</p>
-                            <div className="flex flex-col sm:flex-row gap-3">
+                        {/* Newsletter Block */}
+                        <div className="mt-20 rounded-3xl bg-linear-to-br from-primary/10 to-transparent border border-primary/20 p-10 transition-colors duration-300">
+                            <h3 className="font-serif text-2xl font-bold text-foreground mb-2">Get Skill Tips Weekly</h3>
+                            <p className="text-base text-muted-foreground mb-8">Join thousands learning AI & career skills straight to their inbox.</p>
+                            <div className="flex flex-col sm:flex-row gap-4">
                                 <input
                                     type="email"
-                                    placeholder="Enter your email"
+                                    placeholder="Enter your email address"
+                                    suppressHydrationWarning
                                     className="
-                                        flex-1 rounded-xl px-4 py-2.5 text-sm
-                                        bg-white dark:bg-white/5
-                                        border border-gray-200 dark:border-white/10
-                                        text-gray-900 dark:text-white
-                                        placeholder-gray-400 dark:placeholder-gray-500
-                                        focus:outline-none focus:border-blue-400
-                                        transition-colors duration-200
+                                        flex-1 rounded-2xl px-5 py-3.5 text-base
+                                        bg-background
+                                        border border-border
+                                        text-foreground
+                                        placeholder-muted-foreground
+                                        focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary
+                                        transition-all duration-200
                                     "
                                 />
-                                <button className="bg-blue-500 hover:bg-blue-400 transition-colors text-white text-sm font-semibold px-6 py-2.5 rounded-xl whitespace-nowrap">
-                                    Subscribe
+                                <button className="bg-foreground hover:bg-foreground/90 transition-colors text-background text-base font-semibold px-8 py-3.5 rounded-2xl whitespace-nowrap">
+                                    Subscribe Now
                                 </button>
                             </div>
                         </div>
@@ -187,45 +187,40 @@ export default async function BlogPostPage({ params }) {
                     </div>
 
 
-                    <aside className="hidden lg:flex flex-col gap-5 sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto scrollbar-hide">
+                    <aside className="hidden lg:flex flex-col gap-8 sticky top-32 self-start max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-hide pb-10">
 
-                        <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.03] p-5 transition-colors duration-300">
-                            <p className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3 font-semibold">Author</p>
-                            <div className="flex items-center gap-3 mb-3">
-                                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/20 border border-blue-300 dark:border-blue-400/30 flex items-center justify-center text-blue-500 dark:text-blue-400 font-bold text-sm flex-shrink-0">
+                        <div className="shrink-0 rounded-3xl border border-border bg-muted/30 p-6 transition-colors duration-300">
+                            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4 font-semibold">Author</p>
+                            <div className="flex items-center gap-4 mb-4">
+                                <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-lg shrink-0">
                                     SK
                                 </div>
                                 <div>
-                                    <p className="font-semibold text-gray-900 dark:text-white text-sm">Skillyards Team</p>
-                                    <p className="text-xs text-gray-400 dark:text-gray-500">Content Team</p>
+                                    <p className="font-serif font-bold text-foreground text-base">SkillYards Team</p>
+                                    <p className="text-sm text-muted-foreground">Content Team</p>
                                 </div>
                             </div>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-                                Insights from the Skillyards team on technology, education and career growth.
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                                Insights from the SkillYards team on technology, education and career growth.
                             </p>
                         </div>
 
-
                         {headings.length > 0 && (
-                            <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.03] p-5 transition-colors duration-300">
-                                <p className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3 font-semibold">
+                            <div className="shrink-0 rounded-3xl border border-border bg-muted/30 p-6 transition-colors duration-300">
+                                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4 font-semibold">
                                     Table of Contents
                                 </p>
                                 <TableOfContents headings={headings} />
                             </div>
                         )}
 
-                        <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.03] p-5 transition-colors duration-300">
-                            <p className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3 font-semibold">🔥 Trending Articles</p>
-                            <p className="text-xs text-gray-400 dark:text-gray-500 italic">Check back for more trending posts.</p>
-                        </div>
-
-                        <div className="rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-500/20 dark:via-blue-400/10 dark:to-transparent border border-blue-200 dark:border-blue-400/20 p-5 text-center transition-colors duration-300">
-                            <p className="text-base font-bold text-gray-900 dark:text-white mb-1">Upgrade Your Skills 🚀</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">Join SkillYards programs and get job-ready faster.</p>
+                        <div className="shrink-0 rounded-4xl border border-border bg-muted/30 p-8 text-center transition-colors duration-300 flex flex-col items-center justify-center min-h-[200px]">
+                            <p className="text-4xl mb-4">🚀</p>
+                            <p className="font-serif text-xl font-bold text-foreground mb-2">Upgrade Your Skills</p>
+                            <p className="text-sm text-muted-foreground mb-6">Join SkillYards programs and get job-ready faster.</p>
                             <a
                                 href="/programs"
-                                className="inline-block bg-blue-500 hover:bg-blue-400 transition-colors text-white text-xs font-semibold px-5 py-2 rounded-lg"
+                                className="inline-block bg-primary hover:bg-primary/90 transition-colors text-primary-foreground text-sm font-semibold px-6 py-3 rounded-xl w-full"
                             >
                                 Explore Programs
                             </a>

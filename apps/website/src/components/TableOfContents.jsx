@@ -36,23 +36,33 @@ export default function TableOfContents({ headings }) {
         return () => observerRef.current?.disconnect();
     }, [headings]);
 
+    // Automatically scroll the Table of Contents container to keep the active item in view
+    useEffect(() => {
+        if (activeId) {
+            const activeEl = document.getElementById(`toc-${activeId}`);
+            if (activeEl) {
+                activeEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+        }
+    }, [activeId]);
+
     if (!headings?.length) return null;
 
     return (
-        <ul className="space-y-1 text-sm">
+        <ul className="space-y-0.5 text-sm">
             {headings.map((heading) => {
                 const isActive = activeId === heading.id;
-                const isH3 = heading.level === "h3";
+                const isH3 = heading.level === "h2";
 
                 return (
-                    <li key={heading.id}>
+                    <li key={heading.id} id={`toc-${heading.id}`}>
                         <a
                             href={`#${heading.id}`}
                             onClick={(e) => {
                                 e.preventDefault();
                                 const el = document.getElementById(heading.id);
                                 if (el) {
-                                    // Offset for sticky navbar (~96px)
+                                    
                                     const top = el.getBoundingClientRect().top + window.scrollY - 96;
                                     window.scrollTo({ top, behavior: "smooth" });
                                     setActiveId(heading.id);
@@ -69,7 +79,7 @@ export default function TableOfContents({ headings }) {
                             {/* Indicator dot / bar */}
                             <span
                                 className={[
-                                    "flex-shrink-0 rounded-full transition-all duration-200",
+                                    "shrink-0 rounded-full transition-all duration-200",
                                     isH3 ? "w-1 h-1" : "w-1.5 h-1.5",
                                     isActive
                                         ? "bg-blue-500 dark:bg-blue-400 scale-125"
