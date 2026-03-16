@@ -1,27 +1,46 @@
 import { resend } from "./resend.client";
+import {
+  adminEnquiryTemplate,
+  userConfirmationTemplate
+} from "./email.template";
 
-export async function sendTestEmail() {
-  try {
-
-    const response = await resend.emails.send({
-      from: process.env.EMAIL_FROM || "Skillyards <onboarding@resend.dev>",
-      to: ["mrigeshdeshpande246@gmail.com"],
-      subject: "Hello World",
-      html: "<p>Congrats on sending your <strong>first email</strong>!</p>"
-    });
-
-    return response;
-
-  } catch (err) {
-
-    console.error("Email send error:", err);
-    throw new Error("Failed to send email");
-
-  }
+/**
+ * Notify company staff about new enquiry
+ */
+export async function sendAdminEnquiryNotification(enquiry) {
+  return resend.emails.send({
+    from: process.env.EMAIL_FROM,
+    to: [process.env.ADMIN_EMAIL],
+    reply_to: enquiry.email,
+    subject: "New enquiry from Skillyards website",
+    html: adminEnquiryTemplate(enquiry)
+  });
 }
 
-// TODO: switch sender to verified domain after DNS setup
-// Required:
-// 1. Verify domain skillyards.in in Resend dashboard
-// 2. Add DNS records in Namecheap
-// 3. Set EMAIL_FROM="Skillyards <admin@skillyards.in>"
+/**
+ * Send confirmation email to the user
+ */
+export async function sendUserConfirmation(enquiry) {
+  return resend.emails.send({
+    from: process.env.EMAIL_FROM,
+    to: [enquiry.email],
+    subject: "We received your enquiry",
+    html: userConfirmationTemplate(enquiry)
+  });
+}
+
+/**
+ * Local test email
+ */
+export async function sendTestEmail() {
+  return resend.emails.send({
+    from: "Skillyards <admin@skillyards.in>",
+    to: ["staff@skillyards.in"],
+    subject: "Skillyards Email Test",
+    html: `
+      <h2>Email system working</h2>
+      <p>This confirms your production email setup is working.</p>
+      <p>Time: ${new Date().toISOString()}</p>
+    `
+  });
+}

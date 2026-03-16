@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,7 +13,7 @@ function ContactForm() {
     const [success, setSuccess] = useState("");
     const [error, setError] = useState("");
 
-    const recaptchaRef = useRef(null);
+    const { executeRecaptcha } = useGoogleReCaptcha();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -22,51 +22,58 @@ function ContactForm() {
         setError("");
         setSuccess("");
 
-        const token = recaptchaRef.current?.getValue();
+        const form = e.currentTarget;
+        const formData = new FormData(form);
 
-        if (!token) {
-            setError("Please verify that you are not a robot.");
+        const firstName = formData.get("first_name");
+        const lastName = formData.get("last_name");
+        const email = formData.get("email");
+        const phone = formData.get("mobile");
+        const message = formData.get("message");
+
+        if (!executeRecaptcha) {
+            setError("Captcha not ready. Please try again.");
             setLoading(false);
             return;
         }
 
-        const form = e.currentTarget;
+        const token = await executeRecaptcha("contact_form");
 
         const payload = {
-            first_name: form.first_name.value,
-            last_name: form.last_name.value,
-            email: form.email.value,
-            mobile: form.mobile.value,
-            message: form.message.value,
-            "g-recaptcha-response": token,
+            firstName,
+            lastName,
+            email,
+            phone,
+            message,
+            captchaToken: token
         };
 
         try {
-            // TODO: Re-enable when API is ready
-            // const res = await fetch(
-            //     `${process.env.NEXT_PUBLIC_API_URL}/contact`,
-            //     {
-            //         method: "POST",
-            //         headers: {
-            //             "Content-Type": "application/json",
-            //             Accept: "application/json",
-            //         },
-            //         body: JSON.stringify(payload),
-            //     }
-            // );
-            // const data = await res.json();
-            // if (!res.ok) {
-            //     throw new Error(data.message || "Something went wrong");
-            // }
-            // setSuccess(data.message);
+            const res = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL}/api/enquiries`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                }
+            );
 
-            setSuccess("Thank you! Your message has been received. (Demo mode)");
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.message || "Something went wrong");
+            }
+
+            setSuccess(data.message);
             form.reset();
+
         } catch (err) {
             setError(err.message);
         } finally {
             setLoading(false);
-            recaptchaRef.current?.reset();
         }
     }
 
@@ -134,15 +141,6 @@ function ContactForm() {
                     required
                 />
             </div>
-
-            {/* reCAPTCHA */}
-            <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                onExpired={() =>
-                    setError("reCAPTCHA expired. Please verify again.")
-                }
-            />
 
             {/* Submit */}
             <Button
