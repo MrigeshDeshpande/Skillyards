@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     /* config options here */
-    reactCompiler: true,
+    reactCompiler: false,
     async headers() {
         return [
             {
@@ -33,6 +33,11 @@ const nextConfig = {
             {
                 protocol: "https",
                 hostname: "admin.skillyards.in",
+                pathname: "/images/**",
+            },
+            {
+                protocol: "https",
+                hostname: "cdn.sanity.io",
                 pathname: "/images/**",
             },
         ],
