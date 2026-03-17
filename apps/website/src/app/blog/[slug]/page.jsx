@@ -14,7 +14,8 @@ async function getPost(slug) {
         excerpt,
         publishedAt,
         coverImage,
-        content
+        content,
+        author
     }`;
 
     return sanityClient.fetch(query, { slug });
@@ -53,7 +54,7 @@ export default async function BlogPostPage({ params }) {
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
                         <span className="flex items-center gap-1.5">
                             <span>✍️</span>
-                            <span>By <strong className="text-gray-900 dark:text-white font-semibold">Skillyards Team</strong></span>
+                            <span>By <strong className="text-gray-900 dark:text-white font-semibold">{post.author || "Skillyards Team"}</strong></span>
                         </span>
                         <span className="text-gray-300 dark:text-gray-700">•</span>
                         <span className="flex items-center gap-1.5">
@@ -190,19 +191,41 @@ export default async function BlogPostPage({ params }) {
                     <aside className="hidden lg:flex flex-col gap-5 sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto scrollbar-hide">
 
                         <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.03] p-5 transition-colors duration-300">
-                            <p className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3 font-semibold">Author</p>
+
+                            <p className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3 font-semibold">
+                                Author
+                            </p>
+
                             <div className="flex items-center gap-3 mb-3">
+
                                 <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/20 border border-blue-300 dark:border-blue-400/30 flex items-center justify-center text-blue-500 dark:text-blue-400 font-bold text-sm flex-shrink-0">
-                                    SK
+                                    {post.author
+                                        ? post.author
+                                            .split(" ")
+                                            .map((n) => n[0])
+                                            .join("")
+                                            .slice(0, 2)
+                                            .toUpperCase()
+                                        : "ST"}
                                 </div>
+
+                                {/* Name + Role */}
                                 <div>
-                                    <p className="font-semibold text-gray-900 dark:text-white text-sm">Skillyards Team</p>
-                                    <p className="text-xs text-gray-400 dark:text-gray-500">Content Team</p>
+                                    <p className="font-semibold text-gray-900 dark:text-white text-sm">
+                                        {post.author || "Skillyards Team"}
+                                    </p>
+                                    <p className="text-xs text-gray-400 dark:text-gray-500">
+                                        Content Team
+                                    </p>
                                 </div>
+
                             </div>
+
+                            {/* Description */}
                             <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
                                 Insights from the Skillyards team on technology, education and career growth.
                             </p>
+
                         </div>
 
 

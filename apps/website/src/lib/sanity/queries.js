@@ -5,6 +5,7 @@ export const POSTS_QUERY = `
   "slug": slug.current,
   excerpt,
   coverImage,
-  publishedAt
+  publishedAt,
+  author
 }
 `;
