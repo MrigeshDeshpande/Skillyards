@@ -1,4 +1,4 @@
-import {defineType, defineField} from 'sanity'
+import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'post',
@@ -34,7 +34,7 @@ export default defineType({
       name: 'coverImage',
       title: 'Cover Image',
       type: 'image',
-      options: {hotspot: true}
+      options: { hotspot: true }
     }),
 
     defineField({
@@ -47,7 +47,19 @@ export default defineType({
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{type: 'block'}]
+      of: [
+        { type: 'block' },
+        {
+          type: 'image',
+          options: { hotspot: true }
+        },
+        {
+          type: "code",
+          options: {
+            language: "javascript"
+          }
+        }
+      ]
     })
   ]
 })
