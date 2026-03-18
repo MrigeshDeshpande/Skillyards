@@ -16,4 +16,15 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
+
+  vite: (config) => {
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        'styled-components': 'styled-components/dist/styled-components.browser.esm.js',
+      },
+    }
+    return config
+  },
 })
