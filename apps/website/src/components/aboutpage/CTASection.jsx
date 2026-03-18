@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function CTASection() {
     return (
-        <section className="bg-gradient-to-r from-indigo-600 to-blue-500 dark:from-indigo-700 dark:to-blue-800 text-white py-20 transition-colors duration-500">
+        <section className="bg-linear-to-r from-indigo-600 to-blue-500 dark:from-indigo-700 dark:to-blue-800 text-white py-20 transition-colors duration-500">
             <div className="max-w-7xl mx-auto px-6 text-center">
                 <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">
                     Take the Leap & Upskill with SkillYards

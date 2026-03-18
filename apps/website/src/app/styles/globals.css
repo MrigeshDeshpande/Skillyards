@@ -60,12 +60,23 @@
     --color-home-ring: var(--home-ring);
 
     @keyframes marquee {
-        from { transform: translateX(0); }
-        to { transform: translateX(calc(-100% - var(--gap))); }
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(calc(-100% - var(--gap)));
+        }
     }
+
     @keyframes marquee-vertical {
-        from { transform: translateY(0); }
-        to { transform: translateY(calc(-100% - var(--gap))); }
+        from {
+            transform: translateY(0);
+        }
+
+        to {
+            transform: translateY(calc(-100% - var(--gap)));
+        }
     }
 }
 
@@ -124,6 +135,17 @@
 @layer utilities {
     .text-balance {
         text-wrap: balance;
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .scrollbar-hide {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
     }
 }
 
@@ -260,7 +282,8 @@
     animation: carousel-progress 6s linear forwards;
 }
 
-::view-transition-old(root), ::view-transition-new(root) {
+::view-transition-old(root),
+::view-transition-new(root) {
     animation: none;
     mix-blend-mode: normal;
 }

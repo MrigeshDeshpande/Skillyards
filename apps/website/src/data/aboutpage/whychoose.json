@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Practical IT Training",
+    "description": "Learn by building real projects instead of memorizing theory. Our programs focus on practical IT training for students.",
+    "icon": "Cpu"
+  },
+  {
+    "title": "Project-Based Learning",
+    "description": "Work on real-world problems and develop skills that companies actually look for.",
+    "icon": "Book"
+  },
+  {
+    "title": "Mentorship & Guidance",
+    "description": "Learn directly from experienced mentors who guide you through industry practices and professional growth.",
+    "icon": "Users"
+  },
+  {
+    "title": "Career Preparation",
+    "description": "Build job-ready resumes, improve communication skills, and prepare for real interview environments.",
+    "icon": "Briefcase"
+  }
+]
