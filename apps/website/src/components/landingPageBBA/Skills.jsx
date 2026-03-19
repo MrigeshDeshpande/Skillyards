@@ -13,6 +13,23 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+const SkillCard = ({ icon, label, level, index }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay: index * 0.08 }}
+    whileHover={{ y: -4, transition: { duration: 0.3 } }}
+    className="group"
+  >
+    <div className="bg-card dark:bg-neutral-900/40 border border-border dark:border-neutral-800 rounded-lg p-6 text-center hover:border-primary/50 dark:hover:border-primary/40 transition-all duration-300 backdrop-blur-sm">
+      <h3 className="text-lg font-semibold text-foreground dark:text-neutral-100 group-hover:text-primary transition-colors">
+        {label}
+      </h3>
+    </div>
+  </motion.div>
+);
+
 export const Skills = () => {
   const skills = [
     { icon: <BarChart3 size={32} />, label: "Data Analytics", level: 90 },
@@ -26,17 +43,21 @@ export const Skills = () => {
   ];
 
   return (
-    <section className="py-24 bg-background w-full relative overflow-hidden">
-      {/* Subtle background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[800px] max-h-[800px] bg-primary/5 rounded-full blur-[150px] -z-10" />
+    <section className="py-20 lg:py-28 bg-background dark:bg-neutral-950 w-full relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <div className="absolute top-1/3 -left-40 w-96 h-96 bg-primary/10 dark:bg-primary/15 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/3 -right-40 w-96 h-96 bg-secondary/10 dark:bg-secondary/15 rounded-full blur-[120px]" />
+      </div>
 
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-20 max-w-3xl mx-auto">
+      <div className="container mx-auto px-4 sm:px-6">
+        {/* Header */}
+        <div className="text-center mb-16 lg:mb-24 max-w-3xl mx-auto">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block"
+            className="text-primary font-bold tracking-widest uppercase text-xs sm:text-sm mb-4 block"
           >
             Capabilities
           </motion.span>
@@ -44,7 +65,7 @@ export const Skills = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl lg:text-6xl font-serif font-extrabold mb-6 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-extrabold mb-6 tracking-tight text-foreground dark:text-neutral-50"
           >
             Future-Ready <span className="text-primary italic">Skills.</span>
           </motion.h2>
@@ -53,42 +74,16 @@ export const Skills = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-muted-foreground text-lg md:text-xl leading-relaxed"
+            className="text-muted-foreground dark:text-neutral-400 text-base md:text-lg leading-relaxed"
           >
-            We don't just teach business theory; we build leaders equipped with the hard and soft skills necessary for the modern digital economy.
+            We don&apos;t just teach business theory; we build leaders equipped with the hard and soft skills necessary for the modern digital economy.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto">
           {skills.map((skill, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              whileHover={{ y: -5 }}
-              className="flex flex-col items-center group cursor-default"
-            >
-              <div className="relative w-24 h-24 bg-card rounded-[2rem] flex items-center justify-center mb-6 border border-border/50 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-500 shadow-xs group-hover:shadow-2xl group-hover:shadow-primary/30 z-10">
-                {skill.icon}
-                <div className="absolute inset-0 bg-primary/10 rounded-[2rem] scale-0 group-hover:scale-110 opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10" />
-              </div>
-
-              <span className="font-bold text-center text-lg text-foreground group-hover:text-primary transition-colors">
-                {skill.label}
-              </span>
-
-              <div className="w-full h-1.5 bg-muted/50 rounded-full mt-4 overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                  className="h-full bg-primary rounded-full group-hover:bg-secondary transition-colors"
-                />
-              </div>
-            </motion.div>
+            <SkillCard key={index} {...skill} index={index} />
           ))}
         </div>
       </div>

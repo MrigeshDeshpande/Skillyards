@@ -18,8 +18,8 @@ export const Stats = () => {
       id: i,
       duration: Math.random() * 5 + 5,
       delay: Math.random() * 5,
-      width: Math.random() * 10 + 2,
-      height: Math.random() * 10 + 2,
+      width: Math.random() * 8 + 2,
+      height: Math.random() * 8 + 2,
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
     }));
@@ -30,9 +30,9 @@ export const Stats = () => {
   }, []);
 
   return (
-    <section className="py-32 px-6 bg-primary relative overflow-hidden w-full">
+    <section className="py-[10vh] md:py-[15vh] px-4 sm:px-6 bg-primary dark:bg-primary/95 relative overflow-hidden w-full">
       {/* Animated Background Particles */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10 dark:opacity-5">
         {particles.map((p) => (
           <motion.div
             key={p.id}
@@ -56,8 +56,8 @@ export const Stats = () => {
         ))}
       </div>
 
-      <div className="w-full relative z-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="w-full max-w-6xl mx-auto relative z-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-12">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -67,13 +67,13 @@ export const Stats = () => {
               transition={{ type: "spring", stiffness: 100, delay: index * 0.1 }}
               className="text-center"
             >
-              <div className="text-5xl md:text-7xl font-serif text-primary-foreground mb-4 tracking-tighter font-bold">
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-primary-foreground mb-3 md:mb-4 tracking-tighter font-bold">
                 {stat.value}
               </div>
-              <div className="text-secondary font-bold uppercase tracking-widest text-sm mb-2">
+              <div className="text-secondary dark:text-secondary/90 font-bold uppercase tracking-widest text-xs md:text-sm mb-2">
                 {stat.suffix}
               </div>
-              <div className="text-primary-foreground/60 text-lg">
+              <div className="text-primary-foreground/70 dark:text-primary-foreground/60 text-sm md:text-base lg:text-lg">
                 {stat.label}
               </div>
             </motion.div>

@@ -1,37 +1,37 @@
 'use client';
 
 import React from 'react';
-import { Rocket, Shield, Zap } from 'lucide-react';
 import { motion } from 'motion/react';
+import { CometCard } from "@/components/ui/comet-card";
 
 export const Benefits = () => {
   const benefits = [
     {
-      icon: <Rocket size={32} />,
+      gradient: "from-blue-500 to-cyan-500",
       title: "Career Growth",
       description: "Our graduates see an average salary increase of 40% within the first year of completion."
     },
     {
-      icon: <Shield size={32} />,
+      gradient: "from-purple-500 to-pink-500",
       title: "Industry Certified",
       description: "Curriculum designed and certified by top industry leaders and global business schools."
     },
     {
-      icon: <Zap size={32} />,
+      gradient: "from-orange-500 to-red-500",
       title: "Fast-Track Learning",
       description: "Intensive modules designed to get you job-ready in record time without compromising quality."
     }
   ];
 
   return (
-    <section id="benefits" className="py-32 px-6 bg-background w-full">
-      <div className="w-full">
-        <div className="text-center mb-20">
+    <section id="benefits" className="py-[10vh] md:py-[15vh] px-4 sm:px-6 bg-linear-to-b from-background/50 to-background dark:from-neutral-900 dark:to-neutral-950 w-full">
+      <div className="w-full max-w-6xl mx-auto">
+        <div className="text-center mb-12 md:mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-serif mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-extrabold text-foreground dark:text-neutral-50"
           >
             Why Choose SkillYards?
           </motion.h2>
@@ -40,29 +40,27 @@ export const Benefits = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-muted-foreground text-xl max-w-4xl mx-auto"
+            className="text-muted-foreground dark:text-neutral-400 text-sm sm:text-base md:text-lg max-w-4xl mx-auto mt-4"
           >
             We provide more than just education. We provide a launchpad for your professional success.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {benefits.map((benefit, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              whileHover={{ y: -10 }}
-              className="group bg-card text-card-foreground rounded-3xl p-10 border border-border/50 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
-            >
-              <div className="w-20 h-20 bg-secondary rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-500">
-                {benefit.icon}
-              </div>
-              <h3 className="text-2xl font-bold mb-4">{benefit.title}</h3>
-              <p className="text-muted-foreground text-lg leading-relaxed">{benefit.description}</p>
-            </motion.div>
+            <CometCard key={index} className="w-full h-full" rotateDepth={3} translateDepth={8}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+                className="group bg-card dark:bg-neutral-800 text-card-foreground dark:text-neutral-100 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 border border-border/50 dark:border-neutral-700 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 dark:hover:shadow-primary/10 transition-all duration-500 w-full h-full flex flex-col overflow-hidden"
+              >
+                <div className={`w-full h-40 md:h-48 relative mb-6 md:mb-8 rounded-xl overflow-hidden group-hover:shadow-lg transition-shadow duration-500 flex-shrink-0 bg-gradient-to-br ${benefit.gradient} group-hover:scale-105 transition-transform duration-500`} />
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 md:mb-4 text-foreground dark:text-neutral-50">{benefit.title}</h3>
+                <p className="text-muted-foreground dark:text-neutral-400 text-sm md:text-base leading-relaxed">{benefit.description}</p>
+              </motion.div>
+            </CometCard>
           ))}
         </div>
       </div>
