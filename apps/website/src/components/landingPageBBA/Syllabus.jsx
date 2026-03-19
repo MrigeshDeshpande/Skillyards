@@ -1,21 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { ChevronRight, ChevronDown } from "lucide-react";
-
-const colors = {
-  primary: "#f9bf1e",       // Golden Yellow (Primary)
-  secondary: "#9DE4E1",     // Aqua Blue
-  accent: "#FFD166",        // Lemon Yellow
-  shadow: "#313451",        // Deep Navy
-  background: "#FFFFFF",    // White
-  lightBg: "#F8F8F8",       // Light Gray
-  gradientStart: "#F0F2F5", // Light Gray
-  gradientEnd: "#FFFFFF",   // White
-  textDark: "#1F2937",      // Dark Gray
-  textMedium: "#4B5563",    // Medium Gray
-  border: "#E5E7EB",        // Light Border
-};
+import { ChevronRight, ChevronDown, CheckCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // -----------------Data ------------------
 const syllabusData = {
@@ -315,140 +302,128 @@ const syllabusData = {
   ]
 };
 
-// -----------------Components ------------------
+
 const TrackToggle = ({ activeTrack, setActiveTrack }) => {
   return (
-    <div className="flex justify-center mb-6 lg:mb-12">
-      <div className="bg-gray-100 p-0.5 lg:p-1 rounded-full shadow-inner border border-gray-200">
-        <div className="flex relative">
-          <button
-            onClick={() => setActiveTrack("fullstack")}
-            className={`px-4 lg:px-8 py-2 lg:py-3 rounded-full text-sm lg:text-lg font-medium transition-all z-10 ${activeTrack === "fullstack"
-              ? `bg-[${colors.primary}] text-white shadow-md`
-              : `text-[${colors.textDark}] hover:text-[${colors.primary}]`
-              }`}
-          >
-            Digital Marketing
-          </button>
-          <button
-            onClick={() => setActiveTrack("android")}
-            className={`px-4 lg:px-8 py-2 lg:py-3 rounded-full text-sm lg:text-lg font-medium transition-all z-10 ${activeTrack === "android"
-              ? `bg-[${colors.primary}] text-white shadow-md`
-              : `text-[${colors.textDark}] hover:text-[${colors.primary}]`
-              }`}
-          >
-            Business Analytics
-          </button>
-          <div
-            className={`absolute top-0 bottom-0 rounded-full transition-all duration-300 ${activeTrack === "fullstack"
-              ? "left-0 right-1/2 bg-yellow-400"
-              : "left-1/2 right-0 bg-yellow-400"
-              }`}
-          />
-        </div>
+    <div className="flex justify-center mb-12">
+      <div className="bg-muted p-1 rounded-full shadow-inner border border-border flex relative overflow-hidden">
+        <button
+          onClick={() => setActiveTrack("fullstack")}
+          className={`relative px-2 py-3 rounded-full text-base md:text-sm font-medium transition-colors z-10 w-40 text-center ${
+            activeTrack === "fullstack"
+              ? "text-primary-foreground"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Digital Marketing
+        </button>
+        <button
+          onClick={() => setActiveTrack("android")}
+          className={`relative px-2 py-3 rounded-full text-base md:text-sm font-medium transition-colors z-10 w-48 text-center ${
+            activeTrack === "android"
+              ? "text-primary-foreground"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Business Analytics
+        </button>
+        <motion.div
+          className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-primary rounded-full z-0 shadow-md"
+          layout
+          initial={false}
+          animate={{
+            x: activeTrack === "fullstack" ? 4 : "100%",
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        />
       </div>
     </div>
   );
 };
-const SemesterButton = ({
-  semester,
-  isActive,
-  onClick,
-  hasSpecial
-}) => {
+
+const SemesterButton = ({ semester, isActive, onClick, hasSpecial }) => {
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left p-4 md:p-6 rounded-xl transition-all mb-4 border-2 ${isActive
-        ? `bg-white text-[${colors.primary}] shadow-lg border-yellow-200 font-bold`
-        : `bg-[${colors.lightBg}] hover:bg-white hover:shadow-md border-transparent`
-        } ${hasSpecial ? "relative overflow-hidden" : ""}`}
+      className={`w-full text-left p-5 rounded-xl transition-all mb-4 border-2 flex flex-col relative overflow-hidden group ${
+        isActive
+          ? "bg-card border-primary shadow-lg"
+          : "bg-background border-border hover:border-primary/50 hover:bg-card hover:shadow-md"
+      }`}
     >
       {hasSpecial && (
-        <div className="absolute top-0 right-0 bg-yellow-400 text-xs font-bold px-2 py-1 rounded-bl-lg selection:text-black hover: text-black">
+        <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
           Industry Integrated
         </div>
       )}
-      <div className="flex justify-between items-center">
-        <h3 className="text-lg md:text-xl font-medium">{semester}</h3>
-        {isActive ? (
-          <ChevronDown className="h-5 w-5 text-yellow-500" />
-        ) : (
-          <ChevronRight className="h-5 w-5 text-gray-500" />
-        )}
+      <div className="flex justify-between items-center w-full mt-2">
+        <h3 className={`text-lg font-bold transition-colors ${isActive ? "text-primary" : "text-foreground group-hover:text-primary"}`}>
+          {semester}
+        </h3>
+        <motion.div
+          animate={{ rotate: isActive ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <ChevronDown className={`h-5 w-5 ${isActive ? "text-primary" : "text-muted-foreground group-hover:text-primary"}`} />
+        </motion.div>
       </div>
     </button>
   );
 };
 
-
-const SemesterContent = ({
-  semester,
-  trackFocus,
-  coreSubjects,
-  special,
-  isMobile = false,
-  maxHeight
-}) => {
-  if (isMobile) {
-    return (
-      <div className="bg-white p-6 rounded-xl shadow-md mb-4 border border-gray-200">
-        <h3 className="text-xl font-semibold mb-4 text-gray-800">{semester}</h3>
-        <div className="mb-6">
-          <h4 className={`text-lg font-medium text-[${colors.primary}] mb-2`}>{trackFocus.title}</h4>
-          <ul className="pl-5 space-y-2">
-            {trackFocus.courses.map((course, index) => (
-              <li key={index} className="flex items-start"> {/* Line 9: Added flex for custom bullet */}
-                <span className={`h-2 w-2 rounded-full mt-2 mr-2 bg-[${colors.primary}]`}></span> {/* Line 10: Custom bullet */}
-                <span className={`text-base text-[${colors.textDark}]`}>{course}</span> {/* Line 11: Course text */}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h4 className={`text-lg font-medium text-[${colors.primary}] mb-2`}>{coreSubjects.title}</h4>
-          <ul className="list-disc pl-5 space-y-2">
-            {coreSubjects.courses.map((course, index) => (
-              <li key={index} className={`text-base text-[${colors.textDark}]`}>{course}</li>
-            ))}
-          </ul>
-        </div>
-        {special && (
-          <div className="mt-4 bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded">
-            <p className={`text-[${colors.textDark}] text-base font-medium`}>{special}</p>
-          </div>
-        )}
-      </div>
-    );
-  }
-
+const SemesterContent = ({ semester, trackFocus, coreSubjects, special, maxHeight }) => {
   return (
     <div
-      className="h-full bg-gray-50 rounded-xl shadow-lg p-8 border border-gray-200 overflow-y-auto"
+      className="h-full bg-card rounded-2xl shadow-2xl p-8 lg:p-10 border border-border overflow-y-auto custom-scrollbar relative"
       style={maxHeight ? { maxHeight, height: '100%' } : {}}
     >
-      <h2 className={`text-3xl font-bold mb-8 text-[${colors.textDark}] border-b border-gray-200 pb-4`}>
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] pointer-events-none" />
+      
+      <h2 className="text-3xl font-serif font-bold mb-8 text-foreground border-b border-border pb-6 flex items-center gap-3">
+        <span className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+          <CheckCircle size={18} />
+        </span>
         {semester}
       </h2>
-      <div className="mb-8">
-        <h3 className={`text-xl font-semibold mb-4 text-[${colors.primary}]`}>{trackFocus.title}</h3>
-        <ul className="list-disc pl-5 space-y-4">
+
+      <div className="mb-10">
+        <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-wider mb-6">
+          {trackFocus.title}
+        </div>
+        <ul className="space-y-4">
           {trackFocus.courses.map((course, index) => (
-            <li key={index} className={`text-lg text-[${colors.textDark}]`}>{course}</li>
+            <li key={index} className="flex items-start gap-3 group">
+              <div className="min-w-[6px] h-[6px] rounded-full bg-primary mt-2.5 opacity-60 group-hover:opacity-100 group-hover:scale-150 transition-all" />
+              <span className="text-lg text-muted-foreground group-hover:text-foreground transition-colors font-medium">
+                {course}
+              </span>
+            </li>
           ))}
         </ul>
       </div>
+
       <div>
-        <h3 className={`text-xl font-semibold mb-4 text-[${colors.primary}]`}>{coreSubjects.title}</h3>
-        <ul className="list-disc pl-5 space-y-4">
+        <div className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-bold uppercase tracking-wider mb-6">
+          {coreSubjects.title}
+        </div>
+        <ul className="space-y-4">
           {coreSubjects.courses.map((course, index) => (
-            <li key={index} className={`text-lg text-[${colors.textDark}]`}>{course}</li>
+            <li key={index} className="flex items-start gap-3 group">
+              <div className="min-w-[6px] h-[6px] rounded-full bg-secondary mt-2.5 opacity-60 group-hover:opacity-100 group-hover:scale-150 transition-all" />
+              <span className="text-lg text-muted-foreground group-hover:text-foreground transition-colors font-medium">
+                {course}
+              </span>
+            </li>
           ))}
         </ul>
       </div>
+
       {special && (
-        <div className="mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
-          <p className={`text-[${colors.textDark}] text-lg font-medium`}>{special}</p>
+        <div className="mt-10 bg-primary/5 border border-primary/20 p-5 rounded-xl flex items-center gap-4">
+          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+            <CheckCircle size={20} />
+          </div>
+          <p className="text-foreground font-bold">{special}</p>
         </div>
       )}
     </div>
@@ -456,7 +431,7 @@ const SemesterContent = ({
 };
 
 // -----------------Main Component ------------------
-const Syllabus = () => {
+export const Syllabus = () => {
   const [activeTrack, setActiveTrack] = useState("fullstack");
   const [activeIndex, setActiveIndex] = useState(0);
   const [openIndex, setOpenIndex] = useState(0);
@@ -467,103 +442,140 @@ const Syllabus = () => {
 
   useEffect(() => {
     if (leftSideRef.current) {
-      const height = leftSideRef.current.getBoundingClientRect().height;
-      setLeftSideHeight(`${height}px`);
+      setTimeout(() => {
+        if (leftSideRef.current) {
+          const height = leftSideRef.current.getBoundingClientRect().height;
+          setLeftSideHeight(`${height}px`);
+        }
+      }, 100);
     }
-  }, [activeTrack]);
+  }, [activeTrack, activeIndex]);
 
   return (
-    <section id="syllabus" className="py-16 bg-gray-50">
-      <div className="container mx-auto px-0 lg:px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#f9bf1e]">
-            Comprehensive Syllabus
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Industry-relevant BBA Course designed for career success
-          </p>
+    <section id="syllabus" className="py-24 bg-background w-full">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block"
+          >
+            Curriculum
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl lg:text-6xl font-serif font-extrabold mb-6 tracking-tight"
+          >
+            Comprehensive <span className="text-primary italic">Syllabus.</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-muted-foreground text-lg md:text-xl leading-relaxed"
+          >
+            Industry-relevant BBA program designed to ensure you are job-ready from day one.
+          </motion.p>
         </div>
 
         <TrackToggle activeTrack={activeTrack} setActiveTrack={setActiveTrack} />
 
         {/* Mobile View Accordion */}
-        <div className="lg:hidden">
-          <div className="bg-white p-4 rounded-lg shadow-md mb-0 border border-gray-200 mx-0 ">
-            <h3 className="text-2xl font-semibold mb-4 text-gray-800 border-b pb-3">
-              {activeTrack === "fullstack" ? "Digital Marketing" : "Business Analytics"} Curriculum
-            </h3>
-            <div className="space-y-2">
-              {currentSyllabus.map((item, index) => {
-                const isOpen = openIndex === index;
-                return (
-                  <div key={index} className="border-2 border-gray-200 rounded-lg overflow-hidden mx-0">
-                    <button
-                      onClick={() => setOpenIndex(isOpen ? null : index)}
-                      className="w-full text-left p-3 flex justify-between items-center"
+        <div className="lg:hidden space-y-4">
+          {currentSyllabus.map((item, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <motion.div 
+                initial={false}
+                animate={{ backgroundColor: isOpen ? "var(--card)" : "var(--background)" }}
+                key={index} 
+                className={`border rounded-2xl overflow-hidden transition-colors ${isOpen ? 'border-primary shadow-lg' : 'border-border'}`}
+              >
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="w-full text-left p-5 flex justify-between items-center bg-transparent relative overflow-hidden group"
+                >
+                  <div className="flex flex-col gap-1">
+                    <h3 className={`text-xl font-bold transition-colors ${isOpen ? "text-primary" : "text-foreground group-hover:text-primary"}`}>
+                      {item.semester}
+                    </h3>
+                    {item.special && (
+                      <span className="text-xs font-bold uppercase tracking-wider text-primary">
+                        Industry Integrated
+                      </span>
+                    )}
+                  </div>
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronDown className={`h-6 w-6 ${isOpen ? "text-primary" : "text-muted-foreground group-hover:text-primary"}`} />
+                  </motion.div>
+                </button>
+                
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div 
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
                     >
-                      <div className="flex items-center gap-2">
-                        <h3 className={`text-lg font-medium ${isOpen ? `text-[${colors.primary}] font-bold` : 'text-gray-800'}`}>
-                          {item.semester}
-                        </h3>
-                        {item.special && (
-                          <span className="bg-yellow-400 text-xs font-bold px-2 py-1 rounded-lg selection:text-black hover: text-black">
-                            Industry Integrated
-                          </span>
-                        )}
-                      </div>
-                      <div className="flex-shrink-0">
-                        {isOpen ? (
-                          <ChevronDown className="h-5 w-5 text-yellow-500" />
-                        ) : (
-                          <ChevronRight className="h-5 w-5 text-gray-500" />
-                        )}
-                      </div>
-                    </button>
-                    {isOpen && (
-                      <div className="p-3 bg-gray-50">
-                        <div className="mb-3">
-                          <h4 className={`text-base font-medium text-[${colors.primary}] mb-2`}>{item.trackFocus.title}</h4>
-                          <ul className="list-disc pl-5 space-y-2"> {/* Line 3: Keep list-disc */}
+                      <div className="p-5 border-t border-border bg-card">
+                        <div className="mb-8">
+                          <h4 className="text-sm font-bold text-primary uppercase tracking-wider mb-4 px-3 py-1 bg-primary/10 inline-block rounded-full">
+                            {item.trackFocus.title}
+                          </h4>
+                          <ul className="space-y-3">
                             {item.trackFocus.courses.map((course, i) => (
-                              <li key={i} className={`text-base text-[${colors.textDark}]`}> {/* Line 5: Removed custom bullet */}
-                                {course}
+                              <li key={i} className="flex items-start gap-3">
+                                <div className="min-w-[6px] h-[6px] rounded-full bg-primary mt-2" />
+                                <span className="text-muted-foreground text-sm font-medium">{course}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
                         <div>
-                          <h4 className={`text-base font-medium text-[${colors.primary}] mb-2`}>{item.coreSubjects.title}</h4>
-                          <ul className="list-disc pl-5 space-y-2">
+                          <h4 className="text-sm font-bold text-secondary uppercase tracking-wider mb-4 px-3 py-1 bg-secondary/10 inline-block rounded-full">
+                            {item.coreSubjects.title}
+                          </h4>
+                          <ul className="space-y-3">
                             {item.coreSubjects.courses.map((course, i) => (
-                              <li key={i} className={`text-base text-[${colors.textDark}]`}>
-                                {/* <span className={`h-2 w-2 rounded-full mt-2 mr-3 bg-[${colors.primary}] flex-shrink-0`}></span> */}
-                                <span className={`text-base text-[${colors.textDark}]`}> {course}</span>
+                              <li key={i} className="flex items-start gap-3">
+                                <div className="min-w-[6px] h-[6px] rounded-full bg-secondary mt-2" />
+                                <span className="text-muted-foreground text-sm font-medium">{course}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
                         {item.special && (
-                          <div className="mt-3 bg-yellow-50 border-l-4 border-yellow-400 p-2 rounded">
-                            <p className={`text-[${colors.textDark}] text-base font-medium`}>{item.special}</p>
+                          <div className="mt-8 bg-primary/5 border border-primary/20 p-4 rounded-xl flex items-start gap-3">
+                            <CheckCircle size={18} className="text-primary mt-0.5 shrink-0" />
+                            <p className="text-foreground text-sm font-bold">{item.special}</p>
                           </div>
                         )}
                       </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Desktop View */}
         <div className="hidden lg:flex flex-row gap-8 max-w-6xl mx-auto items-start">
-          <div className="lg:w-2/5" ref={leftSideRef}>
-            <div className="bg-white p-6 rounded-xl shadow-md sticky top-8 h-fit border border-gray-200">
-              <h3 className="text-2xl font-semibold mb-6 text-gray-800 border-b pb-3">
+          <div className="w-2/5" ref={leftSideRef}>
+            <div className="bg-card p-6 rounded-3xl shadow-2xl sticky top-24 border border-border">
+              <h3 className="text-xl font-bold mb-6 text-foreground pb-4 border-b border-border">
                 {activeTrack === "fullstack" ? "Digital Marketing" : "Business Analytics"} Curriculum
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-0">
                 {currentSyllabus.map((item, index) => (
                   <SemesterButton
                     key={index}
@@ -576,19 +588,29 @@ const Syllabus = () => {
               </div>
             </div>
           </div>
-          <div className="lg:w-3/5">
-            <SemesterContent
-              semester={currentSyllabus[activeIndex].semester}
-              trackFocus={currentSyllabus[activeIndex].trackFocus}
-              coreSubjects={currentSyllabus[activeIndex].coreSubjects}
-              special={currentSyllabus[activeIndex].special}
-              maxHeight={leftSideHeight}
-            />
+          <div className="w-3/5">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex + activeTrack}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="h-full"
+              >
+                <SemesterContent
+                  semester={currentSyllabus[activeIndex].semester}
+                  trackFocus={currentSyllabus[activeIndex].trackFocus}
+                  coreSubjects={currentSyllabus[activeIndex].coreSubjects}
+                  special={currentSyllabus[activeIndex].special}
+                  maxHeight={leftSideHeight}
+                />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
     </section>
   );
 };
-
-export default Syllabus;
+

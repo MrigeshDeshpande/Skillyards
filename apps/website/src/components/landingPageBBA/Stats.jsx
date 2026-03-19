@@ -45,7 +45,7 @@ export const Stats = () => {
               repeat: Infinity,
               delay: p.delay,
             }}
-            className="absolute bg-white rounded-full"
+            className="absolute bg-primary-foreground rounded-full"
             style={{
               width: p.width,
               height: p.height,

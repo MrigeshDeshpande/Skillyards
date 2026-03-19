@@ -1,83 +1,183 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'motion/react';
-import { Rocket, BookOpen, Briefcase, Award } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Rocket,
+  BookOpen,
+  Briefcase,
+  Award,
+} from "lucide-react";
 
-export const ProgramPhases = () => {
-  const phases = [
-    {
-      icon: <BookOpen size={32} />,
-      title: "Foundations",
-      duration: "Months 1-12",
-      description: "Master the core principles of business, economics, and management."
-    },
-    {
-      icon: <Rocket size={32} />,
-      title: "Specialization",
-      duration: "Months 13-24",
-      description: "Deep dive into your chosen track: Marketing, Finance, or Operations."
-    },
-    {
-      icon: <Briefcase size={32} />,
-      title: "Industry Immersion",
-      duration: "Months 25-30",
-      description: "Real-world projects and internships with global partner companies."
-    },
-    {
-      icon: <Award size={32} />,
-      title: "Capstone & Placement",
-      duration: "Months 31-36",
-      description: "Final project presentation and dedicated placement support."
-    }
-  ];
+const phases = [
+  {
+    icon: BookOpen,
+    title: "Foundations",
+    duration: "Start",
+    description:
+      "Build strong fundamentals with practical learning instead of theory-heavy education.",
+  },
+  {
+    icon: Rocket,
+    title: "Skill Building",
+    duration: "Growth",
+    description:
+      "Develop real-world skills through projects, mentorship, and guided learning.",
+  },
+  {
+    icon: Briefcase,
+    title: "Real Experience",
+    duration: "Execution",
+    description:
+      "Work on live projects and understand how real companies operate.",
+  },
+  {
+    icon: Award,
+    title: "Career Ready",
+    duration: "Outcome",
+    description:
+      "Become confident, job-ready, and capable of starting your career early.",
+  },
+];
 
+export default function JourneyTimeline() {
   return (
-    <section className="py-32 px-6 bg-background relative overflow-hidden w-full">
-      {/* Background Line */}
-      <div className="absolute top-1/2 left-0 w-full h-1 bg-secondary/20 hidden lg:block -translate-y-1/2" />
+    <section className="relative py-32 bg-background overflow-hidden">
 
-      <div className="w-full relative z-10">
-        <div className="text-center mb-20">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-serif mb-6"
-          >
-            Your 3-Year Journey
-          </motion.h2>
-          <p className="text-muted-foreground text-xl">A structured path from student to industry professional.</p>
+      {/* Ambient Glow */}
+      <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 blur-[140px] rounded-full" />
+
+      <div className="max-w-5xl mx-auto px-6 relative z-10">
+
+        {/* Heading */}
+        <div className="text-center mb-24">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-foreground">
+            Your <span className="text-primary italic">Journey</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+            From confusion to confidence — a structured transformation into a skilled professional.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {phases.map((phase, index) => (
-            <motion.div 
-              key={index} 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="relative"
-            >
-              <div className="w-20 h-20 bg-primary text-primary-foreground rounded-3xl flex items-center justify-center mb-8 shadow-2xl shadow-primary/30 mx-auto lg:mx-0 relative z-10">
-                {phase.icon}
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-secondary text-secondary-foreground rounded-full flex items-center justify-center text-sm font-bold border-4 border-background">
-                  {index + 1}
+        {/* Timeline Wrapper */}
+        <div className="relative">
+
+          {/* Wavy Line */}
+          <svg
+            className="absolute left-1/2 -translate-x-1/2 h-full w-[200px] hidden md:block"
+            viewBox="0 0 200 1000"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M100 0 C 150 150, 50 300, 100 450 C 150 600, 50 750, 100 1000"
+              stroke="url(#gradient)"
+              strokeWidth="3"
+              fill="none"
+            />
+            <defs>
+              <linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000">
+                <stop offset="0%" stopColor="currentColor" stopOpacity="0.2" />
+                <stop offset="50%" stopColor="currentColor" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="currentColor" stopOpacity="0.2" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          {/* Items */}
+          <div className="space-y-32">
+            {phases.map((phase, index) => {
+              const Icon = phase.icon;
+              const isLeft = index % 2 === 0;
+
+              return (
+                <div
+                  key={index}
+                  className="relative flex items-center justify-between"
+                >
+
+                  {/* LEFT */}
+                  <div className={`w-[45%] ${isLeft ? "block" : "hidden md:block"}`}>
+                    <motion.div
+                      initial={{ opacity: 0, x: -40 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6 }}
+                      viewport={{ once: true }}
+                      className="group relative p-6 rounded-2xl border border-border bg-card/60 backdrop-blur-xl shadow-lg hover:-translate-y-2 transition-all"
+                    >
+                      <CardContent phase={phase} />
+                    </motion.div>
+                  </div>
+
+                  {/* CENTER DOT */}
+                  <div className="relative z-20 flex flex-col items-center">
+
+                    {/* Breathing Glow */}
+                    <motion.div
+                      animate={{
+                        scale: [1, 1.4, 1],
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute w-12 h-12 bg-primary/30 rounded-full blur-xl"
+                    />
+
+                    {/* Dot */}
+                    <div className="relative w-6 h-6 rounded-full bg-primary border-4 border-background shadow-lg" />
+
+                  </div>
+
+                  {/* RIGHT */}
+                  <div className={`w-[45%] ${!isLeft ? "block" : "hidden md:block"}`}>
+                    <motion.div
+                      initial={{ opacity: 0, x: 40 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6 }}
+                      viewport={{ once: true }}
+                      className="group relative p-6 rounded-2xl border border-border bg-card/60 backdrop-blur-xl shadow-lg hover:-translate-y-2 transition-all"
+                    >
+                      <CardContent phase={phase} />
+                    </motion.div>
+                  </div>
+
                 </div>
-              </div>
-              
-              <div className="text-center lg:text-left">
-                <span className="text-primary font-bold text-sm uppercase tracking-widest mb-2 block">{phase.duration}</span>
-                <h3 className="text-2xl font-bold mb-4">{phase.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {phase.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
   );
-};
+}
+
+/* Inline Card Content */
+function CardContent({ phase }) {
+  const Icon = phase.icon;
+
+  return (
+    <>
+      <div className="mb-4 flex items-center gap-3">
+        <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-primary/10 text-primary border border-primary/20">
+          <Icon size={20} />
+        </div>
+        <span className="text-xs font-semibold text-primary uppercase tracking-wider">
+          {phase.duration}
+        </span>
+      </div>
+
+      <h3 className="text-xl font-bold text-foreground mb-2">
+        {phase.title}
+      </h3>
+
+      <p className="text-muted-foreground text-sm leading-relaxed">
+        {phase.description}
+      </p>
+
+      {/* Hover Glow */}
+      <div className="absolute inset-0 rounded-2xl bg-primary/10 opacity-0 group-hover:opacity-100 transition pointer-events-none" />
+    </>
+  );
+}

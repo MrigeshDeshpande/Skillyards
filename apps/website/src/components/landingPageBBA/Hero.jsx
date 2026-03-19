@@ -1,133 +1,118 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { ArrowRight, Play, Star } from 'lucide-react';
-import { motion } from 'motion/react';
+import React from "react";
+import { motion } from "motion/react";
+import { ArrowRight, Star, Play, CheckCircle } from "lucide-react";
+import Image from "next/image";
+import { LampContainer } from "../ui/lamp";
+import { Button } from "@/components/ui/button";
 
-import Image from 'next/image';
-
-export const Hero = () => {
+export const BBAHero = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background w-full">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-primary/5 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            rotate: [0, -90, 0],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-secondary/20 rounded-full blur-3xl"
-        />
-      </div>
+    <section id="hero" className="w-full relative bg-background overflow-hidden h-screen min-h-[700px]">
+      <LampContainer className="h-full">
+        <div className="w-full max-w-7xl mx-auto px-6 flex flex-col justify-center h-full z-10 relative mt-10 md:mt-24 lg:mt-32">
+          
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 w-full items-center">
+            {/* Left Column: Content */}
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+              {/* Top Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 text-primary border border-primary/20 text-xs sm:text-sm font-bold mb-6 backdrop-blur-sm"
+              >
+                <Star size={16} className="fill-current text-secondary" />
+                <span>India's #1 Skill-Based BBA Program</span>
+              </motion.div>
 
-      <div className="w-full px-6 grid lg:grid-cols-2 gap-16 items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-left"
-        >
+              {/* Heading Section */}
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem] leading-[1.05] tracking-tighter text-foreground font-extrabold"
+              >
+                The <span className="text-primary italic">Future</span> of <br/> Business Education.
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed"
+              >
+                Skip the ordinary. Gain <span className="text-foreground font-bold">On-Job Training</span> and industry certifications while pursuing your degree.
+              </motion.p>
+
+              {/* CTA Group */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="mt-8 flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+              >
+                <Button
+                  size="lg"
+                  className="rounded-full bg-primary text-primary-foreground px-8 py-6 text-lg font-extrabold hover:bg-primary/90 hover:scale-105 shadow-xl shadow-primary/20 transition-all w-full sm:w-auto"
+                >
+                  Apply Now <ArrowRight size={20} className="ml-2" />
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="rounded-full border-2 border-border bg-foreground/5 text-foreground px-8 py-6 text-lg font-bold hover:bg-foreground/10 hover:scale-105 transition-all w-full sm:w-auto"
+                >
+                  <Play size={20} className="mr-2 fill-current" /> Watch Demo
+                </Button>
+              </motion.div>
+            </div>
+
+            {/* Right Column: DGM Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              className="relative w-full aspect-video lg:aspect-4/3 rounded-3xl overflow-hidden border-4 md:border-8 border-foreground/5 shadow-2xl group"
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=1200"
+                alt="Digital Marketing Presentation"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-1000"
+                priority
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-background/80 via-background/10 to-transparent" />
+            </motion.div>
+          </div>
+
+          {/* Feature Grid below Hero */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-bold mb-8 shadow-sm"
+            transition={{ duration: 1, delay: 0.3 }}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 w-full mt-10 md:mt-16 pb-8"
           >
-            <Star size={16} className="fill-current" />
-            <span>Top Rated BBA Program 2026</span>
-          </motion.div>
-
-          <h1 className="font-serif text-6xl md:text-8xl text-foreground mb-8 leading-[0.9] tracking-tighter">
-            Build Your <span className="text-primary italic">Future</span> in Business.
-          </h1>
-
-          <p className="font-sans text-xl md:text-2xl text-muted-foreground mb-12 max-w-xl leading-relaxed">
-            Accelerate your career with our industry-led BBA program. Gain practical skills, elite mentorship, and global opportunities.
-          </p>
-
-          <div className="flex flex-wrap gap-6">
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(20, 36, 138, 0.2)" }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-primary text-primary-foreground rounded-2xl px-10 py-5 font-bold text-xl flex items-center justify-center gap-3 transition-all"
-            >
-              Start Your Journey <ArrowRight size={24} />
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-4 text-foreground font-bold text-xl group"
-            >
-              <div className="w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all">
-                <Play size={20} className="fill-current ml-1" />
-              </div>
-              Watch Demo
-            </motion.button>
-          </div>
-
-          <div className="mt-16 flex items-center gap-8">
-            <div className="flex -space-x-4">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-12 h-12 rounded-full border-4 border-background overflow-hidden bg-muted relative">
-                  <Image
-                    src={`https://picsum.photos/seed/user${i}/100/100`}
-                    alt="User"
-                    fill
-                    className="object-cover"
-                    referrerPolicy="no-referrer"
-                  />
+            {[
+              { title: "Placement Guaranteed", desc: "Up to 20 LPA packages with 45+ hiring partners." },
+              { title: "Elite Mentorship", desc: "Learn directly from CXOs and industry veterans." },
+              { title: "Global Opportunities", desc: "Access to international internships and network." },
+            ].map((feature, i) => (
+              <div key={i} className="flex items-center sm:items-start text-left gap-4 p-4 lg:p-5 rounded-2xl bg-foreground/5 border border-border hover:bg-foreground/10 transition-colors group">
+                <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform">
+                  <CheckCircle size={22} />
                 </div>
-              ))}
-            </div>
-            <div>
-              <div className="font-bold text-lg">5,000+ Students</div>
-              <div className="text-muted-foreground text-sm">Already joined the revolution</div>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="relative"
-        >
-          <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-8 border-white dark:border-zinc-800 aspect-[4/5]">
-            <Image
-              src="https://picsum.photos/seed/business/800/1000"
-              alt="Business Student"
-              fill
-              className="object-cover"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-
-          {/* Floating Stats Card */}
-          <motion.div
-            animate={{ y: [0, -20, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-10 -left-10 z-20 bg-card p-6 rounded-2xl shadow-2xl border border-border max-w-[200px]"
-          >
-            <div className="text-primary font-serif text-4xl font-bold mb-1">95%</div>
-            <div className="text-muted-foreground text-sm font-medium">Placement success rate for 2025 batch</div>
+                <div>
+                  <h3 className="text-base lg:text-lg font-bold text-foreground mb-1">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground">{feature.desc}</p>
+                </div>
+              </div>
+            ))}
           </motion.div>
-
-          {/* Decorative Circle */}
-          <div className="absolute -top-20 -right-20 w-64 h-64 bg-secondary rounded-full -z-10 blur-2xl opacity-50" />
-        </motion.div>
-      </div>
+        </div>
+      </LampContainer>
     </section>
   );
-};
+}

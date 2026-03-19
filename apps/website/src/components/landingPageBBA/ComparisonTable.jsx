@@ -73,7 +73,7 @@ const comparisonData = [
   },
 ];
 
-const ComparisonSection = () => {
+export const ComparisonSection = () => {
   return (
     <section className="py-24 bg-background relative overflow-hidden">
       {/* Background Decorative Gradients */}
@@ -146,7 +146,7 @@ const ComparisonSection = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative bg-white dark:bg-zinc-900 shadow-2xl rounded-[2.5rem] p-8 md:p-12 border-2 border-primary/20 flex flex-col h-full"
+            className="relative bg-card shadow-2xl rounded-[2.5rem] p-8 md:p-12 border-2 border-primary/20 flex flex-col h-full"
           >
             {/* Advantage Badge */}
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 px-6 py-2 bg-primary text-primary-foreground rounded-full text-sm font-bold uppercase tracking-widest shadow-xl shadow-primary/20 whitespace-nowrap z-20">
@@ -182,4 +182,4 @@ const ComparisonSection = () => {
   );
 };
 
-export default ComparisonSection;
+
