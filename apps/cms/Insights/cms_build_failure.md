@@ -1,4 +1,4 @@
-# 🧩 CMS Build Failure – Root Cause, Fix & Purpose
+# CMS Build Failure – Root Cause, Fix & Purpose
 
 ## Purpose of this Document
 
