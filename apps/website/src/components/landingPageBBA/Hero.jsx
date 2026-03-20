@@ -8,16 +8,16 @@ import { Button } from "@/components/ui/button";
 
 export const BBAHero = () => {
   return (
-    <section id="hero" className="w-full relative bg-background overflow-hidden min-h-[calc(100dvh-4rem)] md:min-h-screen py-4 sm:py-6 md:py-12 lg:py-16">
+    <section id="hero" className="w-full relative bg-background overflow-hidden  md:min-h-125 py-4 sm:py-6 md:py-12 lg:py-16">
       <LampContainer className="h-full">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col justify-center h-full z-10 relative mt-4 sm:mt-8 md:mt-12 lg:mt-20">
 
           <div className="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 xl:gap-16 w-full items-center">
             {/* Left Column: Content */}
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div className="flex flex-col items-center  lg:items-start text-center lg:text-left">
               {/* Top Badge */}
               <div
-                className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-foreground/5 dark:bg-neutral-900/40 text-primary border border-primary/20 text-xs sm:text-sm font-bold mb-4 md:mb-6 backdrop-blur-sm"
+                className="inline-flex items-center mt-12 gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-foreground/5 dark:bg-neutral-900/40 text-primary border border-primary/20 text-xs sm:text-sm font-bold mb-4 md:mb-6 backdrop-blur-sm"
               >
                 <Star size={14} className="fill-current text-secondary shrink-0" />
                 <span>India&apos;s #1 Skill-Based BBA Program</span>
