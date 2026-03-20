@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 
 console.log("NODE_ENV:", process.env.NODE_ENV);
+
 const nextConfig = {
     reactCompiler: false,
 
     async headers() {
-        const isDev = process.env.NODE_ENV !== 'production';
+        const isDev = process.env.NODE_ENV !== "production";
 
         const swHeaders = {
             source: "/sw.js",
@@ -28,26 +29,27 @@ const nextConfig = {
                     key: "Content-Security-Policy",
                     value:
                         "default-src 'self'; " +
-                        "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: " +
-                        "https://disqus.com https://*.disqus.com https://c.disquscdn.com " +
-                        "https://skillyards-blog.disqus.com " +
-                        "https://www.googletagmanager.com " +
-                        "https://www.google.com " +
-                        "https://storage.googleapis.com; " +
-                        "frame-src https://disqus.com https://*.disqus.com; " +
-                        "connect-src 'self' " +
-                        "https://disqus.com https://*.disqus.com https://c.disquscdn.com " +
-                        "https://referrer.disqus.com https://links.services.disqus.com " +
-                        "https://skillyards-blog.disqus.com " +
-                        "https://www.googletagmanager.com " +
-                        "https://www.google.com " +
-                        "https://storage.googleapis.com; " +
-                        "img-src 'self' data: blob: " +
-                        "https://disqus.com https://*.disqus.com https://c.disquscdn.com " +
-                        "https://referrer.disqus.com; " +
-                        "style-src 'self' 'unsafe-inline' https://c.disquscdn.com; " +
-                        "font-src 'self' data: https://c.disquscdn.com; " +
-                        "worker-src 'self' blob: https://storage.googleapis.com;",
+
+                        // Scripts (Utterances)
+                        "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://utteranc.es; " +
+
+                        // Utterances iframe
+                        "frame-src https://utteranc.es; " +
+
+                        // GitHub API (comments fetch/post)
+                        "connect-src 'self' https://api.github.com; " +
+
+                        // Images
+                        "img-src 'self' data: blob:; " +
+
+                        // Styles
+                        "style-src 'self' 'unsafe-inline'; " +
+
+                        // Fonts
+                        "font-src 'self' data:; " +
+
+                        // Workers
+                        "worker-src 'self' blob:;",
                 },
             ],
         };
@@ -58,9 +60,21 @@ const nextConfig = {
     images: {
         remotePatterns: [
             { protocol: "https", hostname: "picsum.photos" },
-            { protocol: "https", hostname: "admin.skillyards.in", pathname: "/storage/**" },
-            { protocol: "https", hostname: "admin.skillyards.in", pathname: "/images/**" },
-            { protocol: "https", hostname: "cdn.sanity.io", pathname: "/images/**" },
+            {
+                protocol: "https",
+                hostname: "admin.skillyards.in",
+                pathname: "/storage/**",
+            },
+            {
+                protocol: "https",
+                hostname: "admin.skillyards.in",
+                pathname: "/images/**",
+            },
+            {
+                protocol: "https",
+                hostname: "cdn.sanity.io",
+                pathname: "/images/**",
+            },
         ],
     },
 

@@ -7,7 +7,6 @@ import TableOfContents from "@/components/TableOfContents";
 import { extractHeadings } from "@/lib/sanity/slugifyHeading";
 import { portableTextComponents } from "@/lib/sanity/portableTextComponents";
 import Image from "next/image";
-import DisqusWrapper from "@/components/blog/DisqusComments";
 import Link from "next/link";
 import Comments from "@/components/blog/Comments";
 
@@ -130,10 +129,6 @@ export default async function BlogPostPage({ params }) {
                             {/* Decorative Circle */}
                             <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl"></div>
                         </section>
-
-                        <div className="mt-20 pt-10 border-t border-gray-100 dark:border-white/5">
-                            <DisqusWrapper slug={slug} title={post.title} id={post._id} />
-                        </div>
 
                         <div className="mt-12 border-t pt-6">
                             <h3 className="text-lg font-semibold mb-4">
