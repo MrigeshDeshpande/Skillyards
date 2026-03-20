@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 
 export default function CtaBanner() {
     return (
-        <section className="relative overflow-hidden py-20 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
-            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,_white,_transparent_60%)]" />
+        <section className="relative overflow-hidden py-20 bg-linear-to-r from-indigo-600 to-purple-600 text-white">
+            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,white,transparent_60%)]" />
 
             <div className="relative max-w-7xl mx-auto px-6 text-center">
                 <h2 className="text-3xl sm:text-4xl font-extrabold">

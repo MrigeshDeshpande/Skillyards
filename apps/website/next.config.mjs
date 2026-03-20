@@ -62,6 +62,10 @@ const nextConfig = {
             { protocol: "https", hostname: "picsum.photos" },
             {
                 protocol: "https",
+                hostname: "images.unsplash.com",
+            },
+            {
+                protocol: "https",
                 hostname: "admin.skillyards.in",
                 pathname: "/storage/**",
             },

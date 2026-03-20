@@ -1,39 +1,105 @@
 "use client";
 
-import { Lightbulb, Eye } from "lucide-react"; // Shadcn compatible icons
+import { motion } from "framer-motion";
+import { Lightbulb, Eye } from "lucide-react";
+import missionVisionData from "@/data/aboutpage/missionvision.json";
+
+const iconMap = {
+  Lightbulb,
+  Eye,
+};
+
+const container = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15 }
+  }
+};
+
+const card = {
+  hidden: { opacity: 0, y: 40, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
 
 export default function AboutMissionVision() {
-    return (
-        <section className="bg-white dark:bg-neutral-900 py-20 transition-colors duration-500">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+  return (
+    <section className="relative py-16 bg-background overflow-hidden">
 
-                {/* Mission Card */}
-                <div className="flex flex-col gap-4 bg-gray-50 dark:bg-neutral-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-100">
-                        <Lightbulb className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-                        Our Mission
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                        To empower students and professionals with cutting-edge IT skills through On Job Training and On Job Degree programs, enabling them to thrive in real-world projects.
-                    </p>
+      {/* background glow */}
+      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-primary/10 blur-[160px] rounded-full -translate-y-1/2 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/10 blur-[140px] rounded-full pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
+            Our <span className="text-primary italic">Purpose</span>
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+            Everything we build at SkillYards is driven by a clear mission and
+            vision — preparing students for real-world careers.
+          </p>
+        </motion.div>
+
+        {/* Cards */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 gap-10"
+        >
+          {missionVisionData.map((item, index) => {
+            const Icon = iconMap[item.icon];
+
+            return (
+              <motion.div
+                key={index}
+                variants={card}
+                whileHover={{ y: -8 }}
+                className="relative group rounded-4xl border border-border bg-card/60 backdrop-blur-xl p-6 shadow-lg overflow-hidden transition-all"
+              >
+
+                {/* gradient hover overlay */}
+                <div className="absolute inset-0 bg-linear-to-br from-primary/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* floating icon halo */}
+                <div className="relative mb-6">
+                  <div className="absolute inset-0 w-16 h-16 bg-primary/20 blur-2xl rounded-full" />
+                  <div className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 text-primary">
+                    {Icon && <Icon className="w-7 h-7" />}
+                  </div>
                 </div>
 
-                {/* Vision Card */}
-                <div className="flex flex-col gap-4 bg-gray-50 dark:bg-neutral-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-100">
-                        <Eye className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-                        Our Vision
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                        To become the leading IT training institute and software development hub in India, fostering innovation, practical learning, and professional growth for every learner.
-                    </p>
-                </div>
+                {/* title */}
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  {item.title}
+                </h3>
 
-            </div>
-        </section>
-    );
+                {/* text */}
+                <p className="text-muted-foreground leading-relaxed text-base">
+                  {item.description}
+                </p>
+
+                {/* subtle decoration */}
+                <div className="absolute bottom-0 right-0 w-40 h-40 bg-primary/10 blur-[100px] rounded-full opacity-30" />
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
+    </section>
+  );
 }

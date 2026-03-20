@@ -96,7 +96,7 @@ export default function HeroCarousel() {
                                                     initial={{ opacity: 0, y: 10 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ delay: 0.3, duration: 0.5 }}
-                                                    className={`text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-foreground pointer-events-auto leading-tight`}
+                                                    className={`text-3xl font-extrabold tracking-tight sm:text-5xl md:text-4xl lg:text-5xl text-foreground pointer-events-auto leading-tight`}
                                                 >
                                                     {slide.title}
                                                 </motion.h1>
@@ -105,7 +105,7 @@ export default function HeroCarousel() {
                                                     initial={{ opacity: 0, y: 10 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ delay: 0.4, duration: 0.5 }}
-                                                    className={`mt-4 sm:mt-6 text-lg sm:text-xl md:text-2xl text-muted-foreground pointer-events-auto font-medium max-w-2xl leading-relaxed px-2 sm:px-0`}
+                                                    className={`mt-4 sm:mt-6 text-lg sm:text-md md:text-lg text-muted-foreground pointer-events-auto font-medium max-w-2xl leading-relaxed px-2 sm:px-0`}
                                                 >
                                                     {slide.description}
                                                 </motion.p>
