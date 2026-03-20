@@ -7,7 +7,6 @@ import TableOfContents from "@/components/TableOfContents";
 import { extractHeadings } from "@/lib/sanity/slugifyHeading";
 import { portableTextComponents } from "@/lib/sanity/portableTextComponents";
 import Image from "next/image";
-import Link from "next/link";
 import Comments from "@/components/blog/Comments";
 
 const CalendarIcon = () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>;
@@ -15,8 +14,19 @@ const ClockIcon = () => <svg className="w-4 h-4" fill="none" stroke="currentColo
 
 async function getPost(slug) {
     const query = `*[_type == "post" && slug.current == $slug][0]{
-        _id, title, slug, excerpt, publishedAt, coverImage, content, author
-    }`;
+  _id,
+  title,
+  slug,
+  excerpt,
+  publishedAt,
+  coverImage,
+  content,
+  author->{
+    name,
+    image,
+    role
+  }
+}`;
     return sanityClient.fetch(query, { slug });
 }
 
@@ -38,7 +48,6 @@ export default async function BlogPostPage({ params }) {
     return (
         <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
 
-            {/* Hero Section */}
             <header className="relative w-full bg-muted/30 border-b border-border pt-24 pb-12 px-6 transition-colors duration-300">
                 <div className="max-w-6xl mx-auto">
 
@@ -53,7 +62,17 @@ export default async function BlogPostPage({ params }) {
                     <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
                         <span className="flex items-center gap-2">
                             <span className="text-lg">✍️</span>
-                            <span>By <strong className="text-foreground font-semibold">SkillYards Team</strong></span>
+                            <span>
+                                By{" "}
+                                <strong className="text-foreground font-semibold">
+                                    {post.author?.name || "SkillYards Team"}
+                                </strong>
+                                {post.author?.role && (
+                                    <span className="text-muted-foreground font-normal">
+                                        {" "}• {post.author.role}
+                                    </span>
+                                )}
+                            </span>
                         </span>
                         <span className="text-border hidden sm:inline">•</span>
                         <span className="flex items-center gap-2">
@@ -86,11 +105,9 @@ export default async function BlogPostPage({ params }) {
                 </div>
             </header>
 
-            {/* Main Content Area */}
             <main className="max-w-6xl mx-auto px-6 py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12 items-start">
 
-                    {/* ARTICLE COLUMN */}
                     <div className="max-w-3xl mx-auto lg:mx-0 w-full">
                         {post.coverImage && (
                             <div className="mb-14 rounded-3xl overflow-hidden shadow-2xl shadow-black/5 dark:shadow-black/40 border border-border/50">
@@ -158,7 +175,6 @@ export default async function BlogPostPage({ params }) {
                             />
                         </article>
 
-                        {/* Newsletter Block */}
                         <section className="relative mt-20 rounded-3xl bg-linear-to-br from-primary/10 to-transparent border border-primary/20 p-10 overflow-hidden transition-colors duration-300">
                             <h3 className="font-serif text-2xl font-bold text-foreground mb-2">Get Skill Tips Weekly</h3>
                             <p className="text-base text-muted-foreground mb-8">Join thousands learning AI & career skills straight to their inbox.</p>
@@ -181,7 +197,6 @@ export default async function BlogPostPage({ params }) {
                                     Subscribe Now
                                 </button>
                             </div>
-                            {/* Decorative Circle */}
                             <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl pointer-events-none"></div>
                         </section>
 
@@ -191,23 +206,48 @@ export default async function BlogPostPage({ params }) {
                         </div>
                     </div>
 
-                    {/* STICKY SIDEBAR */}
                     <aside className="hidden lg:flex flex-col gap-8 sticky top-32 self-start max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-hide pb-10">
 
                         <div className="shrink-0 rounded-3xl border border-border bg-muted/30 p-6 transition-colors duration-300">
-                            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4 font-semibold">Author</p>
+
+                            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4 font-semibold">
+                                Author
+                            </p>
+
                             <div className="flex items-center gap-4 mb-4">
-                                <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-lg shrink-0">
-                                    SK
+
+                                <div className="w-14 h-14 rounded-full overflow-hidden border border-primary/20 shrink-0">
+                                    {post.author?.image ? (
+                                        <Image
+                                            src={urlFor(post.author.image).width(100).height(100).url()}
+                                            alt={post.author.name}
+                                            width={48}
+                                            height={48}
+                                            className="object-cover w-full h-full"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center bg-primary/10 text-primary font-bold">
+                                            {post.author?.name?.charAt(0) || "S"}
+                                        </div>
+                                    )}
                                 </div>
+
                                 <div>
-                                    <p className="font-serif font-bold text-foreground text-base">SkillYards Team</p>
-                                    <p className="text-sm text-muted-foreground">Content Team</p>
+                                    <p className="font-serif font-bold text-foreground text-base leading-tight">
+                                        {post.author?.name || "SkillYards Team"}
+                                    </p>
+
+                                    <p className="text-sm text-muted-foreground">
+                                        {post.author?.role || "Content Team"}
+                                    </p>
                                 </div>
+
                             </div>
+
                             <p className="text-sm text-muted-foreground leading-relaxed">
                                 Insights from the SkillYards team on technology, education and career growth.
                             </p>
+
                         </div>
 
                         {headings.length > 0 && (
