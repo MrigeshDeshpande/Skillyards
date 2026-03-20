@@ -36,12 +36,11 @@ const sourceSans = Source_Sans_3({
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning className={`${inter.variable} ${sourceSans.variable} ${playfair.variable}`}>
             <body
-                className={`${inter.variable} ${sourceSans.variable} ${playfair.variable}
-                antialiased
-                bg-background
-                text-foreground
+                className={`antialiased
+                bg-foreground
+                text-primary-foreground
                 transition-colors duration-500 ease-in-out`}
             >
                 <ReCaptchaProvider> 

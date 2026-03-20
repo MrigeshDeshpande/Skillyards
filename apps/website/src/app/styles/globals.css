@@ -174,7 +174,7 @@
     --sidebar-accent-foreground: #14248a;
     --sidebar-border: #d4c2fc;
     --sidebar-ring: #14248a;
-    --home-bg: #14248a;
+    --home-bg: #28262c;
     --home-fg: #f9f5ff;
     --home-primary: #d4c2fc;
     --home-primary-foreground: #14248a;
@@ -218,7 +218,7 @@
     --sidebar-accent-foreground: #f9f5ff;
     --sidebar-border: #998fc7;
     --sidebar-ring: #d4c2fc;
-    --home-bg: #0d1a6e;
+    --home-bg: rgb(0, 0, 0);
     --home-fg: #f9f5ff;
     --home-primary: #d4c2fc;
     --home-primary-foreground: #0d1a6e;
