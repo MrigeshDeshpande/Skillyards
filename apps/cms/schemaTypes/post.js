@@ -65,8 +65,9 @@ export default defineType({
     defineField({
       name: 'author',
       title: 'Author',
-      type: 'string',
-      initialValue: 'Skillyards Team'
+      type: 'reference',
+      to: [{ type: 'author' }],
+      validation: Rule => Rule.required()
     })
   ]
 })

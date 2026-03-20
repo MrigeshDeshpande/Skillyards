@@ -6,6 +6,10 @@ export const POSTS_QUERY = `
   excerpt,
   coverImage,
   publishedAt,
-  author
+  author->{
+    name,
+    image,
+    role
+  }
 }
 `;
