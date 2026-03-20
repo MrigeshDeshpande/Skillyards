@@ -82,22 +82,10 @@
 
 /* --- Base Layer --- */
 @layer base {
-    :root {
-        --background: 255 255 255;
-        --foreground: 23 23 23;
-        --accent: 37 99 235;
-        /* SkillYards blue */
-        --radius: 0.5rem;
-
-        /* Font vars from next/font */
-        --font-inter: 'Inter', sans-serif;
-        --font-playfair: 'Playfair Display', serif;
-    }
-
     html {
         font-family: var(--font-inter), sans-serif;
-        background-color: rgb(var(--background));
-        color: rgb(var(--foreground));
+        background-color: var(--background);
+        color: var(--foreground);
         scroll-behavior: smooth;
     }
 
@@ -118,7 +106,7 @@
     }
 
     a {
-        color: rgb(var(--accent));
+        color: var(--accent);
         text-decoration: none;
         transition: color 0.2s ease;
     }
@@ -186,6 +174,16 @@
     --sidebar-accent-foreground: #14248a;
     --sidebar-border: #d4c2fc;
     --sidebar-ring: #14248a;
+    --home-bg: #14248a;
+    --home-fg: #f9f5ff;
+    --home-primary: #d4c2fc;
+    --home-primary-foreground: #14248a;
+    --home-secondary: #998fc7;
+    --home-secondary-foreground: #f9f5ff;
+    --home-muted: #1e3299;
+    --home-muted-foreground: #d4c2fc;
+    --home-border: #2a3fa8;
+    --home-ring: #d4c2fc;
 }
 
 .dark {
@@ -220,6 +218,16 @@
     --sidebar-accent-foreground: #f9f5ff;
     --sidebar-border: #998fc7;
     --sidebar-ring: #d4c2fc;
+    --home-bg: #0d1a6e;
+    --home-fg: #f9f5ff;
+    --home-primary: #d4c2fc;
+    --home-primary-foreground: #0d1a6e;
+    --home-secondary: #998fc7;
+    --home-secondary-foreground: #f9f5ff;
+    --home-muted: #1a2d8f;
+    --home-muted-foreground: #d4c2fc;
+    --home-border: #2a3fa8;
+    --home-ring: #d4c2fc;
 }
 
 @layer base {
