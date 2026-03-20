@@ -6,10 +6,16 @@ export const POSTS_QUERY = `
   excerpt,
   coverImage,
   publishedAt,
+
   author->{
     name,
     image,
     role
+  },
+
+  "tags": tags[]->{
+    title,
+    "slug": slug.current
   }
 }
 `;
