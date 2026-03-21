@@ -121,6 +121,7 @@ export default function DomeGallery({
   const openingRef = useRef(false);
   const openStartedAtRef = useRef(0);
   const lastDragEndAt = useRef(0);
+  const dragDirectionRef = useRef(null); // null | 'h' | 'v'
 
   const scrollLockedRef = useRef(false);
   const lockScroll = useCallback(() => {
@@ -342,8 +343,7 @@ export default function DomeGallery({
         stopInertia();
 
         pointerTypeRef.current = event.pointerType || 'mouse';
-        if (pointerTypeRef.current === 'touch') event.preventDefault();
-        if (pointerTypeRef.current === 'touch') lockScroll();
+        dragDirectionRef.current = null;
         draggingRef.current = true;
         cancelTapRef.current = false;
         movedRef.current = false;
@@ -357,10 +357,39 @@ export default function DomeGallery({
       onDrag: ({ event, last, velocity: velArr = [0, 0], direction: dirArr = [0, 0], movement }) => {
         if (focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
 
-        if (pointerTypeRef.current === 'touch') event.preventDefault();
-
         const dxTotal = event.clientX - startPosRef.current.x;
         const dyTotal = event.clientY - startPosRef.current.y;
+
+        // On touch, detect primary direction before committing to sphere rotation
+        if (pointerTypeRef.current === 'touch' && dragDirectionRef.current === null) {
+          const dist2 = dxTotal * dxTotal + dyTotal * dyTotal;
+          if (dist2 > 100) { // 10px threshold before locking direction
+            dragDirectionRef.current = Math.abs(dxTotal) >= Math.abs(dyTotal) ? 'h' : 'v';
+            if (dragDirectionRef.current === 'h') lockScroll();
+          }
+        }
+
+        // Vertical touch scroll — clean up and let browser handle it
+        if (pointerTypeRef.current === 'touch' && dragDirectionRef.current === 'v') {
+          if (last) {
+            draggingRef.current = false;
+            startPosRef.current = null;
+            movedRef.current = false;
+            tapTargetRef.current = null;
+            if (autoRotate) {
+              setTimeout(() => {
+                if (isInViewRef.current && !draggingRef.current) {
+                  autoRotateActive.current = true;
+                  startAutoRotate();
+                }
+              }, 2000);
+            }
+          }
+          return;
+        }
+
+        // Horizontal touch or mouse — block native scroll and rotate sphere
+        if (pointerTypeRef.current === 'touch') event.preventDefault();
 
         if (!movedRef.current) {
           const dist2 = dxTotal * dxTotal + dyTotal * dyTotal;
@@ -832,7 +861,7 @@ export default function DomeGallery({
           ref={mainRef}
           className="absolute inset-0 grid place-items-center overflow-hidden select-none bg-transparent"
           style={{
-            touchAction: 'none',
+            touchAction: 'pan-y',
             WebkitUserSelect: 'none'
           }}
         >
