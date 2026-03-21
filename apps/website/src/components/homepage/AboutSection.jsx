@@ -84,7 +84,7 @@ export default function AboutSection() {
                                 asChild
                                 size="lg"
                                 variant="outline"
-                                className="border-border/60 bg-background/50 backdrop-blur rounded-full px-6 font-bold transition-transform hover:-translate-y-1"
+                                className="border-border/60 bg-background/50 backdrop-blur rounded-full px-6 font-bold transition-transform hover:-translate-y-1 text-accent-foreground"
                             >
                                 <Link href="/contact">Contact Us</Link>
                             </Button>
