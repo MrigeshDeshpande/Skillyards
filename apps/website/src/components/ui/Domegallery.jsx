@@ -1,36 +1,6 @@
 import { useEffect, useMemo, useRef, useCallback } from 'react';
 import { useGesture } from '@use-gesture/react';
 
-const DEFAULT_IMAGES = [
-  {
-    src: 'https://images.unsplash.com/photo-1755331039789-7e5680e26e8f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Abstract art'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1755569309049-98410b94f66d?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Modern sculpture'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1755497595318-7e5e3523854f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Digital artwork'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1755353985163-c2a0fe5ac3d8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Contemporary art'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1745965976680-d00be7dc0377?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Geometric pattern'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1752588975228-21f44630bb3c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Textured surface'
-  },
-  {
-    src: 'https://pbs.twimg.com/media/Gyla7NnXMAAXSo_?format=jpg&name=large',
-    alt: 'Social media image'
-  }
-];
 
 const DEFAULTS = {
   maxVerticalRotationDeg: 5,
@@ -108,7 +78,7 @@ function computeItemBaseRotation(offsetX, offsetY, sizeX, sizeY, segments) {
 }
 
 export default function DomeGallery({
-  images = DEFAULT_IMAGES,
+  images,
   fit = 0.5,
   fitBasis = 'auto',
   minRadius = 600,
@@ -124,8 +94,12 @@ export default function DomeGallery({
   openedImageHeight = '400px',
   imageBorderRadius = '30px',
   openedImageBorderRadius = '30px',
-  grayscale = true
+  grayscale = true,
+  autoRotate = true,
 }) {
+  const autoRotateRAF = useRef(null);
+  const autoRotateActive = useRef(false);
+  const isInViewRef = useRef(false);
   const rootRef = useRef(null);
   const mainRef = useRef(null);
   const sphereRef = useRef(null);
@@ -170,6 +144,67 @@ export default function DomeGallery({
     }
   };
 
+  const startAutoRotate = useCallback(() => {
+    if (!autoRotate) return;
+
+    const speed = 0.04;
+
+    const rotate = () => {
+      if (!autoRotateActive.current || !isInViewRef.current) {
+        autoRotateRAF.current = null;
+        return;
+      }
+
+      const nextY = wrapAngleSigned(rotationRef.current.y + speed);
+
+      rotationRef.current = {
+        ...rotationRef.current,
+        y: nextY,
+      };
+
+      applyTransform(rotationRef.current.x, nextY);
+
+      autoRotateRAF.current = requestAnimationFrame(rotate);
+    };
+
+    // 🔥 ALWAYS restart loop cleanly
+    if (autoRotateRAF.current) {
+      cancelAnimationFrame(autoRotateRAF.current);
+    }
+
+    autoRotateRAF.current = requestAnimationFrame(rotate);
+  }, [autoRotate]);
+
+
+  const stopAutoRotate = useCallback(() => {
+    if (autoRotateRAF.current) {
+      cancelAnimationFrame(autoRotateRAF.current);
+      autoRotateRAF.current = null;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!autoRotate) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInViewRef.current = entry.isIntersecting;
+
+        if (entry.isIntersecting) {
+          autoRotateActive.current = true;
+          startAutoRotate();
+        } else {
+          autoRotateActive.current = false;
+          stopAutoRotate();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (rootRef.current) observer.observe(rootRef.current);
+
+    return () => observer.disconnect();
+  }, [autoRotate, startAutoRotate, stopAutoRotate]);
   const lockedRadiusRef = useRef(null);
 
   useEffect(() => {
@@ -316,6 +351,8 @@ export default function DomeGallery({
         startPosRef.current = { x: event.clientX, y: event.clientY };
         const potential = event.target.closest?.('.item__image');
         tapTargetRef.current = potential || null;
+        autoRotateActive.current = false;
+        stopAutoRotate();
       },
       onDrag: ({ event, last, velocity: velArr = [0, 0], direction: dirArr = [0, 0], movement }) => {
         if (focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
@@ -383,6 +420,15 @@ export default function DomeGallery({
           if (movedRef.current) lastDragEndAt.current = performance.now();
           movedRef.current = false;
           if (pointerTypeRef.current === 'touch') unlockScroll();
+        }
+
+        if (autoRotate) {
+          setTimeout(() => {
+            if (isInViewRef.current && !draggingRef.current) {
+              autoRotateActive.current = true;
+              startAutoRotate();
+            }
+          }, 2000);
         }
       }
     },
@@ -525,6 +571,14 @@ export default function DomeGallery({
       window.removeEventListener('keydown', onKey);
     };
   }, [enlargeTransitionMs, openedImageBorderRadius, grayscale]);
+
+  useEffect(() => {
+    return () => {
+      if (autoRotateRAF.current) {
+        cancelAnimationFrame(autoRotateRAF.current);
+      }
+    };
+  }, []);
 
   const openItemFromElement = el => {
     if (openingRef.current) return;
