@@ -1,0 +1,56 @@
+'use client';
+
+import React from 'react';
+import { CometCard } from "@/components/ui/comet-card";
+
+export const BCABenefits = () => {
+  const benefits = [
+    {
+      gradient: "from-blue-500 to-cyan-500",
+      title: "Career Growth",
+      description: "Our graduates see an average salary increase of 45% within the first year of completion."
+    },
+    {
+      gradient: "from-violet-500 to-purple-500",
+      title: "Industry Certified",
+      description: "Curriculum designed and certified by top tech companies and global software firms."
+    },
+    {
+      gradient: "from-emerald-500 to-teal-500",
+      title: "Fast-Track Learning",
+      description: "Intensive modules designed to get you job-ready in record time without compromising quality."
+    }
+  ];
+
+  return (
+    <section id="benefits" className="py-[10vh] md:py-[15vh] px-4 sm:px-6 bg-linear-to-b from-background/50 to-background w-full">
+      <div className="w-full max-w-6xl mx-auto">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-extrabold text-foreground">
+            Why Choose SkillYards BCA?
+          </h2>
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-4xl mx-auto mt-4">
+            We provide more than just education. We provide a launchpad for your technology career.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+          {benefits.map((benefit, index) => (
+            <CometCard
+              key={index}
+              className={`w-full h-full${index === benefits.length - 1 && benefits.length % 2 !== 0 ? " sm:col-span-2 sm:max-w-sm sm:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0" : ""}`}
+              rotateDepth={3}
+              translateDepth={8}
+            >
+              <div className="group bg-card text-card-foreground rounded-2xl md:rounded-3xl p-5 sm:p-6 lg:p-8 border border-border/50 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 w-full h-full flex flex-col overflow-hidden">
+                <div className={`w-full h-32 sm:h-36 lg:h-44 relative mb-5 sm:mb-6 rounded-xl overflow-hidden shrink-0 bg-linear-to-br ${benefit.gradient} group-hover:shadow-lg group-hover:scale-105 transition-all duration-500`} />
+                <h3 className="text-base sm:text-lg lg:text-2xl font-bold mb-2 sm:mb-3 text-foreground">{benefit.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{benefit.description}</p>
+              </div>
+            </CometCard>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
