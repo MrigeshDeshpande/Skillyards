@@ -62,14 +62,14 @@ export default function AboutWhyChoose() {
 
             return (
               <CardContainer key={index} className="inter-var w-full h-full" containerClassName="py-0 h-full">
-                <CardBody className="group/card relative rounded-4xl border border-primary/10 bg-linear-to-br from-white/90 via-white/50 to-primary/5 dark:from-neutral-900/90 dark:via-neutral-900/50 dark:to-primary/10 backdrop-blur-xl shadow-xl hover:shadow-primary/5 p-8 transition-all duration-300 w-full h-full min-h-[350px] flex flex-col">
+                <CardBody className="group/card relative rounded-4xl border border-primary/10 bg-linear-to-br from-background/90 via-background/50 to-primary/5 backdrop-blur-xl shadow-xl hover:shadow-primary/5 p-8 transition-all duration-300 w-full h-full min-h-[350px] flex flex-col">
                   
                   {/* Decorative Elements */}
                   <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 rounded-4xl" />
                   
                   {/* Icon */}
                   <CardItem translateZ="60" className="relative mb-8">
-                    <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-white dark:bg-neutral-800 shadow-lg border border-primary/10 text-primary transition-transform group-hover/card:scale-110">
+                    <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-background shadow-lg border border-primary/10 text-primary transition-transform group-hover/card:scale-110">
                       {Icon && <Icon className="w-7 h-7" />}
                     </div>
                   </CardItem>

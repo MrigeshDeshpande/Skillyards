@@ -90,7 +90,7 @@ export default function AboutHero() {
             <div className="absolute inset-0 bg-secondary/10 rounded-[3rem] rotate-2 scale-105 -z-10 pointer-events-none" />
 
             {/* Main Slanted Container - Subtle 2deg rotation */}
-            <div className="relative w-full aspect-4/5 sm:aspect-video lg:h-full lg:w-full rotate-2 rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white/50 dark:border-neutral-800/50">
+            <div className="relative w-full aspect-4/5 sm:aspect-video lg:h-full lg:w-full rotate-2 rounded-[3rem] overflow-hidden shadow-2xl border-4 border-background/50">
               <div className="absolute inset-0 -rotate-2 scale-110">
                 <Image
                   src={data.image}

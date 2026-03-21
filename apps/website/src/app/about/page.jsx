@@ -6,7 +6,6 @@ import TestimonialsByInterns from "@/components/aboutpage/TestimonialsByInterns"
 import CTASection from "@/components/aboutpage/CTASection";
 import LifeAtSkillYards from "@/components/aboutpage/LifeAtSkillYards";
 import TechnologiesWeTeach from "@/components/aboutpage/TechnologiesWeTeach";
-import PressMentions from "@/components/aboutpage/PressMentions";
 import StudentSuccessStories from "@/components/aboutpage/StudentSuccessStories";
 import SkillYardsJourney from "@/components/aboutpage/SkillYardsJourney";
 import CtaBanner from "@/components/aboutpage/CtaBanner";
@@ -75,7 +74,6 @@ export default function AboutPage() {
                 <LifeAtSkillYards />
                 <TechnologiesWeTeach />
                 <FAQSection />
-                <PressMentions />
                 <StudentSuccessStories />
                 <PlacementStats />
                 <SkillYardsJourney />
