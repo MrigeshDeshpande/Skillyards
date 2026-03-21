@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useRef, useEffect, useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { urlFor } from "@/lib/sanity/image";
 
 const Highlight = ({ text, query }) => {
@@ -38,25 +39,32 @@ const Highlight = ({ text, query }) => {
 };
 
 const BlogCard = ({ post, searchQuery }) => {
+    const router = useRouter();
+
     const bottomPanelRef = useRef(null);
     const avatarRef = useRef(null);
     const [panelHeight, setPanelHeight] = useState(130);
 
     useEffect(() => {
-        if (!bottomPanelRef.current) return;
+        const el = bottomPanelRef.current;
+        if (!el) return;
+
         const observer = new ResizeObserver(() => {
-            setPanelHeight(bottomPanelRef.current.offsetHeight);
+            setPanelHeight(el.offsetHeight);
         });
-        observer.observe(bottomPanelRef.current);
+
+        observer.observe(el);
+
         return () => observer.disconnect();
     }, []);
-
     const coverImageUrl = post.coverImage
         ? urlFor(post.coverImage).url()
         : "/images/placeholder.jpg";
+
     const authorImageUrl = post.author?.image
         ? urlFor(post.author.image).width(200).height(200).url()
         : "/images/avatar-placeholder.png";
+
     const formattedDate = post.publishedAt
         ? new Date(post.publishedAt).toLocaleDateString("en-US", {
             month: "short",
@@ -68,15 +76,16 @@ const BlogCard = ({ post, searchQuery }) => {
     const avatarLift = panelHeight - 1.1;
 
     return (
-        <div className="group relative w-full h-[420px] sm:h-[440px] rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 cursor-pointer bg-muted">
-            <Image
+        <div
+            onClick={() => router.push(`/blog/${post.slug}`)}
+            className="group relative w-full h-[420px] sm:h-[440px] rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 cursor-pointer bg-muted"
+        >               <Image
                 src={coverImageUrl}
                 alt={post.title || "Blog Post"}
                 fill
                 className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.35,0.13,0.0,0.99)] group-hover:scale-105"
             />
 
-            {/* Author avatar */}
             <div
                 ref={avatarRef}
                 className="absolute bottom-0 left-0 z-10 w-[90px] h-[90px] bg-white dark:bg-zinc-900 rounded-tr-2xl items-center justify-center pointer-events-none select-none hidden sm:flex"
@@ -106,25 +115,30 @@ const BlogCard = ({ post, searchQuery }) => {
                 <span className="font-sans text-xs font-semibold text-muted-foreground tracking-widest uppercase">
                     <Highlight text={post.author?.name || "SkillYards Team"} query={searchQuery} />
                 </span>
+
                 <h3 className="font-serif text-lg sm:text-xl font-semibold text-foreground leading-snug line-clamp-2">
                     <Highlight text={post.title} query={searchQuery} />
                 </h3>
+
                 {post.tags?.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 pt-1">
+                    <div className="relative z-30 flex flex-wrap gap-1.5 pt-1">
                         {post.tags.map(tag => (
                             <span
                                 key={tag.slug}
-                                className="text-[10px] px-2 py-0.5 rounded-full border border-border text-muted-foreground bg-background/50 backdrop-blur-sm"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    router.push(`/blog/tag/${tag.slug}`);
+                                }}
+                                className="cursor-pointer text-[10px] px-2 py-0.5 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
                             >
-                                <Highlight text={tag.title} query={searchQuery} />
+                                {tag.title}
                             </span>
                         ))}
                     </div>
                 )}
+
                 <div className="flex items-center justify-between pt-1">
-                    <span className="font-sans bg-secondary/60 text-secondary-foreground px-3 py-1 rounded-full text-xs font-medium">
-                        Education
-                    </span>
                     <div className="flex items-center overflow-hidden">
                         <div className="flex items-center gap-1.5 translate-x-10 group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.35,0.13,0.0,0.99)]">
                             <span className="font-sans text-xs font-medium text-foreground whitespace-nowrap">
@@ -138,8 +152,10 @@ const BlogCard = ({ post, searchQuery }) => {
                 </div>
             </div>
 
-            <Link href={`/blog/${post.slug}`} className="absolute inset-0 z-30">
-                <span className="sr-only">Read {post.title}</span>
+            <Link
+                href={`/blog/${post.slug}`}
+                className="absolute inset-0 z-10 pointer-events-none"
+            >                <span className="sr-only">Read {post.title}</span>
             </Link>
 
             <style>{`
