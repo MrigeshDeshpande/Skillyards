@@ -48,40 +48,35 @@ const QuoteCard = ({ info, truncate = false }) => {
 
     const textValue = info?.feedback ?? "";
     const text =
-        truncate && textValue.length > 120
-            ? `${textValue.slice(0, 120)}...`
+        truncate && textValue.length > 100
+            ? `${textValue.slice(0, 100)}...`
             : textValue;
 
     return (
-        <div className="h-full w-[260px] sm:w-[320px] shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-transparent dark:border-border p-5 bg-card hover:bg-card/80 transition-colors shadow-sm dark:shadow-none flex flex-col justify-between">
-            <div className="flex gap-4 mb-4 items-start">
+        <div className="w-full cursor-pointer overflow-hidden rounded-xl border border-transparent p-4 bg-card hover:bg-card/80 transition-colors shadow-sm dark:shadow-none flex flex-col gap-4">
+            <p className="text-xs sm:text-sm text-card-foreground leading-snug">
+                {text}
+            </p>
+            <div className="flex items-center gap-2.5">
                 <Image
                     src={imgSrc}
                     alt={info?.name || 'Student Avatar'}
-                    width={48}
-                    height={48}
-                    className="rounded-full object-cover shrink-0"
+                    width={32}
+                    height={32}
+                    className="rounded-full object-cover shrink-0 w-8 h-8"
                     onError={() => setImgSrc(fallbackImg)}
                 />
-
-                <p className="text-sm text-card-foreground leading-snug">
-                    {text}
-                </p>
-            </div>
-
-            <div className="flex justify-between items-center mt-2">
-                <div>
-                    <h3 className="font-semibold text-foreground">
+                <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-foreground text-xs sm:text-sm truncate">
                         {info?.name}
                     </h3>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-muted-foreground truncate">
                         {info?.role}
                     </p>
                 </div>
-
-                <div className="flex gap-1">
+                <div className="flex gap-0.5 shrink-0">
                     {Array.from({ length: rating }).map((_, i) => (
-                        <span key={i} className="text-yellow-400 text-sm">★</span>
+                        <span key={i} className="text-yellow-400 text-xs">★</span>
                     ))}
                 </div>
             </div>
@@ -90,58 +85,58 @@ const QuoteCard = ({ info, truncate = false }) => {
 };
 
 
+const MarqueeCol = ({ items, reverse, duration, onSelectReview }) => (
+    <Marquee
+        pauseOnHover
+        vertical
+        reverse={reverse}
+        className="[--gap:0.625rem] flex-1 min-w-0"
+        style={{ '--duration': duration }}
+    >
+        {items.map((item, idx) => (
+            <button
+                key={`${item.name}-${idx}`}
+                type="button"
+                onClick={() => onSelectReview(item)}
+                className="text-left focus:outline-none w-full"
+            >
+                <QuoteCard info={item} truncate />
+            </button>
+        ))}
+    </Marquee>
+);
+
 const Marquee3D = ({ items, onSelectReview }) => {
-    const r1 = items.slice(0, 4);
-    const r2 = items.slice(4, 7);
-    const r3 = items.slice(7, 10);
-    const r4 = items.slice(10, 14);
+    const third = Math.ceil(items.length / 3);
+    const col1 = items.slice(0, third);
+    const col2 = items.slice(third, third * 2);
+    const col3 = items.slice(third * 2);
 
     return (
-        <div 
-            className="relative flex h-[350px] sm:h-[420px] lg:h-[500px] w-full flex-row items-center justify-center overflow-hidden perspective-midrange lg:perspective-near"
-            style={{ 
-                WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent), linear-gradient(to right, transparent, black 15%, black 85%, transparent)', 
-                WebkitMaskComposite: 'source-in', 
-                maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent), linear-gradient(to right, transparent, black 15%, black 85%, transparent)', 
-                maskComposite: 'intersect' 
+        <div
+            className="relative h-95 sm:h-115 lg:h-130 w-full overflow-hidden"
+            style={{
+                perspective: '900px',
+                WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)',
+                maskImage: 'linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)',
             }}
         >
             <div
-                className="flex flex-row items-center justify-center gap-4 sm:gap-6 min-w-[200vw] sm:min-w-[1200px]"
-                style={{
-                    transform:
-                        "translateX(-5%) translateY(0px) translateZ(-100px) rotateX(20deg) rotateY(-10deg) rotateZ(20deg)",
-                    transformStyle: "preserve-3d"
-                }}
+                className="flex flex-row gap-2.5 sm:gap-3 lg:gap-8 w-full h-full "
+               
             >
-                <Marquee pauseOnHover vertical className="[--duration:30s]">
-                    {r1.map((item, idx) => (
-                        <button key={`${item.id}-${idx}`} type="button" onClick={() => onSelectReview(item)} className="text-left focus:outline-hidden">
-                            <QuoteCard info={item} truncate />
-                        </button>
-                    ))}
-                </Marquee>
-                <Marquee reverse pauseOnHover className="[--duration:30s]" vertical>
-                    {r2.map((item, idx) => (
-                        <button key={`${item.id}-${idx}`} type="button" onClick={() => onSelectReview(item)} className="text-left focus:outline-hidden">
-                            <QuoteCard info={item} truncate />
-                        </button>
-                    ))}
-                </Marquee>
-                <Marquee reverse pauseOnHover className="[--duration:30s]" vertical>
-                    {r3.map((item, idx) => (
-                        <button key={`${item.id}-${idx}`} type="button" onClick={() => onSelectReview(item)} className="text-left focus:outline-hidden">
-                            <QuoteCard info={item} truncate />
-                        </button>
-                    ))}
-                </Marquee>
-                <Marquee pauseOnHover className="[--duration:30s]" vertical>
-                    {r4.map((item, idx) => (
-                        <button key={`${item.id}-${idx}`} type="button" onClick={() => onSelectReview(item)} className="text-left focus:outline-hidden">
-                            <QuoteCard info={item} truncate />
-                        </button>
-                    ))}
-                </Marquee>
+                {/* Column 1 — always visible */}
+                <MarqueeCol items={col1} reverse={false} duration="28s" onSelectReview={onSelectReview} />
+
+                {/* Column 2 — tablet and up */}
+                <div className="hidden sm:flex flex-1 min-w-0">
+                    <MarqueeCol items={col2} reverse duration="22s" onSelectReview={onSelectReview} />
+                </div>
+
+                {/* Column 3 — desktop only */}
+                <div className="hidden lg:flex flex-1 min-w-0">
+                    <MarqueeCol items={col3} reverse={false} duration="32s" onSelectReview={onSelectReview} />
+                </div>
             </div>
         </div>
     );
@@ -161,8 +156,8 @@ export default function HearFromStudents() {
 
     return (
         <>
-            <section className="py-20 bg-background">
-                <div className="max-w-7xl mx-auto px-6">
+            <section className=" bg-background">
+                <div className="w-full mx-auto">
                     {/* Heading */}
                     <motion.h2
                         initial={{ opacity: 0, y: -30 }}
@@ -193,7 +188,7 @@ export default function HearFromStudents() {
                         </div>
 
                         {/* Video Player (Right) */}
-                        <div className="w-full max-w-[320px] lg:w-[30%] lg:sticky lg:top-32 relative z-30 mx-auto lg:mx-0 shrink-0 mt-8 lg:mt-0">
+                        <div className="w-full max-w-[300px] lg:w-[30%] lg:sticky lg:top-32 relative z-30 mx-auto lg:mx-0 shrink-0 mt-8 lg:mt-0 ">
                             <div className="relative rounded-[2rem] p-1.5 bg-linear-to-b from-primary/40 via-primary/5 to-transparent shadow-[0_0_50px_-12px_rgba(20,36,138,0.3)] dark:shadow-[0_0_50px_-12px_rgba(212,194,252,0.15)] ring-1 ring-border/50">
                                 <div className="absolute inset-x-10 -top-px h-px bg-linear-to-r from-transparent via-primary/50 to-transparent"></div>
                                 <div className="absolute inset-0 bg-primary/10 blur-[60px] rounded-full -z-10 opacity-60"></div>

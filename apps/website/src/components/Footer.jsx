@@ -109,16 +109,16 @@ export default function Footer() {
                     <Accordion type="single" collapsible>
                         {footerSections.map(section => (
                             <AccordionItem key={section.title} value={section.title}>
-                                <AccordionTrigger className="text-base font-semibold">
+                                <AccordionTrigger className="text-muted-foreground font-semibold">
                                     {section.title}
                                 </AccordionTrigger>
                                 <AccordionContent>
-                                    <ul className="space-y-2 text-sm text-muted-foreground">
+                                    <ul className="space-y-2 text-sm text-background">
                                         {section.links.map(link => (
                                             <li key={link.href}>
                                                 <Link
                                                     href={link.href}
-                                                    className="transition-colors hover:text-primary"
+                                                    className="transition-colors text-accent-foreground"
                                                 >
                                                     {link.label}
                                                 </Link>

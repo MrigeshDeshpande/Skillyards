@@ -1,6 +1,9 @@
+import Link from "next/link";
 import { sanityClient } from "@/lib/sanity/client";
 import { POSTS_QUERY } from "@/lib/sanity/queries";
 import BlogCard from "@/components/blog/BlogCard";
+import { HoverBorderGradient } from "../ui/hover-border-gradient";
+
 
 
 export async function BlogSection() {
@@ -24,6 +27,19 @@ export async function BlogSection() {
                     {recentPosts.map((post) => (
                         <BlogCard key={post._id} post={post} />
                     ))}
+                </div>
+
+                <div className="flex justify-center pt-4">
+                    <Link href="/blog">
+                        <HoverBorderGradient
+                            as="div"
+                            containerClassName="rounded-full"
+                            className="bg-primary text-primary-foreground px-8 py-2.5 text-sm font-semibold tracking-wide flex items-center gap-2"
+                        >
+                            View All Blogs
+                            <span aria-hidden="true">→</span>
+                        </HoverBorderGradient>
+                    </Link>
                 </div>
             </div>
         </section>
