@@ -50,13 +50,13 @@ export default function Breadcrumbs({
 
             <nav
                 aria-label="Breadcrumb"
-                className={`flex items-center text-sm text-gray-600 dark:text-gray-400 ${className}`}
+                className={`flex items-center text-sm text-accent-foreground ${className}`}
             >
                 <ol className="flex items-center flex-wrap gap-1">
                     <li>
                         <Link
                             href="/"
-                            className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400"
+                            className="flex items-center gap-1 text-accent-foreground hover:text-primary"
                         >
                             <Home className="h-4 w-4" />
                             <span>Home</span>
@@ -67,17 +67,17 @@ export default function Breadcrumbs({
                         const isLast = index === breadcrumbs.length - 2;
 
                         return (
-                            <li key={item.href} className="flex items-center gap-1">
-                                <ChevronRight className="h-4 w-4 text-gray-400" />
+                            <li key={item.href} className="flex items-center gap-1 text-accent-foreground">
+                                <ChevronRight className="h-4 w-4 text-primary" />
 
                                 {isLast ? (
-                                    <span className="font-medium text-gray-900 dark:text-gray-100">
+                                    <span className="font-medium text-accent-foreground">
                                         {item.name}
                                     </span>
                                 ) : (
                                     <Link
                                         href={item.href}
-                                        className="hover:text-blue-600 dark:hover:text-blue-400"
+                                        className="hover:text-primary"
                                     >
                                         {item.name}
                                     </Link>

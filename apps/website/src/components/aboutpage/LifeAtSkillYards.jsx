@@ -54,9 +54,9 @@ export default function LifeAtSkillYards() {
                     images={images}
                     fit={0.85}
                     minRadius={650}
-                    maxVerticalRotationDeg={8}
+                    maxVerticalRotationDeg={6}
                     segments={24}
-                    dragDampening={2}
+                    dragDampening={1}
                     grayscale={false}
                     overlayBlurColor="transparent"
                 />
