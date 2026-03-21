@@ -7,7 +7,6 @@ import { BBA_CTA } from './CTA';
 import { ComparisonSection } from './ComparisonTable';
 import { CoreValues } from './CoreValue';
 import { Educators } from './Educators';
-import { Mentors } from './Mentors';
 import JourneyTimeline from './ProgramPhases';
 import { Skills } from './Skills';
 import { Stats } from './Stats';
@@ -25,7 +24,6 @@ export const LandingPage = () => {
           <ComparisonSection />
           <CoreValues />
           <Educators />
-          <Mentors />
           <JourneyTimeline />
           <Skills />
           <Stats />
