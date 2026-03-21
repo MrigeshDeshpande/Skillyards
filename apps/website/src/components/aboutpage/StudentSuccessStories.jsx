@@ -31,13 +31,13 @@ const stories = [
 
 export default function StudentSuccessStories() {
     return (
-        <section className="py-20 bg-white dark:bg-neutral-950">
+        <section className="py-20 bg-background">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center mb-14">
                     <h2 className="text-3xl sm:text-4xl font-extrabold">
                         Student Success Stories
                     </h2>
-                    <p className="mt-3 text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+                    <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
                         Real people. Real journeys. Real careers built at SkillYards.
                     </p>
                 </div>
@@ -46,8 +46,8 @@ export default function StudentSuccessStories() {
                     {stories.map((story) => (
                         <div
                             key={story.name}
-                            className="group rounded-2xl border border-neutral-200 dark:border-neutral-800
-                         bg-neutral-50 dark:bg-neutral-900 p-6
+                            className="group rounded-2xl border border-border
+                         bg-card p-6
                          hover:shadow-xl transition"
                         >
                             <div className="flex items-center gap-4 mb-4">
@@ -60,18 +60,18 @@ export default function StudentSuccessStories() {
                                 />
                                 <div>
                                     <p className="font-semibold">{story.name}</p>
-                                    <p className="text-sm text-neutral-500">
+                                    <p className="text-sm text-muted-foreground">
                                         {story.role}
                                     </p>
                                 </div>
                             </div>
 
-                            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
+                            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                                 “{story.story}”
                             </p>
 
                             <div className="flex items-center justify-between text-sm">
-                <span className="text-indigo-600 font-medium">
+                <span className="text-primary font-medium">
                   {story.company}
                 </span>
                                 <ArrowUpRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition" />

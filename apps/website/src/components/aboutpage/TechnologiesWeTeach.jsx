@@ -22,13 +22,13 @@ const technologies = [
 
 export default function TechnologiesWeTeach() {
     return (
-        <section className="py-20 bg-white dark:bg-neutral-950">
+        <section className="py-20 bg-background">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center mb-14">
                     <h2 className="text-3xl sm:text-4xl font-extrabold">
                         Technologies We Teach
                     </h2>
-                    <p className="mt-3 text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+                    <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
                         Industry-aligned technologies designed for real-world projects,
                         internships, and on-job learning.
                     </p>
@@ -38,12 +38,12 @@ export default function TechnologiesWeTeach() {
                     {technologies.map(({ name, icon: Icon }) => (
                         <div
                             key={name}
-                            className="group rounded-2xl border border-neutral-200 dark:border-neutral-800
-                         bg-neutral-50 dark:bg-neutral-900 p-6 text-center
-                         hover:border-indigo-500 hover:shadow-lg transition"
+                            className="group rounded-2xl border border-border
+                         bg-card p-6 text-center
+                         hover:border-primary hover:shadow-lg transition"
                         >
                             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center
-                              rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600">
+                              rounded-xl bg-primary/10 text-primary">
                                 <Icon className="h-7 w-7" />
                             </div>
                             <p className="font-semibold">{name}</p>

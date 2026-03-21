@@ -22,7 +22,7 @@ export default function OtherTeam() {
     // }, []);
 
     return (
-        <section className="py-20 bg-white dark:bg-neutral-950">
+        <section className="py-20 bg-background">
             <div className="max-w-7xl mx-auto px-6">
                 {/* Heading */}
                 <motion.h2
@@ -30,12 +30,12 @@ export default function OtherTeam() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="text-3xl font-extrabold text-center text-gray-900 dark:text-white"
+                    className="text-3xl font-extrabold text-center text-foreground"
                 >
                     Our Team
                 </motion.h2>
 
-                <div className="w-32 h-1 bg-yellow-400 mx-auto mt-4 mb-12" />
+                <div className="w-32 h-1 bg-secondary mx-auto mt-4 mb-12" />
 
                 {/* Team Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
@@ -53,8 +53,8 @@ export default function OtherTeam() {
                                     group rounded-xl overflow-hidden text-center
                                     border shadow-md transition
                                     ${isInactive
-                                    ? "bg-gray-100 dark:bg-neutral-900 border-gray-200 dark:border-gray-800 opacity-70 cursor-not-allowed"
-                                    : "bg-white dark:bg-neutral-900 border-gray-100 dark:border-gray-800 hover:shadow-lg"
+                                    ? "bg-muted/30 border-border opacity-70 cursor-not-allowed"
+                                    : "bg-card border-border hover:shadow-lg"
                                 }
                                 `}
                             >
@@ -75,8 +75,7 @@ export default function OtherTeam() {
 
                                     {/* Inactive badge */}
                                     {isInactive && (
-                                        <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded-full
-                                                         bg-gray-800/80 text-white">
+                                        <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded-full bg-foreground/80 text-background">
                                             Inactive
                                         </span>
                                     )}
@@ -86,14 +85,14 @@ export default function OtherTeam() {
                                 <div className="p-4">
                                     <h3 className={`font-semibold text-sm
                                         ${isInactive
-                                        ? "text-gray-500 dark:text-gray-500"
-                                        : "text-gray-900 dark:text-white"
+                                        ? "text-muted-foreground"
+                                        : "text-foreground"
                                     }`}
                                     >
                                         {member.name}
                                     </h3>
 
-                                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                    <p className="text-xs text-muted-foreground mt-1">
                                         @{member.username}
                                     </p>
                                 </div>
