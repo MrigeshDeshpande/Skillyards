@@ -36,12 +36,11 @@ const sourceSans = Source_Sans_3({
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning className={`${inter.variable} ${sourceSans.variable} ${playfair.variable}`}>
             <body
-                className={`${inter.variable} ${sourceSans.variable} ${playfair.variable} 
-                antialiased 
-                bg-white dark:bg-neutral-950 
-                text-neutral-900 dark:text-neutral-100 
+                className={`antialiased
+                bg-foreground
+                text-primary-foreground
                 transition-colors duration-500 ease-in-out`}
             >
                 <ReCaptchaProvider> 
@@ -52,7 +51,7 @@ export default function RootLayout({ children }) {
                         defaultTheme="system"
                         enableSystem
                     >
-                        <div className="min-h-screen bg-linear-to-b from-white via-zinc-50 to-zinc-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-black transition-colors duration-500">
+                        <div className="min-h-screen bg-background transition-colors duration-500">
                             <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
 
                             <Header />

@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'motion/react';
 import { CometCard } from "@/components/ui/comet-card";
 
 export const Benefits = () => {
@@ -27,39 +26,31 @@ export const Benefits = () => {
     <section id="benefits" className="py-[10vh] md:py-[15vh] px-4 sm:px-6 bg-linear-to-b from-background/50 to-background dark:from-neutral-900 dark:to-neutral-950 w-full">
       <div className="w-full max-w-6xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-extrabold text-foreground dark:text-neutral-50"
           >
             Why Choose SkillYards?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+          </h2>
+          <p
             className="text-muted-foreground dark:text-neutral-400 text-sm sm:text-base md:text-lg max-w-4xl mx-auto mt-4"
           >
             We provide more than just education. We provide a launchpad for your professional success.
-          </motion.p>
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           {benefits.map((benefit, index) => (
-            <CometCard key={index} className="w-full h-full" rotateDepth={3} translateDepth={8}>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="group bg-card dark:bg-neutral-800 text-card-foreground dark:text-neutral-100 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 border border-border/50 dark:border-neutral-700 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 dark:hover:shadow-primary/10 transition-all duration-500 w-full h-full flex flex-col overflow-hidden"
-              >
-                <div className={`w-full h-40 md:h-48 relative mb-6 md:mb-8 rounded-xl overflow-hidden group-hover:shadow-lg transition-shadow duration-500 flex-shrink-0 bg-gradient-to-br ${benefit.gradient} group-hover:scale-105 transition-transform duration-500`} />
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 md:mb-4 text-foreground dark:text-neutral-50">{benefit.title}</h3>
-                <p className="text-muted-foreground dark:text-neutral-400 text-sm md:text-base leading-relaxed">{benefit.description}</p>
-              </motion.div>
+            <CometCard
+              key={index}
+              className={`w-full h-full${index === benefits.length - 1 && benefits.length % 2 !== 0 ? " sm:col-span-2 sm:max-w-sm sm:mx-auto lg:col-span-1 lg:max-w-none lg:mx-0" : ""}`}
+              rotateDepth={3}
+              translateDepth={8}
+            >
+              <div className="group bg-card dark:bg-neutral-800 text-card-foreground dark:text-neutral-100 rounded-2xl md:rounded-3xl p-5 sm:p-6 lg:p-8 border border-border/50 dark:border-neutral-700 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 dark:hover:shadow-primary/10 transition-all duration-500 w-full h-full flex flex-col overflow-hidden">
+                <div className={`w-full h-32 sm:h-36 lg:h-44 relative mb-5 sm:mb-6 rounded-xl overflow-hidden shrink-0 bg-linear-to-br ${benefit.gradient} group-hover:shadow-lg group-hover:scale-105 transition-all duration-500`} />
+                <h3 className="text-base sm:text-lg lg:text-2xl font-bold mb-2 sm:mb-3 text-foreground dark:text-neutral-50">{benefit.title}</h3>
+                <p className="text-muted-foreground dark:text-neutral-400 text-sm leading-relaxed">{benefit.description}</p>
+              </div>
             </CometCard>
           ))}
         </div>

@@ -63,7 +63,7 @@ export default function AboutPage() {
 
     return (
         <>
-            <div className="bg-linear-to-b from-white via-zinc-50 to-zinc-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-black text-neutral-900 dark:text-neutral-100 transition-colors duration-500">
+            <div className="bg-background text-foreground transition-colors duration-500">
                 <AboutHero />
                 <AboutMissionVision />
                 <AboutWhyChoose />

@@ -26,7 +26,7 @@ export default function Header() {
         <header
             className={`fixed inset-x-0 top-0 md:top-4 z-50 flex justify-center px-4 sm:px-6 transition-all duration-300`}
         >
-            <nav className={`w-full max-w-[1100px] flex items-center justify-between p-2 sm:p-2.5 rounded-full border border-gray-200/80 dark:border-neutral-800/80 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md shadow-sm transition-all duration-300`}>
+            <nav className={`w-full max-w-[1100px] flex items-center justify-between p-2 sm:p-2.5 rounded-full border border-border/80 bg-background/80 backdrop-blur-md shadow-sm transition-all duration-300`}>
 
                 {/* Left Side: Logo & Version */}
                 <div className="flex items-center gap-2  md:pl-2">
@@ -48,7 +48,7 @@ export default function Header() {
                     <button
                         onClick={() => setIsOpen(v => !v)}
                         aria-label="Toggle menu"
-                        className="rounded-full p-2.5 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-neutral-800 transition"
+                        className="rounded-full p-2.5 text-muted-foreground hover:bg-accent transition"
                     >
                         {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                     </button>
@@ -75,7 +75,7 @@ function ThemeButton({ theme, toggleTheme }) {
             onClick={toggleTheme}
             aria-label="Toggle theme"
             title="Toggle theme"
-            className="flex items-center justify-center rounded-full p-2.5 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-neutral-800 transition"
+            className="flex items-center justify-center rounded-full p-2.5 text-muted-foreground hover:bg-accent transition"
         >
             {theme === "light" ? (
                 <Moon className="h-4 w-4" />

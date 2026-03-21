@@ -9,7 +9,6 @@ import { CoreValues } from './CoreValue';
 import { Educators } from './Educators';
 import { Mentors } from './Mentors';
 import JourneyTimeline from './ProgramPhases';
-import { QuoteSection } from './QuoteSection';
 import { Skills } from './Skills';
 import { Stats } from './Stats';
 import { Syllabus } from './Syllabus';
@@ -28,7 +27,6 @@ export const LandingPage = () => {
           <Educators />
           <Mentors />
           <JourneyTimeline />
-          <QuoteSection />
           <Skills />
           <Stats />
           <Syllabus />

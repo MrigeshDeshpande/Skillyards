@@ -37,7 +37,7 @@ export const metadata = withPageSEO({
 
 export default function Home() {
     return (
-        <div className="theme-home min-h-screen w-full bg-home-bg text-home-fg transition-colors duration-500">
+        <div className="min-h-screen w-full bg-background text-foreground transition-colors duration-500">
 
             <HeroCarousel />
 
