@@ -10,7 +10,7 @@ export default async function TagPage({ params }) {
 
     return (
         <div className="max-w-6xl mx-auto px-4 pt-34 pb-10">
-            <h1 className="text-2xl font-semibold mb-8 capitalize"> 
+            <h1 className="text-2xl font-semibold mb-8 capitalize text-primary"> 
                                {slug.replace("-", " ")}
             </h1>
 
