@@ -64,7 +64,9 @@ export default function LifeAtSkillYards() {
         style={{
           position: "relative",
           width: "100%",
-          height: "clamp(550px, 75vh, 900px)", 
+          height: isMobile 
+  ? "clamp(450px, 75vh, 800px)" 
+  : "clamp(600px, 85vh, 1100px)", 
         }}
       >
         <DomeGallery
