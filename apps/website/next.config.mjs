@@ -37,8 +37,7 @@ const nextConfig = {
                         "frame-src https://utteranc.es https://www.google.com https://www.gstatic.com; " +
 
                         // API calls 
-                        "connect-src 'self' https://api.github.com https://www.google.com https://www.gstatic.com; " +
-
+                        "connect-src 'self' https://api.github.com https://www.google.com https://www.gstatic.com https://skillyards-backend.vercel.app; " +
                         // Images
                         "img-src 'self' data: blob: https:; " +
 
