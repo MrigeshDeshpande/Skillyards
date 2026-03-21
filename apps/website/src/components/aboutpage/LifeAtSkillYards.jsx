@@ -23,7 +23,7 @@ export default function LifeAtSkillYards() {
   }, []);
 
   return (
-    <section className="bg-background py-10 transition-colors">
+    <section className="bg-background py-8 transition-colors">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -64,31 +64,48 @@ export default function LifeAtSkillYards() {
         style={{
           position: "relative",
           width: "100%",
-          height: "clamp(450px, 75vh, 800px)", 
+          height: isMobile 
+  ? "clamp(450px, 75vh, 800px)" 
+  : "clamp(600px, 85vh, 1100px)", 
         }}
       >
         <DomeGallery
           images={images}
-          fit={isMobile ? 0.85 : 0.6}
-          minRadius={isMobile ? 240 : 260}
+          fit={isMobile ? 0.9 : 0.8}
+          minRadius={isMobile ? 200 : 260}
           maxVerticalRotationDeg={6}
-          segments={isMobile ? 12 : 16}                    
+          segments={isMobile ? 16 : 20}                    
           dragDampening={1}
           grayscale={false}
           overlayBlurColor="transparent"
             autoRotate={true}
         />
 
+        {/* Mobile — top/bottom solid masks to hide globe poles */}
         <div
-          className="opacity-0 dark:opacity-100"
-          style={{
-            position: "absolute",
-            inset: 0,
-            pointerEvents: "none",
-            background:
-              "radial-gradient(ellipse at center, transparent 40%, color-mix(in srgb, var(--background) 60%, transparent) 70%, var(--background) 100%)",
-          }}
-        />
+          className="md:hidden pointer-events-none"
+          style={{ position: "absolute", inset: 0, zIndex: 20 }}
+        >
+          <div style={{
+            position: "absolute", top: 0, left: 0, right: 0, height: "18%",
+            background: "linear-gradient(to bottom, var(--background) 55%, transparent 10%)",
+          }} />
+          <div style={{
+            position: "absolute", bottom: 0, left: 0, right: 0, height: "18%",
+            background: "linear-gradient(to top, var(--background) 55%, transparent 100%)",
+          }} />
+        </div>
+
+        
+        <div
+          className="opacity-0 dark:opacity-100 pointer-events-none"
+          style={{ position: "absolute", inset: 0, zIndex: 9 }}
+        >
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "30%", background: "linear-gradient(to bottom, var(--background), transparent)" }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "30%", background: "linear-gradient(to top, var(--background), transparent)" }} />
+          <div style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: "15%", background: "linear-gradient(to right, var(--background), transparent)" }} />
+          <div style={{ position: "absolute", top: 0, right: 0, bottom: 0, width: "15%", background: "linear-gradient(to left, var(--background), transparent)" }} />
+        </div>
       </div>
     </section>
   );
