@@ -44,6 +44,19 @@ export default defineType({
     }),
 
     defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'tag' }]
+        }
+      ],
+      validation: Rule => Rule.min(1).error('Add at least one tag')
+    }),
+
+    defineField({
       name: 'content',
       title: 'Content',
       type: 'array',
