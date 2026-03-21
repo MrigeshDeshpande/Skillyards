@@ -39,8 +39,7 @@ const nextConfig = {
                         // API calls 
                         "connect-src 'self' https://api.github.com https://www.google.com https://www.gstatic.com https://skillyards-backend.vercel.app; " +
                         // Images
-                        "img-src 'self' data: blob: https:; " +
-
+                        "img-src 'self' data: blob: https://picsum.photos https://images.unsplash.com https://cdn.sanity.io; " +
                         // Styles
                         "style-src 'self' 'unsafe-inline'; " +
 
