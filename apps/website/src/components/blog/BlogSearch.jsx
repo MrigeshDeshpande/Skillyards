@@ -54,7 +54,13 @@ const BlogSearch = ({ posts }) => {
             const fields = [
                 { value: post.title?.toLowerCase() || "", weight: 10 },
                 { value: post.excerpt?.toLowerCase() || "", weight: 5 },
-                { value: (post.tags || []).join(" ").toLowerCase(), weight: 8 }
+                {
+                    value: (post.tags || [])
+                        .map(tag => tag.title)
+                        .join(" ")
+                        .toLowerCase(),
+                    weight: 8
+                }
             ];
 
             fields.forEach(({ value, weight }) => {

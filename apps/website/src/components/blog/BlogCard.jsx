@@ -1,171 +1,198 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { useRef, useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { useMemo } from "react";
 import { urlFor } from "@/lib/sanity/image";
 
+const AVATAR_PALETTES = [
+  { bg: "bg-[#FAEEDA]", text: "text-[#633806]" },
+  { bg: "bg-[#E1F5EE]", text: "text-[#085041]" },
+  { bg: "bg-[#FBEAF0]", text: "text-[#72243E]" },
+  { bg: "bg-[#E6F1FB]", text: "text-[#0C447C]" },
+  { bg: "bg-[#EEEDFE]", text: "text-[#3C3489]" },
+];
+
+const PIN_COLORS = [
+  "bg-[#E24B4A]",
+  "bg-[#378ADD]",
+  "bg-[#1D9E75]",
+  "bg-[#D4537E]",
+  "bg-[#BA7517]",
+];
+
+const getHash = (str = "") =>
+  [...str].reduce((acc, char) => acc + char.charCodeAt(0), 0);
+
+const getTilt = (slug) => {
+  const tilts = [-2.2, -1.4, -0.6, 0.8, 1.6, 2.4];
+  return tilts[getHash(slug) % tilts.length];
+};
+
+const getPalette = (name) =>
+  AVATAR_PALETTES[getHash(name) % AVATAR_PALETTES.length];
+
+const getPinColor = (slug) =>
+  PIN_COLORS[getHash(slug) % PIN_COLORS.length];
+
 const Highlight = ({ text, query }) => {
-    const parts = useMemo(() => {
-        if (!query?.trim() || !text) return null;
-        const tokens = query.split(/\s+/).filter((t) => t.length > 0);
-        const pattern = new RegExp(`(${tokens.join("|")})`, "i");
-        return {
-            parts: text.split(pattern),
-            tokens: tokens.map((t) => t.toLowerCase()),
-        };
-    }, [text, query]);
+  const result = useMemo(() => {
+    if (!query?.trim() || !text) return null;
 
-    if (!parts) return <span>{text}</span>;
+    const tokens = query.split(/\s+/).filter(Boolean);
+    const pattern = new RegExp(`(${tokens.join("|")})`, "i");
 
-    return (
-        <span>
-            {parts.parts.map((part, i) =>
-                parts.tokens.includes(part.toLowerCase()) ? (
-                    <mark
-                        key={i}
-                        className="bg-yellow-200 dark:bg-yellow-500/30 text-inherit rounded-sm px-0.5"
-                    >
-                        {part}
-                    </mark>
-                ) : (
-                    <span key={i}>{part}</span>
-                )
-            )}
-        </span>
-    );
+    return {
+      parts: text.split(pattern),
+      tokens: tokens.map((t) => t.toLowerCase()),
+    };
+  }, [text, query]);
+
+  if (!result) return <span>{text}</span>;
+
+  return (
+    <span>
+      {result.parts.map((part, i) => {
+        const isMatch = result.tokens.includes(part.toLowerCase());
+        return isMatch ? (
+          <mark
+            key={i}
+            className="bg-yellow-200 dark:bg-yellow-500/30 text-inherit rounded-sm px-0.5"
+          >
+            {part}
+          </mark>
+        ) : (
+          <span key={i}>{part}</span>
+        );
+      })}
+    </span>
+  );
 };
 
 const BlogCard = ({ post, searchQuery }) => {
-    const router = useRouter();
+  const router = useRouter();
 
-    const bottomPanelRef = useRef(null);
-    const avatarRef = useRef(null);
-    const [panelHeight, setPanelHeight] = useState(130);
+  const { title, slug, publishedAt, author, coverImage } = post;
 
-    useEffect(() => {
-        const el = bottomPanelRef.current;
-        if (!el) return;
+  const tags = Array.isArray(post.tags) ? post.tags : [];
 
-        const observer = new ResizeObserver(() => {
-            setPanelHeight(el.offsetHeight);
-        });
+  const coverUrl = coverImage
+    ? urlFor(coverImage).width(600).height(450).url()
+    : "/images/placeholder.jpg";
 
-        observer.observe(el);
+  const authorUrl = author?.image
+    ? urlFor(author.image).width(200).height(200).url()
+    : null;
 
-        return () => observer.disconnect();
-    }, []);
-    const coverImageUrl = post.coverImage
-        ? urlFor(post.coverImage).url()
-        : "/images/placeholder.jpg";
+  const dateLabel = publishedAt
+    ? new Date(publishedAt).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })
+    : "Recent";
 
-    const authorImageUrl = post.author?.image
-        ? urlFor(post.author.image).width(200).height(200).url()
-        : "/images/avatar-placeholder.png";
+  const tiltAngle = getTilt(slug);
+  const colorTheme = getPalette(author?.name || "");
+  const pinClass = getPinColor(slug);
 
-    const formattedDate = post.publishedAt
-        ? new Date(post.publishedAt).toLocaleDateString("en-US", {
-            month: "short",
-            year: "numeric",
-            day: "numeric",
-        })
-        : "Recent";
+  const initials = (author?.name || "SK")
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 
-    const avatarLift = panelHeight - 1.1;
+  const goToPost = () => router.push(`/blog/${slug}`);
+  const goToTag = (e, tagSlug) => {
+    e.stopPropagation();
+    router.push(`/blog/tag/${tagSlug}`);
+  };
 
-    return (
-        <div
-            onClick={() => router.push(`/blog/${post.slug}`)}
-            className="group relative w-full h-[420px] sm:h-[440px] rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 cursor-pointer bg-muted"
-        >               <Image
-                src={coverImageUrl}
-                alt={post.title || "Blog Post"}
+  return (
+    <article
+      onClick={goToPost}
+      style={{ "--tilt": `${tiltAngle}deg` }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = `rotate(${
+          tiltAngle * -0.4
+        }deg) translateY(-8px) scale(1.02)`;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = `rotate(${tiltAngle}deg)`;
+      }}
+      className="group relative cursor-pointer select-none flex flex-col gap-[14px] bg-white dark:bg-[#1c1c1a] border border-black/[0.08] dark:border-white/[0.08] rounded-sm p-[10px] pb-5 shadow-[2px_3px_10px_rgba(0,0,0,0.10)] dark:shadow-[2px_3px_16px_rgba(0,0,0,0.45)] transition-all duration-500 ease-[cubic-bezier(0.35,0.13,0,0.99)] hover:z-10 hover:shadow-[6px_16px_32px_rgba(0,0,0,0.16)]"
+    >
+      <div
+        aria-hidden="true"
+        className={`absolute -top-[9px] left-1/2 -translate-x-1/2 z-10 w-4 h-4 rounded-full border-2 border-white dark:border-[#1c1c1a] shadow-md ${pinClass}`}
+      />
+
+      <div className="relative w-full aspect-[4/3] overflow-hidden rounded-[1px] bg-[#e5e3dc] dark:bg-[#2c2c2a]">
+        <Image
+          src={coverUrl}
+          alt={title || "Blog cover"}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
+        />
+
+        <div className="absolute top-[10px] -left-2 z-[5] w-12 h-[18px] -rotate-12 bg-[rgba(255,240,180,0.55)] dark:bg-[rgba(255,240,180,0.2)] border border-[rgba(200,180,100,0.25)]" />
+
+        {tags.length > 0 && (
+          <span className="absolute bottom-[10px] right-[10px] z-[5] text-[10px] font-medium uppercase bg-white/85 dark:bg-[#1c1c1a]/80 text-[#2c2c2a] dark:text-[#d3d1c7] px-2 py-1 rounded-full backdrop-blur-sm">
+            {tags[0].title}
+          </span>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-1.5 px-1">
+        <time className="font-mono text-[10px] text-[#888780] dark:text-[#5f5e5a]">
+          {dateLabel}
+        </time>
+
+        <h3 className="text-sm font-medium leading-snug text-[#2c2c2a] dark:text-[#d3d1c7] line-clamp-2">
+          <Highlight text={title} query={searchQuery} />
+        </h3>
+
+        <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+          <div
+            className={`relative w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold overflow-hidden ${colorTheme.bg} ${colorTheme.text}`}
+          >
+            {authorUrl ? (
+              <Image
+                src={authorUrl}
+                alt={author?.name}
                 fill
-                className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.35,0.13,0.0,0.99)] group-hover:scale-105"
+                className="object-cover"
+              />
+            ) : (
+              initials
+            )}
+          </div>
+
+          <span className="text-[11px] text-[#5f5e5a] dark:text-[#888780]">
+            <Highlight
+              text={author?.name || "SkillYards Team"}
+              query={searchQuery}
             />
+          </span>
 
-            <div
-                ref={avatarRef}
-                className="absolute bottom-0 left-0 z-10 w-[90px] h-[90px] bg-white dark:bg-zinc-900 rounded-tr-2xl items-center justify-center pointer-events-none select-none hidden sm:flex"
-                style={{
-                    opacity: 0,
-                    transform: "translateY(0px)",
-                    transition:
-                        "transform 500ms cubic-bezier(0.35,0.13,0.0,0.99), opacity 500ms cubic-bezier(0.35,0.13,0.0,0.99)",
-                    "--avatar-lift": `-${avatarLift}px`,
-                }}
-                data-avatar
-            >
-                <div className="relative w-[70px] h-[70px] rounded-full overflow-hidden shadow ring-2 ring-white/20">
-                    <Image
-                        src={authorImageUrl}
-                        alt={post.author?.name || "Author"}
-                        fill
-                        className="object-cover"
-                    />
-                </div>
-            </div>
-
-            <div
-                ref={bottomPanelRef}
-                className="absolute bottom-0 left-0 right-0 bg-white dark:bg-zinc-900 px-5 py-4 z-20 flex flex-col gap-2.5"
-            >
-                <span className="font-sans text-xs font-semibold text-muted-foreground tracking-widest uppercase">
-                    <Highlight text={post.author?.name || "SkillYards Team"} query={searchQuery} />
-                </span>
-
-                <h3 className="font-serif text-lg sm:text-xl font-semibold text-foreground leading-snug line-clamp-2">
-                    <Highlight text={post.title} query={searchQuery} />
-                </h3>
-
-                {post.tags?.length > 0 && (
-                    <div className="relative z-30 flex flex-wrap gap-1.5 pt-1">
-                        {post.tags.map(tag => (
-                            <span
-                                key={tag.slug}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    router.push(`/blog/tag/${tag.slug}`);
-                                }}
-                                className="cursor-pointer text-[10px] px-2 py-0.5 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
-                            >
-                                {tag.title}
-                            </span>
-                        ))}
-                    </div>
-                )}
-
-                <div className="flex items-center justify-between pt-1">
-                    <div className="flex items-center overflow-hidden">
-                        <div className="flex items-center gap-1.5 translate-x-10 group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.35,0.13,0.0,0.99)]">
-                            <span className="font-sans text-xs font-medium text-foreground whitespace-nowrap">
-                                {formattedDate}
-                            </span>
-                            <span className="flex items-center justify-center bg-foreground text-background w-5 h-5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0">
-                                <ArrowUpRight className="w-3 h-3" />
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <Link
-                href={`/blog/${post.slug}`}
-                className="absolute inset-0 z-10 pointer-events-none"
-            >                <span className="sr-only">Read {post.title}</span>
-            </Link>
-
-            <style>{`
-                .group:hover [data-avatar] {
-                    opacity: 1 !important;
-                    transform: translateY(var(--avatar-lift)) !important;
-                }
-            `}</style>
+          <div className="flex gap-1 ml-auto">
+            {tags.map((tag) => (
+              <button
+                key={tag.slug}
+                onClick={(e) => goToTag(e, tag.slug)}
+                className="text-[9px] px-1.5 py-0.5 rounded-full border border-black/10 dark:border-white/10 text-[#5f5e5a] hover:text-[#2c2c2a] dark:hover:text-white transition-colors"
+              >
+                {tag.title}
+              </button>
+            ))}
+          </div>
         </div>
-    );
+      </div>
+    </article>
+  );
 };
 
 export default BlogCard;
