@@ -85,7 +85,7 @@ export default function Footer() {
                 {/* Desktop columns */}
                 {footerSections.map(section => (
                     <div key={section.title} className="hidden md:block">
-                        <h3 className="mb-4 text-lg font-semibold text-foreground">
+                        <h3 className="mb-4 text-lg font-semibold text-muted-foreground">
                             {section.title}
                         </h3>
 

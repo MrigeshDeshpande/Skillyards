@@ -104,7 +104,7 @@ const BlogSearch = ({ posts }) => {
             <div className="space-y-4">
                 <div className="relative max-w-md mx-auto group">
                     <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                        <Search className="w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                        <Search className="w-4 h-4 text-foreground group-focus-within:text-primary transition-colors" />
                     </div>
                     <input
                         ref={inputRef}
@@ -112,7 +112,7 @@ const BlogSearch = ({ posts }) => {
                         placeholder="Search articles..."
                         value={query}
                         onChange={(e) => { setQuery(e.target.value); setCurrentPage(1); setFocusedIndex(-1); }}
-                        className="w-full pl-11 pr-12 py-3 rounded-full border border-border bg-muted/40 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:bg-background transition-all"
+                        className="w-full pl-11 pr-12 py-3 rounded-full border border-border bg-muted/40 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:bg-background transition-all text-foreground"
                     />
                 </div>
 
@@ -129,14 +129,14 @@ const BlogSearch = ({ posts }) => {
 
             {!query && dynamicSuggestions.length > 0 && (
                 <div className="flex flex-wrap justify-center items-center gap-3 -mt-4">
-                    <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold flex items-center gap-1">
+                    <span className="text-[10px] uppercase tracking-wider text-foreground font-bold flex items-center gap-1">
                         <TrendingUp className="w-3 h-3" /> Trending:
                     </span>
                     {dynamicSuggestions.map((tag) => (
                         <button
                             key={tag}
                             onClick={() => { setQuery(tag); setCurrentPage(1); }}
-                            className="px-3 py-1 rounded-full bg-muted/50 border border-border text-[11px] font-medium hover:border-foreground transition-all"
+                            className="px-3 py-1 rounded-full bg-muted/50 border border-border text-[11px] font-medium hover:border-foreground transition-all text-foreground"
                         >
                             {tag}
                         </button>
