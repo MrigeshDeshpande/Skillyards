@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(grep -r \"bg-home\\\\|text-home\\\\|--home\" /c/Users/sharm/Desktop/Skillyards/apps/website/src/components --include=*.jsx --include=*.js)",
-      "Bash(/tmp/color_analysis.txt:*)",
-      "Read(//tmp/**)"
-    ]
-  }
-}
