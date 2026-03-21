@@ -30,17 +30,17 @@ const nextConfig = {
                     value:
                         "default-src 'self'; " +
 
-                        // Scripts (Utterances)
-                        "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://utteranc.es; " +
+                        // Scripts
+                        "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://utteranc.es https://www.google.com https://www.gstatic.com https://www.googletagmanager.com; " +
 
-                        // Utterances iframe
-                        "frame-src https://utteranc.es; " +
+                        // Frames
+                        "frame-src https://utteranc.es https://www.google.com https://www.gstatic.com; " +
 
-                        // GitHub API (comments fetch/post)
-                        "connect-src 'self' https://api.github.com; " +
+                        // API calls 
+                        "connect-src 'self' https://api.github.com https://www.google.com https://www.gstatic.com; " +
 
                         // Images
-                        "img-src 'self' data: blob:; " +
+                        "img-src 'self' data: blob: https:; " +
 
                         // Styles
                         "style-src 'self' 'unsafe-inline'; " +
