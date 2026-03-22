@@ -31,7 +31,7 @@ const batches = [
     fee: "Starting ₹25,000",
     emi: true,
     seatsLeft: 8,
-    href: "/enquiry",
+    href: "/contact",
   },
   {
     program: "Digital Marketing",
@@ -40,7 +40,7 @@ const batches = [
     fee: "Starting ₹15,000",
     emi: true,
     seatsLeft: 15,
-    href: "/enquiry",
+    href: "/contact",
   },
 ];
 

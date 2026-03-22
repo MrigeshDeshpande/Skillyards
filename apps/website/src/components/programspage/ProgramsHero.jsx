@@ -56,7 +56,7 @@ export default function ProgramsHero() {
             size="lg"
             className="w-full rounded-full bg-primary px-8 py-6 text-sm font-extrabold text-primary-foreground shadow-xl shadow-primary/20 transition-all hover:scale-105 hover:bg-primary/90 sm:w-auto"
           >
-            <Link href="/enquiry">
+            <Link href="/contact">
               Enroll Now <ArrowRight size={18} className="ml-2" />
             </Link>
           </Button>

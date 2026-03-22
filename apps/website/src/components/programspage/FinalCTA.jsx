@@ -57,7 +57,7 @@ export default function FinalCTA() {
             size="lg"
             className="w-full rounded-full bg-primary-foreground px-8 py-6 text-sm font-extrabold text-primary shadow-xl transition-all hover:scale-105 hover:bg-primary-foreground/90 sm:w-auto"
           >
-            <Link href="/enquiry">
+            <Link href="/contact">
               Enroll Now <ArrowRight size={18} className="ml-2" />
             </Link>
           </Button>

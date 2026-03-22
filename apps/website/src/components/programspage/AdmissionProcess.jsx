@@ -11,7 +11,7 @@ const steps = [
     icon: ClipboardList,
     title: "Fill the Inquiry Form",
     desc: "Submit a quick form or drop a WhatsApp message. Takes under 2 minutes.",
-    action: { label: "Start Here", href: "/enquiry" },
+    action: { label: "Start Here", href: "/contact" },
   },
   {
     number: "02",
