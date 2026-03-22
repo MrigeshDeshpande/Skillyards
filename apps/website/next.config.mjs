@@ -37,11 +37,10 @@ const nextConfig = {
                         "frame-src https://utteranc.es https://www.google.com https://www.gstatic.com https://www.youtube.com; " +
 
                         // API calls 
-                        "connect-src 'self' https://api.github.com https://www.google.com https://www.gstatic.com https://skillyards-backend.vercel.app; " +
-                        
+                        "connect-src 'self' https://api.github.com https://www.google.com https://www.gstatic.com https://skillyards-backend.vercel.app https://www.googletagmanager.com; " +
                         // Images
-                        "img-src 'self' data: blob: https://picsum.photos https://images.unsplash.com https://cdn.sanity.io https://cdn.simpleicons.org; " +                        
-                        
+                        "img-src 'self' data: blob: https://picsum.photos https://images.unsplash.com https://cdn.sanity.io https://cdn.simpleicons.org; " +
+
                         // Styles
                         "style-src 'self' 'unsafe-inline'; " +
 
