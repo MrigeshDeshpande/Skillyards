@@ -1,0 +1,129 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { HelpCircle, Plus, Minus } from "lucide-react";
+import Link from "next/link";
+
+const faqs = [
+  {
+    question: "What are the eligibility criteria for BCA and BBA?",
+    answer: "Both BCA and BBA require 12th pass (any stream) with a minimum of 50% marks. There's no entrance exam — just a counselling session to ensure the program is the right fit for you.",
+  },
+  {
+    question: "What's the difference between a Degree program and a Skill Course?",
+    answer: "Degree programs (BCA & BBA) are 3-year university-affiliated programs that give you an accredited bachelor's degree plus on-job training. Skill Courses (Full-Stack Dev & Digital Marketing) are shorter, intensive programs (3–6 months) focused on immediate job readiness with industry certificates. Both include placement support.",
+  },
+  {
+    question: "Is placement actually guaranteed?",
+    answer: "We have a 95% placement rate — which means we actively work to place every eligible student. We don't guarantee a specific salary, but we do guarantee dedicated placement support: resume building, mock interviews, referrals, and direct connections with 180+ hiring partners.",
+  },
+  {
+    question: "Are the programs available online?",
+    answer: "BCA and BBA are primarily offline (Agra campus), as they are university degree programs requiring physical attendance. Full-Stack Dev and Digital Marketing are available in hybrid mode (offline classes + recorded access online).",
+  },
+  {
+    question: "What are the fee and EMI options?",
+    answer: "Skill courses start from ₹15,000 (Digital Marketing) and ₹25,000 (Full-Stack Dev). Degree program fees are shared during your counselling session. EMI and instalment options are available across all programs — contact us to know the exact payment plan.",
+  },
+  {
+    question: "What if I miss classes?",
+    answer: "All sessions are recorded and shared with enrolled students. Our mentors also hold weekly doubt-clearing sessions. For degree programs, we follow the university attendance policy (minimum 75% physical attendance required).",
+  },
+  {
+    question: "Can I switch programs after joining?",
+    answer: "Program switches are evaluated case-by-case within the first 2 weeks of joining. After that, seat allocation and scheduling make switches difficult. We strongly recommend attending a counselling session before enrolling to make the right choice from the start.",
+  },
+  {
+    question: "Do I need prior coding experience for Full-Stack Development?",
+    answer: "No. Our Full-Stack bootcamp is designed for beginners. The first month covers fundamentals from scratch. However, a basic comfort with computers (using a browser, typing) is assumed.",
+  },
+];
+
+export default function ProgramsFAQ() {
+  const [openIndex, setOpenIndex] = useState(0);
+
+  return (
+    <section className="relative bg-background py-20 overflow-hidden">
+      <div className="pointer-events-none absolute top-0 right-0 h-[400px] w-[400px] rounded-full bg-primary/5 blur-[120px] -mr-48 -mt-48" />
+
+      <div className="relative z-10 mx-auto max-w-3xl px-6">
+        <div className="mb-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary"
+          >
+            <HelpCircle size={13} />
+            FAQ
+          </motion.div>
+          <h2 className="font-serif text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+            Questions We Get{" "}
+            <span className="italic text-primary">Every Day.</span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+            Answered honestly — because that&apos;s how decisions should be made.
+          </p>
+        </div>
+
+        <div className="space-y-3">
+          {faqs.map((faq, idx) => {
+            const isOpen = openIndex === idx;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.05 }}
+                className={`rounded-2xl border transition-all duration-300 ${
+                  isOpen
+                    ? "border-primary/30 bg-card/60 shadow-lg shadow-primary/5"
+                    : "border-border/50 bg-card/20 hover:border-border"
+                }`}
+              >
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : idx)}
+                  className="flex w-full items-center justify-between p-5 text-left"
+                >
+                  <span className={`text-base font-bold transition-colors ${isOpen ? "text-primary" : "text-foreground"}`}>
+                    {faq.question}
+                  </span>
+                  <div
+                    className={`ml-4 shrink-0 rounded-full p-1.5 transition-all ${
+                      isOpen ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
+                    }`}
+                  >
+                    {isOpen ? <Minus size={15} /> : <Plus size={15} />}
+                  </div>
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                    >
+                      <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <p className="mt-8 text-center text-sm text-muted-foreground">
+          Still have questions?{" "}
+          <Link href="/contact" className="font-bold text-primary underline underline-offset-4 hover:opacity-80">
+            Talk to our team
+          </Link>
+        </p>
+      </div>
+    </section>
+  );
+}
