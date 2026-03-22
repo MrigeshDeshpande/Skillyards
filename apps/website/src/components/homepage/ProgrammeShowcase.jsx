@@ -1,12 +1,6 @@
 "use client";
 
-import {
-    CodeIcon,
-    DatabaseIcon,
-    PaletteIcon,
-    ShieldIcon,
-    BarChart2Icon,
-} from "lucide-react";
+import { Code2, GraduationCap, BarChart2, Megaphone } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
@@ -28,38 +22,31 @@ const ProgramsShowcase = () => {
 
     const trainingPrograms = [
         {
-            title: "Full-Stack Foundation",
-            description: "Kickstart your Full-Stack career",
-            link: "/foundation-training-program-in-agra",
-            icon: <CodeIcon className="w-6 h-6 md:w-8 md:h-8 text-blue-400" />,
-            bg: "url('/images/programmes/full-stack-foundation.jpg')",
-        },
-        {
             title: "Full-Stack Development",
-            description: "Master web development end-to-end",
-            link: "/full-stack-web-development-training-in-agra",
-            icon: <DatabaseIcon className="w-6 h-6 md:w-8 md:h-8 text-teal-400" />,
+            description: "Build complete web apps with React, Node.js, MongoDB & more. Graduate with a live portfolio and job referrals.",
+            link: "/programs",
+            icon: <Code2 className="w-6 h-6 md:w-8 md:h-8 text-teal-400" />,
             bg: "url('/images/programmes/full-stack.jpg')",
         },
         {
-            title: "UI/UX Design",
-            description: "Create stunning user experiences",
-            link: "/graphic-designing-training-program-in-agra",
-            icon: <PaletteIcon className="w-6 h-6 md:w-8 md:h-8 text-yellow-400" />,
+            title: "Digital Marketing",
+            description: "Master SEO, Google Ads, Meta Ads & analytics. Get Google & Meta certified in just 3 months.",
+            link: "/programs",
+            icon: <Megaphone className="w-6 h-6 md:w-8 md:h-8 text-yellow-400" />,
             bg: "url('/images/programmes/uiux.jpg')",
         },
         {
             title: "BCA Program",
-            description: "Comprehensive computer applications",
-            link: "/bca-training-program-in-agra",
-            icon: <ShieldIcon className="w-6 h-6 md:w-8 md:h-8 text-orange-400" />,
+            description: "3-year university degree in Computer Applications with on-job training and 95% placement support.",
+            link: "/programs/bca",
+            icon: <GraduationCap className="w-6 h-6 md:w-8 md:h-8 text-orange-400" />,
             bg: "url('/images/programmes/bca.jpg')",
         },
         {
-            title: "MCA Program",
-            description: "Advanced computing and development",
-            link: "/mca-training-program-in-agra",
-            icon: <BarChart2Icon className="w-6 h-6 md:w-8 md:h-8 text-red-400" />,
+            title: "BBA Program",
+            description: "3-year business degree with digital marketing specialisation, live projects and industry certifications.",
+            link: "/programs/bba",
+            icon: <BarChart2 className="w-6 h-6 md:w-8 md:h-8 text-red-400" />,
             bg: "url('/images/programmes/mca.jpg')",
         },
     ];

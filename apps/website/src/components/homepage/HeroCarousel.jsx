@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
     Carousel,
@@ -117,18 +118,20 @@ export default function HeroCarousel() {
                                                     className="mt-8 sm:mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 pointer-events-auto w-full sm:w-auto px-4 sm:px-0"
                                                 >
                                                     <Button
+                                                        asChild
                                                         size="lg"
                                                         className="rounded-full bg-primary px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg font-semibold hover:bg-primary/90 text-primary-foreground transition-transform hover:scale-105 w-full sm:w-auto"
                                                     >
-                                                        {slide.cta}
+                                                        <Link href={slide.ctaHref}>{slide.cta}</Link>
                                                     </Button>
 
                                                     <Button
+                                                        asChild
                                                         size="lg"
                                                         variant="outline"
                                                         className={`rounded-full backdrop-blur border-border/50 bg-background/50 px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg font-semibold text-foreground hover:bg-muted transition-transform hover:scale-105 w-full sm:w-auto`}
                                                     >
-                                                        Learn More
+                                                        <Link href="/contact">Learn More</Link>
                                                     </Button>
                                                 </motion.div>
                                         </div>
