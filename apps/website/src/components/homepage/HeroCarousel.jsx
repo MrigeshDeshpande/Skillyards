@@ -15,7 +15,7 @@ import Particles from "@/components/Particles";
 
 import slides from "@/data/home-slides.json";
 import { useTheme } from "@/app/context/ThemeContext";
-import { motion } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 
 const AUTOPLAY_DELAY = 6000;
 
@@ -25,7 +25,7 @@ export default function HeroCarousel() {
     const [progressKey, setProgressKey] = React.useState(0);
     const { theme } = useTheme();
 
-    
+
     const particleColor = theme === "light" ? "#14248a" : "#d4c2fc";
     const bgColor = "bg-background text-foreground";
 
@@ -43,7 +43,7 @@ export default function HeroCarousel() {
 
         const onSelect = () => {
             setCurrent(api.selectedScrollSnap());
-            setProgressKey((k) => k + 1); 
+            setProgressKey((k) => k + 1);
         };
 
         api.on("select", onSelect);
@@ -51,6 +51,7 @@ export default function HeroCarousel() {
     }, [api]);
 
     return (
+        <LazyMotion features={domAnimation}>
         <section className={`relative w-full h-80vh overflow-hidden ${bgColor} transition-colors duration-500`}>
             {/* Background Particles layer */}
             <div className="absolute inset-0 z-2">
@@ -67,7 +68,7 @@ export default function HeroCarousel() {
                 />
             </div>
 
-            
+
             <div className={`absolute inset-0 z-0 bg-linear-to-r from-background/50 to-transparent pointer-events-none`} />
 
             <Carousel
@@ -84,34 +85,34 @@ export default function HeroCarousel() {
                                 <div className="relative z-10 flex h-full items-center justify-center text-center">
                                     <div className="mx-auto w-full max-w-7xl px-6 sm:px-12 md:px-16 lg:px-24">
                                         <div className="max-w-3xl mx-auto flex flex-col items-center">
-                                                <motion.p
+                                                <m.p
                                                     initial={{ opacity: 0, y: 10 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ delay: 0.2, duration: 0.5 }}
                                                     className={`mb-4 inline-block rounded-full ${theme === "light" ? "bg-primary/10 text-primary border border-primary/20" : "bg-primary/20 text-primary border border-primary/30"} px-5 py-1.5 text-sm font-semibold tracking-wide backdrop-blur pointer-events-auto`}
                                                 >
                                                     {slide.subtitle}
-                                                </motion.p>
+                                                </m.p>
 
-                                                <motion.h1
+                                                <m.h1
                                                     initial={{ opacity: 0, y: 10 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ delay: 0.3, duration: 0.5 }}
                                                     className={`text-3xl font-extrabold tracking-tight sm:text-5xl md:text-4xl lg:text-5xl text-foreground pointer-events-auto leading-tight`}
                                                 >
                                                     {slide.title}
-                                                </motion.h1>
+                                                </m.h1>
 
-                                                <motion.p
+                                                <m.p
                                                     initial={{ opacity: 0, y: 10 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ delay: 0.4, duration: 0.5 }}
                                                     className={`mt-4 sm:mt-6 text-lg sm:text-md md:text-lg text-muted-foreground pointer-events-auto font-medium max-w-2xl leading-relaxed px-2 sm:px-0`}
                                                 >
                                                     {slide.description}
-                                                </motion.p>
+                                                </m.p>
 
-                                                <motion.div
+                                                <m.div
                                                     initial={{ opacity: 0, y: 10 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ delay: 0.5, duration: 0.5 }}
@@ -133,7 +134,7 @@ export default function HeroCarousel() {
                                                     >
                                                         <Link href="/contact">Learn More</Link>
                                                     </Button>
-                                                </motion.div>
+                                                </m.div>
                                         </div>
                                     </div>
                                 </div>
@@ -147,7 +148,7 @@ export default function HeroCarousel() {
             </Carousel>
 
             <div className={`absolute bottom-0 left-0 z-30 h-[3px] w-full bg-muted overflow-hidden`}>
-                <motion.div
+                <m.div
                     key={progressKey}
                     initial={{ x: "-100%" }}
                     animate={{ x: "0%" }}
@@ -178,5 +179,6 @@ export default function HeroCarousel() {
                 ))}
             </div>
         </section>
+        </LazyMotion>
     );
 }

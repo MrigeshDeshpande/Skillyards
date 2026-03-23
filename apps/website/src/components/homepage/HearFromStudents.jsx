@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Marquee } from "@/components/ui/marquee";
 import testimonials from "@/data/student-testimonials.json";
@@ -159,14 +159,16 @@ export default function HearFromStudents() {
             <section className=" bg-background">
                 <div className="w-full mx-auto">
                     {/* Heading */}
-                    <motion.h2
+                    <LazyMotion features={domAnimation}>
+                    <m.h2
                         initial={{ opacity: 0, y: -30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         className="text-4xl font-extrabold text-center text-foreground"
                     >
                         Hear From Our Students
-                    </motion.h2>
+                    </m.h2>
+                    </LazyMotion>
 
 
                     <div className="w-40 h-1 bg-secondary mx-auto mt-4 mb-12" />

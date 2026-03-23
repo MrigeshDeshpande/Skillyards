@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight} from "lucide-react";
 
@@ -14,7 +14,8 @@ export default function CTASection() {
             </div>
 
             <div className="relative z-10 max-w-5xl mx-auto w-full">
-                <motion.div 
+                <LazyMotion features={domAnimation}>
+                <m.div
                     initial={{ opacity: 0, scale: 0.98 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -22,15 +23,15 @@ export default function CTASection() {
                     className="relative overflow-hidden rounded-[2.5rem] border border-border/40 bg-card/40 backdrop-blur-md p-8 sm:p-12 text-center shadow-xl"
                 >
                     <div className="relative space-y-6 max-w-2xl mx-auto">
-                        <motion.div
+                        <m.div
                             initial={{ y: -10, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.1 }}
                             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase mb-1"
                         >
-                           
+
                             <span>Transform Your Future</span>
-                        </motion.div>
+                        </m.div>
 
                         <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-foreground leading-tight">
                             Ready to <span className="text-primary italic">Kickstart</span> Your IT Career?
@@ -64,7 +65,8 @@ export default function CTASection() {
                             </Button>
                         </div>
                     </div>
-                </motion.div>
+                </m.div>
+                </LazyMotion>
             </div>
         </section>
     );
