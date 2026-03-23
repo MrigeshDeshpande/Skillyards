@@ -30,6 +30,12 @@ export default function DesktopNav({ theme, toggleTheme }) {
                         <DropdownMenuItem asChild className="cursor-pointer">
                             <Link href="/programs/bba" className="text-foreground">BBA Programs</Link>
                         </DropdownMenuItem>
+                        <DropdownMenuItem asChild className="cursor-pointer">
+                            <Link href="/programs/fullstack" className="text-foreground">Full-Stack Development</Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild className="cursor-pointer">
+                            <Link href="/programs/digitalmarketing" className="text-foreground">Digital Marketing</Link>
+                        </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
 
@@ -54,7 +60,7 @@ export default function DesktopNav({ theme, toggleTheme }) {
                     <button
                         onClick={toggleTheme}
                         aria-label="Toggle theme"
-                        className="flex items-center justify-center rounded-full p-[8px] text-muted-foreground hover:text-foreground bg-background hover:bg-accent transition border border-border/60 shadow-sm"
+                        className="flex items-center justify-center rounded-full p-2 text-muted-foreground hover:text-foreground bg-background hover:bg-accent transition border border-border/60 shadow-sm"
                     >
                         {theme === "light" ? (
                             <Moon className="h-4 w-4" />
@@ -95,7 +101,7 @@ function SocialButton({ href, children }) {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center rounded-full p-[8px] text-muted-foreground hover:text-foreground bg-background hover:bg-accent transition border border-border/60 shadow-sm"
+            className="flex items-center justify-center rounded-full p-2 text-muted-foreground hover:text-foreground bg-background hover:bg-accent transition border border-border/60 shadow-sm"
         >
             {children}
         </a>
