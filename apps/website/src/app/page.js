@@ -1,18 +1,19 @@
+import dynamic from "next/dynamic";
 import HeroCarousel from "@/components/homepage/HeroCarousel";
 import AboutSection from "@/components/homepage/AboutSection";
-import FeaturesSection from "@/components/homepage/FeaturesSection";
-import LeadersSection from "@/components/common/LeadersSection";
-import SubscribeSection from "@/components/common/SubscribeSection";
-import CTASection from "@/components/homepage/CTASection";
-import FAQSection from "@/components/common/FAQSection";
-
-import { BlogSection } from "@/components/homepage/BlogSection";
-import ServicesSection from "@/components/homepage/ServicesSection";
-import PartnersSlider from "@/components/common/PartnersSlider";
-import ProgramsShowcase from "@/components/homepage/ProgrammeShowcase";
-import HearFromStudents from "@/components/homepage/HearFromStudents";
-import FeaturedRoles from "@/components/homepage/FeaturedRoles";
 import { withPageSEO } from "@/lib/seo";
+
+const ProgramsShowcase   = dynamic(() => import("@/components/homepage/ProgrammeShowcase"));
+const FeaturesSection    = dynamic(() => import("@/components/homepage/FeaturesSection"));
+const HearFromStudents   = dynamic(() => import("@/components/homepage/HearFromStudents"));
+const FeaturedRoles      = dynamic(() => import("@/components/homepage/FeaturedRoles"));
+const BlogSection        = dynamic(() => import("@/components/homepage/BlogSection").then(m => ({ default: m.BlogSection })));
+const LeadersSection     = dynamic(() => import("@/components/common/LeadersSection"));
+const PartnersSlider     = dynamic(() => import("@/components/common/PartnersSlider"));
+// const CTASection         = dynamic(() => import("@/components/homepage/CTASection"));
+const ServicesSection    = dynamic(() => import("@/components/homepage/ServicesSection"));
+const FAQSection         = dynamic(() => import("@/components/common/FAQSection"));
+const SubscribeSection   = dynamic(() => import("@/components/common/SubscribeSection"));
 
 export const metadata = withPageSEO({
     title: 'Learn, Train & Get Certified Online',
@@ -48,7 +49,7 @@ export default function Home() {
             <BlogSection />
             <LeadersSection />
             <PartnersSlider />
-            <CTASection />
+            {/* <CTASection /> */}
             <ServicesSection />
             <FAQSection />
             <SubscribeSection />
@@ -56,5 +57,3 @@ export default function Home() {
         </div>
     );
 }
-
-

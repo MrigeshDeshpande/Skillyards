@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Code2, Smartphone, Settings, Search, Share2, Target, Palette } from "lucide-react";
@@ -111,7 +111,7 @@ function BentoCard({ service }) {
 
     return (
         <Link href="/services" className={service.grid}>
-        <motion.div
+        <m.div
             variants={cardVariants}
             whileHover={{ y: -4, transition: { duration: 0.25 } }}
             className="group relative overflow-hidden rounded-2xl border border-white/10 dark:border-white/5 shadow-md cursor-pointer w-full h-full"
@@ -157,13 +157,14 @@ function BentoCard({ service }) {
                     ))}
                 </div>
             </div>
-        </motion.div>
+        </m.div>
         </Link>
     );
 }
 
 export default function ServicesSection() {
     return (
+        <LazyMotion features={domAnimation}>
         <section className="py-16 lg:py-20 relative overflow-hidden">
             {/* Background */}
             <div className="absolute inset-0 pointer-events-none -z-10">
@@ -175,7 +176,7 @@ export default function ServicesSection() {
                 {/* Header + Icon Cloud */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-12">
                     {/* Left: Typography */}
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -191,7 +192,7 @@ export default function ServicesSection() {
                             End-to-end technology and digital marketing solutions designed to scale your business.
                         </p>
                         <div className="w-16 h-1 bg-linear-to-r from-primary/80 to-secondary/60 rounded-full mt-5 mx-auto lg:mx-0" />
-                    </motion.div>
+                    </m.div>
 
                     {/* Right: Icon Cloud */}
                     <div className="flex justify-center lg:justify-end">
@@ -201,7 +202,7 @@ export default function ServicesSection() {
                     </div>
                 </div>
 
-                <motion.div
+                <m.div
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
@@ -212,10 +213,10 @@ export default function ServicesSection() {
                     {services.map((service) => (
                         <BentoCard key={service.title} service={service} />
                     ))}
-                </motion.div>
+                </m.div>
 
                 {/* CTA */}
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -228,8 +229,9 @@ export default function ServicesSection() {
                         <span style={{ fontFamily: "var(--font-source-sans), sans-serif" }}>Explore All Services</span>
                         <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </Link>
-                </motion.div>
+                </m.div>
             </div>
         </section>
+        </LazyMotion>
     );
 }

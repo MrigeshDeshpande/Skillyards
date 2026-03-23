@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,12 +11,13 @@ export default function AboutSection() {
         <section className="relative py-16 sm:py-24 overflow-hidden bg-background">
             {/* Background Decorative Elements */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[100px] rounded-full -mr-48 -mt-24 pointer-events-none" />
-            
+
             <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    
+
                     {/* Left Column: Image */}
-                    <motion.div 
+                    <LazyMotion features={domAnimation}>
+                    <m.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
@@ -32,11 +33,13 @@ export default function AboutSection() {
                             priority
                         />
                         <div className="absolute inset-0 bg-linear-to-t from-background/40 to-transparent pointer-events-none" />
-                    </motion.div>
+                    </m.div>
+                    </LazyMotion>
 
                     {/* Right Column: Text Content */}
                     <div className="flex flex-col justify-center space-y-6">
-                        <motion.div 
+                        <LazyMotion features={domAnimation}>
+                        <m.div
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -47,7 +50,8 @@ export default function AboutSection() {
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                             </span>
                             <span className="text-xs font-bold text-primary tracking-wider uppercase">About SkillYards</span>
-                        </motion.div>
+                        </m.div>
+                        </LazyMotion>
 
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground tracking-tight leading-tight">
                             Elevate Your <span className="text-primary italic">Career</span> With Industry Experts
