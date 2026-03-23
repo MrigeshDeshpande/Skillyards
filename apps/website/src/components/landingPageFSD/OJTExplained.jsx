@@ -49,8 +49,8 @@ export function FSDOJTExplained() {
             On-Job Training
           </motion.div>
           <h2 className="font-serif text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-            &ldquo;Project-Based Learning&rdquo; is what everyone says.{" "}
-            <span className="italic text-primary">Here&apos;s what we actually mean.</span>
+            &ldquo;Project-Based Learning&rdquo; is what everyone says{" "}<br/>
+            <span className="text-primary">Here&apos;s what we actually mean</span>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
             Most institutes dress up assignments as &ldquo;projects&rdquo;. On-Job Training at SkillYards means something specific.

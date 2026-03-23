@@ -83,7 +83,7 @@ export function DGMFinalCTA() {
           className="mt-5"
         >
           <Link
-            href="https://wa.me/919999999999?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Digital%20Marketing%20course"
+            href="https://wa.me/917895501840?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Digital%20Marketing%20course"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-bold text-primary-foreground/70 underline underline-offset-4 hover:text-primary-foreground"

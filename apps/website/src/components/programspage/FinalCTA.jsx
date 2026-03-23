@@ -69,7 +69,7 @@ export default function FinalCTA() {
             className="w-full rounded-full border-2 border-primary-foreground/30 bg-transparent px-8 py-6 text-sm font-bold text-primary-foreground transition-all hover:scale-105 hover:bg-primary-foreground/10 sm:w-auto"
           >
             <Link
-              href="https://wa.me/919999999999?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20SkillYards%20programs"
+              href="https://wa.me/917895501840?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20SkillYards%20programs"
               target="_blank"
               rel="noopener noreferrer"
             >

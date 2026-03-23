@@ -21,7 +21,7 @@ export function FSDFinalCTA() {
           className="mb-2 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest text-primary-foreground/60"
         >
           <Calendar size={13} />
-          Next batch: April 2026 · <span className="text-red-300">8 seats remaining</span>
+          Next batch: April 2026 · <span className="text-primary-foreground">8 seats remaining</span>
         </motion.div>
 
         <motion.h2
@@ -84,7 +84,7 @@ export function FSDFinalCTA() {
           className="mt-5"
         >
           <Link
-            href="https://wa.me/919999999999?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Full-Stack%20Development%20course"
+            href="https://wa.me/7895501840?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Full-Stack%20Development%20course"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-bold text-primary-foreground/70 underline underline-offset-4 hover:text-primary-foreground"
