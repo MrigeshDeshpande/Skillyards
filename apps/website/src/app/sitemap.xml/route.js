@@ -1,38 +1,56 @@
 import { BASE_URL, STATIC_SITEMAP_ROUTES, LEADERS } from "@/lib/sitemap-routes";
+import { sanityClient } from "@/lib/sanity/client";
 
 export async function GET() {
-    const now = new Date().toISOString();
+  const now = new Date().toISOString();
 
-    const urls = [
-        ...STATIC_SITEMAP_ROUTES.map((route) => ({
-            loc: `${BASE_URL}${route.path}`,
-            lastmod: now,
-            priority: route.priority ?? 0.8,
-        })),
-        ...LEADERS.map((leader) => ({
-            loc: `${BASE_URL}/team/${leader.username}`,
-            lastmod: now,
-            priority: 0.9,
-        })),
-    ];
+  // 🔹 Static routes
+  const staticUrls = STATIC_SITEMAP_ROUTES.map((route) => ({
+    loc: `${BASE_URL}${route.path}`,
+    lastmod: now,
+    priority: route.priority ?? 0.8,
+  }));
 
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+  // 🔹 Team pages
+  const teamUrls = LEADERS.map((leader) => ({
+    loc: `${BASE_URL}/team/${leader.username}`,
+    lastmod: now,
+    priority: 0.9,
+  }));
+
+  // 🔹 Blog dynamic routes (CRITICAL)
+  const posts = await sanityClient.fetch(`
+    *[_type == "post" && defined(slug.current)]{
+      "slug": slug.current,
+      _updatedAt
+    }
+  `);
+
+  const blogUrls = posts.map((post) => ({
+    loc: `${BASE_URL}/blog/${post.slug}`,
+    lastmod: post._updatedAt || now,
+    priority: 0.7,
+  }));
+
+  const urls = [...staticUrls, ...teamUrls, ...blogUrls];
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls
-        .map(
-            (url) => `
-    <url>
-        <loc>${url.loc}</loc>
-        <lastmod>${url.lastmod}</lastmod>
-        <priority>${url.priority}</priority>
-    </url>`
-        )
-        .join("")}
+  .map(
+    (url) => `
+  <url>
+    <loc>${url.loc}</loc>
+    <lastmod>${url.lastmod}</lastmod>
+    <priority>${url.priority}</priority>
+  </url>`
+  )
+  .join("")}
 </urlset>`;
 
-    return new Response(xml, {
-        headers: {
-            "Content-Type": "application/xml",
-        },
-    });
+  return new Response(xml, {
+    headers: {
+      "Content-Type": "application/xml",
+    },
+  });
 }
