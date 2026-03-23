@@ -1,12 +1,17 @@
-export function corsHeaders() {
-  const origin =
-    process.env.NODE_ENV === "development"
-      ? "*"
-      : "https://skillyards-website.vercel.app";
+export function corsHeaders(request) {
+  const allowedOrigins = [
+    "https://skillyards.in",
+    "https://www.skillyards.in",
+    "https://skillyards-website.vercel.app"
+  ];
+
+  const origin = request.headers.get("origin");
 
   return {
-    "Access-Control-Allow-Origin": origin,
-    "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+    "Access-Control-Allow-Origin": allowedOrigins.includes(origin)
+      ? origin
+      : "null",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, Authorization"
   };
 }
