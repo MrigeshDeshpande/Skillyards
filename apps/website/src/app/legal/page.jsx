@@ -1,23 +1,21 @@
 import ComingSoon from "@/components/ComingSoon";
-import {withPageSEO} from "@/lib/seo";
+import { buildSEO } from "@/lib/seo/buildSEO";
 
-export const metadata = withPageSEO({
-    title: 'Legal Information – Policies & Terms | SkillYards',
+export const metadata = buildSEO({
+    title: "Legal Information | SkillYards",
     description:
-        'Access SkillYards legal information including terms of service, privacy policy, refund policy, and other important guidelines governing our platform and services.',
-    canonical: 'https://www.skillyards.in/legal',
+        "Access SkillYards legal information including terms of service, privacy policy, refund policy, and other important guidelines governing our platform and services.",
+    path: "/legal",
     keywords: [
-        'SkillYards legal',
-        'SkillYards policies',
-        'SkillYards terms and conditions',
-        'SkillYards privacy policy',
-        'Online training platform legal information',
-        'SkillYards user policies',
+        "SkillYards legal",
+        "SkillYards policies",
+        "SkillYards terms and conditions",
+        "SkillYards privacy policy",
+        "Online training platform legal information",
+        "SkillYards user policies",
     ],
-    ogImage: '/images/opengraph/legal-og.jpg',
-    twitterImage: '/images/opengraph/legal-twitter.jpg',
+    ogImage: "/images/opengraph/legal-og.jpg",
 });
-
 
 export default function LegalPage() {
     return (

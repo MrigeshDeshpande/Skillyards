@@ -8,6 +8,7 @@ import { extractHeadings } from "@/lib/sanity/slugifyHeading";
 import { portableTextComponents } from "@/lib/sanity/portableTextComponents";
 import Image from "next/image";
 import Comments from "@/components/blog/Comments";
+import { buildSEO } from "@/lib/seo/buildSEO";
 
 const CalendarIcon = () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>;
 const ClockIcon = () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
@@ -30,6 +31,39 @@ async function getPost(slug) {
     return sanityClient.fetch(query, { slug });
 }
 
+export async function generateMetadata({ params }) {
+    const { slug } = await params;
+    const post = await getPost(slug);
+
+    if (!post) {
+        return buildSEO({
+            title: "Blog Not Found",
+            description: "The blog you are looking for does not exist.",
+            path: `/blog/${slug}`,
+        });
+    }
+
+    const cleanDescription =
+        post.excerpt?.replace(/<[^>]+>/g, "").slice(0, 160) ||
+        "Read this article on SkillYards.";
+
+    const imageUrl = post.coverImage
+        ? urlFor(post.coverImage).width(1200).url()
+        : undefined;
+
+    return buildSEO({
+        title: post.title,
+        description: cleanDescription,
+        path: `/blog/${post.slug?.current || slug}`,
+        keywords: [
+            post.title,
+            post.author?.name,
+            "SkillYards blog",
+            "IT learning",
+        ].filter(Boolean),
+        ogImage: imageUrl,
+    });
+}
 export default async function BlogPostPage({ params }) {
     const { slug } = await params;
     const post = await getPost(slug);

@@ -1,23 +1,21 @@
 import ComingSoon from "@/components/ComingSoon";
-import {withPageSEO} from "@/lib/seo";
+import { buildSEO } from "@/lib/seo/buildSEO";
 
-export const metadata = withPageSEO({
-    title: 'SkillYards Programs – BCA, BBA & Job-Oriented IT Training',
+export const metadata = buildSEO({
+    title: "SkillYards Programs",
     description:
-        'Explore SkillYards programs including BCA and BBA with on-job training, industry-aligned curriculum, live classes, and real-world projects.',
-    canonical: 'https://www.skillyards.in/programs',
+        "Explore SkillYards programs including BCA and BBA with on-job training, industry-aligned curriculum, live classes, and real-world projects.",
+    path: "/programs",
     keywords: [
-        'SkillYards programs',
-        'BCA programs with training',
-        'BBA programs with IT skills',
-        'On-job training programs',
-        'Skill-based degree programs',
-        'IT training programs India',
+        "SkillYards programs",
+        "BCA programs with training",
+        "BBA programs with IT skills",
+        "On-job training programs",
+        "Skill-based degree programs",
+        "IT training programs India",
     ],
-    ogImage: '/images/opengraph/programs-og.jpg',
-    twitterImage: '/images/opengraph/programs-twitter.jpg',
+    ogImage: "/images/opengraph/programs-og.jpg",
 });
-
 
 export default function ProgramsPage() {
     return (

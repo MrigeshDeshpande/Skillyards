@@ -1,13 +1,13 @@
 export const SEO_CONFIG = {
-  siteName: "Skillyards",
-  baseUrl: "https://skillyards.in",
+  siteName: "SkillYards",
 
-  titleTemplate: "%s | Skillyards",
+  baseUrl: "https://www.skillyards.in",
+
+  titleTemplate: "%s | SkillYards",
 
   defaultDescription:
-    "Skillyards helps students build real-world skills with industry-focused programs.",
+    "SkillYards helps students build real-world skills with industry-focused programs.",
 
-  defaultOGImage: "/images/opengraph/home-og.jpg",
+  defaultOGImage: "/images/opengraph/default.jpg",
 
-  twitterHandle: "@skillyards",
 };

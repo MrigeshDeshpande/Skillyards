@@ -1,21 +1,20 @@
-import {withPageSEO} from "@/lib/seo";
+import { buildSEO } from "@/lib/seo/buildSEO";
 import PageHero from "@/components/PageHero";
 
-export const metadata = withPageSEO({
-    title: 'Refund Policy',
+export const metadata = buildSEO({
+    title: "Refund Policy",
     description:
-        'Review SkillYards’ Refund Policy to understand eligibility, timelines, and conditions for refunds on courses, subscriptions, and training programs.',
-    canonical: 'https://www.skillyards.in/refund-policy',
+        "Review SkillYards’ Refund Policy to understand eligibility, timelines, and conditions for refunds on courses, subscriptions, and training programs.",
+    path: "/refund-policy",
     keywords: [
-        'SkillYards Refund Policy',
-        'Refund Policy SkillYards',
-        'Course refund terms',
-        'Online training refunds',
-        'EdTech refund policy India',
-        'SkillYards cancellations',
+        "SkillYards Refund Policy",
+        "Refund Policy SkillYards",
+        "Course refund terms",
+        "Online training refunds",
+        "EdTech refund policy India",
+        "SkillYards cancellations",
     ],
-    ogImage: '/images/opengraph/refund-policy-og.jpg',
-    twitterImage: '/images/opengraph/refund-policy-twitter.jpg',
+    ogImage: "/images/opengraph/refund-policy-og.jpg",
 });
 
 export default function RefundPolicyPage() {
@@ -25,10 +24,9 @@ export default function RefundPolicyPage() {
                 title="Refund Policy"
                 description="This Refund Policy explains the eligibility, process, and conditions under which refunds may be requested for our courses, services, or digital products."
             />
-            <div className="min-h-screen w-full bg-linear-to-b from-white via-zinc-50 to-zinc-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-black text-neutral-900 dark:text-neutral-100 transition-colors duration-500">
 
+            <div className="min-h-screen w-full bg-linear-to-b from-white via-zinc-50 to-zinc-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-black text-neutral-900 dark:text-neutral-100 transition-colors duration-500">
                 <section className="max-w-5xl mx-auto px-6 py-20">
-                    {/* Header */}
                     <div className="mb-14">
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
                             Refund & Cancellation Policy
@@ -43,9 +41,7 @@ export default function RefundPolicyPage() {
                         </p>
                     </div>
 
-                    {/* Content */}
                     <div className="space-y-12 leading-relaxed text-[17px]">
-                        {/* Section */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">1. General Policy</h2>
                             <p>
@@ -55,7 +51,6 @@ export default function RefundPolicyPage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">2. Course Enrollment & Access</h2>
                             <p>
@@ -70,30 +65,24 @@ export default function RefundPolicyPage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">3. Refund Eligibility</h2>
                             <p>
                                 Refunds may be considered under the following circumstances:
                             </p>
                             <ul className="list-disc pl-6 mt-4 space-y-2">
-                                <li>
-                                    Duplicate payment made for the same course or program
-                                </li>
+                                <li>Duplicate payment made for the same course or program</li>
                                 <li>
                                     Technical issues on our platform that prevent access to the purchased
                                     content and cannot be resolved by our support team
                                 </li>
-                                <li>
-                                    Cancellation of a program or batch by SkillYards
-                                </li>
+                                <li>Cancellation of a program or batch by SkillYards</li>
                             </ul>
                             <p className="mt-4">
                                 Any approved refund will be processed after verification by our team.
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">4. Non-Refundable Cases</h2>
                             <p>
@@ -108,7 +97,6 @@ export default function RefundPolicyPage() {
                             </ul>
                         </section>
 
-                        {/* Section */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">5. Cancellation by SkillYards</h2>
                             <p>
@@ -122,7 +110,6 @@ export default function RefundPolicyPage() {
                             </ul>
                         </section>
 
-                        {/* Section */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">6. Refund Processing Time</h2>
                             <p>
@@ -136,7 +123,6 @@ export default function RefundPolicyPage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">7. How to Request a Refund</h2>
                             <p>
@@ -151,7 +137,6 @@ export default function RefundPolicyPage() {
                             </ul>
                         </section>
 
-                        {/* Section */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">8. Policy Updates</h2>
                             <p>
@@ -161,7 +146,6 @@ export default function RefundPolicyPage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">9. Contact Us</h2>
                             <p>

@@ -13,50 +13,46 @@ import PartnersSlider from "@/components/common/PartnersSlider";
 import ProgramsShowcase from "@/components/homepage/ProgrammeShowcase";
 import HearFromStudents from "@/components/homepage/HearFromStudents";
 import FeaturedRoles from "@/components/homepage/FeaturedRoles";
-import { withPageSEO } from "@/lib/seo";
 
-export const metadata = withPageSEO({
-    title: 'Learn, Train & Get Certified Online',
-    description:
-        'SkillYards.in is a skill-based learning platform offering online courses, live training, and professional certifications. Learn from industry experts and build job-ready skills.',
-    canonical: 'https://www.skillyards.in/',
-    keywords: [
-        'SkillYards',
-        'online courses India',
-        'skill development platform',
-        'professional certifications',
-        'live online training',
-        'job-ready skills',
-        'IT training India',
-        'career growth',
-        'e-learning platform',
-    ],
-    ogImage: '/images/opengraph/home-og.jpg',
-    twitterImage: '/images/opengraph/home-twitter.jpg',
+import { buildSEO } from "@/lib/seo/buildSEO";
+
+export const metadata = buildSEO({
+  title: "Learn, Train & Get Certified Online",
+  description:
+    "SkillYards is a skill-based learning platform offering online courses, live training, and professional certifications to help you build job-ready skills.",
+  path: "/", 
+  keywords: [
+    "SkillYards",
+    "online courses India",
+    "skill development platform",
+    "professional certifications",
+    "live online training",
+    "job-ready skills",
+    "IT training India",
+    "career growth",
+    "e-learning platform",
+  ],
+  ogImage: "/images/opengraph/home-og.jpg",
 });
 
 export default function Home() {
-    return (
-        <div className="min-h-screen w-full bg-background text-foreground transition-colors duration-500">
+  return (
+    <div className="min-h-screen w-full bg-background text-foreground transition-colors duration-500">
+      <HeroCarousel />
 
-            <HeroCarousel />
-
-            <AboutSection />
-            <ProgramsShowcase />
-            <ProgramsSection />
-            <FeaturesSection />
-            <HearFromStudents />
-            <FeaturedRoles />
-            <ServicesSection />
-            <BlogSection />
-            <LeadersSection />
-            <PartnersSlider />
-            <CTASection />
-            <FAQSection />
-            <SubscribeSection />
-
-        </div>
-    );
+      <AboutSection />
+      <ProgramsShowcase />
+      <ProgramsSection />
+      <FeaturesSection />
+      <HearFromStudents />
+      <FeaturedRoles />
+      <ServicesSection />
+      <BlogSection />
+      <LeadersSection />
+      <PartnersSlider />
+      <CTASection />
+      <FAQSection />
+      <SubscribeSection />
+    </div>
+  );
 }
-
-

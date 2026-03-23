@@ -1,23 +1,21 @@
 import ComingSoon from "@/components/ComingSoon";
-import {withPageSEO} from "@/lib/seo";
+import { buildSEO } from "@/lib/seo/buildSEO";
 
-export const metadata = withPageSEO({
-    title: 'SkillYards Image Gallery – Campus, Events & Student Moments',
+export const metadata = buildSEO({
+    title: "SkillYards Image Gallery",
     description:
-        'Explore the SkillYards image gallery featuring campus life, training sessions, workshops, events, and memorable moments from our learning community.',
-    canonical: 'https://www.skillyards.in/gallery/images',
+        "Explore the SkillYards image gallery featuring campus life, training sessions, workshops, events, and memorable moments from our learning community.",
+    path: "/gallery/images",
     keywords: [
-        'SkillYards image gallery',
-        'SkillYards photos',
-        'IT training institute gallery',
-        'SkillYards campus images',
-        'Student training photos',
-        'SkillYards events gallery',
+        "SkillYards image gallery",
+        "SkillYards photos",
+        "IT training institute gallery",
+        "SkillYards campus images",
+        "Student training photos",
+        "SkillYards events gallery",
     ],
-    ogImage: '/images/opengraph/gallery-og.jpg',
-    twitterImage: '/images/opengraph/gallery-twitter.jpg',
+    ogImage: "/images/opengraph/gallery-og.jpg",
 });
-
 
 export default function GalleryImagesPage() {
     return (

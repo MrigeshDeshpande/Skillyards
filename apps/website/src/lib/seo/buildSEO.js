@@ -7,15 +7,13 @@ export function buildSEO({
   path,
   keywords = [],
   ogImage,
-  twitterImage,
 }) {
   validateSEO({ title, description, path });
 
   const canonical = `${SEO_CONFIG.baseUrl}${path}`;
 
-  const finalOGImage = ogImage || SEO_CONFIG.defaultOGImage;
-  const finalTwitterImage =
-    twitterImage || ogImage || SEO_CONFIG.defaultOGImage;
+  // Single source of truth
+  const finalImage = ogImage || SEO_CONFIG.defaultOGImage;
 
   return {
     metadataBase: new URL(SEO_CONFIG.baseUrl),
@@ -34,15 +32,17 @@ export function buildSEO({
     },
 
     openGraph: {
+      type: "website", 
       title,
       description,
       url: canonical,
+      siteName: SEO_CONFIG.siteName, 
       images: [
         {
-          url: finalOGImage,
+          url: finalImage,
           width: 1200,
           height: 630,
-          alt: title,
+          alt: `${title} | ${SEO_CONFIG.siteName}`,
         },
       ],
     },
@@ -51,14 +51,12 @@ export function buildSEO({
       card: "summary_large_image",
       title,
       description,
-      images: [
-        {
-          url: finalTwitterImage,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
+      images: [finalImage], 
+    },
+
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }
