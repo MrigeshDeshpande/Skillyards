@@ -13,7 +13,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-/* Per-card accent colours — purely decorative, not theme tokens */
+/* Per-card accent colours purely decorative, not theme tokens */
 const ACCENTS = [
   { bg: "bg-blue-500/10",    border: "border-blue-500/25",    text: "text-blue-500"    },
   { bg: "bg-violet-500/10",  border: "border-violet-500/25",  text: "text-violet-500"  },
@@ -117,12 +117,12 @@ export const Skills = () => {
               transition={{ delay: 0.1 }}
               className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed"
             >
-              We don&apos;t just teach business theory — we build leaders equipped
+              We don&apos;t just teach business theory we build leaders equipped
               with the hard and soft skills necessary for the modern digital economy.
             </m.p>
           </div>
 
-          {/* Skills grid — 2 cols on mobile (first 4 only), 3 on sm, 4 on lg */}
+          {/* Skills grid  2 cols on mobile (first 4 only), 3 on sm, 4 on lg */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
             {skills.map((skill, index) => (
               <div key={index} className={index >= 4 ? "hidden sm:block" : ""}>

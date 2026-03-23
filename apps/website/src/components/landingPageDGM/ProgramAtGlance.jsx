@@ -6,14 +6,14 @@ import { Clock, Monitor, GraduationCap, Users, Calendar, BadgeCheck, Briefcase, 
 const facts = [
   { icon: Clock, label: "Duration", value: "4 Months" },
   { icon: Monitor, label: "Mode", value: "Hybrid (Offline + Online)" },
-  { icon: GraduationCap, label: "Eligibility", value: "12th pass or any graduate — any background" },
+  { icon: GraduationCap, label: "Eligibility", value: "12th pass or any graduate any background" },
   { icon: Users, label: "Batch Size", value: "Max 20 students" },
   { icon: Calendar, label: "Schedule", value: "Weekday & Weekend batches" },
   { icon: BadgeCheck, label: "Certifications", value: "Google Ads, GA4, Meta Blueprint, HubSpot" },
   { icon: Briefcase, label: "Placement", value: "100% placement assistance" },
   { icon: Calendar, label: "Next Batch", value: "April 2026" },
   { icon: IndianRupee, label: "Fee", value: "Starting ₹15,000" },
-  { icon: CreditCard, label: "EMI", value: "Available — easy instalments" },
+  { icon: CreditCard, label: "EMI", value: "Available easy instalments" },
 ];
 
 export function DGMProgramAtGlance() {

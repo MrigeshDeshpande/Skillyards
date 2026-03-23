@@ -62,7 +62,7 @@ export const BCAEducators = () => {
             transition={{ delay: 0.1 }}
             className="text-muted-foreground text-sm md:text-base lg:text-lg leading-relaxed"
           >
-            Our educators aren&apos;t just academics — they are engineers, founders, and tech leaders who have built products used by millions.
+            Our educators aren&apos;t just academics they are engineers, founders, and tech leaders who have built products used by millions.
           </motion.p>
         </div>
 

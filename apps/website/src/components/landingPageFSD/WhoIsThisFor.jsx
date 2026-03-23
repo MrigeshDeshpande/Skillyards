@@ -5,7 +5,7 @@ import { CheckCircle, XCircle, Target } from "lucide-react";
 
 const forList = [
   { label: "Fresh graduates (any degree)", sub: "BCA/BSc/BTech who learned theory but can't build anything" },
-  { label: "Career switchers", sub: "Working in banking, BPO, sales — want into tech in 6 months" },
+  { label: "Career switchers", sub: "Working in banking, BPO, sales want into tech in 6 months" },
   { label: "12th pass students", sub: "Want to start earning before committing to a 3-year degree" },
   { label: "Self-taught learners stuck on YouTube", sub: "Know the basics but can't build or deploy real apps" },
 ];

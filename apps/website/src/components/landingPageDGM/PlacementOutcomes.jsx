@@ -6,11 +6,11 @@ import { TrendingUp, Quote } from "lucide-react";
 const alumni = [
   {
     name: "Priya Sharma",
-    before: "BCom graduate, was working at a retail shop — no digital skills",
+    before: "BCom graduate, was working at a retail shop no digital skills",
     role: "Digital Marketing Executive",
     company: "Brandify Solutions",
     package: "₹3.6 LPA",
-    quote: "I ran a real Google Ads campaign for a local business during Month 2. I had actual numbers — CPL, ROAS, impressions — to show in my interview. That's what got me the job. No other institute gives you this.",
+    quote: "I ran a real Google Ads campaign for a local business during Month 2. I had actual numbers CPL, ROAS, impressions to show in my interview. That's what got me the job. No other institute gives you this.",
   },
   {
     name: "Pooja Agarwal",
@@ -18,11 +18,11 @@ const alumni = [
     role: "Freelance Social Media Manager",
     company: "3 clients (self-employed)",
     package: "₹40,000/month",
-    quote: "I wasn't looking for a job — I wanted to work from home on my own terms. SkillYards taught me how to pitch, price, and deliver. Within 2 months of graduating I had my first paying client.",
+    quote: "I wasn't looking for a job I wanted to work from home on my own terms. SkillYards taught me how to pitch, price, and deliver. Within 2 months of graduating I had my first paying client.",
   },
   {
     name: "Rahul Bansal",
-    before: "Family runs a clothing business in Agra — wanted to grow it online",
+    before: "Family runs a clothing business in Agra wanted to grow it online",
     role: "Head of Digital Marketing",
     company: "Family Business (self)",
     package: "Business 3x in revenue",

@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { Sun, BarChart2, MessageSquare, PenTool, Moon } from "lucide-react";
 
 const duringCourse = [
-  { time: "10:00 AM", icon: Sun, title: "Live Class", desc: "Mentor demonstrates the tool live — you follow along in your own account. No slides, no theory dumps.", color: "bg-yellow-500" },
-  { time: "12:00 PM", icon: BarChart2, title: "Hands-On Lab", desc: "Apply what was just taught on a real account — real keywords, real campaigns, real data.", color: "bg-orange-500" },
+  { time: "10:00 AM", icon: Sun, title: "Live Class", desc: "Mentor demonstrates the tool live you follow along in your own account. No slides, no theory dumps.", color: "bg-yellow-500" },
+  { time: "12:00 PM", icon: BarChart2, title: "Hands-On Lab", desc: "Apply what was just taught on a real account real keywords, real campaigns, real data.", color: "bg-orange-500" },
   { time: "2:00 PM", icon: MessageSquare, title: "Campaign Review Session", desc: "Your work gets reviewed by the mentor. Numbers are discussed, decisions are challenged, strategy is sharpened.", color: "bg-pink-500" },
   { time: "Evening", icon: Moon, title: "Self-Practice + Assignment", desc: "Recorded session for revision. Short assignment to reinforce the day. ~1–2 hrs outside class.", color: "bg-primary" },
 ];
@@ -65,11 +65,11 @@ export function DGMDayInTheLife() {
             A Day in the Life
           </motion.div>
           <h2 className="font-serif text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-            What Your Days Look Like —{" "}
+            What Your Days Look Like {" "}
             <span className="italic text-primary">During & After.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Two timelines — so you know exactly what you&apos;re signing up for and exactly where it leads.
+            Two timelines so you know exactly what you&apos;re signing up for and exactly where it leads.
           </p>
         </div>
 

@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { CheckCircle, XCircle, Target } from "lucide-react";
 
 const forList = [
-  { label: "Arts, Commerce, or BBA graduates", sub: "Struggling to find a good-paying job — this puts digital skills behind your degree" },
-  { label: "Homemakers & career re-entrants", sub: "Flexible skill, can freelance from home — genuine demand for good digital marketers" },
-  { label: "Small business owners & family business kids", sub: "Want to grow their shop or brand online — you can apply everything immediately" },
+  { label: "Arts, Commerce, or BBA graduates", sub: "Struggling to find a good-paying job this puts digital skills behind your degree" },
+  { label: "Homemakers & career re-entrants", sub: "Flexible skill, can freelance from home genuine demand for good digital marketers" },
+  { label: "Small business owners & family business kids", sub: "Want to grow their shop or brand online you can apply everything immediately" },
   { label: "12th pass students", sub: "Want to start earning within 6 months without committing to a 3-year degree" },
   { label: "Working professionals in sales, PR, or marketing", sub: "Want to add digital skills and move to an agency, startup, or better-paying role" },
 ];
@@ -14,8 +14,8 @@ const forList = [
 const notForList = [
   { label: "Someone who wants to passively watch videos and get certified" },
   { label: "Someone who won't practice on live accounts outside class hours" },
-  { label: "Someone expecting overnight SEO results — this takes consistent effort" },
-  { label: "Someone who wants to code and build software — check Full-Stack Dev instead" },
+  { label: "Someone expecting overnight SEO results this takes consistent effort" },
+  { label: "Someone who wants to code and build software check Full-Stack Dev instead" },
 ];
 
 export function DGMWhoIsThisFor() {
@@ -33,11 +33,11 @@ export function DGMWhoIsThisFor() {
             Is This For You?
           </motion.div>
           <h2 className="font-serif text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-            From 19 to 45 —{" "}
+            From 19 to 45 {" "}
             <span className="italic text-primary">This Course Works for Every Background.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            We&apos;ll be honest about who gets the most out of this — and who doesn&apos;t.
+            We&apos;ll be honest about who gets the most out of this and who doesn&apos;t.
           </p>
         </div>
 

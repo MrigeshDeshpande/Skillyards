@@ -41,7 +41,7 @@ export default function ProgramsHero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
         >
-          SkillYards blends university degrees with live on-job training — so you graduate with a degree{" "}
+          SkillYards blends university degrees with live on-job training so you graduate with a degree{" "}
           <strong className="text-foreground">and</strong> real industry experience, not just a certificate.
         </motion.p>
 

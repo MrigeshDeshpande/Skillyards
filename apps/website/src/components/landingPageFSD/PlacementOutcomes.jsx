@@ -10,11 +10,11 @@ const alumni = [
     role: "Full-Stack Developer",
     company: "StartupBase Delhi",
     package: "₹5.8 LPA",
-    quote: "Coming from zero, I was the most nervous person on Day 1. Six months later I'm pushing code to production every day. The OJT phase is what actually made me hireable — not just the classes.",
+    quote: "Coming from zero, I was the most nervous person on Day 1. Six months later I'm pushing code to production every day. The OJT phase is what actually made me hireable not just the classes.",
   },
   {
     name: "Sneha Gupta",
-    before: "BSc Computer Science graduate — knew theory, couldn't build anything",
+    before: "BSc Computer Science graduate knew theory, couldn't build anything",
     role: "React Developer",
     company: "WebNova Solutions",
     package: "₹4.2 LPA",

@@ -10,7 +10,7 @@ const alumni = [
     role: "Junior Frontend Developer",
     company: "TechSpark Noida",
     package: "₹4.2 LPA",
-    quote: "SkillYards didn't just teach me code — they placed me in a real project during my final year. I had a job offer before I even graduated.",
+    quote: "SkillYards didn't just teach me code they placed me in a real project during my final year. I had a job offer before I even graduated.",
   },
   {
     name: "Rahul Verma",
@@ -26,7 +26,7 @@ const alumni = [
     role: "Digital Marketing Executive",
     company: "Brandify Solutions",
     package: "₹3.6 LPA",
-    quote: "I ran a real Google Ads campaign for a local business during training. That experience is what got me the job — no other institute does this.",
+    quote: "I ran a real Google Ads campaign for a local business during training. That experience is what got me the job no other institute does this.",
   },
 ];
 

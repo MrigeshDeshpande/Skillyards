@@ -8,15 +8,15 @@ import Link from "next/link";
 const faqs = [
   {
     question: "Do I need prior coding experience to join?",
-    answer: "No. The course starts from absolute scratch — HTML, CSS, and basic JavaScript in Month 1. The only requirement is basic computer comfort (using a browser, typing). If you can use WhatsApp and Google, you can start this course.",
+    answer: "No. The course starts from absolute scratch HTML, CSS, and basic JavaScript in Month 1. The only requirement is basic computer comfort (using a browser, typing). If you can use WhatsApp and Google, you can start this course.",
   },
   {
     question: "Is a laptop mandatory? What are the minimum specs?",
-    answer: "Yes, a laptop is required — this is a hands-on practical course. Minimum: Intel Core i5 / Ryzen 5, 8GB RAM, 256GB SSD, Windows 10 or macOS. A smartphone alone won't work. If you don't have a laptop that meets these specs, talk to us before enrolling.",
+    answer: "Yes, a laptop is required this is a hands-on practical course. Minimum: Intel Core i5 / Ryzen 5, 8GB RAM, 256GB SSD, Windows 10 or macOS. A smartphone alone won't work. If you don't have a laptop that meets these specs, talk to us before enrolling.",
   },
   {
     question: "What if I miss a class?",
-    answer: "Every session is recorded and shared with enrolled students within 24 hours. We also hold weekly doubt-clearing sessions. That said — missing classes regularly will hurt you. The projects have deadlines. The code reviews expect your code.",
+    answer: "Every session is recorded and shared with enrolled students within 24 hours. We also hold weekly doubt-clearing sessions. That said missing classes regularly will hurt you. The projects have deadlines. The code reviews expect your code.",
   },
   {
     question: "How is this different from just learning on YouTube or Udemy?",
@@ -24,27 +24,27 @@ const faqs = [
   },
   {
     question: "Is placement really 100%? What does that actually mean?",
-    answer: "It means 100% active effort — resume building, mock interviews, referrals to our 180+ hiring partners, and direct introductions where possible. It does not mean we guarantee a specific salary or that a company must hire you. Our actual placement rate is 95%. We will work hard to get you placed — but you have to show up hireable.",
+    answer: "It means 100% active effort resume building, mock interviews, referrals to our 180+ hiring partners, and direct introductions where possible. It does not mean we guarantee a specific salary or that a company must hire you. Our actual placement rate is 95%. We will work hard to get you placed but you have to show up hireable.",
   },
   {
     question: "Can I join if I'm currently working a day job?",
-    answer: "Yes. We offer weekend batches and evening batches for working professionals. Check current availability during your free demo session. Be honest with yourself though — this course requires 4–6 hours of daily work. A full-time job + this course is doable but demanding.",
+    answer: "Yes. We offer weekend batches and evening batches for working professionals. Check current availability during your free demo session. Be honest with yourself though this course requires 4–6 hours of daily work. A full-time job + this course is doable but demanding.",
   },
   {
     question: "What language is the course taught in?",
-    answer: "Primarily Hinglish (Hindi + English) — which is the most effective way to explain complex technical concepts to students in Agra. Technical terms, documentation, and code are in English. No prior English fluency required.",
+    answer: "Primarily Hinglish (Hindi + English) which is the most effective way to explain complex technical concepts to students in Agra. Technical terms, documentation, and code are in English. No prior English fluency required.",
   },
   {
     question: "How many students are in each batch?",
-    answer: "Maximum 20 students per batch. This is intentional — smaller batches mean more mentor attention, better code review quality, and a tighter peer learning environment. We don't scale beyond 20 per batch.",
+    answer: "Maximum 20 students per batch. This is intentional smaller batches mean more mentor attention, better code review quality, and a tighter peer learning environment. We don't scale beyond 20 per batch.",
   },
   {
     question: "What happens after I complete the course?",
-    answer: "You stay in the SkillYards alumni network — which means access to future job referrals, continued doubt support for 3 months post-completion, and invites to alumni events. Many graduates come back as mentors once they're 2–3 years into their careers.",
+    answer: "You stay in the SkillYards alumni network which means access to future job referrals, continued doubt support for 3 months post-completion, and invites to alumni events. Many graduates come back as mentors once they're 2–3 years into their careers.",
   },
   {
     question: "What's the refund and cancellation policy?",
-    answer: "Full refund if you cancel before attending the first class. 50% refund within the first 2 weeks. No refund after 2 weeks. The free demo class exists precisely so you can make this decision before paying — we strongly recommend attending before enrolling.",
+    answer: "Full refund if you cancel before attending the first class. 50% refund within the first 2 weeks. No refund after 2 weeks. The free demo class exists precisely so you can make this decision before paying we strongly recommend attending before enrolling.",
   },
 ];
 

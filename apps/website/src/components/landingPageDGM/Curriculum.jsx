@@ -14,24 +14,24 @@ const months = [
     topics: [
       "Digital marketing overview & strategy",
       "WordPress website setup & management",
-      "On-page SEO — titles, meta, headings, content",
+      "On-page SEO titles, meta, headings, content",
       "Off-page SEO & link building",
       "Google Search Console setup & analysis",
-      "Google Analytics 4 — tracking & reporting",
+      "Google Analytics 4 tracking & reporting",
       "Keyword research (Ubersuggest, Ahrefs basics)",
     ],
-    builds: "A live website ranked for at least one target keyword — with GSC data as proof",
+    builds: "A live website ranked for at least one target keyword with GSC data as proof",
   },
   {
     month: "Month 2",
-    title: "Paid Advertising — Google & Meta",
+    title: "Paid Advertising Google & Meta",
     hours: "~35 hrs/week",
     color: "bg-orange-500",
     cert: "Google Ads Certification + Meta Blueprint",
     topics: [
-      "Google Ads — Search, Display, Shopping campaigns",
+      "Google Ads Search, Display, Shopping campaigns",
       "Campaign structure, ad groups & match types",
-      "Meta Ads — Facebook & Instagram campaigns",
+      "Meta Ads Facebook & Instagram campaigns",
       "Audience targeting & retargeting",
       "Ad copywriting & creative best practices",
       "A/B testing ads and landing pages",
@@ -46,15 +46,15 @@ const months = [
     color: "bg-pink-500",
     cert: "HubSpot Content Marketing Certification",
     topics: [
-      "Social media strategy — Instagram, LinkedIn, YouTube",
+      "Social media strategy Instagram, LinkedIn, YouTube",
       "Content calendar creation & scheduling",
       "Reels & short-form video for marketing",
-      "Email marketing — Mailchimp / Klaviyo",
+      "Email marketing Mailchimp / Klaviyo",
       "Influencer marketing basics",
       "Brand voice & storytelling",
       "Canva Pro for content design",
     ],
-    builds: "A 30-day executed social campaign for a real brand — with follower & engagement data",
+    builds: "A 30-day executed social campaign for a real brand with follower & engagement data",
   },
   {
     month: "Month 4",
@@ -64,14 +64,14 @@ const months = [
     cert: "Portfolio of live campaign case studies",
     topics: [
       "Advanced Google Analytics 4",
-      "Google Looker Studio — reporting dashboards",
+      "Google Looker Studio reporting dashboards",
       "Full-funnel marketing strategy",
       "Client presentation & communication skills",
       "Agency workflow & project management",
-      "Freelancing setup — pricing, proposals, contracts",
+      "Freelancing setup pricing, proposals, contracts",
       "Interview preparation & LinkedIn optimisation",
     ],
-    builds: "A complete digital marketing audit + strategy document for a real client — presented live",
+    builds: "A complete digital marketing audit + strategy document for a real client presented live",
   },
 ];
 
@@ -89,13 +89,13 @@ export function DGMCurriculum() {
             className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary"
           >
             <BookOpen size={13} />
-            Curriculum — Month by Month
+            Curriculum Month by Month
           </motion.div>
           <h2 className="font-serif text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
             4 Months. <span className="italic text-primary">One Complete Marketer.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Each month ends with a real deliverable — not a quiz. Results you can show employers.
+            Each month ends with a real deliverable not a quiz. Results you can show employers.
           </p>
         </div>
 

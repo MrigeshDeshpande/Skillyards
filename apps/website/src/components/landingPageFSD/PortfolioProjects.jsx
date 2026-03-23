@@ -35,7 +35,7 @@ const projects = [
     name: "Personal Portfolio Website",
     type: "Frontend Project",
     month: "Month 1",
-    desc: "Your first deployed project — live on a real domain from Day 30. This is the URL you put in every job application.",
+    desc: "Your first deployed project live on a real domain from Day 30. This is the URL you put in every job application.",
     stack: ["HTML5", "CSS3", "JavaScript", "Netlify"],
     mode: "solo",
     deployed: true,
@@ -44,7 +44,7 @@ const projects = [
     name: "Industry Client Project",
     type: "On-Job Training Project",
     month: "Month 6",
-    desc: "A real product built for a real brief — reviewed, deployed, and maintained by the team. Details vary by batch.",
+    desc: "A real product built for a real brief reviewed, deployed, and maintained by the team. Details vary by batch.",
     stack: ["Full MERN Stack", "Git workflow", "Code review", "Agile sprint"],
     mode: "team",
     deployed: true,
@@ -70,7 +70,7 @@ export function FSDPortfolioProjects() {
             <span className="italic text-primary">Not a Certificate.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-            Every project is on GitHub, live at a URL, and yours to show employers. This is what gets you hired — not a course completion badge.
+            Every project is on GitHub, live at a URL, and yours to show employers. This is what gets you hired not a course completion badge.
           </p>
         </div>
 

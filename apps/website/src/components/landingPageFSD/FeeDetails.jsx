@@ -9,14 +9,14 @@ const included = [
   "All live classes + recorded session access",
   "Mentor-led code reviews",
   "Project resources and templates",
-  "Placement support — resume, mock interviews, referrals",
+  "Placement support resume, mock interviews, referrals",
   "SkillYards Industry Certificate",
   "GitHub portfolio guidance",
   "Alumni community access",
 ];
 
 const notIncluded = [
-  "Laptop (required — see minimum specs below)",
+  "Laptop (required see minimum specs below)",
   "Internet connection",
   "Any external certification exam fees (e.g. AWS)",
 ];
@@ -58,9 +58,9 @@ export function FSDFeeDetails() {
                 <CreditCard size={13} /> EMI Options
               </p>
               <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>• 3 instalments — ₹9,000 / month</li>
-                <li>• 6 instalments — ₹4,500 / month</li>
-                <li>• Custom plan — contact us</li>
+                <li>• 3 instalments : ₹9,000 / month</li>
+                <li>• 6 instalments : ₹4,500 / month</li>
+                <li>• Custom plan : contact us</li>
               </ul>
             </div>
 
@@ -115,7 +115,7 @@ export function FSDFeeDetails() {
         >
           <AlertCircle size={18} className="mt-0.5 shrink-0 text-primary" />
           <p className="text-sm text-muted-foreground">
-            <strong className="text-foreground">Minimum laptop specs required:</strong> Intel Core i5 / Ryzen 5 or above, 8GB RAM, 256GB SSD, Windows 10 / macOS. A laptop is mandatory — this is a practical course.
+            <strong className="text-foreground">Minimum laptop specs required:</strong> Intel Core i5 / Ryzen 5 or above, 8GB RAM, 256GB SSD, Windows 10 / macOS. A laptop is mandatory this is a practical course.
           </p>
         </motion.div>
       </div>

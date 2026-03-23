@@ -17,7 +17,7 @@ const rows = [
     online: false,
   },
   {
-    feature: "Active placement — referrals + interviews",
+    feature: "Active placement referrals + interviews",
     skillyards: true,
     generic: "Guidance only",
     online: false,
@@ -79,7 +79,7 @@ export function FSDComparisonTable() {
             <span className="italic text-primary">YouTube or a Coaching Centre?</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            An honest comparison — no marketing spin.
+            An honest comparison no marketing spin.
           </p>
         </div>
 

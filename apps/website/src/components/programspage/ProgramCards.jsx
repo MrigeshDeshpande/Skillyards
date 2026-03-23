@@ -100,7 +100,7 @@ export default function ProgramCards() {
             <span className="italic text-primary">Guaranteed</span> Outcome.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground">
-            Whether you want a university degree or a fast-track skill course — we have a program designed for your goal.
+            Whether you want a university degree or a fast-track skill course we have a program designed for your goal.
           </p>
         </div>
 

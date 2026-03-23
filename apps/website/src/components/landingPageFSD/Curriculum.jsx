@@ -11,7 +11,7 @@ const months = [
     hours: "~30 hrs/week",
     color: "bg-blue-500",
     topics: ["HTML5 & CSS3", "Responsive Design & Flexbox/Grid", "Git & GitHub (version control from Day 1)", "Basic JavaScript", "VS Code setup & productivity", "Deploy your first static site on Netlify"],
-    builds: "Personal portfolio site — live on a real domain",
+    builds: "Personal portfolio site live on a real domain",
   },
   {
     month: "Month 2",
@@ -26,7 +26,7 @@ const months = [
     title: "React & Frontend",
     hours: "~35 hrs/week",
     color: "bg-cyan-500",
-    topics: ["React fundamentals — JSX, components, props", "useState, useEffect & custom hooks", "React Router for navigation", "Context API for state management", "Tailwind CSS with React", "Component-driven architecture"],
+    topics: ["React fundamentals JSX, components, props", "useState, useEffect & custom hooks", "React Router for navigation", "Context API for state management", "Tailwind CSS with React", "Component-driven architecture"],
     builds: "Full React frontend app (e-commerce UI or project management UI)",
   },
   {
@@ -34,8 +34,8 @@ const months = [
     title: "Backend & APIs",
     hours: "~35 hrs/week",
     color: "bg-purple-500",
-    topics: ["Node.js & npm ecosystem", "Express.js — routing, middleware, MVC", "REST API design principles", "JWT authentication & authorization", "Environment variables & security basics", "Testing APIs with Postman"],
-    builds: "REST API with authentication — connected to a real frontend",
+    topics: ["Node.js & npm ecosystem", "Express.js routing, middleware, MVC", "REST API design principles", "JWT authentication & authorization", "Environment variables & security basics", "Testing APIs with Postman"],
+    builds: "REST API with authentication connected to a real frontend",
   },
   {
     month: "Month 5",
@@ -43,7 +43,7 @@ const months = [
     hours: "~40 hrs/week",
     color: "bg-green-500",
     topics: ["MongoDB & Mongoose ODM", "CRUD operations & data modelling", "Connecting React frontend to Express backend", "File uploads, pagination & filtering", "Deploying full-stack app (Vercel + Railway)", "Intro to AWS S3 for file storage"],
-    builds: "Complete full-stack MERN application — deployed and live",
+    builds: "Complete full-stack MERN application deployed and live",
   },
   {
     month: "Month 6",
@@ -51,7 +51,7 @@ const months = [
     hours: "~40 hrs/week",
     color: "bg-red-500",
     topics: ["Real client project (or live internal product)", "Code review & pull request workflow", "Performance optimisation basics", "Resume building & LinkedIn optimisation", "Mock technical interviews (3 rounds)", "GitHub profile & portfolio presentation"],
-    builds: "Industry project — added to GitHub, deployed, portfolio-ready",
+    builds: "Industry project added to GitHub, deployed, portfolio-ready",
   },
 ];
 
@@ -69,7 +69,7 @@ export function FSDCurriculum() {
             className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary"
           >
             <BookOpen size={13} />
-            Curriculum — Month by Month
+            Curriculum Month by Month
           </motion.div>
           <h2 className="font-serif text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
             6 Months. <span className="italic text-primary">One Clear Path.</span>

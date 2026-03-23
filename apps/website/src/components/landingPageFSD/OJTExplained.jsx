@@ -7,21 +7,21 @@ const points = [
   {
     icon: Hammer,
     title: "From Month 4, you work on real projects",
-    desc: "The first 3 months are structured learning. From Month 4 you join SkillYards' internal development team — working on live products and client briefs, not made-up exercises.",
+    desc: "The first 3 months are structured learning. From Month 4 you join SkillYards' internal development team working on live products and client briefs, not made-up exercises.",
   },
   {
     icon: GitBranch,
     title: "Every commit goes to your GitHub",
-    desc: "Your code, your repo, from Day 1. By the time you finish, your GitHub shows 6 months of consistent commits — the first thing every hiring manager checks.",
+    desc: "Your code, your repo, from Day 1. By the time you finish, your GitHub shows 6 months of consistent commits the first thing every hiring manager checks.",
   },
   {
     icon: Users,
     title: "Real code reviews from senior developers",
-    desc: "Your code is reviewed by working developers — not just ticked as 'submitted'. You learn why your approach was wrong, not just that it was.",
+    desc: "Your code is reviewed by working developers not just ticked as 'submitted'. You learn why your approach was wrong, not just that it was.",
   },
   {
     icon: DollarSign,
-    title: "No stipend — but something better",
+    title: "No stipend but something better",
     desc: "The OJT phase is unpaid, but students build portfolio projects that go live on real domains. That live URL in your resume is worth more than a ₹2,000/month stipend.",
   },
 ];

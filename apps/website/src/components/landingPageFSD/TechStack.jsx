@@ -83,7 +83,7 @@ export function FSDTechStack() {
             <span className="italic text-primary">Layer by Layer.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Every technology has a reason — mapped to real job requirements, not a wishlist.
+            Every technology has a reason mapped to real job requirements, not a wishlist.
           </p>
         </div>
 

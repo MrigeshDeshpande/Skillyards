@@ -8,35 +8,35 @@ import Link from "next/link";
 const faqs = [
   {
     question: "Do I need any prior marketing or tech knowledge?",
-    answer: "None at all. The course starts from the very beginning — what digital marketing is, why it matters, and how each channel works. If you can use Instagram and search on Google, you have everything you need to start.",
+    answer: "None at all. The course starts from the very beginning what digital marketing is, why it matters, and how each channel works. If you can use Instagram and search on Google, you have everything you need to start.",
   },
   {
     question: "Do I need to know coding?",
-    answer: "No. Digital marketing is creative and analytical — not technical. You'll learn to use tools, run campaigns, and read data. The most technical thing you'll do is set up a WordPress site, which requires no coding.",
+    answer: "No. Digital marketing is creative and analytical not technical. You'll learn to use tools, run campaigns, and read data. The most technical thing you'll do is set up a WordPress site, which requires no coding.",
   },
   {
     question: "Is a laptop mandatory? What specs do I need?",
-    answer: "Yes, a laptop is required. Any laptop with 4GB+ RAM running Windows 10 or macOS works — digital marketing tools are browser-based, so even an older machine is fine. This is much more accessible than coding courses.",
+    answer: "Yes, a laptop is required. Any laptop with 4GB+ RAM running Windows 10 or macOS works digital marketing tools are browser-based, so even an older machine is fine. This is much more accessible than coding courses.",
   },
   {
     question: "Will I get access to paid tools like Ahrefs or SEMrush?",
-    answer: "Yes. Tool access is included during the course — you don't need to subscribe yourself. This includes Ahrefs, SEMrush (or Ubersuggest), Canva Pro, and Google Workspace. These are the same tools working professionals use daily.",
+    answer: "Yes. Tool access is included during the course you don't need to subscribe yourself. This includes Ahrefs, SEMrush (or Ubersuggest), Canva Pro, and Google Workspace. These are the same tools working professionals use daily.",
   },
   {
     question: "Are the campaigns run on real client accounts with real money?",
-    answer: "Yes, from Month 2. You run live Google Ads and Meta Ads campaigns on real client accounts — with real budgets and real targets. You'll have actual performance data (ROAS, CPL, impressions) for your portfolio. This is the biggest differentiator of SkillYards training.",
+    answer: "Yes, from Month 2. You run live Google Ads and Meta Ads campaigns on real client accounts with real budgets and real targets. You'll have actual performance data (ROAS, CPL, impressions) for your portfolio. This is the biggest differentiator of SkillYards training.",
   },
   {
     question: "What certifications will I earn?",
-    answer: "During the course we guide you through earning: Google Ads Certification (Search), Google Analytics 4 Certification, Meta Blueprint Certification, and HubSpot Content Marketing Certification. All four are free to take — we just make sure you're prepared and have time built into the schedule.",
+    answer: "During the course we guide you through earning: Google Ads Certification (Search), Google Analytics 4 Certification, Meta Blueprint Certification, and HubSpot Content Marketing Certification. All four are free to take we just make sure you're prepared and have time built into the schedule.",
   },
   {
     question: "Is placement guaranteed? What does that actually mean?",
-    answer: "95% of eligible students are placed — meaning we actively work on your behalf: resume building, mock interviews, referrals to 180+ hiring partners, and direct introductions where possible. We don't guarantee a specific salary or force a company to hire you. But we don't stop until you have offers to evaluate.",
+    answer: "95% of eligible students are placed meaning we actively work on your behalf: resume building, mock interviews, referrals to 180+ hiring partners, and direct introductions where possible. We don't guarantee a specific salary or force a company to hire you. But we don't stop until you have offers to evaluate.",
   },
   {
     question: "Can I freelance after this course? Will SkillYards help me find clients?",
-    answer: "Many graduates do freelance — especially local business owners and homemakers. We cover freelancing setup in Month 4: pricing, proposals, contracts, and client communication. While we don't directly find freelance clients, the skills and portfolio you build make it straightforward to start approaching local businesses.",
+    answer: "Many graduates do freelance especially local business owners and homemakers. We cover freelancing setup in Month 4: pricing, proposals, contracts, and client communication. While we don't directly find freelance clients, the skills and portfolio you build make it straightforward to start approaching local businesses.",
   },
   {
     question: "Are there evening or weekend batches for working professionals?",
@@ -44,15 +44,15 @@ const faqs = [
   },
   {
     question: "What language are classes taught in?",
-    answer: "Hinglish — Hindi mixed with English. Technical terms and tools are in English, but explanations are in Hindi or Hinglish to make sure everyone understands deeply. No prior English fluency required.",
+    answer: "Hinglish Hindi mixed with English. Technical terms and tools are in English, but explanations are in Hindi or Hinglish to make sure everyone understands deeply. No prior English fluency required.",
   },
   {
     question: "How is this different from doing a free Google Digital Garage course?",
-    answer: "Google Digital Garage teaches concepts. SkillYards OJT makes you execute them — on real accounts, with real budgets, with a mentor watching and correcting your work. The difference between watching a video about running a campaign and actually running one is a job offer.",
+    answer: "Google Digital Garage teaches concepts. SkillYards OJT makes you execute them on real accounts, with real budgets, with a mentor watching and correcting your work. The difference between watching a video about running a campaign and actually running one is a job offer.",
   },
   {
     question: "Can small business owners join to grow their own business?",
-    answer: "Absolutely — and several do. If you run or help run a family business, you can apply everything you learn to your own brand in real time. Many graduates report growing their business during the course itself, not just after.",
+    answer: "Absolutely and several do. If you run or help run a family business, you can apply everything you learn to your own brand in real time. Many graduates report growing their business during the course itself, not just after.",
   },
 ];
 

@@ -43,7 +43,7 @@ export function DGMFinalCTA() {
           transition={{ delay: 0.15 }}
           className="mx-auto mt-4 max-w-lg text-sm text-primary-foreground/70 sm:text-base"
         >
-          Start with the free demo class. No commitment, no fee. See exactly how we teach — then decide.
+          Start with the free demo class. No commitment, no fee. See exactly how we teach then decide.
         </motion.p>
 
         <motion.div

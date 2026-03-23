@@ -13,7 +13,7 @@ const facts = [
   { icon: Briefcase, label: "Placement", value: "100% placement assistance" },
   { icon: Calendar, label: "Next Batch", value: "April 2026" },
   { icon: IndianRupee, label: "Fee", value: "Starting ₹25,000" },
-  { icon: CreditCard, label: "EMI", value: "Available — easy instalments" },
+  { icon: CreditCard, label: "EMI", value: "Available easy instalments" },
 ];
 
 export function FSDProgramAtGlance() {

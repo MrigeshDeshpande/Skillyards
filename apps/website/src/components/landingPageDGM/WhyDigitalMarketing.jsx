@@ -8,7 +8,7 @@ const reasons = [
     icon: Globe,
     stat: "60 Lakh+",
     label: "Digital marketing job openings in India by 2026",
-    sub: "Demand is growing faster than supply — skilled candidates are being hired fast.",
+    sub: "Demand is growing faster than supply skilled candidates are being hired fast.",
   },
   {
     icon: IndianRupee,
@@ -31,7 +31,7 @@ const reasons = [
   {
     icon: TrendingUp,
     stat: "Every Business",
-    label: "Needs digital marketing — from a chai stall to a startup",
+    label: "Needs digital marketing from a chai stall to a startup",
     sub: "Traditional marketing is shrinking. Digital is where every rupee of marketing budget is moving.",
   },
 ];
@@ -54,7 +54,7 @@ export function DGMWhyDigitalMarketing() {
             <span className="italic text-primary">Smartest Career Move Right Now.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-            Whether you want a job, want to freelance, or want to grow your own business — digital marketing is the one skill that works for all three.
+            Whether you want a job, want to freelance, or want to grow your own business digital marketing is the one skill that works for all three.
           </p>
         </div>
 

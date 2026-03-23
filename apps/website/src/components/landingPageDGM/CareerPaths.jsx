@@ -43,7 +43,7 @@ const paths = [
       { title: "Scale your family business online", salary: "Business growth" },
       { title: "Run paid ads for local Agra businesses", salary: "₹10K–50K/month per client" },
     ],
-    note: "Many SkillYards graduates use this course to grow their family shop or local business online — before even looking for a job.",
+    note: "Many SkillYards graduates use this course to grow their family shop or local business online before even looking for a job.",
   },
 ];
 
@@ -65,7 +65,7 @@ export function DGMCareerPaths() {
             <span className="italic text-primary">Three Completely Different Outcomes.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Whether you want a job, freelance freedom, or to grow your own business — this course opens all three doors.
+            Whether you want a job, freelance freedom, or to grow your own business this course opens all three doors.
           </p>
         </div>
 

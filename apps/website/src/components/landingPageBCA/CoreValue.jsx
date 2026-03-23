@@ -26,7 +26,7 @@ const coreValues = [
   },
   {
     title: "Career Support",
-    description: "From resume crafting to interview prep — we've got every step covered.",
+    description: "From resume crafting to interview prep we've got every step covered.",
     icon: Target,
   },
   {
@@ -36,12 +36,12 @@ const coreValues = [
   },
   {
     title: "Live Interactive Classes",
-    description: "Participate in live coding sessions with experts — ask questions, build in real time.",
+    description: "Participate in live coding sessions with experts ask questions, build in real time.",
     icon: Video,
   },
   {
     title: "Customized Content",
-    description: "Tech tracks aligned with your goals — web, mobile, data, or cloud.",
+    description: "Tech tracks aligned with your goals web, mobile, data, or cloud.",
     icon: Sliders,
   },
   {

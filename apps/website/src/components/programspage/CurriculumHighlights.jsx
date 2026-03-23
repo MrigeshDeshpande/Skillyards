@@ -68,7 +68,7 @@ export default function CurriculumHighlights() {
             Industry-Aligned. <span className="italic text-primary">No Outdated Syllabus.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Every topic is mapped to real job requirements — not just textbooks.
+            Every topic is mapped to real job requirements not just textbooks.
           </p>
         </div>
 

@@ -30,7 +30,7 @@ const steps = [
   {
     number: "04",
     icon: Rocket,
-    title: "Day 1 — Your Batch Starts",
+    title: "Day 1 Your Batch Starts",
     desc: "Receive your batch schedule, onboarding kit, and GitHub setup guide. You write your first line of code on Day 1.",
     action: null,
   },

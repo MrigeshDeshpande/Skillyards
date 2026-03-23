@@ -29,7 +29,7 @@ export function DGMHero() {
           transition={{ delay: 0.1 }}
           className="font-serif text-4xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
         >
-          Learn to Market Any Business Online —{" "}
+          Learn to Market Any Business Online {" "}
           <span className="italic text-primary">and Get Paid for It.</span>
         </motion.h1>
 
@@ -39,7 +39,7 @@ export function DGMHero() {
           transition={{ delay: 0.2 }}
           className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
         >
-          No coding. No prior experience. Just 4 months of real campaigns, real tools, and industry certifications — and a career in one of India&apos;s fastest-growing fields.
+          No coding. No prior experience. Just 4 months of real campaigns, real tools, and industry certifications and a career in one of India&apos;s fastest-growing fields.
           You leave with <strong className="text-foreground">Google, Meta & HubSpot certifications</strong> and a portfolio of live campaign results.
         </motion.p>
 

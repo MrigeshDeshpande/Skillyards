@@ -15,7 +15,7 @@ const results = [
   {
     type: "Google Ads Campaign",
     headline: "₹15,000 budget · 45 leads · ₹333 CPL",
-    detail: "Managed a Search + Display campaign for a coaching institute. Achieved cost-per-lead of ₹333 — well under the industry average of ₹600+ for education sector.",
+    detail: "Managed a Search + Display campaign for a coaching institute. Achieved cost-per-lead of ₹333 well under the industry average of ₹600+ for education sector.",
     metrics: ["₹15,000 ad budget managed", "45 qualified leads generated", "₹333 average CPL"],
     color: "border-orange-400/30 bg-orange-50/50 dark:bg-orange-950/10",
     dot: "bg-orange-500",
@@ -30,8 +30,8 @@ const results = [
   },
   {
     type: "Full Client Audit & Strategy",
-    headline: "40-page digital strategy — presented live to client",
-    detail: "Delivered a complete digital marketing audit for a local restaurant — covering SEO, paid ads, social media, and a 90-day execution roadmap. Presented to the client directly.",
+    headline: "40-page digital strategy presented live to client",
+    detail: "Delivered a complete digital marketing audit for a local restaurant covering SEO, paid ads, social media, and a 90-day execution roadmap. Presented to the client directly.",
     metrics: ["Full SEO + ads + social audit", "90-day roadmap", "Live client presentation"],
     color: "border-green-400/30 bg-green-50/50 dark:bg-green-950/10",
     dot: "bg-green-500",

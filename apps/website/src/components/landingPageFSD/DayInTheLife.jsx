@@ -8,7 +8,7 @@ const schedule = [
     time: "10:00 AM",
     icon: Sun,
     title: "Live Class",
-    desc: "Mentor codes live — you follow along. Concept + implementation in one session. No slides, no lectures.",
+    desc: "Mentor codes live you follow along. Concept + implementation in one session. No slides, no lectures.",
     color: "bg-yellow-500",
   },
   {
@@ -22,7 +22,7 @@ const schedule = [
     time: "2:00 PM",
     icon: MessageSquare,
     title: "Code Review & Doubt Session",
-    desc: "Your code from the lab gets reviewed. You learn why your approach was wrong — not just that it was.",
+    desc: "Your code from the lab gets reviewed. You learn why your approach was wrong not just that it was.",
     color: "bg-purple-500",
   },
   {
@@ -59,7 +59,7 @@ export function FSDDayInTheLife() {
             <span className="italic text-primary">Day Actually Looks Like.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            This is a typical weekday during the course — Month 5, when you&apos;re in the deep end.
+            This is a typical weekday during the course Month 5, when you&apos;re in the deep end.
           </p>
         </div>
 
@@ -104,7 +104,7 @@ export function FSDDayInTheLife() {
           viewport={{ once: true }}
           className="mt-8 rounded-2xl border border-border bg-card/50 p-4 text-center text-sm text-muted-foreground"
         >
-          Total daily commitment: <strong className="text-foreground">6–8 hours</strong> (class + lab + project work). This is a serious program — not a weekend hobby course.
+          Total daily commitment: <strong className="text-foreground">6–8 hours</strong> (class + lab + project work). This is a serious program not a weekend hobby course.
         </motion.p>
       </div>
     </section>

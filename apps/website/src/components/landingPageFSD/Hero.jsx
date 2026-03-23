@@ -48,7 +48,7 @@ export function FSDHero() {
           transition={{ delay: 0.2 }}
           className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
         >
-          Built for graduates who learned theory but can&apos;t build anything — and for anyone stuck in a dead-end job who wants into tech.
+          Built for graduates who learned theory but can&apos;t build anything and for anyone stuck in a dead-end job who wants into tech.
           You leave with <strong className="text-foreground">4 deployed projects</strong>, a GitHub profile employers trust, and a job offer.
         </motion.p>
 

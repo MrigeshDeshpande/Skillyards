@@ -32,7 +32,7 @@ export default function ComparisonTable() {
             Compare Programs
           </motion.div>
           <h2 className="font-serif text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-            Find the Right Fit —{" "}
+            Find the Right Fit {" "}
             <span className="italic text-primary">Side by Side.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-base text-muted-foreground">

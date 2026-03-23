@@ -110,7 +110,7 @@ export const BCASkills = () => {
               transition={{ delay: 0.1 }}
               className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed"
             >
-              We don&apos;t just teach computer science theory — we build developers equipped
+              We don&apos;t just teach computer science theory we build developers equipped
               with the hard and soft skills necessary for the modern tech economy.
             </m.p>
           </div>

@@ -7,22 +7,22 @@ const points = [
   {
     icon: IndianRupee,
     title: "Real ad budgets. Real client accounts. From Month 2.",
-    desc: "Students don't practice on dummy accounts. From Month 2, you manage real Google Ads and Meta Ads campaigns on actual client accounts — with real money and real targets.",
+    desc: "Students don't practice on dummy accounts. From Month 2, you manage real Google Ads and Meta Ads campaigns on actual client accounts with real money and real targets.",
   },
   {
     icon: BarChart2,
-    title: "Your portfolio is campaign performance data — not screenshots",
+    title: "Your portfolio is campaign performance data not screenshots",
     desc: "When you graduate, you don't show a certificate. You show a recruiter actual numbers: impressions, clicks, ROAS, SEO rankings. Specific. Measurable. Verifiable.",
   },
   {
     icon: Wrench,
-    title: "Paid tools included — no self-arrangement needed",
+    title: "Paid tools included no self-arrangement needed",
     desc: "Students get access to Ahrefs, SEMrush, Canva Pro, and Google Workspace during the course. Most institutes make you figure this out yourself.",
   },
   {
     icon: FileBarChart,
-    title: "Month 4 is client work — not more theory",
-    desc: "Your final month is dedicated to real client strategy — a full digital marketing audit and a live campaign for a local Agra business or SkillYards brand.",
+    title: "Month 4 is client work not more theory",
+    desc: "Your final month is dedicated to real client strategy a full digital marketing audit and a live campaign for a local Agra business or SkillYards brand.",
   },
 ];
 

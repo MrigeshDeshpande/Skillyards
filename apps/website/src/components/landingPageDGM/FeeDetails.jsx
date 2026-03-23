@@ -7,18 +7,18 @@ import { Button } from "@/components/ui/button";
 
 const included = [
   "All live classes + recorded session access",
-  "Paid tools access — Ahrefs, SEMrush, Canva Pro",
+  "Paid tools access Ahrefs, SEMrush, Canva Pro",
   "Real ad account access for practice campaigns",
   "Google, Meta & HubSpot certification guidance",
-  "Placement support — resume, mock interviews, referrals",
+  "Placement support resume, mock interviews, referrals",
   "SkillYards Industry Certificate",
   "Alumni network & 3-month post-course mentor support",
 ];
 
 const notIncluded = [
-  "Laptop (required — even a basic one works for this course)",
+  "Laptop (required even a basic one works for this course)",
   "Internet connection",
-  "External certification exam fees (most are free — we guide you)",
+  "External certification exam fees (most are free we guide you)",
 ];
 
 export function DGMFeeDetails() {
@@ -57,9 +57,9 @@ export function DGMFeeDetails() {
                 <CreditCard size={13} /> EMI Options
               </p>
               <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>• 3 instalments — ₹5,500 / month</li>
-                <li>• 4 instalments — ₹4,000 / month</li>
-                <li>• Custom plan — contact us</li>
+                <li>• 3 instalments : ₹5,500 / month</li>
+                <li>• 4 instalments : ₹4,000 / month</li>
+                <li>• Custom plan contact us</li>
               </ul>
             </div>
 
@@ -108,7 +108,7 @@ export function DGMFeeDetails() {
         >
           <AlertCircle size={18} className="mt-0.5 shrink-0 text-primary" />
           <p className="text-sm text-muted-foreground">
-            <strong className="text-foreground">Minimum laptop specs:</strong> Any laptop with 4GB+ RAM running Windows 10 or macOS. Unlike coding, digital marketing tools are browser-based — even a basic laptop works fine.
+            <strong className="text-foreground">Minimum laptop specs:</strong> Any laptop with 4GB+ RAM running Windows 10 or macOS. Unlike coding, digital marketing tools are browser-based even a basic laptop works fine.
           </p>
         </motion.div>
       </div>

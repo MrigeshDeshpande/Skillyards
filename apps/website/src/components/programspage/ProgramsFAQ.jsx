@@ -8,7 +8,7 @@ import Link from "next/link";
 const faqs = [
   {
     question: "What are the eligibility criteria for BCA and BBA?",
-    answer: "Both BCA and BBA require 12th pass (any stream) with a minimum of 50% marks. There's no entrance exam — just a counselling session to ensure the program is the right fit for you.",
+    answer: "Both BCA and BBA require 12th pass (any stream) with a minimum of 50% marks. There's no entrance exam just a counselling session to ensure the program is the right fit for you.",
   },
   {
     question: "What's the difference between a Degree program and a Skill Course?",
@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "Is placement actually guaranteed?",
-    answer: "We have a 95% placement rate — which means we actively work to place every eligible student. We don't guarantee a specific salary, but we do guarantee dedicated placement support: resume building, mock interviews, referrals, and direct connections with 180+ hiring partners.",
+    answer: "We have a 95% placement rate which means we actively work to place every eligible student. We don't guarantee a specific salary, but we do guarantee dedicated placement support: resume building, mock interviews, referrals, and direct connections with 180+ hiring partners.",
   },
   {
     question: "Are the programs available online?",
@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     question: "What are the fee and EMI options?",
-    answer: "Skill courses start from ₹15,000 (Digital Marketing) and ₹25,000 (Full-Stack Dev). Degree program fees are shared during your counselling session. EMI and instalment options are available across all programs — contact us to know the exact payment plan.",
+    answer: "Skill courses start from ₹15,000 (Digital Marketing) and ₹25,000 (Full-Stack Dev). Degree program fees are shared during your counselling session. EMI and instalment options are available across all programs contact us to know the exact payment plan.",
   },
   {
     question: "What if I miss classes?",
@@ -63,7 +63,7 @@ export default function ProgramsFAQ() {
             <span className="italic text-primary">Every Day.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Answered honestly — because that&apos;s how decisions should be made.
+            Answered honestly because that&apos;s how decisions should be made.
           </p>
         </div>
 

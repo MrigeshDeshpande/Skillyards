@@ -17,7 +17,7 @@ const steps = [
     number: "02",
     icon: PhoneCall,
     title: "Attend Demo + Ask Questions",
-    desc: "The mentor runs a real lesson — you see SEO, Ads, or social media in action on live tools. Nothing is hidden.",
+    desc: "The mentor runs a real lesson you see SEO, Ads, or social media in action on live tools. Nothing is hidden.",
     action: null,
   },
   {
@@ -30,7 +30,7 @@ const steps = [
   {
     number: "04",
     icon: Rocket,
-    title: "Day 1 — Your Batch Starts",
+    title: "Day 1 Your Batch Starts",
     desc: "Receive batch schedule, tool access credentials, and onboarding kit. You set up your first campaign on Day 1.",
     action: null,
   },
@@ -54,7 +54,7 @@ export function DGMAdmissionProcess() {
             <span className="italic text-primary">Free Demo. No Pressure.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            The free demo is not a sales pitch — it&apos;s a real class. See how we teach before you pay anything.
+            The free demo is not a sales pitch it&apos;s a real class. See how we teach before you pay anything.
           </p>
         </div>
 

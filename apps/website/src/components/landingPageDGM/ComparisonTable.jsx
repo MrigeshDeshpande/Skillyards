@@ -8,7 +8,7 @@ const rows = [
   { feature: "Real ad spend managed during training", skillyards: true, others: false, youtube: false },
   { feature: "Google, Meta & HubSpot certifications", skillyards: true, others: "Sometimes", youtube: false },
   { feature: "Paid tools access (Ahrefs, SEMrush, Canva Pro)", skillyards: true, others: false, youtube: "Self-arranged" },
-  { feature: "Active placement — referrals + mock interviews", skillyards: true, others: "Generic", youtube: false },
+  { feature: "Active placement referrals + mock interviews", skillyards: true, others: "Generic", youtube: false },
   { feature: "Batch size ≤ 20 (personalised attention)", skillyards: true, others: false, youtube: false },
   { feature: "1:1 mentor access for doubt clearing", skillyards: true, others: false, youtube: false },
   { feature: "Portfolio of real, measurable campaign results", skillyards: true, others: false, youtube: false },

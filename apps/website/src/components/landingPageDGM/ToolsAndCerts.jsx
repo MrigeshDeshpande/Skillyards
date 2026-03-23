@@ -63,7 +63,7 @@ export function DGMToolsAndCerts() {
             <span className="italic text-primary">All Included.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Tools access is provided during the course. Certifications are free to earn — we guide you through every one.
+            Tools access is provided during the course. Certifications are free to earn we guide you through every one.
           </p>
         </div>
 

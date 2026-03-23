@@ -42,7 +42,7 @@ export default function FinalCTA() {
           transition={{ delay: 0.15 }}
           className="mx-auto mt-4 max-w-xl text-base text-primary-foreground/70"
         >
-          Either way, we&apos;re here to help — not to pressure. Talk to a counsellor first, or go straight to enrollment.
+          Either way, we&apos;re here to help not to pressure. Talk to a counsellor first, or go straight to enrollment.
         </motion.p>
 
         <motion.div
