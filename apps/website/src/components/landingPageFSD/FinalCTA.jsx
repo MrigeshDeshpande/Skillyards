@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Download, MessageCircle, Calendar } from "lucide-react";
+import { ArrowRight, MessageCircle, Calendar } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -64,16 +64,6 @@ export function FSDFinalCTA() {
             </Link>
           </Button>
 
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="w-full rounded-full border-2 border-primary-foreground/30 bg-transparent px-8 py-6 text-sm font-bold text-primary-foreground transition-all hover:scale-105 hover:bg-primary-foreground/10 sm:w-auto"
-          >
-            <Link href="/contact">
-              <Download size={16} className="mr-2" /> Download Curriculum
-            </Link>
-          </Button>
         </motion.div>
 
         <motion.div

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Star, Users, TrendingUp, Calendar } from "lucide-react";
+import { ArrowRight, Star, Users, TrendingUp, Calendar } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -68,44 +68,6 @@ export function FSDHero() {
               Apply for Free Demo Class <ArrowRight size={17} className="ml-2" />
             </Link>
           </Button>
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="w-full rounded-full border-2 border-border bg-foreground/5 px-8 py-6 text-sm font-bold text-foreground transition-all hover:scale-105 hover:bg-foreground/10 sm:w-auto"
-          >
-            <Link href="/contact">
-              <Download size={16} className="mr-2" /> Download Curriculum
-            </Link>
-          </Button>
-        </motion.div>
-
-        {/* Trust strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm"
-        >
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <TrendingUp size={15} className="text-primary" />
-            <span><strong className="text-foreground">95%</strong> Placement Rate</span>
-          </div>
-          <div className="h-4 w-px bg-border hidden sm:block" />
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <TrendingUp size={15} className="text-primary" />
-            <span>Avg. Package <strong className="text-foreground">₹4.5 LPA</strong></span>
-          </div>
-          <div className="h-4 w-px bg-border hidden sm:block" />
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Users size={15} className="text-primary" />
-            <span><strong className="text-foreground">1200+</strong> Students Placed</span>
-          </div>
-          <div className="h-4 w-px bg-border hidden sm:block" />
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Calendar size={15} className="text-primary" />
-            <span>Next Batch: <strong className="text-foreground">April 2026</strong> · <span className="text-red-500 font-bold">8 seats left</span></span>
-          </div>
         </motion.div>
       </div>
     </section>

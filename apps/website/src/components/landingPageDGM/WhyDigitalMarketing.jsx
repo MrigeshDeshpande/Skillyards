@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TrendingUp, Briefcase, IndianRupee, Laptop, Globe } from "lucide-react";
+import { TrendingUp, Briefcase, IndianRupee, Laptop, Globe, Rocket } from "lucide-react";
 
 const reasons = [
   {
@@ -34,6 +34,12 @@ const reasons = [
     label: "Needs digital marketing from a chai stall to a startup",
     sub: "Traditional marketing is shrinking. Digital is where every rupee of marketing budget is moving.",
   },
+  {
+    icon: Rocket,
+    stat: "Work Anywhere",
+    label: "Remote, freelance, or in-office digital marketing is location-free",
+    sub: "Manage campaigns from Agra for a client in Mumbai or Singapore. Your laptop is your office.",
+  },
 ];
 
 export function DGMWhyDigitalMarketing() {
@@ -50,8 +56,8 @@ export function DGMWhyDigitalMarketing() {
             The Opportunity
           </motion.div>
           <h2 className="font-serif text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-            Why Digital Marketing is the{" "}
-            <span className="italic text-primary">Smartest Career Move Right Now.</span>
+            Why Digital Marketing is the <br />
+            <span className="text-primary">Smartest Career Move Right Now</span>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
             Whether you want a job, want to freelance, or want to grow your own business digital marketing is the one skill that works for all three.

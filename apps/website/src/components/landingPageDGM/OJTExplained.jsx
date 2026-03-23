@@ -49,8 +49,8 @@ export function DGMOJTExplained() {
             On-Job Training
           </motion.div>
           <h2 className="font-serif text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-            Other Institutes Teach You What SEO Is.{" "}
-            <span className="italic text-primary">We Make You Run an SEO Campaign.</span>
+            Other Institutes Teach You What SEO Is{" "} <br />
+            <span className=" text-primary">We Make You Run an SEO Campaign</span>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
             The difference between knowing digital marketing and doing digital marketing is a job offer.
