@@ -1,6 +1,5 @@
 import HeroCarousel from "@/components/homepage/HeroCarousel";
 import AboutSection from "@/components/homepage/AboutSection";
-import ProgramsSection from "@/components/homepage/ProgramsSection";
 import FeaturesSection from "@/components/homepage/FeaturesSection";
 import LeadersSection from "@/components/common/LeadersSection";
 import SubscribeSection from "@/components/common/SubscribeSection";
@@ -43,15 +42,14 @@ export default function Home() {
 
             <AboutSection />
             <ProgramsShowcase />
-            <ProgramsSection />
             <FeaturesSection />
             <HearFromStudents />
             <FeaturedRoles />
-            <ServicesSection />
             <BlogSection />
             <LeadersSection />
             <PartnersSlider />
             <CTASection />
+            <ServicesSection />
             <FAQSection />
             <SubscribeSection />
 

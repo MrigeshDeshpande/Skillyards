@@ -26,7 +26,7 @@ const coreValues = [
   },
   {
     title: "Career Support",
-    description: "From resume crafting to strategic career planning — we've got you covered.",
+    description: "From resume crafting to strategic career planning we've got you covered.",
     icon: Target,
   },
   {
@@ -36,7 +36,7 @@ const coreValues = [
   },
   {
     title: "Live Interactive Classes",
-    description: "Participate in live sessions with experts — ask questions and gain insights.",
+    description: "Participate in live sessions with experts ask questions and gain insights.",
     icon: Video,
   },
   {

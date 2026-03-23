@@ -1,29 +1,46 @@
-import ComingSoon from "@/components/ComingSoon";
-import {withPageSEO} from "@/lib/seo";
+import { withPageSEO } from "@/lib/seo";
+import ProgramsHero from "@/components/programspage/ProgramsHero";
+import TrustBar from "@/components/programspage/TrustBar";
+import ProgramCards from "@/components/programspage/ProgramCards";
+import ComparisonTable from "@/components/programspage/ComparisonTable";
+import CurriculumHighlights from "@/components/programspage/CurriculumHighlights";
+import PlacementOutcomes from "@/components/programspage/PlacementOutcomes";
+import AdmissionProcess from "@/components/programspage/AdmissionProcess";
+import BatchFeeInfo from "@/components/programspage/BatchFeeInfo";
+import ProgramsFAQ from "@/components/programspage/ProgramsFAQ";
+import FinalCTA from "@/components/programspage/FinalCTA";
 
 export const metadata = withPageSEO({
-    title: 'SkillYards Programs – BCA, BBA & Job-Oriented IT Training',
-    description:
-        'Explore SkillYards programs including BCA and BBA with on-job training, industry-aligned curriculum, live classes, and real-world projects.',
-    canonical: 'https://www.skillyards.in/programs',
-    keywords: [
-        'SkillYards programs',
-        'BCA programs with training',
-        'BBA programs with IT skills',
-        'On-job training programs',
-        'Skill-based degree programs',
-        'IT training programs India',
-    ],
-    ogImage: '/images/opengraph/programs-og.jpg',
-    twitterImage: '/images/opengraph/programs-twitter.jpg',
+  title: "SkillYards Programs – BCA, BBA, Full-Stack & Digital Marketing in Agra",
+  description:
+    "Explore SkillYards programs: BCA with on-job training, BBA with digital marketing, Full-Stack Web Development, and Digital Marketing courses in Agra. 95% placement rate.",
+  canonical: "https://www.skillyards.in/programs",
+  keywords: [
+    "BCA with on-job training Agra",
+    "BCA admission 2026 Agra",
+    "BBA digital marketing degree Agra",
+    "full stack development course Agra",
+    "digital marketing training institute Agra",
+    "IT training institute Agra",
+    "SkillYards programs",
+  ],
+  ogImage: "/images/opengraph/programs-og.jpg",
+  twitterImage: "/images/opengraph/programs-twitter.jpg",
 });
 
-
 export default function ProgramsPage() {
-    return (
-        <ComingSoon
-            title="Programs — Coming Soon"
-            description="We’re preparing detailed information about SkillYards programs, learning paths, and outcomes. Please check back soon!"
-        />
-    );
+  return (
+    <main>
+      <ProgramsHero />
+      <TrustBar />
+      <ProgramCards />
+      <ComparisonTable />
+      <CurriculumHighlights />
+      <PlacementOutcomes />
+      <AdmissionProcess />
+      <BatchFeeInfo />
+      <ProgramsFAQ />
+      <FinalCTA />
+    </main>
+  );
 }

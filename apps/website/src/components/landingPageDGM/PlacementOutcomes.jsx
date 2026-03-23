@@ -1,0 +1,102 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { TrendingUp, Quote } from "lucide-react";
+
+const alumni = [
+  {
+    name: "Priya Sharma",
+    before: "BCom graduate, was working at a retail shop no digital skills",
+    role: "Digital Marketing Executive",
+    company: "Brandify Solutions",
+    package: "₹3.6 LPA",
+    quote: "I ran a real Google Ads campaign for a local business during Month 2. I had actual numbers CPL, ROAS, impressions to show in my interview. That's what got me the job. No other institute gives you this.",
+  },
+  {
+    name: "Pooja Agarwal",
+    before: "Homemaker for 5 years, wanted to restart her career from home",
+    role: "Freelance Social Media Manager",
+    company: "3 clients (self-employed)",
+    package: "₹40,000/month",
+    quote: "I wasn't looking for a job I wanted to work from home on my own terms. SkillYards taught me how to pitch, price, and deliver. Within 2 months of graduating I had my first paying client.",
+  },
+  {
+    name: "Rahul Bansal",
+    before: "Family runs a clothing business in Agra wanted to grow it online",
+    role: "Head of Digital Marketing",
+    company: "Family Business (self)",
+    package: "Business 3x in revenue",
+    quote: "I joined to learn Instagram Ads for my family's shop. By Month 4 I was running proper campaigns and our online sales had tripled. The ROI on this course was immediate and measurable.",
+  },
+];
+
+const roles = [
+  "Digital Marketing Executive",
+  "SEO Analyst",
+  "PPC / Performance Marketing Executive",
+  "Social Media Manager",
+  "Content Marketing Executive",
+  "Freelance DM Consultant",
+];
+
+export function DGMPlacementOutcomes() {
+  return (
+    <section className="bg-card/20 py-20">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mb-12 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary"
+          >
+            <TrendingUp size={13} />
+            Placement & Outcomes
+          </motion.div>
+          <h2 className="font-serif text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+            Jobs. Clients. Business Growth.{" "}
+            <span className="italic text-primary">All Three Work.</span>
+          </h2>
+        </div>
+
+        <div className="mb-12 grid grid-cols-2 gap-5 rounded-3xl border border-border bg-card p-6 shadow-sm sm:grid-cols-4">
+          {[
+            { value: "95%", label: "Placement Rate" },
+            { value: "₹3.8 LPA", label: "Avg. Starting Package" },
+            { value: "< 45 days", label: "Median Time to First Offer" },
+            { value: "180+", label: "Hiring Partners" },
+          ].map((s, i) => (
+            <motion.div key={i} initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="text-center">
+              <p className="text-2xl font-extrabold text-primary sm:text-3xl">{s.value}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mb-10 grid gap-5 sm:grid-cols-3">
+          {alumni.map((a, i) => (
+            <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="flex flex-col rounded-3xl border border-border bg-card p-5 shadow-sm">
+              <Quote size={26} className="mb-3 text-primary/20" />
+              <p className="mb-4 flex-1 text-sm italic leading-relaxed text-muted-foreground">&ldquo;{a.quote}&rdquo;</p>
+              <div className="border-t border-border pt-4 text-sm">
+                <p className="font-bold text-foreground">{a.name}</p>
+                <p className="text-xs text-muted-foreground">{a.before}</p>
+                <p className="mt-1 text-xs font-semibold text-primary">{a.role} @ {a.company}</p>
+                <span className="mt-1.5 inline-block rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-bold text-primary">{a.package}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <p className="mb-3 text-xs font-bold uppercase tracking-widest text-muted-foreground">Roles graduates are hired for</p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {roles.map((r) => (
+              <span key={r} className="rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium text-muted-foreground">{r}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

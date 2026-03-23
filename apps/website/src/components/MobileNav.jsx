@@ -38,6 +38,12 @@ export default function MobileNav({ onClose, theme, toggleTheme }) {
                                     <MobileLink href="/programs/bba" onClick={onClose}>
                                         BBA Programs
                                     </MobileLink>
+                                    <MobileLink href="/programs/fullstack" onClick={onClose}>
+                                        Full-Stack Development
+                                    </MobileLink>
+                                    <MobileLink href="/programs/digitalmarketing" onClick={onClose}>
+                                        Digital Marketing
+                                    </MobileLink>
                                 </div>
                             </AccordionContent>
                         </AccordionItem>

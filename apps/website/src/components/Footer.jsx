@@ -30,7 +30,6 @@ export default function Footer() {
             links: [
                 { label: "BCA Programs", href: "/programs/bca" },
                 { label: "BBA Programs", href: "/programs/bba" },
-                { label: "MCA Programs", href: "/programs/mca" },
             ],
         },
         {
