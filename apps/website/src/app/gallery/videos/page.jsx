@@ -1,23 +1,21 @@
 import ComingSoon from "@/components/ComingSoon";
-import {withPageSEO} from "@/lib/seo";
+import { buildSEO } from "@/lib/seo/buildSEO";
 
-export const metadata = withPageSEO({
-    title: 'SkillYards Video Gallery – Sessions, Events & Student Stories',
+export const metadata = buildSEO({
+    title: "SkillYards Video Gallery",
     description:
-        'Watch videos from SkillYards including training sessions, workshops, events, student success stories, and real learning experiences.',
-    canonical: 'https://www.skillyards.in/gallery/videos',
+        "Watch videos from SkillYards including training sessions, workshops, events, student success stories, and real learning experiences.",
+    path: "/gallery/videos",
     keywords: [
-        'SkillYards video gallery',
-        'SkillYards videos',
-        'IT training videos',
-        'SkillYards workshops videos',
-        'Student learning videos',
-        'SkillYards events videos',
+        "SkillYards video gallery",
+        "SkillYards videos",
+        "IT training videos",
+        "SkillYards workshops videos",
+        "Student learning videos",
+        "SkillYards events videos",
     ],
-    ogImage: '/images/opengraph/gallery-og.jpg',
-    twitterImage: '/images/opengraph/gallery-twitter.jpg',
+    ogImage: "/images/opengraph/gallery-og.jpg",
 });
-
 
 export default function GalleryVideosPage() {
     return (

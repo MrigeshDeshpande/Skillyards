@@ -9,8 +9,10 @@ import AdmissionProcess from "@/components/programspage/AdmissionProcess";
 import BatchFeeInfo from "@/components/programspage/BatchFeeInfo";
 import ProgramsFAQ from "@/components/programspage/ProgramsFAQ";
 import FinalCTA from "@/components/programspage/FinalCTA";
+import { buildSEO } from "@/lib/seo/buildSEO";
 
-export const metadata = withPageSEO({
+
+export const metadata = buildSEO({
   title: "SkillYards Programs – BCA, BBA, Full-Stack & Digital Marketing in Agra",
   description:
     "Explore SkillYards programs: BCA with on-job training, BBA with digital marketing, Full-Stack Web Development, and Digital Marketing courses in Agra. 95% placement rate.",
@@ -44,3 +46,4 @@ export default function ProgramsPage() {
     </main>
   );
 }
+

@@ -1,23 +1,21 @@
 import ComingSoon from "@/components/ComingSoon";
-import {withPageSEO} from "@/lib/seo";
+import { buildSEO } from "@/lib/seo/buildSEO";
 
-export const metadata = withPageSEO({
-    title: 'Meet the SkillYards Team – Mentors, Trainers & Innovators',
+export const metadata = buildSEO({
+    title: "SkillYards Team",
     description:
-        'Meet the SkillYards team of mentors, trainers, and professionals dedicated to delivering industry-relevant learning and real-world skill development.',
-    canonical: 'https://www.skillyards.in/team',
+        "Meet the SkillYards team of mentors, trainers, and professionals dedicated to delivering industry-relevant learning and real-world skill development.",
+    path: "/team",
     keywords: [
-        'SkillYards team',
-        'SkillYards mentors',
-        'SkillYards trainers',
-        'IT training experts',
-        'Skill-based learning team',
-        'SkillYards leadership',
+        "SkillYards team",
+        "SkillYards mentors",
+        "SkillYards trainers",
+        "IT training experts",
+        "Skill-based learning team",
+        "SkillYards leadership",
     ],
-    ogImage: '',
-    twitterImage: '',
+    // No ogImage → fallback to defaultOGImage
 });
-
 
 export default function TeamPage() {
     return (

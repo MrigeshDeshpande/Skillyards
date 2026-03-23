@@ -1,23 +1,21 @@
 import ComingSoon from "@/components/ComingSoon";
-import {withPageSEO} from "@/lib/seo";
+import { buildSEO } from "@/lib/seo/buildSEO";
 
-export const metadata = withPageSEO({
-    title: 'SkillYards Support – Help, Guidance & Student Assistance',
+export const metadata = buildSEO({
+    title: "SkillYards Support",
     description:
-        'Get help and support from SkillYards for programs, enrollment, training, and technical queries. We’re here to guide you at every step.',
-    canonical: 'https://www.skillyards.in/support',
+        "Get help and support from SkillYards for programs, enrollment, training, and technical queries. We’re here to guide you at every step.",
+    path: "/support",
     keywords: [
-        'SkillYards support',
-        'SkillYards help center',
-        'Student support SkillYards',
-        'IT training support',
-        'Course enrollment assistance',
-        'SkillYards contact support',
+        "SkillYards support",
+        "SkillYards help center",
+        "Student support SkillYards",
+        "IT training support",
+        "Course enrollment assistance",
+        "SkillYards contact support",
     ],
-    ogImage: '/images/opengraph/support-og.jpg',
-    twitterImage: '/images/opengraph/support-twitter.jpg',
+    ogImage: "/images/opengraph/support-og.jpg",
 });
-
 
 export default function SupportPage() {
     return (
