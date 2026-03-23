@@ -1,21 +1,20 @@
-import {withPageSEO} from "@/lib/seo";
+import { buildSEO } from "@/lib/seo/buildSEO";
 import PageHero from "@/components/PageHero";
 
-export const metadata = withPageSEO({
-    title: 'Terms of Service',
+export const metadata = buildSEO({
+    title: "Terms of Service",
     description:
-        'Read SkillYards’ Terms of Service to understand the rules, responsibilities, and conditions for using our website, courses, and training programs.',
-    canonical: 'https://www.skillyards.in/terms-of-service',
+        "Read SkillYards’ Terms of Service to understand the rules, responsibilities, and conditions for using our website, courses, and training programs.",
+    path: "/terms-of-service",
     keywords: [
-        'SkillYards Terms of Service',
-        'SkillYards Terms and Conditions',
-        'User agreement SkillYards',
-        'Online learning terms',
-        'EdTech terms India',
-        'Course usage policy',
+        "SkillYards Terms of Service",
+        "SkillYards Terms and Conditions",
+        "User agreement SkillYards",
+        "Online learning terms",
+        "EdTech terms India",
+        "Course usage policy",
     ],
-    ogImage: '/images/opengraph/terms-of-service-og.jpg',
-    twitterImage: '/images/opengraph/terms-of-service-twitter.jpg',
+    ogImage: "/images/opengraph/terms-of-service-og.jpg",
 });
 
 export default function TermsOfServicePage() {
@@ -25,10 +24,9 @@ export default function TermsOfServicePage() {
                 title="Terms of Service"
                 description="These Terms of Service outline the rules, responsibilities, and conditions that govern your use of our website, products, and services. By accessing or using our platform, you agree to comply with these terms."
             />
-            <div className="min-h-screen w-full bg-linear-to-b from-white via-zinc-50 to-zinc-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-black text-neutral-900 dark:text-neutral-100 transition-colors duration-500">
 
+            <div className="min-h-screen w-full bg-linear-to-b from-white via-zinc-50 to-zinc-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-black text-neutral-900 dark:text-neutral-100 transition-colors duration-500">
                 <section className="max-w-5xl mx-auto px-6 py-20">
-                    {/* Header */}
                     <div className="mb-14">
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
                             Terms of Service
@@ -43,11 +41,11 @@ export default function TermsOfServicePage() {
                         </p>
                     </div>
 
-                    {/* Content */}
                     <div className="space-y-12 leading-relaxed text-[17px]">
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">1. Acceptance of Terms</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                1. Acceptance of Terms
+                            </h2>
                             <p>
                                 By accessing or using SkillYards, you confirm that you have read,
                                 understood, and agreed to these Terms of Service, along with our
@@ -59,9 +57,10 @@ export default function TermsOfServicePage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">2. Eligibility</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                2. Eligibility
+                            </h2>
                             <p>
                                 You must be at least 18 years old to create an account or enroll
                                 in paid programs on SkillYards. If you are under 18, you may use
@@ -70,9 +69,10 @@ export default function TermsOfServicePage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">3. Account Registration</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                3. Account Registration
+                            </h2>
                             <p>
                                 When creating an account, you agree to provide accurate, current,
                                 and complete information. You are responsible for maintaining the
@@ -85,9 +85,10 @@ export default function TermsOfServicePage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">4. Course Access & Usage</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                4. Course Access & Usage
+                            </h2>
                             <p>
                                 Upon successful payment, SkillYards grants you a limited,
                                 non-transferable, and non-exclusive license to access the enrolled
@@ -100,9 +101,10 @@ export default function TermsOfServicePage() {
                             </ul>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">5. Payments & Fees</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                5. Payments & Fees
+                            </h2>
                             <p>
                                 All fees displayed on SkillYards are in Indian Rupees (INR), unless
                                 otherwise stated. Payments must be made in full at the time of enrollment.
@@ -113,9 +115,10 @@ export default function TermsOfServicePage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">6. Intellectual Property</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                6. Intellectual Property
+                            </h2>
                             <p>
                                 All content on SkillYards — including videos, text, graphics,
                                 logos, designs, course materials, and software — is the intellectual
@@ -127,9 +130,10 @@ export default function TermsOfServicePage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">7. User Conduct</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                7. User Conduct
+                            </h2>
                             <p>
                                 You agree not to use SkillYards for any unlawful, harmful, or
                                 disruptive activities, including but not limited to:
@@ -142,9 +146,10 @@ export default function TermsOfServicePage() {
                             </ul>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">8. Suspension & Termination</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                8. Suspension & Termination
+                            </h2>
                             <p>
                                 SkillYards reserves the right to suspend or terminate your access
                                 to the platform at its sole discretion, without prior notice,
@@ -153,9 +158,10 @@ export default function TermsOfServicePage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">9. Disclaimer of Warranties</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                9. Disclaimer of Warranties
+                            </h2>
                             <p>
                                 SkillYards provides its services on an “as is” and “as available”
                                 basis. We do not guarantee uninterrupted access, error-free content,
@@ -163,9 +169,10 @@ export default function TermsOfServicePage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">10. Limitation of Liability</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                10. Limitation of Liability
+                            </h2>
                             <p>
                                 To the maximum extent permitted by law, SkillYards shall not be
                                 liable for any indirect, incidental, or consequential damages
@@ -173,9 +180,10 @@ export default function TermsOfServicePage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">11. Governing Law</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                11. Governing Law
+                            </h2>
                             <p>
                                 These Terms of Service shall be governed by and construed in
                                 accordance with the laws of India. Any disputes shall be subject
@@ -183,9 +191,10 @@ export default function TermsOfServicePage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">12. Changes to These Terms</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                12. Changes to These Terms
+                            </h2>
                             <p>
                                 SkillYards may update these Terms of Service from time to time.
                                 Continued use of the platform after changes are posted constitutes
@@ -193,9 +202,10 @@ export default function TermsOfServicePage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">13. Contact Information</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                13. Contact Information
+                            </h2>
                             <p>
                                 If you have any questions regarding these Terms of Service, please
                                 contact us:

@@ -4,9 +4,9 @@ export default function robots() {
             {
                 userAgent: "*",
                 allow: "/",
-                disallow: "/admin"
             },
         ],
+
         sitemap: "https://www.skillyards.in/sitemap.xml",
     };
 }

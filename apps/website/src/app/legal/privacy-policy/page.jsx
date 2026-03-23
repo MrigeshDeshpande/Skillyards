@@ -1,30 +1,32 @@
-import {withPageSEO} from "@/lib/seo";
+import { buildSEO } from "@/lib/seo/buildSEO";
 import PageHero from "@/components/PageHero";
 
-export const metadata = withPageSEO({
-    title: 'Privacy Policy',
+export const metadata = buildSEO({
+    title: "Privacy Policy",
     description:
-        'Read SkillYards’ Privacy Policy to understand how we collect, use, protect, and manage your personal information when you use our website and services.',
-    canonical: 'https://www.skillyards.in/privacy-policy',
+        "Read SkillYards’ Privacy Policy to understand how we collect, use, protect, and manage your personal information when you use our website and services.",
+    path: "/privacy-policy",
     keywords: [
-        'SkillYards Privacy Policy',
-        'Privacy Policy SkillYards',
-        'Data protection policy',
-        'User data privacy India',
-        'EdTech privacy policy',
-        'GDPR compliance India',
+        "SkillYards Privacy Policy",
+        "Privacy Policy SkillYards",
+        "Data protection policy",
+        "User data privacy India",
+        "EdTech privacy policy",
+        "GDPR compliance India",
     ],
-    ogImage: '/images/opengraph/privacy-policy-og.jpg',
-    twitterImage: '/images/opengraph/privacy-policy-twitter.jpg',
+    ogImage: "/images/opengraph/privacy-policy-og.jpg",
 });
+
 export default function PrivacyPolicyPage() {
     return (
         <>
-            <PageHero title="Privacy Policy" description="This Privacy Policy explains how SkillYards collects, uses, protects, and shares your personal information when you use our website, services, and digital platforms. We are committed to safeguarding your privacy and ensuring transparency in how your data is handled."/>
-            <div className="min-h-screen w-full bg-linear-to-b from-white via-zinc-50 to-zinc-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-black text-neutral-900 dark:text-neutral-100 transition-colors duration-500">
+            <PageHero
+                title="Privacy Policy"
+                description="This Privacy Policy explains how SkillYards collects, uses, protects, and shares your personal information when you use our website, services, and digital platforms. We are committed to safeguarding your privacy and ensuring transparency in how your data is handled."
+            />
 
+            <div className="min-h-screen w-full bg-linear-to-b from-white via-zinc-50 to-zinc-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-black text-neutral-900 dark:text-neutral-100 transition-colors duration-500">
                 <section className="max-w-5xl mx-auto px-6 py-20">
-                    {/* Header */}
                     <div className="mb-14">
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
                             Privacy Policy
@@ -39,11 +41,11 @@ export default function PrivacyPolicyPage() {
                         </p>
                     </div>
 
-                    {/* Content */}
                     <div className="space-y-12 leading-relaxed text-[17px]">
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">1. Information We Collect</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                1. Information We Collect
+                            </h2>
                             <p>
                                 We collect information to provide better services and learning experiences.
                                 This includes:
@@ -67,9 +69,10 @@ export default function PrivacyPolicyPage() {
                             </ul>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">2. How We Use Your Information</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                2. How We Use Your Information
+                            </h2>
                             <p>
                                 The information we collect is used for legitimate educational and operational
                                 purposes, including:
@@ -83,9 +86,10 @@ export default function PrivacyPolicyPage() {
                             </ul>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">3. Cookies & Tracking Technologies</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                3. Cookies & Tracking Technologies
+                            </h2>
                             <p>
                                 SkillYards uses cookies and similar technologies to enhance your browsing
                                 experience. Cookies help us understand how users interact with our platform,
@@ -97,9 +101,10 @@ export default function PrivacyPolicyPage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">4. Data Sharing & Disclosure</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                4. Data Sharing & Disclosure
+                            </h2>
                             <p>
                                 We respect your privacy and do not sell your personal data. Your information
                                 may be shared only in the following cases:
@@ -111,9 +116,10 @@ export default function PrivacyPolicyPage() {
                             </ul>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">5. Data Security</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                5. Data Security
+                            </h2>
                             <p>
                                 We implement appropriate technical and organizational security measures to
                                 safeguard your personal information. While no system is completely secure,
@@ -122,9 +128,10 @@ export default function PrivacyPolicyPage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">6. Your Rights & Choices</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                6. Your Rights & Choices
+                            </h2>
                             <p>
                                 You have the right to access, update, or request deletion of your personal
                                 information. You may also opt out of non-essential communications at any time.
@@ -134,9 +141,10 @@ export default function PrivacyPolicyPage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">7. Third-Party Links</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                7. Third-Party Links
+                            </h2>
                             <p>
                                 Our platform may contain links to third-party websites or services. SkillYards
                                 is not responsible for the privacy practices or content of these external
@@ -144,9 +152,10 @@ export default function PrivacyPolicyPage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">8. Updates to This Policy</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                8. Updates to This Policy
+                            </h2>
                             <p>
                                 We may update this Privacy Policy from time to time to reflect changes in
                                 our practices or legal requirements. Any updates will be posted on this page
@@ -154,17 +163,34 @@ export default function PrivacyPolicyPage() {
                             </p>
                         </section>
 
-                        {/* Section */}
                         <section>
-                            <h2 className="text-2xl font-semibold mb-3">9. Contact Us</h2>
+                            <h2 className="text-2xl font-semibold mb-3">
+                                9. Contact Us
+                            </h2>
                             <p>
                                 If you have any questions or concerns about this Privacy Policy or how your
                                 data is handled, please reach out to us:
                             </p>
                             <div className="mt-4 space-y-1">
                                 <p><strong>SkillYards</strong></p>
-                                <p>Email: <a href="mailto:support@skillyards.in" className="underline hover:text-primary">support@skillyards.in</a></p>
-                                <p>Website: <a href="https://www.skillyards.in" className="underline hover:text-primary">www.skillyards.in</a></p>
+                                <p>
+                                    Email:{" "}
+                                    <a
+                                        href="mailto:support@skillyards.in"
+                                        className="underline hover:text-primary"
+                                    >
+                                        support@skillyards.in
+                                    </a>
+                                </p>
+                                <p>
+                                    Website:{" "}
+                                    <a
+                                        href="https://www.skillyards.in"
+                                        className="underline hover:text-primary"
+                                    >
+                                        www.skillyards.in
+                                    </a>
+                                </p>
                             </div>
                         </section>
                     </div>

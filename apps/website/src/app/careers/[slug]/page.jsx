@@ -58,7 +58,6 @@ export async function generateMetadata({ params }) {
             canonical: 'https://www.skillyards.in/careers',
             keywords: ['SkillYards careers', 'jobs at SkillYards'],
             ogImage: '/images/opengraph/careers-og.jpg',
-            twitterImage: '/images/opengraph/careers-twitter.jpg',
         });
     }
 
@@ -85,7 +84,6 @@ export async function generateMetadata({ params }) {
 
         // ✅ Separate OG images if you want
         ogImage: '/images/opengraph/skillyards-careers-og.webp',
-        twitterImage: '/images/opengraph/skillyards-careers-twitter-og.webp',
     });
 }
 
