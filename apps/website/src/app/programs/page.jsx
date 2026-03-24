@@ -1,4 +1,3 @@
-import { withPageSEO } from "@/lib/seo";
 import ProgramsHero from "@/components/programspage/ProgramsHero";
 import TrustBar from "@/components/programspage/TrustBar";
 import ProgramCards from "@/components/programspage/ProgramCards";
@@ -16,7 +15,7 @@ export const metadata = buildSEO({
   title: "SkillYards Programs – BCA, BBA, Full-Stack & Digital Marketing in Agra",
   description:
     "Explore SkillYards programs: BCA with on-job training, BBA with digital marketing, Full-Stack Web Development, and Digital Marketing courses in Agra. 95% placement rate.",
-  canonical: "https://www.skillyards.in/programs",
+  path: "/programs",
   keywords: [
     "BCA with on-job training Agra",
     "BCA admission 2026 Agra",
@@ -27,7 +26,6 @@ export const metadata = buildSEO({
     "SkillYards programs",
   ],
   ogImage: "/images/opengraph/programs-og.jpg",
-  twitterImage: "/images/opengraph/programs-twitter.jpg",
 });
 
 export default function ProgramsPage() {

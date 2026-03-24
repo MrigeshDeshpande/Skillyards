@@ -28,3 +28,10 @@ export const LEADERS = [
     { username: "suryanshupadhyay", name: "Suryansh Upadhyay" },
     { username: "rahulsingh", name: "Rahul Singh" },
 ];
+
+export const PROGRAMS = [
+    { slug: "bca", priority: 0.95 },
+    { slug: "bba", priority: 0.95 },
+    { slug: "fullstack", priority: 0.95 },
+    { slug: "digitalmarketing", priority: 0.95 },
+];

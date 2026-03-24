@@ -1,4 +1,10 @@
-import { BASE_URL, STATIC_SITEMAP_ROUTES, LEADERS } from "@/lib/sitemap-routes";
+import {
+  BASE_URL,
+  STATIC_SITEMAP_ROUTES,
+  LEADERS,
+  PROGRAMS,
+} from "@/lib/sitemap-routes";
+
 import { sanityClient } from "@/lib/sanity/client";
 
 export async function GET() {
@@ -18,7 +24,13 @@ export async function GET() {
     priority: 0.9,
   }));
 
-  // 🔹 Blog dynamic routes (CRITICAL)
+  const programUrls = PROGRAMS.map((program) => ({
+    loc: `${BASE_URL}/programs/${program.slug}`,
+    lastmod: now,
+    priority: program.priority,
+  }));
+
+  // 🔹 Blog dynamic routes
   const posts = await sanityClient.fetch(`
     *[_type == "post" && defined(slug.current)]{
       "slug": slug.current,
@@ -32,20 +44,27 @@ export async function GET() {
     priority: 0.7,
   }));
 
-  const urls = [...staticUrls, ...teamUrls, ...blogUrls];
+  // 🔹 Final URLs
+  const urls = [
+    ...staticUrls,
+    ...teamUrls,
+    ...programUrls, 
+    ...blogUrls,
+  ];
 
+  // 🔹 XML generation
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls
-  .map(
-    (url) => `
+      .map(
+        (url) => `
   <url>
     <loc>${url.loc}</loc>
     <lastmod>${url.lastmod}</lastmod>
     <priority>${url.priority}</priority>
   </url>`
-  )
-  .join("")}
+      )
+      .join("")}
 </urlset>`;
 
   return new Response(xml, {
