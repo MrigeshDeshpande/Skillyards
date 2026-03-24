@@ -1,11 +1,11 @@
-import { withPageSEO } from "@/lib/seo";
+import { buildSEO } from "@/lib/seo/buildSEO";
 import { FSDLandingPage } from "@/components/landingPageFSD/LandingPage";
 
-export const metadata = withPageSEO({
+export const metadata = buildSEO({
   title: "Full-Stack Web Development Course in Agra | SkillYards OJT",
   description:
     "Go from zero to hired Full-Stack Developer in 6 months. MERN stack bootcamp in Agra with on-job training, real projects, and 95% placement support. Starting ₹25,000.",
-  canonical: "https://www.skillyards.in/programs/fullstack",
+  path: "/programs/fullstack",
   keywords: [
     "full stack development course Agra",
     "full stack web development training in Agra",
@@ -16,7 +16,6 @@ export const metadata = withPageSEO({
     "on job training web development Agra",
   ],
   ogImage: "/images/opengraph/fullstack-og.jpg",
-  twitterImage: "/images/opengraph/fullstack-twitter.jpg",
 });
 
 export default function FullStackPage() {

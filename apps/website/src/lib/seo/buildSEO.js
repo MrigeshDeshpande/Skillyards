@@ -1,6 +1,18 @@
 import { SEO_CONFIG } from "./seo.config";
 import { validateSEO } from "./validateSEO";
 
+function normalizePath(path) {
+  if (!path) return "/";
+
+  let normalized = path.startsWith("/") ? path : `/${path}`;
+
+  if (normalized.length > 1 && normalized.endsWith("/")) {
+    normalized = normalized.slice(0, -1);
+  }
+
+  return normalized;
+}
+
 export function buildSEO({
   title,
   description,
@@ -10,9 +22,10 @@ export function buildSEO({
 }) {
   validateSEO({ title, description, path });
 
-  const canonical = `${SEO_CONFIG.baseUrl}${path}`;
+  const safePath = normalizePath(path);
 
-  // Single source of truth
+  const absoluteUrl = `${SEO_CONFIG.baseUrl}${safePath}`;
+
   const finalImage = ogImage || SEO_CONFIG.defaultOGImage;
 
   return {
@@ -23,20 +36,20 @@ export function buildSEO({
       template: SEO_CONFIG.titleTemplate,
     },
 
-    description: description || SEO_CONFIG.defaultDescription,
+    description,
 
     keywords,
 
     alternates: {
-      canonical,
+      canonical: absoluteUrl, 
     },
 
     openGraph: {
-      type: "website", 
+      type: "website",
       title,
       description,
-      url: canonical,
-      siteName: SEO_CONFIG.siteName, 
+      url: absoluteUrl, 
+      siteName: SEO_CONFIG.siteName,
       images: [
         {
           url: finalImage,
@@ -51,7 +64,7 @@ export function buildSEO({
       card: "summary_large_image",
       title,
       description,
-      images: [finalImage], 
+      images: [finalImage],
     },
 
     robots: {
