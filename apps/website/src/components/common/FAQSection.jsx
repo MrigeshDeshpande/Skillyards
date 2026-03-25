@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, HelpCircle } from "lucide-react";
-import faqs from "@/data/faqs.json";
+import { faqCategories } from "@/data/faqs";
+
+const faqs = faqCategories.homepage.faqs;
 
 export default function FAQSection() {
     const [openIndex, setOpenIndex] = useState(0);
@@ -56,7 +58,7 @@ export default function FAQSection() {
                                     className="w-full flex justify-between items-center p-6 text-left"
                                 >
                                     <span className={`text-lg font-bold transition-colors ${isOpen ? "text-primary" : "text-foreground"}`}>
-                                        {faq.question}
+                                        {faq.q}
                                     </span>
                                     <div className={`shrink-0 ml-4 p-2 rounded-full transition-transform duration-300 ${isOpen ? "bg-primary text-primary-foreground rotate-0" : "bg-muted text-muted-foreground rotate-90"}`}>
                                         {isOpen ? <Minus size={18} /> : <Plus size={18} />}
@@ -72,7 +74,7 @@ export default function FAQSection() {
                                             transition={{ duration: 0.3, ease: "easeInOut" }}
                                         >
                                             <div className="px-6 pb-6 pt-0 text-muted-foreground text-base leading-relaxed max-w-[90%]">
-                                                {faq.answer}
+                                                {faq.a}
                                             </div>
                                         </motion.div>
                                     )}
@@ -84,7 +86,7 @@ export default function FAQSection() {
 
                 <div className="mt-12 text-center">
                     <p className="text-sm text-muted-foreground">
-                        Still have questions? <a href="/contact" className="text-primary font-bold underline underline-offset-4 hover:opacity-80">Check all FAQs</a>
+                        Still have questions? <a href="/faqs" className="text-primary font-bold underline underline-offset-4 hover:opacity-80">View all FAQs</a>
                     </p>
                 </div>
             </div>
