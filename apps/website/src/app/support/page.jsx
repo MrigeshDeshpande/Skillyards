@@ -1,17 +1,20 @@
-import ComingSoon from "@/components/ComingSoon";
 import { buildSEO } from "@/lib/seo/buildSEO";
+import SupportHero from "@/components/supportpage/SupportHero";
+import SupportCategories from "@/components/supportpage/SupportCategories";
+import SupportFAQ from "@/components/supportpage/SupportFAQ";
+import SupportChannels from "@/components/supportpage/SupportChannels";
 
 export const metadata = buildSEO({
-    title: "SkillYards Support",
+    title: "Support Center | SkillYards Agra",
     description:
-        "Get help and support from SkillYards for programs, enrollment, training, and technical queries. We’re here to guide you at every step.",
+        "Get help with admissions, fees, placement, technical issues, and more. SkillYards support is available via WhatsApp, phone, and email.",
     path: "/support",
     keywords: [
         "SkillYards support",
         "SkillYards help center",
-        "Student support SkillYards",
-        "IT training support",
-        "Course enrollment assistance",
+        "student support SkillYards",
+        "IT training support Agra",
+        "course enrollment assistance",
         "SkillYards contact support",
     ],
     ogImage: "/images/opengraph/support-og.jpg",
@@ -19,9 +22,11 @@ export const metadata = buildSEO({
 
 export default function SupportPage() {
     return (
-        <ComingSoon
-            title="Support Center — Coming Soon"
-            description="We’re setting up a dedicated support center to help you with questions, issues, and guidance related to SkillYards. Stay tuned!"
-        />
+        <div className="w-full overflow-x-hidden">
+            <SupportHero />
+            <SupportCategories />
+            <SupportFAQ />
+            <SupportChannels />
+        </div>
     );
 }

@@ -1,17 +1,20 @@
-import ComingSoon from "@/components/ComingSoon";
 import { buildSEO } from "@/lib/seo/buildSEO";
+import TestimonialsHero from "@/components/testimonialspage/TestimonialsHero";
+import TestimonialsGrid from "@/components/testimonialspage/TestimonialsGrid";
+import VideoTestimonials from "@/components/testimonialspage/VideoTestimonials";
+import TestimonialsCTA from "@/components/testimonialspage/TestimonialsCTA";
 
 export const metadata = buildSEO({
-    title: "SkillYards Testimonials",
+    title: "Student Testimonials & Reviews | SkillYards Agra",
     description:
-        "Read authentic testimonials and reviews from SkillYards students sharing their learning experiences, skill growth, and career outcomes.",
+        "Read authentic reviews from SkillYards students. Real stories on skill growth, on-job training, and career outcomes from our Full-Stack, Digital Marketing, BCA and BBA graduates.",
     path: "/testimonials",
     keywords: [
         "SkillYards testimonials",
-        "SkillYards reviews",
-        "Student reviews SkillYards",
-        "IT training testimonials",
-        "Skill-based learning reviews",
+        "SkillYards student reviews",
+        "IT training reviews Agra",
+        "SkillYards placement stories",
+        "coding bootcamp reviews Agra",
         "SkillYards student feedback",
     ],
     ogImage: "/images/opengraph/testimonials-og.jpg",
@@ -19,9 +22,11 @@ export const metadata = buildSEO({
 
 export default function TestimonialsPage() {
     return (
-        <ComingSoon
-            title="Student Testimonials — Coming Soon"
-            description="We’re collecting authentic stories and experiences from SkillYards learners to showcase their journeys and success. Check back soon!"
-        />
+        <div className="w-full overflow-x-hidden">
+            <TestimonialsHero />
+            <TestimonialsGrid />
+            <VideoTestimonials />
+            <TestimonialsCTA />
+        </div>
     );
 }
