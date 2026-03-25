@@ -1,6 +1,6 @@
 "use client";
 
-import { Code2, GraduationCap, BarChart2, Megaphone } from "lucide-react";
+import { Code2, GraduationCap, BarChart2, Megaphone, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
@@ -24,14 +24,14 @@ const ProgramsShowcase = () => {
         {
             title: "Full-Stack Development",
             description: "Build complete web apps with React, Node.js, MongoDB & more. Graduate with a live portfolio and job referrals.",
-            link: "/programs",
+            link: "/programs/fullstack",
             icon: <Code2 className="w-6 h-6 md:w-8 md:h-8 text-teal-400" />,
             bg: "url('/images/programmes/full-stack.jpg')",
         },
         {
             title: "Digital Marketing",
             description: "Master SEO, Google Ads, Meta Ads & analytics. Get Google & Meta certified in just 3 months.",
-            link: "/programs",
+            link: "/programs/digitalmarketing",
             icon: <Megaphone className="w-6 h-6 md:w-8 md:h-8 text-yellow-400" />,
             bg: "url('/images/programmes/uiux.jpg')",
         },
@@ -54,15 +54,15 @@ const ProgramsShowcase = () => {
     return (
         <section className="relative bg-background">
             <div className="mx-auto py-16 px-8 max-w-7xl">
-                <div className="flex flex-col lg:flex-row gap-10 justify-around items-center">
+                <div className="flex flex-col lg:flex-row gap-20 justify-around items-center">
                     {/* Header */}
-                    <div className="w-full lg:w-[20%] xl:w-[10%] text-center lg:text-left mb-8 md:mb-0">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary-background">
-                            Watch.
+                    <div className="w-full lg:w-[20%] xl:w-[10%] text-center lg:text-left mb-8 md:mb-0 mr-2">
+                        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-primary-background">
+                            LEARN.
                             <br className="hidden lg:block" />
-                            Learn.
+                            GROW.
                             <br className="hidden lg:block" />
-                            Grow.
+                            ACHIEVE.
                         </h2>
                         <p className="text-lg md:text-xl text-primary">
                             Find your passion
@@ -161,11 +161,12 @@ const ProgramsShowcase = () => {
                                         <div className="flex justify-between items-center mt-4">
                                             <Link
                                                 href={program.link}
-                                                aria-label={`Learn more about ${program.title}`}
-                                                title={`Learn more about ${program.title}`}
-                                                className="px-3 py-1.5 md:px-4 md:py-2 rounded-lg bg-background text-foreground font-semibold hover:bg-muted text-sm md:text-base border border-border"
+                                                aria-label={`Explore ${program.title}`}
+                                                title={`Explore ${program.title}`}
+                                                className="inline-flex items-center gap-2 bg-white text-[#030e5a] font-bold text-sm px-5 py-2.5 rounded-full hover:bg-white/90 hover:gap-3 transition-all duration-200 group"
                                             >
-                                                Learn More
+                                                Explore {program.title}
+                                                <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />
                                             </Link>
                                         </div>
                                     </div>

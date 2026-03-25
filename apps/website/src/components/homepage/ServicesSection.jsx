@@ -110,11 +110,10 @@ function BentoCard({ service }) {
     const Icon = service.icon;
 
     return (
-        <Link href="/services" className={service.grid}>
+        <div className={service.grid}>
         <m.div
             variants={cardVariants}
-            whileHover={{ y: -4, transition: { duration: 0.25 } }}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 dark:border-white/5 shadow-md cursor-pointer w-full h-full"
+            className="group relative overflow-hidden rounded-2xl border border-white/10 dark:border-white/5 shadow-md w-full h-full"
         >
             {/* Gradient hover overlay */}
             <div className={`absolute inset-0 bg-linear-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10`} />
@@ -158,7 +157,7 @@ function BentoCard({ service }) {
                 </div>
             </div>
         </m.div>
-        </Link>
+        </div>
     );
 }
 
