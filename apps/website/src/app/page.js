@@ -14,10 +14,10 @@ import FeaturedRoles from "@/components/homepage/FeaturedRoles";
 import { buildSEO } from "@/lib/seo/buildSEO";
 import Script from "next/script";
 import { getFAQSchema } from "@/lib/seo/schema/faqSchema";
-import { getDisplayFaqs } from "@/data/getDisplayFaqs";
+import { faqCategories } from "@/data/faqs";
+const homepageFaqs = faqCategories.homepage.faqs.slice(0, 4);
+const faqSchema = getFAQSchema(homepageFaqs);
 
-const displayFaqs = getDisplayFaqs(); 
-const faqSchema = getFAQSchema(displayFaqs);
 export const metadata = buildSEO({
   title: "Learn, Train & Get Certified Online",
   description:
@@ -64,7 +64,7 @@ export default function Home() {
         <LeadersSection />
         <PartnersSlider />
         <CTASection />
-        <FAQSection />
+        <FAQSection category="homepage" limit={4} />
         {/* <SubscribeSection /> */}
       </div>
     </>
