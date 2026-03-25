@@ -3,23 +3,11 @@
 import Image from "next/image";
 import { Linkedin, Twitter, Globe } from "lucide-react";
 
-/**
- * TeamMemberCard
- *
- * Props:
- * @param {string}  name       — Full name
- * @param {string}  role       — Job title / role
- * @param {string}  bio        — Short 1-2 sentence bio
- * @param {string}  image      — Photo URL (absolute or /public path)
- * @param {string}  [badge]    — Optional label badge e.g. "Founder", "Lead Instructor"
- * @param {object}  [socials]  — { linkedin, twitter, website } — all optional
- */
 export default function TeamMemberCard({ name, role, bio, image, badge, socials = {} }) {
     return (
-        <div className="group relative flex flex-col bg-white dark:bg-white/5 border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-
+        <div className="group relative flex flex-col bg-card border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
             {/* Photo */}
-            <div className="relative w-full aspect-[4/4] overflow-hidden bg-muted">
+            <div className="relative w-full aspect-square overflow-hidden bg-muted">
                 <Image
                     src={image}
                     alt={name}
@@ -30,23 +18,23 @@ export default function TeamMemberCard({ name, role, bio, image, badge, socials 
 
                 {/* Badge */}
                 {badge && (
-                    <span className="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-3 py-1 rounded-full tracking-wide">
+                    <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wide">
                         {badge}
                     </span>
                 )}
 
-                {/* Social overlay */}
+                {/* Social hover overlay */}
                 {(socials.linkedin || socials.twitter || socials.website) && (
-                    <div className="absolute inset-0 bg-primary/70 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-foreground/70 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         {socials.linkedin && (
                             <a
                                 href={socials.linkedin}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={`${name} on LinkedIn`}
-                                className="w-10 h-10 rounded-full bg-white/20 border border-white/40 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-colors duration-200"
+                                className="w-10 h-10 rounded-full bg-background/20 border border-background/30 flex items-center justify-center text-background hover:bg-background hover:text-foreground transition-colors duration-200"
                             >
-                                <Linkedin size={18} />
+                                <Linkedin size={16} />
                             </a>
                         )}
                         {socials.twitter && (
@@ -55,9 +43,9 @@ export default function TeamMemberCard({ name, role, bio, image, badge, socials 
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={`${name} on Twitter`}
-                                className="w-10 h-10 rounded-full bg-white/20 border border-white/40 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-colors duration-200"
+                                className="w-10 h-10 rounded-full bg-background/20 border border-background/30 flex items-center justify-center text-background hover:bg-background hover:text-foreground transition-colors duration-200"
                             >
-                                <Twitter size={18} />
+                                <Twitter size={16} />
                             </a>
                         )}
                         {socials.website && (
@@ -66,9 +54,9 @@ export default function TeamMemberCard({ name, role, bio, image, badge, socials 
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={`${name}'s website`}
-                                className="w-10 h-10 rounded-full bg-white/20 border border-white/40 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-colors duration-200"
+                                className="w-10 h-10 rounded-full bg-background/20 border border-background/30 flex items-center justify-center text-background hover:bg-background hover:text-foreground transition-colors duration-200"
                             >
-                                <Globe size={18} />
+                                <Globe size={16} />
                             </a>
                         )}
                     </div>
@@ -76,15 +64,15 @@ export default function TeamMemberCard({ name, role, bio, image, badge, socials 
             </div>
 
             {/* Info */}
-            <div className="p-5 flex flex-col gap-1.5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+            <div className="p-5 flex flex-col gap-1.5 border-t border-border">
+                <p className="text-xs font-bold uppercase tracking-widest text-primary">
                     {role}
                 </p>
-                <h3 className="text-lg font-bold text-foreground leading-snug">
+                <h3 className="text-base font-bold text-foreground leading-snug">
                     {name}
                 </h3>
                 {bio && (
-                    <p className="text-sm text-muted-foreground leading-relaxed mt-1">
+                    <p className="text-xs text-muted-foreground leading-relaxed mt-0.5">
                         {bio}
                     </p>
                 )}

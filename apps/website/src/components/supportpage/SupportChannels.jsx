@@ -67,7 +67,7 @@ export default function SupportChannels() {
                             href={ch.href}
                             target={ch.external ? "_blank" : undefined}
                             rel={ch.external ? "noopener noreferrer" : undefined}
-                            className="group flex flex-col gap-4 rounded-2xl border border-border bg-card p-5 sm:p-6 hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5 transition-all duration-200"
+                            className="group flex flex-col gap-4 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5 transition-all duration-200"
                         >
                             {/* Icon + badge */}
                             <div className="flex items-center justify-between">

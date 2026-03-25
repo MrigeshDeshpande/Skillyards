@@ -31,51 +31,56 @@ export default function SitemapPage() {
   const sections = groupBySection(STATIC_SITEMAP_ROUTES);
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-16">
-      <Breadcrumbs />
+    <section className="bg-background min-h-screen">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 mt-10">
+        <Breadcrumbs />
 
-      <h1 className="text-3xl font-bold mt-4">HTML Sitemap</h1>
-      <p className="text-gray-600 mt-2">
-        Last updated on {lastUpdated}
-      </p>
+        <div className="mt-10 mb-10">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary mb-2">Site Structure</p>
+          <h1 className="font-serif text-3xl sm:text-4xl font-extrabold text-foreground">HTML Sitemap</h1>
+          <p className="text-sm text-muted-foreground mt-2">
+            Last updated on {lastUpdated}
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
-        {Object.entries(sections).map(([section, routes]) => (
-          <div key={section}>
-            <h2 className="text-lg font-semibold mb-3">
-              {section}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {Object.entries(sections).map(([section, routes]) => (
+            <div key={section} className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-4 pb-2 border-b border-border">
+                {section}
+              </h2>
+              <ul className="space-y-2">
+                {routes.map((route) => (
+                  <li key={route.path}>
+                    <Link
+                      href={route.path}
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors duration-150"
+                    >
+                      {route.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-4 pb-2 border-b border-border">
+              Leadership
             </h2>
             <ul className="space-y-2">
-              {routes.map((route) => (
-                <li key={route.path}>
+              {LEADERS.map((leader) => (
+                <li key={leader.username}>
                   <Link
-                    href={route.path}
-                    className="text-gray-600 hover:text-indigo-600"
+                    href={`/team/${leader.username}`}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-150"
                   >
-                    {route.label}
+                    {leader.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-        ))}
-
-        <div>
-          <h2 className="text-lg font-semibold mb-3">
-            Leadership
-          </h2>
-          <ul className="space-y-2">
-            {LEADERS.map((leader) => (
-              <li key={leader.username}>
-                <Link
-                  href={`/team/${leader.username}`}
-                  className="text-gray-600 hover:text-indigo-600"
-                >
-                  {leader.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
 

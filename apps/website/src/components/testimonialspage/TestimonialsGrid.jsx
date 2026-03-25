@@ -17,7 +17,7 @@ function TestimonialCard({ info }) {
     const [src, setSrc] = useState(info.avatar || fallback);
 
     return (
-        <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-5 hover:shadow-md hover:border-primary/20 hover:-translate-y-0.5 transition-all duration-200 h-full">
+        <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm hover:shadow-md hover:border-primary/20 hover:-translate-y-0.5 transition-all duration-200 h-full">
             {/* Stars */}
             <div className="flex gap-0.5">
                 {Array.from({ length: info.rating ?? 5 }).map((_, i) => (

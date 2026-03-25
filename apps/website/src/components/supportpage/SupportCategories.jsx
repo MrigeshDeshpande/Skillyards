@@ -73,7 +73,7 @@ export default function SupportCategories() {
                             key={cat.id}
                             id={cat.id}
                             href={`#${cat.id}`}
-                            className="group flex items-start gap-4 rounded-2xl border border-border bg-card p-5 sm:p-6 transition-all duration-200 hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5"
+                            className="group flex items-start gap-4 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm transition-all duration-200 hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5"
                         >
                             <div className={`shrink-0 rounded-xl p-3 ${cat.iconClass}`}>
                                 {cat.icon}

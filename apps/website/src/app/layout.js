@@ -34,9 +34,14 @@ const sourceSans = Source_Sans_3({
     display: "swap",
 });
 
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||((!t||t==='system')&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}else{document.documentElement.classList.add('light')}}catch(e){}})();`;
+
 export default function RootLayout({ children }) {
     return (
         <html lang="en" suppressHydrationWarning className={`${inter.variable} ${sourceSans.variable} ${playfair.variable}`}>
+            <head>
+                <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+            </head>
             <body
                 className={`antialiased
                 bg-foreground
