@@ -28,6 +28,9 @@ export default function Footer() {
         {
             title: "Programs",
             links: [
+                { label: "Programs", href: "/programs" },
+                { label: "Full-Stack Development", href: "/programs/fullstack" },
+                { label: "Digital Marketing", href: "/programs/digitalmarketing" },
                 { label: "BCA Programs", href: "/programs/bca" },
                 { label: "BBA Programs", href: "/programs/bba" },
             ],
@@ -47,8 +50,8 @@ export default function Footer() {
                 { label: "Blog", href: "/blog" },
                 { label: "FAQs", href: "/faqs" },
                 { label: "Support", href: "/support" },
+                { label: "10-Minute Skill Test", href: "/10-minutes-test" },
                 { label: "Careers", href: "/careers" },
-                { label: "Administration", href: "https://admin.skillyards.in" },
             ],
         },
     ];
@@ -132,7 +135,7 @@ export default function Footer() {
             </div>
 
             <div className="border-t border-border py-4">
-                <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 text-sm text-muted-foreground sm:flex-row">
+                <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-4 px-6 text-sm text-muted-foreground sm:flex-row">
                     {/* Left Content */}
                     <div className="text-center sm:text-left">
                         © {year} SkillYards Versatilitty

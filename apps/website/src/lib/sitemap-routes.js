@@ -7,9 +7,15 @@ export const STATIC_SITEMAP_ROUTES = [
     { path: "/gallery", label: "Gallery", section: "Company" },
 
     { path: "/programs", label: "Programs", section: "Courses" },
+    { path: "/programs/fullstack", label: "Full-Stack Development", section: "Courses" },
+    { path: "/programs/digitalmarketing", label: "Digital Marketing", section: "Courses" },
+    { path: "/programs/bca", label: "BCA Programs", section: "Courses" },
+    { path: "/programs/bba", label: "BBA Programs", section: "Courses" },
 
     { path: "/blog", label: "Blog", section: "Resources" },
     { path: "/faqs", label: "FAQs", section: "Resources" },
+    { path: "/support", label: "Support", section: "Resources" },
+    { path: "/10-minute-test", label: "10-Minute Skill Test", section: "Resources" },
 
     { path: "/careers", label: "Careers", section: "Careers" },
     { path: "/team", label: "Our Team", section: "Company" },

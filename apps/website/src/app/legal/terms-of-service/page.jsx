@@ -1,10 +1,12 @@
 import { buildSEO } from "@/lib/seo/buildSEO";
 import PageHero from "@/components/PageHero";
+import Link from "next/link";
+import { HandshakeIcon, UserCheck, UserCog, BookOpen, CreditCard, Copyright, ShieldAlert, Ban, AlertTriangle, Scale, Globe, RefreshCw, Mail } from "lucide-react";
 
 export const metadata = buildSEO({
     title: "Terms of Service",
     description:
-        "Read SkillYards’ Terms of Service to understand the rules, responsibilities, and conditions for using our website, courses, and training programs.",
+        "Read SkillYards' Terms of Service to understand the rules, responsibilities, and conditions for using our website, courses, and training programs.",
     path: "/terms-of-service",
     keywords: [
         "SkillYards Terms of Service",
@@ -17,223 +19,300 @@ export const metadata = buildSEO({
     ogImage: "/images/opengraph/terms-of-service-og.jpg",
 });
 
+const sections = [
+    {
+        id: "acceptance",
+        number: "01",
+        icon: HandshakeIcon,
+        title: "Acceptance of Terms",
+        content: (
+            <div className="space-y-3">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    By accessing or using SkillYards, you confirm that you have read, understood, and agreed to these Terms of Service, along with our Privacy Policy and Refund & Cancellation Policy.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    If you do not agree with any part of these terms, you should not use our platform or services.
+                </p>
+            </div>
+        ),
+    },
+    {
+        id: "eligibility",
+        number: "02",
+        icon: UserCheck,
+        title: "Eligibility",
+        content: (
+            <p className="text-sm text-muted-foreground leading-relaxed">
+                You must be at least 18 years old to create an account or enroll in paid programs on SkillYards. If you are under 18, you may use the platform only with the involvement and consent of a parent or legal guardian.
+            </p>
+        ),
+    },
+    {
+        id: "account",
+        number: "03",
+        icon: UserCog,
+        title: "Account Registration",
+        content: (
+            <div className="space-y-3">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    When creating an account, you agree to provide accurate, current, and complete information. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    SkillYards reserves the right to suspend or terminate accounts found to be using false information or engaging in unauthorized activity.
+                </p>
+            </div>
+        ),
+    },
+    {
+        id: "access",
+        number: "04",
+        icon: BookOpen,
+        title: "Course Access & Usage",
+        content: (
+            <>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    Upon successful payment, SkillYards grants you a limited, non-transferable, and non-exclusive license to access the enrolled course or program for personal learning purposes only.
+                </p>
+                <ul className="mt-4 space-y-2">
+                    {[
+                        "Courses may include recorded content, live sessions, projects, and assessments",
+                        "Access duration may vary depending on the program",
+                        "Sharing login credentials or course content is strictly prohibited",
+                    ].map((item) => (
+                        <li key={item} className="flex gap-3">
+                            <span className="mt-1 shrink-0 w-1.5 h-1.5 rounded-full bg-primary" />
+                            <p className="text-sm text-muted-foreground leading-relaxed">{item}</p>
+                        </li>
+                    ))}
+                </ul>
+            </>
+        ),
+    },
+    {
+        id: "payments",
+        number: "05",
+        icon: CreditCard,
+        title: "Payments & Fees",
+        content: (
+            <div className="space-y-3">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    All fees displayed on SkillYards are in Indian Rupees (INR), unless otherwise stated. Payments must be made in full at the time of enrollment.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    Refunds, cancellations, and fee adjustments are governed by our{" "}
+                    <Link href="/legal/refund-policy" className="text-primary font-medium hover:underline">Refund & Cancellation Policy</Link>.
+                </p>
+            </div>
+        ),
+    },
+    {
+        id: "ip",
+        number: "06",
+        icon: Copyright,
+        title: "Intellectual Property",
+        content: (
+            <div className="space-y-3">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    All content on SkillYards — including videos, text, graphics, logos, designs, course materials, and software — is the intellectual property of SkillYards or its content partners.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    You may not copy, reproduce, distribute, modify, or commercially exploit any content without prior written permission from SkillYards.
+                </p>
+            </div>
+        ),
+    },
+    {
+        id: "conduct",
+        number: "07",
+        icon: ShieldAlert,
+        title: "User Conduct",
+        content: (
+            <>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    You agree not to use SkillYards for any unlawful, harmful, or disruptive activities, including but not limited to:
+                </p>
+                <ul className="mt-4 space-y-2">
+                    {[
+                        "Sharing offensive, abusive, or misleading content",
+                        "Attempting to hack, disrupt, or reverse-engineer the platform",
+                        "Infringing on the rights or privacy of others",
+                        "Misuse of certificates, credentials, or branding",
+                    ].map((item) => (
+                        <li key={item} className="flex gap-3">
+                            <span className="mt-1 shrink-0 w-1.5 h-1.5 rounded-full bg-rose-500" />
+                            <p className="text-sm text-muted-foreground leading-relaxed">{item}</p>
+                        </li>
+                    ))}
+                </ul>
+            </>
+        ),
+    },
+    {
+        id: "termination",
+        number: "08",
+        icon: Ban,
+        title: "Suspension & Termination",
+        content: (
+            <p className="text-sm text-muted-foreground leading-relaxed">
+                SkillYards reserves the right to suspend or terminate your access to the platform at its sole discretion, without prior notice, if you violate these terms or engage in activities that may harm SkillYards or its community.
+            </p>
+        ),
+    },
+    {
+        id: "disclaimer",
+        number: "09",
+        icon: AlertTriangle,
+        title: "Disclaimer of Warranties",
+        content: (
+            <p className="text-sm text-muted-foreground leading-relaxed">
+                SkillYards provides its services on an "as is" and "as available" basis. We do not guarantee uninterrupted access, error-free content, or specific learning or career outcomes.
+            </p>
+        ),
+    },
+    {
+        id: "liability",
+        number: "10",
+        icon: Scale,
+        title: "Limitation of Liability",
+        content: (
+            <p className="text-sm text-muted-foreground leading-relaxed">
+                To the maximum extent permitted by law, SkillYards shall not be liable for any indirect, incidental, or consequential damages arising from your use of the platform or services.
+            </p>
+        ),
+    },
+    {
+        id: "law",
+        number: "11",
+        icon: Globe,
+        title: "Governing Law",
+        content: (
+            <p className="text-sm text-muted-foreground leading-relaxed">
+                These Terms of Service shall be governed by and construed in accordance with the laws of India. Any disputes shall be subject to the exclusive jurisdiction of Indian courts.
+            </p>
+        ),
+    },
+    {
+        id: "changes",
+        number: "12",
+        icon: RefreshCw,
+        title: "Changes to These Terms",
+        content: (
+            <p className="text-sm text-muted-foreground leading-relaxed">
+                SkillYards may update these Terms of Service from time to time. Continued use of the platform after changes are posted constitutes acceptance of the revised terms.
+            </p>
+        ),
+    },
+    {
+        id: "contact",
+        number: "13",
+        icon: Mail,
+        title: "Contact Information",
+        content: (
+            <div className="space-y-3">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    If you have any questions regarding these Terms of Service, please contact us:
+                </p>
+                <div className="rounded-2xl border border-border bg-background p-4 space-y-2">
+                    <p className="font-bold text-sm text-foreground">SkillYards</p>
+                    <p className="text-sm text-muted-foreground">
+                        Email:{" "}
+                        <a href="mailto:support@skillyards.in" className="text-primary hover:underline font-medium">
+                            support@skillyards.in
+                        </a>
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                        Website:{" "}
+                        <a href="https://www.skillyards.in" className="text-primary hover:underline font-medium">
+                            www.skillyards.in
+                        </a>
+                    </p>
+                </div>
+            </div>
+        ),
+    },
+];
+
 export default function TermsOfServicePage() {
+    const lastUpdated = new Date().toLocaleDateString("en-IN", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+
     return (
         <>
             <PageHero
                 title="Terms of Service"
-                description="These Terms of Service outline the rules, responsibilities, and conditions that govern your use of our website, products, and services. By accessing or using our platform, you agree to comply with these terms."
+                description="These Terms of Service outline the rules, responsibilities, and conditions that govern your use of our website, products, and services."
             />
 
-            <div className="min-h-screen w-full bg-linear-to-b from-white via-zinc-50 to-zinc-100 dark:from-neutral-950 dark:via-neutral-900 dark:to-black text-neutral-900 dark:text-neutral-100 transition-colors duration-500">
-                <section className="max-w-5xl mx-auto px-6 py-20">
-                    <div className="mb-14">
-                        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-                            Terms of Service
-                        </h1>
-                        <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-3xl">
-                            These Terms of Service govern your access to and use of the SkillYards website,
-                            platform, courses, and services. By using SkillYards, you agree to be bound
-                            by these terms.
-                        </p>
-                        <p className="mt-4 text-sm text-neutral-500">
-                            Last updated: {new Date().toLocaleDateString("en-IN")}
-                        </p>
+            <div className="bg-background">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+                    {/* Last updated + note */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-10 pb-6 border-b border-border">
+                        <p className="text-xs text-muted-foreground">Last updated: {lastUpdated}</p>
+                        <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs font-semibold px-4 py-2 rounded-full border border-primary/20">
+                            <HandshakeIcon size={13} />
+                            Governed by the laws of India
+                        </div>
                     </div>
 
-                    <div className="space-y-12 leading-relaxed text-[17px]">
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                1. Acceptance of Terms
-                            </h2>
-                            <p>
-                                By accessing or using SkillYards, you confirm that you have read,
-                                understood, and agreed to these Terms of Service, along with our
-                                Privacy Policy and Refund & Cancellation Policy.
-                            </p>
-                            <p className="mt-3">
-                                If you do not agree with any part of these terms, you should not
-                                use our platform or services.
-                            </p>
-                        </section>
+                    <div className="flex gap-12">
+                        {/* Sticky TOC — desktop only */}
+                        <aside className="hidden lg:block w-52 shrink-0">
+                            <div className="sticky top-24 rounded-2xl border border-border bg-card p-4 shadow-sm">
+                                <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3">Contents</p>
+                                <nav className="space-y-1">
+                                    {sections.map((s) => (
+                                        <a
+                                            key={s.id}
+                                            href={`#${s.id}`}
+                                            className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors py-1 rounded"
+                                        >
+                                            <span className="text-[10px] font-bold text-primary/50">{s.number}</span>
+                                            {s.title}
+                                        </a>
+                                    ))}
+                                </nav>
+                            </div>
+                        </aside>
 
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                2. Eligibility
-                            </h2>
-                            <p>
-                                You must be at least 18 years old to create an account or enroll
-                                in paid programs on SkillYards. If you are under 18, you may use
-                                the platform only with the involvement and consent of a parent
-                                or legal guardian.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                3. Account Registration
-                            </h2>
-                            <p>
-                                When creating an account, you agree to provide accurate, current,
-                                and complete information. You are responsible for maintaining the
-                                confidentiality of your account credentials and for all activities
-                                that occur under your account.
-                            </p>
-                            <p className="mt-3">
-                                SkillYards reserves the right to suspend or terminate accounts
-                                found to be using false information or engaging in unauthorized activity.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                4. Course Access & Usage
-                            </h2>
-                            <p>
-                                Upon successful payment, SkillYards grants you a limited,
-                                non-transferable, and non-exclusive license to access the enrolled
-                                course or program for personal learning purposes only.
-                            </p>
-                            <ul className="list-disc pl-6 mt-4 space-y-2">
-                                <li>Courses may include recorded content, live sessions, projects, and assessments</li>
-                                <li>Access duration may vary depending on the program</li>
-                                <li>Sharing login credentials or course content is strictly prohibited</li>
-                            </ul>
-                        </section>
-
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                5. Payments & Fees
-                            </h2>
-                            <p>
-                                All fees displayed on SkillYards are in Indian Rupees (INR), unless
-                                otherwise stated. Payments must be made in full at the time of enrollment.
-                            </p>
-                            <p className="mt-3">
-                                Refunds, cancellations, and fee adjustments are governed by our
-                                Refund & Cancellation Policy.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                6. Intellectual Property
-                            </h2>
-                            <p>
-                                All content on SkillYards — including videos, text, graphics,
-                                logos, designs, course materials, and software — is the intellectual
-                                property of SkillYards or its content partners.
-                            </p>
-                            <p className="mt-3">
-                                You may not copy, reproduce, distribute, modify, or commercially
-                                exploit any content without prior written permission from SkillYards.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                7. User Conduct
-                            </h2>
-                            <p>
-                                You agree not to use SkillYards for any unlawful, harmful, or
-                                disruptive activities, including but not limited to:
-                            </p>
-                            <ul className="list-disc pl-6 mt-4 space-y-2">
-                                <li>Sharing offensive, abusive, or misleading content</li>
-                                <li>Attempting to hack, disrupt, or reverse-engineer the platform</li>
-                                <li>Infringing on the rights or privacy of others</li>
-                                <li>Misuse of certificates, credentials, or branding</li>
-                            </ul>
-                        </section>
-
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                8. Suspension & Termination
-                            </h2>
-                            <p>
-                                SkillYards reserves the right to suspend or terminate your access
-                                to the platform at its sole discretion, without prior notice,
-                                if you violate these terms or engage in activities that may
-                                harm SkillYards or its community.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                9. Disclaimer of Warranties
-                            </h2>
-                            <p>
-                                SkillYards provides its services on an “as is” and “as available”
-                                basis. We do not guarantee uninterrupted access, error-free content,
-                                or specific learning or career outcomes.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                10. Limitation of Liability
-                            </h2>
-                            <p>
-                                To the maximum extent permitted by law, SkillYards shall not be
-                                liable for any indirect, incidental, or consequential damages
-                                arising from your use of the platform or services.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                11. Governing Law
-                            </h2>
-                            <p>
-                                These Terms of Service shall be governed by and construed in
-                                accordance with the laws of India. Any disputes shall be subject
-                                to the exclusive jurisdiction of Indian courts.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                12. Changes to These Terms
-                            </h2>
-                            <p>
-                                SkillYards may update these Terms of Service from time to time.
-                                Continued use of the platform after changes are posted constitutes
-                                acceptance of the revised terms.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-3">
-                                13. Contact Information
-                            </h2>
-                            <p>
-                                If you have any questions regarding these Terms of Service, please
-                                contact us:
-                            </p>
-                            <div className="mt-4 space-y-1">
-                                <p><strong>SkillYards</strong></p>
-                                <p>
-                                    Email:{" "}
-                                    <a
-                                        href="mailto:support@skillyards.in"
-                                        className="underline hover:text-primary"
+                        {/* Main content */}
+                        <div className="flex-1 space-y-6">
+                            {sections.map((s) => {
+                                const Icon = s.icon;
+                                return (
+                                    <div
+                                        key={s.id}
+                                        id={s.id}
+                                        className="rounded-2xl border border-border bg-card p-6 shadow-sm scroll-mt-24"
                                     >
-                                        support@skillyards.in
-                                    </a>
-                                </p>
-                                <p>
-                                    Website:{" "}
-                                    <a
-                                        href="https://www.skillyards.in"
-                                        className="underline hover:text-primary"
-                                    >
-                                        www.skillyards.in
-                                    </a>
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="shrink-0 rounded-xl bg-primary/10 p-2.5 text-primary">
+                                                <Icon size={18} />
+                                            </div>
+                                            <div>
+                                                <span className="text-[10px] font-bold text-primary/60 tracking-widest">{s.number}</span>
+                                                <h2 className="font-bold text-foreground text-base leading-tight">{s.title}</h2>
+                                            </div>
+                                        </div>
+                                        {s.content}
+                                    </div>
+                                );
+                            })}
+
+                            {/* Footer note */}
+                            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 text-center">
+                                <p className="text-sm text-muted-foreground">
+                                    By using SkillYards, you agree to these terms.{" "}
+                                    <Link href="/legal/privacy-policy" className="text-primary font-semibold hover:underline">
+                                        View Privacy Policy →
+                                    </Link>
                                 </p>
                             </div>
-                        </section>
+                        </div>
                     </div>
-                </section>
+                </div>
             </div>
         </>
     );

@@ -118,13 +118,14 @@ export default function HeroCarousel() {
                                                     transition={{ delay: 0.5, duration: 0.5 }}
                                                     className="mt-8 sm:mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 pointer-events-auto w-full sm:w-auto px-4 sm:px-0"
                                                 >
-                                                    <Button
-                                                        asChild
-                                                        size="lg"
-                                                        className="rounded-full bg-primary px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg font-semibold hover:bg-primary/90 text-primary-foreground transition-transform hover:scale-105 w-full sm:w-auto"
-                                                    >
-                                                        <Link href={slide.ctaHref}>{slide.cta}</Link>
-                                                    </Button>
+                                                    <div className="relative p-0.5 rounded-full bg-linear-to-r from-violet-500 via-primary to-blue-500 transition-transform duration-300 hover:scale-105 w-full sm:w-auto">
+                                                        <Link
+                                                            href={slide.ctaHref}
+                                                            className="flex items-center justify-center rounded-full bg-background px-8 sm:px-10 py-2.5 sm:py-3 text-base sm:text-lg font-semibold text-foreground"
+                                                        >
+                                                            {slide.cta}
+                                                        </Link>
+                                                    </div>
 
                                                     <Button
                                                         asChild

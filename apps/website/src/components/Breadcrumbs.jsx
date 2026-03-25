@@ -77,7 +77,7 @@ export default function Breadcrumbs({
                                 ) : (
                                     <Link
                                         href={item.href}
-                                        className="hover:text-primary"
+                                        className="text-accent-foreground hover:text-primary transition-colors"
                                     >
                                         {item.name}
                                     </Link>

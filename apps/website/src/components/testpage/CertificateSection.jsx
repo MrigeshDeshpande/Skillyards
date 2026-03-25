@@ -5,22 +5,28 @@ const tiers = [
         range: "85–100%",
         label: "Expert",
         description: "You've mastered the fundamentals. Your certificate highlights you as job-ready.",
-        badgeColor: "bg-yellow-100 text-yellow-700 border-yellow-300 dark:bg-yellow-950/40 dark:text-yellow-400 dark:border-yellow-800",
-        glow: "shadow-yellow-200 dark:shadow-yellow-900/30",
+        cardClass: "bg-yellow-50 border-yellow-200 dark:bg-yellow-950/20 dark:border-yellow-800",
+        badgeClass: "bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/40 dark:text-yellow-300 dark:border-yellow-700",
+        labelClass: "text-yellow-800 dark:text-yellow-300",
+        descClass:  "text-yellow-700 dark:text-yellow-400/80",
     },
     {
         range: "60–84%",
         label: "Proficient",
         description: "Strong foundation with room to grow. Your certificate recommends the next step.",
-        badgeColor: "bg-blue-100 text-blue-700 border-blue-300 dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-800",
-        glow: "shadow-blue-200 dark:shadow-blue-900/30",
+        cardClass: "bg-blue-50 border-blue-200 dark:bg-blue-950/20 dark:border-blue-800",
+        badgeClass: "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-700",
+        labelClass: "text-blue-800 dark:text-blue-300",
+        descClass:  "text-blue-700 dark:text-blue-400/80",
     },
     {
         range: "Below 60%",
         label: "Beginner",
         description: "You're just starting out. Your certificate points to the perfect program to upskill.",
-        badgeColor: "bg-emerald-100 text-emerald-700 border-emerald-300 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800",
-        glow: "shadow-emerald-200 dark:shadow-emerald-900/30",
+        cardClass: "bg-emerald-50 border-emerald-200 dark:bg-emerald-950/20 dark:border-emerald-800",
+        badgeClass: "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-900/40 dark:text-emerald-300 dark:border-emerald-700",
+        labelClass: "text-emerald-800 dark:text-emerald-300",
+        descClass:  "text-emerald-700 dark:text-emerald-400/80",
     },
 ];
 
@@ -79,14 +85,14 @@ export default function CertificateSection() {
                             {tiers.map((t) => (
                                 <div
                                     key={t.label}
-                                    className={`flex items-start gap-4 rounded-2xl border p-4 shadow-sm ${t.glow} ${t.badgeColor}`}
+                                    className={`flex items-start gap-4 rounded-2xl border p-4 shadow-sm ${t.cardClass}`}
                                 >
-                                    <span className={`shrink-0 text-xs font-bold px-3 py-1 rounded-full border ${t.badgeColor}`}>
+                                    <span className={`shrink-0 text-xs font-bold px-3 py-1.5 rounded-full border ${t.badgeClass}`}>
                                         {t.range}
                                     </span>
                                     <div>
-                                        <p className="font-bold text-sm">{t.label}</p>
-                                        <p className="text-xs mt-0.5 opacity-80">{t.description}</p>
+                                        <p className={`font-bold text-sm ${t.labelClass}`}>{t.label}</p>
+                                        <p className={`text-xs mt-0.5 ${t.descClass}`}>{t.description}</p>
                                     </div>
                                 </div>
                             ))}
@@ -98,7 +104,7 @@ export default function CertificateSection() {
                         <h3 className="font-bold text-foreground text-base mb-4">What comes with your certificate</h3>
                         <div className="space-y-3">
                             {perks.map((p, i) => (
-                                <div key={i} className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4">
+                                <div key={i} className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-sm">
                                     <span className="shrink-0 mt-0.5 text-primary">{p.icon}</span>
                                     <p className="text-sm text-foreground leading-relaxed">{p.text}</p>
                                 </div>

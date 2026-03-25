@@ -28,7 +28,7 @@ export default function TestimonialsHero() {
                     {stats.map((s) => (
                         <div
                             key={s.label}
-                            className="flex flex-col items-center gap-1 rounded-2xl border border-primary-foreground/15 bg-primary-foreground/8 px-4 py-5"
+                            className="flex flex-col items-center gap-1 rounded-2xl border border-primary-foreground/20 bg-primary-foreground/15 px-4 py-5"
                         >
                             <span className="text-2xl sm:text-3xl font-extrabold text-primary-foreground">
                                 {s.value}
