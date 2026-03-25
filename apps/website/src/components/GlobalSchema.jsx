@@ -1,52 +1,65 @@
 export const globalSchema = {
     "@context": "https://schema.org",
     "@type": ["WebSite", "EducationalOrganization", "LocalBusiness"],
+
+    "@id": "https://www.skillyards.in/#organization",
+
     "name": "SkillYards | Learn, Train & Certify in Agra, India",
     "url": "https://www.skillyards.in",
-    "description": "SkillYards is a next-generation learning and certification platform based in Agra, India. We empower students, professionals, and institutions with modern skill development, industry-aligned training, and verified certifications.",
-    "image": "https://www.skillyards.in/cover.jpg",
+
+    "description":
+        "SkillYards is a next-generation learning and certification platform based in Agra, India. We empower students, professionals, and institutions with modern skill development, industry-aligned training, and verified certifications.",
+
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://www.skillyards.in/images/opengraph/home-og.jpg",
+        "width": 1200,
+        "height": 630
+    },
+
     "logo": {
         "@type": "ImageObject",
-        "url": "https://www.skillyards.in/images/logo.png",
+        "url": "https://www.skillyards.in/images/logo-square.png",
         "width": 512,
         "height": 512
     },
-    "publisher": {
-        "@type": "Organization",
-        "name": "SkillYards Technologies",
-        "url": "https://www.skillyards.in",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "https://www.skillyards.in/logo.svg",
-            "width": 512,
-            "height": 512
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+91 9897-000-000",
-            "contactType": "support",
-            "areaServed": "IN",
-            "availableLanguage": ["English", "Hindi"]
-        }
-    },
+
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Near OPJS Campus, Dayalbagh",
+        "streetAddress": "A3, Behind Manoj Dhaba, Bhagwan Talkies Xing",
         "addressLocality": "Agra",
         "addressRegion": "Uttar Pradesh",
         "postalCode": "282005",
         "addressCountry": "IN"
     },
+
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91 7895501840",
+        "contactType": "support",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi"]
+    },
+
     "sameAs": [
-        "https://www.facebook.com/skillyards",
+        "https://www.facebook.com/skillyardss",
         "https://www.linkedin.com/company/skillyards",
-        "https://www.instagram.com/skillyards",
-        "https://www.twitter.com/skillyards",
-        "https://www.youtube.com/@skillyards"
+        "https://www.instagram.com/skillyardss",
+        "https://www.twitter.com/skillyardss",
+        "https://www.youtube.com/@Skillyardss"
     ],
+
     "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://www.skillyards.in/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
+        "target": {
+            "@type": "EntryPoint",
+            "urlTemplate":
+                "https://www.skillyards.in/search?q={search_term_string}"
+        },
+        "query-input": {
+            "@type": "PropertyValueSpecification",
+            "valueRequired": true,
+            "valueName": "search_term_string"
+        }
     }
 };
