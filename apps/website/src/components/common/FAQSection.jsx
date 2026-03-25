@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, HelpCircle } from "lucide-react";
-import faqs from "@/data/faqs.json";
+import { getDisplayFaqs } from "@/data/getDisplayFaqs";
+
 
 export default function FAQSection() {
     const [openIndex, setOpenIndex] = useState(0);
-    const displayFaqs = faqs.slice(0, 4);
+    const displayFaqs = getDisplayFaqs();
 
     return (
         <section className="relative py-20 bg-background overflow-hidden">

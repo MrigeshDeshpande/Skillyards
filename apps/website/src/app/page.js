@@ -13,8 +13,11 @@ import HearFromStudents from "@/components/homepage/HearFromStudents";
 import FeaturedRoles from "@/components/homepage/FeaturedRoles";
 import { buildSEO } from "@/lib/seo/buildSEO";
 import Script from "next/script";
+import { getFAQSchema } from "@/lib/seo/schema/faqSchema";
+import { getDisplayFaqs } from "@/data/getDisplayFaqs";
 
-
+const displayFaqs = getDisplayFaqs(); 
+const faqSchema = getFAQSchema(displayFaqs);
 export const metadata = buildSEO({
   title: "Learn, Train & Get Certified Online",
   description:
@@ -37,26 +40,14 @@ export const metadata = buildSEO({
 
 export default function Home() {
 
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Skillyards",
-    url: "https://www.skillyards.in",
-    logo: "https://www.skillyards.in/images/logo-square.png",
-    sameAs: [
-      "https://www.linkedin.com/company/skillyards",
-      "https://www.instagram.com/skillyards"
-    ]
-  };
-
   return (
     <>
       <Script
-        id="organization-schema"
+        id="faq-schema"
         type="application/ld+json"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationSchema),
+          __html: JSON.stringify(faqSchema),
         }}
       />
       <div className="min-h-screen w-full bg-background text-foreground transition-colors duration-500">
