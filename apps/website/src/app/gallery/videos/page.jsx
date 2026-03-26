@@ -184,8 +184,14 @@ export default function GalleryVideosPage() {
                                 {/* Thumbnail */}
                                 <div className="relative aspect-video w-full overflow-hidden">
                                     <img
-                                        src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                                        src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
                                         alt={video.title}
+                                        onError={(e) => {
+                                            if (!e.target.dataset.fallback) {
+                                                e.target.dataset.fallback = "1";
+                                                e.target.src = `https://img.youtube.com/vi/${video.id}/mqdefault.jpg`;
+                                            }
+                                        }}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                     />
                                     <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-200" />
