@@ -22,11 +22,10 @@ export default function FullStackPage() {
         }}
       />
 
-      <div className="bg-background px-4 sm:px-6 lg:px-8 py-3 max-w-7xl mx-auto mt-24">
-        <Breadcrumbs currentLabel="Full Stack Development" />
-      </div>
-
-      <div className="w-full overflow-x-hidden">
+      <div className="relative w-full overflow-x-hidden">
+        <div className="absolute top-24 left-4 sm:left-6 lg:left-8 z-20">
+          <Breadcrumbs currentLabel="Full Stack Development" />
+        </div>
         <FSDLandingPage />
       </div>
     </>
