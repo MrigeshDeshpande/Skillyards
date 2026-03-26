@@ -1,6 +1,6 @@
 import { buildSEO } from "@/lib/seo/buildSEO";
 import { DGMLandingPage } from "@/components/landingPageDGM/LandingPage";
-import Script from "next/script";
+import JsonLd from "@/components/JsonLd";
 import { getCourseSchema } from "@/lib/seo/schema/courseSchema";
 import { courses } from "@/data/courses";
 
@@ -12,14 +12,7 @@ export const metadata = buildSEO(course.seo);
 export default function DigitalMarketingPage() {
   return (
     <>
-      <Script
-        id="course-schema"
-        type="application/ld+json"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(courseSchema),
-        }}
-      />
+      <JsonLd data={courseSchema} id="course-schema" />
 
       <div className="w-full overflow-x-hidden">
         <DGMLandingPage />

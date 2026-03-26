@@ -12,7 +12,7 @@ import ProgramsShowcase from "@/components/homepage/ProgrammeShowcase";
 import HearFromStudents from "@/components/homepage/HearFromStudents";
 import FeaturedRoles from "@/components/homepage/FeaturedRoles";
 import { buildSEO } from "@/lib/seo/buildSEO";
-import Script from "next/script";
+import JsonLd from "@/components/JsonLd";
 import { getFAQSchema } from "@/lib/seo/schema/faqSchema";
 import { faqCategories } from "@/data/faqs";
 const homepageFaqs = faqCategories.homepage.faqs.slice(0, 4);
@@ -42,14 +42,8 @@ export default function Home() {
 
   return (
     <>
-      <Script
-        id="faq-schema"
-        type="application/ld+json"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
-        }}
-      />
+      <JsonLd data={faqSchema} />
+      
       <div className="min-h-screen w-full bg-background text-foreground transition-colors duration-500">
         <HeroCarousel />
 

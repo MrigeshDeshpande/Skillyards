@@ -30,7 +30,6 @@ export const getCourseSchema = (course) => ({
       },
     },
 
-    // Optional but powerful
     startDate: course.startDate || undefined,
   },
 
@@ -38,6 +37,6 @@ export const getCourseSchema = (course) => ({
     "@type": "Offer",
     category: "Educational",
     availability: "https://schema.org/InStock",
-    url: `https://www.skillyards.in/programs/${course.slug}`,
+    url: `https://www.skillyards.in${course.seo.path}`,
   },
 });
