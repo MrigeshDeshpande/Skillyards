@@ -5,6 +5,7 @@ import { ArrowRight, Star, Play } from "lucide-react";
 import Image from "next/image";
 import { LampContainer } from "../ui/lamp";
 import { Button } from "@/components/ui/button";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const BCAHero = () => {
   return (
@@ -15,8 +16,13 @@ export const BCAHero = () => {
           <div className="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 xl:gap-16 w-full items-center">
             {/* Left Column: Content */}
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+              {/* Breadcrumbs */}
+              <div className="w-full mt-12 sm:mt-14 mb-3 sm:mb-4 flex justify-center lg:justify-start">
+                <Breadcrumbs currentLabel="BCA" />
+              </div>
+
               {/* Top Badge */}
-              <div className="inline-flex items-center mt-12 gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-foreground/5 text-primary border border-primary/20 text-xs sm:text-sm font-bold mb-4 md:mb-6 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-foreground/5 text-primary border border-primary/20 text-xs sm:text-sm font-bold mb-4 md:mb-6 backdrop-blur-sm">
                 <Star size={14} className="fill-current text-secondary shrink-0" />
                 <span>India&apos;s #1 Skill-Based BCA Program</span>
               </div>

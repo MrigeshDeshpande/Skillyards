@@ -4,16 +4,22 @@ import { motion } from "framer-motion";
 import { ArrowRight, Star, TrendingUp, Users, Calendar } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export function DGMHero() {
   return (
-    <section className="relative w-full overflow-hidden bg-background py-16 md:py-24 lg:py-32">
+    <section className="relative w-full overflow-hidden bg-background pt-24 pb-16 md:py-24 lg:py-32">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-48 left-1/2 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]" />
         <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-secondary/10 blur-[100px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+        {/* Breadcrumbs */}
+        <div className="mb-5 flex justify-center">
+          <Breadcrumbs currentLabel="Digital Marketing" />
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}

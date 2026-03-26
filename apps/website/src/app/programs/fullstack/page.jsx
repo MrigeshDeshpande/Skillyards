@@ -1,7 +1,6 @@
 import { buildSEO } from "@/lib/seo/buildSEO";
 import { FSDLandingPage } from "@/components/landingPageFSD/LandingPage";
 import JsonLd from "@/components/JsonLd";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import { getCourseSchema } from "@/lib/seo/schema/courseSchema";
 import { courses } from "@/data/courses";
 import { getBreadcrumbSchema } from "@/lib/seo/schema/breadcrumbSchema";
@@ -23,10 +22,7 @@ export default function FullStackPage() {
       <JsonLd data={courseSchema} id="course-schema" />
       <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
 
-      <div className="relative w-full overflow-x-hidden">
-        <div className="absolute top-24 left-4 sm:left-6 lg:left-8 z-20">
-          <Breadcrumbs currentLabel="Full Stack Development" />
-        </div>
+      <div className="w-full overflow-x-hidden">
         <FSDLandingPage />
       </div>
     </>

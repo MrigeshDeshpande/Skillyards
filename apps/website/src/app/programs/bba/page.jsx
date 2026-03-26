@@ -28,9 +28,6 @@ export default function BBAPage() {
             
             <div className="w-full overflow-x-hidden">
                 <div className="relative w-full overflow-x-hidden">
-                    <div className="absolute top-24 left-4 sm:left-6 lg:left-8 z-60">
-                        <Breadcrumbs currentLabel="BBA" />
-                    </div>
                     <LandingPage />
                 </div>
             </div>
