@@ -209,7 +209,7 @@ export default function HearFromStudents() {
                 </DialogContent>
             </Dialog>
 
-            <JsonLd schema={testimonialsSchema} id="student-testimonials-schema" />
+            <JsonLd data={testimonialsSchema} id="student-testimonials-schema" />
         </>
     );
 }

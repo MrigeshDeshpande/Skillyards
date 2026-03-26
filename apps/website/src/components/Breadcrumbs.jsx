@@ -3,12 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronRight, Home } from "lucide-react";
-import Script from "next/script";
 
 export default function Breadcrumbs({
-                                        className = "",
-                                        currentLabel,
-                                    }) {
+    className = "",
+    currentLabel,
+}) {
     const pathname = usePathname();
     const segments = pathname.split("/").filter(Boolean);
 
@@ -29,64 +28,45 @@ export default function Breadcrumbs({
         }),
     ];
 
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: breadcrumbs.map((item, index) => ({
-            "@type": "ListItem",
-            position: index + 1,
-            name: item.name,
-            item: `${process.env.NEXT_PUBLIC_SITE_URL}${item.href}`,
-        })),
-    };
-
     return (
-        <>
-            <Script
-                id="breadcrumb-jsonld"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+        <nav
+            aria-label="Breadcrumb"
+            className={`flex items-center text-sm text-accent-foreground ${className}`}
+        >
+            <ol className="flex items-center flex-wrap gap-1">
+                <li>
+                    <Link
+                        href="/"
+                        className="flex items-center gap-1 text-accent-foreground hover:text-primary"
+                    >
+                        <Home className="h-4 w-4" />
+                        <span>Home</span>
+                    </Link>
+                </li>
 
-            <nav
-                aria-label="Breadcrumb"
-                className={`flex items-center text-sm text-accent-foreground ${className}`}
-            >
-                <ol className="flex items-center flex-wrap gap-1">
-                    <li>
-                        <Link
-                            href="/"
-                            className="flex items-center gap-1 text-accent-foreground hover:text-primary"
-                        >
-                            <Home className="h-4 w-4" />
-                            <span>Home</span>
-                        </Link>
-                    </li>
+                {breadcrumbs.slice(1).map((item, index) => {
+                    const isLast = index === breadcrumbs.length - 2;
 
-                    {breadcrumbs.slice(1).map((item, index) => {
-                        const isLast = index === breadcrumbs.length - 2;
+                    return (
+                        <li key={item.href} className="flex items-center gap-1 text-accent-foreground">
+                            <ChevronRight className="h-4 w-4 text-primary" />
 
-                        return (
-                            <li key={item.href} className="flex items-center gap-1 text-accent-foreground">
-                                <ChevronRight className="h-4 w-4 text-primary" />
-
-                                {isLast ? (
-                                    <span className="font-medium text-accent-foreground">
-                                        {item.name}
-                                    </span>
-                                ) : (
-                                    <Link
-                                        href={item.href}
-                                        className="text-accent-foreground hover:text-primary transition-colors"
-                                    >
-                                        {item.name}
-                                    </Link>
-                                )}
-                            </li>
-                        );
-                    })}
-                </ol>
-            </nav>
-        </>
+                            {isLast ? (
+                                <span className="font-medium text-accent-foreground">
+                                    {item.name}
+                                </span>
+                            ) : (
+                                <Link
+                                    href={item.href}
+                                    className="text-accent-foreground hover:text-primary transition-colors"
+                                >
+                                    {item.name}
+                                </Link>
+                            )}
+                        </li>
+                    );
+                })}
+            </ol>
+        </nav>
     );
 }

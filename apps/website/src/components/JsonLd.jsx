@@ -1,9 +1,13 @@
 export default function JsonLd({ data, id }) {
+  if (!data) return null;
+
   return (
     <script
-    id={id}
+      id={id}
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(data),
+      }}
     />
   );
 }

@@ -38,7 +38,7 @@ export default function SuryanshPage() {
   return (
     <>
       <SuryanshHero />
-      <JsonLd schema={suryanshSchema} id="suryansh-upadhyay-schema" />
+      <JsonLd data={suryanshSchema} id="suryansh-upadhyay-schema" />
     </>
   );
 }

@@ -79,7 +79,7 @@ export default function AboutPage() {
         <CtaBanner />
       </div>
 
-      <JsonLd schema={aboutPageSchema} id="about-page-schema-skillyards" />
+      <JsonLd data={aboutPageSchema} id="about-page-schema-skillyards" />
     </>
   );
 }
