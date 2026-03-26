@@ -22,7 +22,7 @@ export const BCAHero = () => {
               </div>
 
               {/* Heading */}
-              <h1 className="font-serif text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.1] tracking-tighter text-foreground font-extrabold">
+              <h1 className="font-serif text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl  leading-[1.1] tracking-tighter text-foreground font-extrabold">
                 The <span className="text-primary italic">Future</span> of{" "}
                 <br className="hidden sm:block" />Tech Education.
               </h1>

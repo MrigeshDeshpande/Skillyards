@@ -21,7 +21,7 @@ export default function GalleryImagesPage() {
     return (
         <ComingSoon
             title="Image Gallery — Coming Soon"
-            description="We’re organizing images from SkillYards classrooms, workshops, events, and student activities. Check back soon!"
+            description="We're organizing images from SkillYards classrooms, workshops, events, and student activities. Check back soon!"
         />
     );
 }
