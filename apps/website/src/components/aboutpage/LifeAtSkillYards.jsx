@@ -20,11 +20,8 @@ const allImages = [
   { src: "/images/life/life-13.webp", alt: "Life at SkillYards" },
 ];
 
-const images = [...allImages].sort(() => Math.random() - 0.5);
-
 export default function LifeAtSkillYards() {
   const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
@@ -80,7 +77,7 @@ export default function LifeAtSkillYards() {
         }}
       >
         <DomeGallery
-          images={images}
+          images={allImages}
           fit={isMobile ? 0.9 : 0.8}
           minRadius={isMobile ? 200 : 260}
           maxVerticalRotationDeg={6}
