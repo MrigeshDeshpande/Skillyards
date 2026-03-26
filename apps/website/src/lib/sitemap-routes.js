@@ -15,7 +15,7 @@ export const STATIC_SITEMAP_ROUTES = [
     { path: "/blog", label: "Blog", section: "Resources" },
     { path: "/faqs", label: "FAQs", section: "Resources" },
     { path: "/support", label: "Support", section: "Resources" },
-    { path: "/10-minute-test", label: "10-Minute Skill Test", section: "Resources" },
+    { path: "/10-minutes-test", label: "10-Minute Skill Test", section: "Resources" },
 
     { path: "/careers", label: "Careers", section: "Careers" },
     { path: "/team", label: "Our Team", section: "Company" },

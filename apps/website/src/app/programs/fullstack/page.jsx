@@ -1,6 +1,5 @@
 import { buildSEO } from "@/lib/seo/buildSEO";
 import { FSDLandingPage } from "@/components/landingPageFSD/LandingPage";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import Script from "next/script";
 import { getCourseSchema } from "@/lib/seo/schema/courseSchema";
 import { courses } from "@/data/courses";
@@ -22,10 +21,7 @@ export default function FullStackPage() {
         }}
       />
 
-      <div className="relative w-full overflow-x-hidden">
-        <div className="absolute top-24 left-4 sm:left-6 lg:left-8 z-20">
-          <Breadcrumbs currentLabel="Full Stack Development" />
-        </div>
+      <div className="w-full overflow-x-hidden">
         <FSDLandingPage />
       </div>
     </>
