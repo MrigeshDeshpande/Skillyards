@@ -25,7 +25,7 @@ export const BBAHero = () => {
 
               {/* Heading Section */}
               <h1
-                className="font-serif text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-[1.1] tracking-tighter text-foreground dark:text-neutral-50 font-extrabold"
+                className="font-serif sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl  leading-[1.1] tracking-tighter text-foreground dark:text-neutral-50 font-extrabold"
               >
                 The <span className="text-primary italic">Future</span> of{" "}
                 <br className="hidden sm:block" />Business Education.

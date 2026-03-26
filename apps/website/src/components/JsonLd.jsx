@@ -1,13 +1,13 @@
-"use client";
-import Script from "next/script";
+export default function JsonLd({ data, id }) {
+  if (!data) return null;
 
-export default function JsonLd({ schema, id }) {
-    return (
-        <Script
-            type="application/ld+json"
-            id={id}
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-    );
+  return (
+    <script
+      id={id}
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(data),
+      }}
+    />
+  );
 }

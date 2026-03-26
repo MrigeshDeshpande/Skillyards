@@ -38,7 +38,7 @@ export default function RahulPage() {
     return (
         <>
             <RahulHero />
-            <JsonLd schema={rahulSchema} id="rahul-singh-schema" />
+            <JsonLd data={rahulSchema} id="rahul-singh-schema" />
         </>
     );
 }

@@ -4,13 +4,11 @@ import "@/app/styles/globals.css";
 import { ThemeProvider } from "@/app/context/ThemeContext";
 import BackToTop from "@/components/BackToTop";
 import JsonLd from "@/components/JsonLd";
-import { globalSchema } from "@/components/GlobalSchema";
-import { navigationSchema } from "@/components/NavigationSchema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { GoogleTagManager } from "@next/third-parties/google";
 import RegisterSW from "@/components/RegisterSW";
-
+import { organizationSchema, websiteSchema } from "@/lib/seo/schema/global";
 import ReCaptchaProvider from "@/components/providers/ReCaptchaProvider"; 
 
 const playfair = Playfair_Display({
@@ -70,8 +68,8 @@ export default function RootLayout({ children }) {
                 </ReCaptchaProvider>
 
                 {/* Structured Data */}
-                <JsonLd schema={globalSchema} id="global-schema" />
-                <JsonLd schema={navigationSchema} id="navigation-schema" />
+                <JsonLd data={organizationSchema} />
+                <JsonLd data={websiteSchema} />
             </body>
         </html>
     );

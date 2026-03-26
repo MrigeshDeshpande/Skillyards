@@ -228,7 +228,7 @@ async function CareerJobPage({ params }) {
                     </div>
                 </section>
             )}
-            <JsonLd schema={jobPostingSchema(job)} id={`job-schema-${job.id}`} />
+            <JsonLd data={jobPostingSchema(job)} id={`job-schema-${job.id}`} />
         </>
     );
 }

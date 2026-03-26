@@ -1,3 +1,5 @@
+import { ORGANIZATION_ID } from "./global";
+
 export const getCourseSchema = (course) => ({
   "@context": "https://schema.org",
   "@type": "Course",
@@ -6,24 +8,35 @@ export const getCourseSchema = (course) => ({
   description: course.description,
 
   provider: {
-    "@type": "Organization",
-    "@id": "https://www.skillyards.in/#organization"
+    "@id": ORGANIZATION_ID,
   },
 
-  educationalCredentialAwarded: course.certification,
+  educationalLevel: "Beginner to Advanced",
+  inLanguage: "en",
 
   hasCourseInstance: {
     "@type": "CourseInstance",
+
     courseMode: "offline",
+
     location: {
       "@type": "Place",
-      name: "Skillyards",
+      name: "SkillYards",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Agra",
         addressRegion: "Uttar Pradesh",
-        addressCountry: "IN"
-      }
-    }
-  }
+        addressCountry: "IN",
+      },
+    },
+
+    startDate: course.startDate || undefined,
+  },
+
+  offers: {
+    "@type": "Offer",
+    category: "Educational",
+    availability: "https://schema.org/InStock",
+    url: `https://www.skillyards.in${course.seo.path}`,
+  },
 });

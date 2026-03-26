@@ -5,12 +5,22 @@ import Link from "next/link";
 import { ImageIcon, VideoIcon } from "lucide-react";
 import DomeGallery from "@/components/ui/Domegallery";
 
-const images = [
-  { src: "/images/life/a1.jpeg", alt: "Life at SkillYards" },
-  { src: "/images/life/a2.jpeg", alt: "Life at SkillYards" },
-  { src: "/images/life/a3.jpeg", alt: "Life at SkillYards" },
-  { src: "/images/life/a4.jpeg", alt: "Life at SkillYards" },
+const allImages = [
+  { src: "/images/life/life-1.webp", alt: "Life at SkillYards" },
+  { src: "/images/life/life-2.webp", alt: "Life at SkillYards" },
+  { src: "/images/life/life-3.webp", alt: "Life at SkillYards" },
+  { src: "/images/life/life-4.webp", alt: "Life at SkillYards" },
+  { src: "/images/life/life-5.webp", alt: "Life at SkillYards" },
+  { src: "/images/life/life-6.webp", alt: "Life at SkillYards" },
+  { src: "/images/life/life-7.webp", alt: "Life at SkillYards" },
+  { src: "/images/life/life-8.webp", alt: "Life at SkillYards" },
+  { src: "/images/life/life-10.webp", alt: "Life at SkillYards" },
+  { src: "/images/life/life-11.webp", alt: "Life at SkillYards" },
+  { src: "/images/life/life-12.webp", alt: "Life at SkillYards" },
+  { src: "/images/life/life-13.webp", alt: "Life at SkillYards" },
 ];
+
+const images = [...allImages].sort(() => Math.random() - 0.5);
 
 export default function LifeAtSkillYards() {
   const [isMobile, setIsMobile] = useState(false);
