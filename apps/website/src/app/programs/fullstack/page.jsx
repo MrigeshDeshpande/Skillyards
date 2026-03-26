@@ -4,12 +4,13 @@ import JsonLd from "@/components/JsonLd";
 import { getCourseSchema } from "@/lib/seo/schema/courseSchema";
 import { courses } from "@/data/courses";
 import { getBreadcrumbSchema } from "@/lib/seo/schema/breadcrumbSchema";
-import { faqCategories } from "@/data/faqs";
 import { getFAQSchema } from "@/lib/seo/schema/faqSchema";
+import { getPageFaqs } from "@/lib/seo/getFaqs";
 
 const course = courses.fullstack;
 const courseSchema = getCourseSchema(course);
-const faqs = faqCategories.fullstack.faqs.slice(0, 4);
+
+const faqs = getPageFaqs("fullstack");
 const faqSchema = getFAQSchema(faqs);
 
 export const metadata = buildSEO(course.seo);
