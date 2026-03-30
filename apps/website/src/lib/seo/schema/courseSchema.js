@@ -4,12 +4,16 @@ export const getCourseSchema = (course) => ({
   "@context": "https://schema.org",
   "@type": "Course",
 
+  "@id": `https://www.skillyards.in${course.seo.path}#course`,
+
   name: course.title,
   description: course.description,
 
   provider: {
     "@id": ORGANIZATION_ID,
   },
+
+  image: "https://www.skillyards.in/images/opengraph/fullstack-og.jpg",
 
   educationalLevel: "Beginner to Advanced",
   inLanguage: "en",
@@ -24,13 +28,17 @@ export const getCourseSchema = (course) => ({
       name: "SkillYards",
       address: {
         "@type": "PostalAddress",
+        streetAddress: "A3, Behind Manoj Dhaba, Bhagwan Talkies Xing",
         addressLocality: "Agra",
         addressRegion: "Uttar Pradesh",
+        postalCode: "282005",
         addressCountry: "IN",
       },
     },
 
-    startDate: course.startDate || undefined,
+    ...(course.startDate && {
+      startDate: new Date(course.startDate).toISOString().split("T")[0],
+    }),
   },
 
   offers: {

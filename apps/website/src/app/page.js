@@ -2,7 +2,6 @@ import HeroCarousel from "@/components/homepage/HeroCarousel";
 import AboutSection from "@/components/homepage/AboutSection";
 import FeaturesSection from "@/components/homepage/FeaturesSection";
 import LeadersSection from "@/components/common/LeadersSection";
-// import SubscribeSection from "@/components/common/SubscribeSection";
 import CTASection from "@/components/homepage/CTASection";
 import FAQSection from "@/components/common/FAQSection";
 import { BlogSection } from "@/components/homepage/BlogSection";
@@ -11,12 +10,17 @@ import PartnersSlider from "@/components/common/PartnersSlider";
 import ProgramsShowcase from "@/components/homepage/ProgrammeShowcase";
 import HearFromStudents from "@/components/homepage/HearFromStudents";
 import FeaturedRoles from "@/components/homepage/FeaturedRoles";
+
 import { buildSEO } from "@/lib/seo/buildSEO";
 import JsonLd from "@/components/JsonLd";
+
 import { getFAQSchema } from "@/lib/seo/schema/faqSchema";
 import { faqCategories } from "@/data/faqs";
+
 const homepageFaqs = faqCategories.homepage.faqs.slice(0, 4);
 const faqSchema = getFAQSchema(homepageFaqs);
+
+const combinedSchema = [faqSchema].filter(Boolean);
 
 export const metadata = buildSEO({
   title: "Learn, Train & Get Certified Online",
@@ -37,16 +41,16 @@ export const metadata = buildSEO({
   ogImage: "/images/opengraph/home-og.jpg",
 });
 
-
 export default function Home() {
-
   return (
     <>
-      <JsonLd data={faqSchema} id="faq-schema" />
+      <JsonLd
+        data={combinedSchema}
+        id="homepage-schema"
+      />
+
       <div className="min-h-screen w-full bg-background text-foreground transition-colors duration-500">
         <HeroCarousel />
-
-
         <AboutSection />
         <ProgramsShowcase />
         <FeaturesSection />
@@ -58,9 +62,7 @@ export default function Home() {
         <PartnersSlider />
         <CTASection />
         <FAQSection category="homepage" limit={4} />
-        {/* <SubscribeSection /> */}
       </div>
     </>
   );
 }
-

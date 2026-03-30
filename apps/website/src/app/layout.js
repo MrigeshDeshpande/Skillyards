@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 import { GoogleTagManager } from "@next/third-parties/google";
 import RegisterSW from "@/components/RegisterSW";
 import { organizationSchema, websiteSchema } from "@/lib/seo/schema/global";
-import ReCaptchaProvider from "@/components/providers/ReCaptchaProvider"; 
+import ReCaptchaProvider from "@/components/providers/ReCaptchaProvider";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -39,14 +39,18 @@ export default function RootLayout({ children }) {
         <html lang="en" suppressHydrationWarning className={`${inter.variable} ${sourceSans.variable} ${playfair.variable}`}>
             <head>
                 <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+
+                <JsonLd data={organizationSchema} id="organization-schema" />
+                <JsonLd data={websiteSchema} id="website-schema" />
             </head>
+
             <body
                 className={`antialiased
                 bg-foreground
                 text-primary-foreground
                 transition-colors duration-500 ease-in-out`}
             >
-                <ReCaptchaProvider> 
+                <ReCaptchaProvider>
                     <RegisterSW />
 
                     <ThemeProvider
@@ -66,10 +70,6 @@ export default function RootLayout({ children }) {
                         </div>
                     </ThemeProvider>
                 </ReCaptchaProvider>
-
-                {/* Structured Data */}
-                <JsonLd data={organizationSchema} />
-                <JsonLd data={websiteSchema} />
             </body>
         </html>
     );
