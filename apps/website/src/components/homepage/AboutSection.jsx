@@ -58,7 +58,7 @@ export default function AboutSection() {
                         </h2>
 
                         <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-xl">
-                            At <span className="font-bold text-foreground">SkillYards</span>, we bridge the gap between academic learning and industry demands. Gain real-world experience through our <span className="text-foreground font-semibold">On-Job Training</span> and <span className="text-foreground font-semibold">Degree</span> programs.
+                            At <span className="font-bold text-foreground">SkillYards</span>, We help students move from complication to clarification, from theory to actual skills, and from college life to career life through skill development for students that truly matters.
                         </p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-2">

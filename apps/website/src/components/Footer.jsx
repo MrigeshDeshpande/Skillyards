@@ -26,7 +26,7 @@ export default function Footer() {
 
     const footerSections = [
         {
-            title: "Programs",
+            title: "All Programs",
             links: [
                 { label: "Programs", href: "/programs" },
                 { label: "Full-Stack Development", href: "/programs/fullstack" },

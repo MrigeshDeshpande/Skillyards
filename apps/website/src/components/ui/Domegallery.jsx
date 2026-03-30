@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useCallback } from 'react';
+import { useEffect, useMemo, useRef, useCallback, memo } from 'react';
 import { useGesture } from '@use-gesture/react';
 
 
@@ -76,8 +76,61 @@ function computeItemBaseRotation(offsetX, offsetY, sizeX, sizeY, segments) {
   const rotateX = unit * (offsetY - (sizeY - 1) / 2);
   return { rotateX, rotateY };
 }
+const DomeItem = memo(({ it, i, imageBorderRadius, grayscale, onOpen }) => {
+  return (
+    <div
+      className="sphere-item absolute m-auto"
+      data-src={it.src}
+      data-alt={it.alt}
+      data-offset-x={it.x}
+      data-offset-y={it.y}
+      data-size-x={it.sizeX}
+      data-size-y={it.sizeY}
+      style={{
+        '--offset-x': it.x,
+        '--offset-y': it.y,
+        '--item-size-x': it.sizeX,
+        '--item-size-y': it.sizeY,
+        top: '-999px',
+        bottom: '-999px',
+        left: '-999px',
+        right: '-999px'
+      }}
+    >
+      <div
+        className="item__image absolute block overflow-hidden cursor-pointer bg-gray-200 transition-transform duration-300"
+        role="button"
+        tabIndex={0}
+        aria-label={it.alt || 'Open image'}
+        onClick={onOpen}
+        onPointerUp={(e) => {
+           if (e.pointerType === 'touch') onOpen(e);
+        }}
+        style={{
+          inset: '10px',
+          borderRadius: `var(--tile-radius, ${imageBorderRadius})`,
+          backfaceVisibility: 'hidden'
+        }}
+      >
+        <img
+          src={it.src}
+          draggable={false}
+          alt={it.alt}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover pointer-events-none"
+          style={{
+            backfaceVisibility: 'hidden',
+            filter: `var(--image-filter, ${grayscale ? 'grayscale(1)' : 'none'})`
+          }}
+        />
+      </div>
+    </div>
+  );
+});
+DomeItem.displayName = 'DomeItem';
 
-export default function DomeGallery({
+export default memo(function DomeGallery({
   images,
   fit = 0.5,
   fitBasis = 'auto',
@@ -749,6 +802,19 @@ export default function DomeGallery({
     };
   }, []);
 
+  const openItemRef = useRef(null);
+  useEffect(() => {
+    openItemRef.current = openItemFromElement;
+  });
+  
+  const handleItemOpen = useCallback((e) => {
+    if (draggingRef.current) return;
+    if (movedRef.current) return;
+    if (performance.now() - lastDragEndAt.current < 80) return;
+    if (openingRef.current) return;
+    if (openItemRef.current) openItemRef.current(e.currentTarget);
+  }, []);
+
   const cssStyles = `
     .sphere-root {
       --radius: 520px;
@@ -868,64 +934,14 @@ export default function DomeGallery({
           <div className="stage">
             <div ref={sphereRef} className="sphere">
               {items.map((it, i) => (
-                <div
+                <DomeItem
                   key={`${it.x},${it.y},${i}`}
-                  className="sphere-item absolute m-auto"
-                  data-src={it.src}
-                  data-alt={it.alt}
-                  data-offset-x={it.x}
-                  data-offset-y={it.y}
-                  data-size-x={it.sizeX}
-                  data-size-y={it.sizeY}
-                  style={{
-                    ['--offset-x']: it.x,
-                    ['--offset-y']: it.y,
-                    ['--item-size-x']: it.sizeX,
-                    ['--item-size-y']: it.sizeY,
-                    top: '-999px',
-                    bottom: '-999px',
-                    left: '-999px',
-                    right: '-999px'
-                  }}
-                >
-                  <div
-                    className="item__image absolute block overflow-hidden cursor-pointer bg-gray-200 transition-transform duration-300"
-                    role="button"
-                    tabIndex={0}
-                    aria-label={it.alt || 'Open image'}
-                    onClick={e => {
-                      if (draggingRef.current) return;
-                      if (movedRef.current) return;
-                      if (performance.now() - lastDragEndAt.current < 80) return;
-                      if (openingRef.current) return;
-                      openItemFromElement(e.currentTarget);
-                    }}
-                    onPointerUp={e => {
-                      if (e.pointerType !== 'touch') return;
-                      if (draggingRef.current) return;
-                      if (movedRef.current) return;
-                      if (performance.now() - lastDragEndAt.current < 80) return;
-                      if (openingRef.current) return;
-                      openItemFromElement(e.currentTarget);
-                    }}
-                    style={{
-                      inset: '10px',
-                      borderRadius: `var(--tile-radius, ${imageBorderRadius})`,
-                      backfaceVisibility: 'hidden'
-                    }}
-                  >
-                    <img
-                      src={it.src}
-                      draggable={false}
-                      alt={it.alt}
-                      className="w-full h-full object-cover pointer-events-none"
-                      style={{
-                        backfaceVisibility: 'hidden',
-                        filter: `var(--image-filter, ${grayscale ? 'grayscale(1)' : 'none'})`
-                      }}
-                    />
-                  </div>
-                </div>
+                  it={it}
+                  i={i}
+                  imageBorderRadius={imageBorderRadius}
+                  grayscale={grayscale}
+                  onOpen={handleItemOpen}
+                />
               ))}
             </div>
           </div>
@@ -940,9 +956,7 @@ export default function DomeGallery({
           <div
             className="absolute inset-0 m-auto z-[3] pointer-events-none"
             style={{
-              WebkitMaskImage: `radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, ${overlayBlurColor}) 90%)`,
-              maskImage: `radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, ${overlayBlurColor}) 90%)`,
-              backdropFilter: 'blur(3px)'
+              background: `radial-gradient(circle, transparent 55%, var(--overlay-blur-color, ${overlayBlurColor}) 120%)`
             }}
           />
 
@@ -982,4 +996,4 @@ export default function DomeGallery({
       </div>
     </>
   );
-}
+});

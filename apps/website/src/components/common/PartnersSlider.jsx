@@ -22,13 +22,10 @@ export default function PartnersSlider() {
                     transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                     className="max-w-7xl mx-auto px-6 text-center mb-12 space-y-4"
                 >
-                    <span className="inline-flex items-center gap-2 border border-secondary bg-secondary/30 text-primary rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase">
-                        🤝 Trusted By
-                    </span>
                     <h2 className="font-serif text-4xl sm:text-5xl font-bold text-foreground leading-tight">
-                        Companies That{" "}
+                        Companies {" "}
                         <span className="text-primary italic relative inline-block">
-                            Trust Us
+                            Waiting for you
                             <svg className="absolute -bottom-1 left-0 w-full overflow-visible" viewBox="0 0 120 8" fill="none" preserveAspectRatio="none" aria-hidden>
                                 <path d="M0 6 Q30 0 60 6 Q90 12 120 6" stroke="#d4c2fc" strokeWidth="2.5" strokeLinecap="round" />
                             </svg>
@@ -47,17 +44,19 @@ export default function PartnersSlider() {
 
                     {/* Single row — scrolls left */}
                     <div className="overflow-hidden py-4">
-                        <motion.div
-                            className="flex gap-5 w-max"
-                            animate={{ x: ["0%", "-50%"] }}
-                            transition={{ repeat: Infinity, repeatType: "loop", duration: 28, ease: "linear" }}
+                        <style>{`
+                            @keyframes infiniteMarquee {
+                                0% { transform: translateX(0%); }
+                                100% { transform: translateX(-50%); }
+                            }
+                        `}</style>
+                        <div 
+                            className="flex gap-5 w-max hover:[animation-play-state:paused]"
+                            style={{ animation: 'infiniteMarquee 28s linear infinite' }}
                         >
                             {track.map((partner, idx) => (
-                                <a
+                                <div
                                     key={`r1-${idx}`}
-                                    href={partner.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
                                     className="group shrink-0 flex items-center justify-center w-44 h-20 rounded-2xl border border-border/40 bg-card hover:scale-110 focus-within:scale-110 hover:border-primary/40 hover:bg-primary/5 hover:shadow-lg transition-all duration-300 px-6 overflow-hidden outline-none"
                                 >
                                     <Image
@@ -67,9 +66,9 @@ export default function PartnersSlider() {
                                         height={100}
                                         className="object-contain max-h-13 w-auto opacity-80 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-500 rounded-[inherit]"
                                     />
-                                </a>
+                                </div>
                             ))}
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
 
