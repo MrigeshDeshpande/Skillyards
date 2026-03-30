@@ -18,7 +18,7 @@ import { DGMFeeDetails } from "./FeeDetails";
 import { DGMFAQ } from "./FAQ";
 import { DGMFinalCTA } from "./FinalCTA";
 
-export function DGMLandingPage() {
+export function DGMLandingPage({faqs}) {
   return (
     <main className="w-full bg-background text-foreground">
       <DGMHero />
@@ -36,7 +36,7 @@ export function DGMLandingPage() {
       <PartnersSlider />
       <DGMAdmissionProcess />
       <DGMFeeDetails />
-      <DGMFAQ />
+      <DGMFAQ faqs={faqs} />
       <DGMFinalCTA />
     </main>
   );

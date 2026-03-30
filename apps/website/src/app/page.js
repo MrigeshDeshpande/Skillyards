@@ -42,8 +42,7 @@ export default function Home() {
 
   return (
     <>
-      <JsonLd data={faqSchema} />
-      
+      <JsonLd data={faqSchema} id="faq-schema" />
       <div className="min-h-screen w-full bg-background text-foreground transition-colors duration-500">
         <HeroCarousel />
 
