@@ -38,6 +38,18 @@ export async function registerTestLead({ db, data }) {
   };
 }
 
-export function getTestQuestions() {
-  return TEST_QUESTIONS.map(({ correctAnswer, ...q }) => q);
+export function getTestQuestions({ topics = [] } = {}) {
+  let filteredQuestions = TEST_QUESTIONS;
+
+  if (topics.length > 0) {
+    filteredQuestions = TEST_QUESTIONS.filter(q => topics.includes(q.topic));
+  }
+
+  // Shuffle questions randomly
+  const shuffled = [...filteredQuestions].sort(() => 0.5 - Math.random());
+  
+  // Select top 30 questions
+  const selected = shuffled.slice(0, 30);
+
+  return selected.map(({ correctAnswer, ...q }) => q);
 }
