@@ -14,7 +14,6 @@ import { DGMDayInTheLife } from "./DayInTheLife";
 import { DGMPlacementOutcomes } from "./PlacementOutcomes";
 import PartnersSlider from "@/components/common/PartnersSlider";
 import { DGMAdmissionProcess } from "./AdmissionProcess";
-import { DGMFeeDetails } from "./FeeDetails";
 import { DGMFAQ } from "./FAQ";
 import { DGMFinalCTA } from "./FinalCTA";
 
@@ -35,7 +34,6 @@ export function DGMLandingPage({faqs}) {
       <DGMPlacementOutcomes />
       <PartnersSlider />
       <DGMAdmissionProcess />
-      <DGMFeeDetails />
       <DGMFAQ faqs={faqs} />
       <DGMFinalCTA />
     </main>

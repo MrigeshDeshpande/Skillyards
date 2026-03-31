@@ -1,5 +1,6 @@
 import HeroCarousel from "@/components/homepage/HeroCarousel";
 import AboutSection from "@/components/homepage/AboutSection";
+import ProblemSection from "@/components/homepage/ProblemSection";
 import FeaturesSection from "@/components/homepage/FeaturesSection";
 import LeadersSection from "@/components/common/LeadersSection";
 // import SubscribeSection from "@/components/common/SubscribeSection";
@@ -48,6 +49,7 @@ export default function Home() {
 
 
         <AboutSection />
+        <ProblemSection />
         <ProgramsShowcase />
         <FeaturesSection />
         <HearFromStudents />

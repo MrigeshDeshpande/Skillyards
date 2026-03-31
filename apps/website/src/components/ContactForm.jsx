@@ -1,12 +1,13 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { User, Mail, Phone, MessageSquare, Send, Lightbulb } from "lucide-react";
 
 function ContactForm() {
     const [loading, setLoading] = useState(false);
@@ -79,86 +80,123 @@ function ContactForm() {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name */}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div className="space-y-1">
-                    <Label htmlFor="first_name">First name</Label>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div className="space-y-2 group">
+                    <Label htmlFor="first_name" className="text-sm font-medium text-neutral-700 dark:text-neutral-300 ml-1">First Name</Label>
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400 group-focus-within:text-primary transition-colors">
+                            <User className="w-5 h-5" />
+                        </div>
+                        <Input
+                            id="first_name"
+                            name="first_name"
+                            placeholder="John"
+                            className="pl-12 h-14 bg-neutral-50/50 dark:bg-neutral-900/50 border-neutral-200 dark:border-neutral-800 focus-visible:ring-primary focus-visible:border-primary transition-all rounded-2xl text-base shadow-sm"
+                            required
+                        />
+                    </div>
+                </div>
+
+                <div className="space-y-2 group">
+                    <Label htmlFor="last_name" className="text-sm font-medium text-neutral-700 dark:text-neutral-300 ml-1">Last Name</Label>
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400 group-focus-within:text-primary transition-colors">
+                            <User className="w-5 h-5" />
+                        </div>
+                        <Input
+                            id="last_name"
+                            name="last_name"
+                            placeholder="Doe"
+                            className="pl-12 h-14 bg-neutral-50/50 dark:bg-neutral-900/50 border-neutral-200 dark:border-neutral-800 focus-visible:ring-primary focus-visible:border-primary transition-all rounded-2xl text-base shadow-sm"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="space-y-2 group">
+                <Label htmlFor="email" className="text-sm font-medium text-neutral-700 dark:text-neutral-300 ml-1">Email Address</Label>
+                <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400 group-focus-within:text-primary transition-colors">
+                        <Mail className="w-5 h-5" />
+                    </div>
                     <Input
-                        id="first_name"
-                        name="first_name"
-                        placeholder="First name"
+                        id="email"
+                        type="email"
+                        name="email"
+                        placeholder="john@example.com"
+                        className="pl-12 h-14 bg-neutral-50/50 dark:bg-neutral-900/50 border-neutral-200 dark:border-neutral-800 focus-visible:ring-primary focus-visible:border-primary transition-all rounded-2xl text-base shadow-sm"
                         required
                     />
                 </div>
+            </div>
 
-                <div className="space-y-1">
-                    <Label htmlFor="last_name">Last name</Label>
+            <div className="space-y-2 group">
+                <Label htmlFor="mobile" className="text-sm font-medium text-neutral-700 dark:text-neutral-300 ml-1">Mobile Number</Label>
+                <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400 group-focus-within:text-primary transition-colors">
+                        <Phone className="w-5 h-5" />
+                    </div>
                     <Input
-                        id="last_name"
-                        name="last_name"
-                        placeholder="Last name"
+                        id="mobile"
+                        name="mobile"
+                        type="tel"
+                        inputMode="numeric"
+                        pattern="[0-9]{10}"
+                        maxLength={10}
+                        autoComplete="tel"
+                        placeholder="10-digit mobile number"
+                        className="pl-12 h-14 bg-neutral-50/50 dark:bg-neutral-900/50 border-neutral-200 dark:border-neutral-800 focus-visible:ring-primary focus-visible:border-primary transition-all rounded-2xl text-base shadow-sm"
                     />
                 </div>
             </div>
 
-            {/* Email */}
-            <div className="space-y-1">
-                <Label htmlFor="email">Email address</Label>
-                <Input
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="Email address"
-                    required
-                />
+            <div className="space-y-2 group">
+                <Label htmlFor="message" className="text-sm font-medium text-neutral-700 dark:text-neutral-300 ml-1">Your Message</Label>
+                <div className="relative">
+                    <div className="absolute top-4 left-0 pl-4 flex items-start pointer-events-none text-neutral-400 group-focus-within:text-primary transition-colors">
+                        <MessageSquare className="w-5 h-5" />
+                    </div>
+                    <Textarea
+                        id="message"
+                        name="message"
+                        placeholder="How can we help you?"
+                        rows={5}
+                        className="pl-12 py-4 bg-neutral-50/50 dark:bg-neutral-900/50 border-neutral-200 dark:border-neutral-800 focus-visible:ring-primary focus-visible:border-primary transition-all rounded-2xl text-base shadow-sm resize-none"
+                        required
+                    />
+                </div>
             </div>
 
-            {/* Mobile */}
-            <div className="space-y-1">
-                <Label htmlFor="mobile">Mobile number</Label>
-                <Input
-                    id="mobile"
-                    name="mobile"
-                    type="tel"
-                    inputMode="numeric"
-                    pattern="[0-9]{10}"
-                    maxLength={10}
-                    autoComplete="tel"
-                    placeholder="10-digit mobile number"
-                />
-            </div>
-
-
-
-            {/* Message */}
-            <div className="space-y-1">
-                <Label htmlFor="message">Message</Label>
-                <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Your message"
-                    rows={5}
-                    required
-                />
-            </div>
-
-            {/* Submit */}
             <Button
                 type="submit"
-                className="w-full"
+                className="w-full h-14 text-base font-semibold rounded-2xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl hover:shadow-primary/30 transition-all duration-300 mt-6 group"
                 disabled={loading}
             >
-                {loading ? "Sending..." : "Send Message"}
+                {loading ? "Sending Message..." : (
+                    <span className="flex items-center justify-center gap-2">
+                        Send Message <Send className="w-5 h-5 ml-1 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </span>
+                )}
             </Button>
 
-            {/* Messages */}
             {success && (
-                <p className="text-sm text-green-600">{success}</p>
+                <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-900/50 text-center font-medium">
+                    {success}
+                </div>
             )}
 
             {error && (
-                <p className="text-sm text-red-600">{error}</p>
+                <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-900/50 text-center font-medium">
+                    {error}
+                </div>
             )}
+
+            <div className="mt-8 pt-8 border-t border-primary flex flex-col items-center text-center">
+                <Lightbulb className="w-6 h-6 text-accent-foreground mb-3" />
+                <p className="text-lg sm:text-xl text-primary italic font-bold">
+                    "The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice."
+                </p>
+            </div>
         </form>
     );
 }

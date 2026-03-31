@@ -22,6 +22,7 @@ export const CardContainer = ({
 
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
+    if (typeof window !== "undefined" && window.innerWidth < 1024) return;
     const { left, top, width, height } =
       containerRef.current.getBoundingClientRect();
     const x = (e.clientX - left - width / 2) / 25;
@@ -30,6 +31,7 @@ export const CardContainer = ({
   };
 
   const handleMouseEnter = (e) => {
+    if (typeof window !== "undefined" && window.innerWidth < 1024) return;
     setIsMouseEntered(true);
     if (!containerRef.current) return;
   };
@@ -72,7 +74,7 @@ export const CardBody = ({
   return (
     <div
       className={cn(
-        "h-96 w-96 transform-3d *:transform-3d",
+        "h-auto w-full transform-3d *:transform-3d",
         className
       )}>
       {children}
@@ -101,6 +103,10 @@ export const CardItem = ({
 
   const handleAnimations = () => {
     if (!ref.current) return;
+    if (typeof window !== "undefined" && window.innerWidth < 1024) {
+      ref.current.style.transform = "none";
+      return;
+    }
     if (isMouseEntered) {
       ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
     } else {

@@ -23,45 +23,58 @@ const timeline = [
 
 export default function SkillYardsJourney() {
     return (
-        <section className="py-20 bg-background">
-            <div className="max-w-6xl mx-auto px-6">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl sm:text-5xl font-extrabold text-foreground">
+        <section className="py-20 bg-background overflow-hidden relative">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16 md:mb-20">
+                    <h2 className="text-4xl sm:text-5xl font-extrabold text-foreground tracking-tight">
                         SkillYards Journey
                     </h2>
-                    <p className="mt-4 text-lg text-muted-foreground">
-                        A journey of learning, growth, and impact.
+                    <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+                        A continuous journey of empowering students, shaping careers, and bridging the gap between education and the IT industry.
                     </p>
                 </div>
 
                 <div className="relative">
-                    {/* Vertical Line */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-linear-to-b from-primary via-secondary to-accent rounded" />
+                    {/* Flawlessly Aligned Vertical Axis */}
+                    <div className="absolute left-[32px] md:left-1/2 transform -translate-x-1/2 h-full w-1 bg-linear-to-b from-primary via-secondary to-accent rounded" />
 
-                    <div className="space-y-16">
-                        {timeline.map((item, index) => (
-                            <div
-                                key={index}
-                                className={`relative md:flex md:items-center ${
-                                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                                }`}
-                            >
-                                {/* Dot */}
-                                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                                    <span className="block w-6 h-6 rounded-full bg-primary shadow-lg ring-4 ring-background transition-all"></span>
-                                </div>
+                    <div className="space-y-12 md:space-y-16 relative z-10">
+                        {timeline.map((item, index) => {
+                            const isEven = index % 2 === 0;
+                            return (
+                                <div key={index} className="group relative w-full">
+                                    {/* Perfectly Centered Target Axis */}
+                                    <div className="absolute left-[32px] md:left-1/2 top-10 md:top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 flex justify-center items-center">
+                                        <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-primary ring-[5px] ring-background shadow-lg shadow-primary/40 group-hover:scale-125 group-hover:bg-accent transition-all duration-300" />
+                                    </div>
 
-                                {/* Card */}
-                                <div className="mt-6 md:mt-0 md:w-1/2 px-6 py-5 bg-card rounded-xl shadow-md border border-border transition hover:scale-105">
-                                    <span className="text-primary font-semibold">{item.year}</span>
-                                    <h3 className="text-2xl font-bold mt-2 text-foreground">{item.title}</h3>
-                                    <p className="mt-2 text-muted-foreground leading-relaxed">{item.description}</p>
+                                    {/* Responsive Card Positioning */}
+                                    <div className={`w-full md:w-[calc(50%-3rem)] pl-[76px] md:pl-0 ${
+                                        isEven ? "md:mr-auto" : "md:ml-auto"
+                                    }`}>
+                                        {/* Dynamic Content Alignment */}
+                                        <div className="p-6 md:p-8 bg-card backdrop-blur-sm rounded-2xl shadow-sm border border-border/60 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group-hover:border-primary/40 flex flex-col items-start text-left">
+                                            <span className="inline-block px-3 py-1 text-xs md:text-sm font-bold tracking-wider text-primary bg-primary/10 rounded-full mb-3 md:mb-4">
+                                                {item.year}
+                                            </span>
+                                            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 md:mb-3">
+                                                {item.title}
+                                            </h3>
+                                            <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </div>
         </section>
     );
 }
+
+
+
+

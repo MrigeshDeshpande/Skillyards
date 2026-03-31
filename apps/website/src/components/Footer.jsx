@@ -26,7 +26,7 @@ export default function Footer() {
 
     const footerSections = [
         {
-            title: "Programs",
+            title: "All Programs",
             links: [
                 { label: "Programs", href: "/programs" },
                 { label: "Full-Stack Development", href: "/programs/fullstack" },
@@ -66,22 +66,22 @@ export default function Footer() {
     ].filter(link => Boolean(link.url));
 
     return (
-        <footer className="border-t border-border bg-background/90 backdrop-blur-md">
+        <footer className="border-t border-border bg-background/90 backdrop-blur-md pt-8">
             {/* Top */}
-            <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-12 sm:grid-cols-2 md:grid-cols-4">
-                {/* Brand */}
-                <div>
-                    <Link href="/" className="mb-4 flex items-center gap-2">
+            <div className="mx-auto grid max-w-[90rem] grid-cols-1 gap-12 lg:gap-8 px-6 lg:px-12 py-20 sm:grid-cols-2 lg:grid-cols-7">
+                {/* Brand & Address */}
+                <div className="flex flex-col sm:col-span-2 lg:col-span-2 relative z-20 pr-0 lg:pr-8">
+                    <Link href="/" className="mb-6 flex items-center gap-2">
                         <Logo />
                     </Link>
 
-                    <address className="not-italic text-sm text-muted-foreground">
-                        📍 A3, Behind Manoj Dhaba, Bhagwan Talkies Xing
-                        <br />
-                        Agra, Uttar Pradesh – 282005, India
+                    <address className="not-italic text-sm text-muted-foreground mb-6 leading-relaxed max-w-xs flex items-start gap-2">
+                        <span className="shrink-0 mt-0.5 pointer-events-none">📍</span>
+                        <span>A-3, behind Manoj Dhaba, Bhagwan Talkies crossing, Indra Puri, New Agra Colony, Agra, Uttar Pradesh 282005</span>
                     </address>
+
                     {/* Social */}
-                    <SocialLinks showLabel={false} className="mt-4" />
+                    <SocialLinks showLabel={false} className="-ml-1.5 gap-3 md:gap-4" />
                 </div>
 
                 {/* Desktop columns */}
@@ -131,6 +131,23 @@ export default function Footer() {
                             </AccordionItem>
                         ))}
                     </Accordion>
+                </div>
+
+                {/* Map column (Visible on all devices) */}
+                <div className="block sm:col-span-2 lg:col-span-2 lg:pl-4">
+                    <h3 className="mb-4 text-lg font-semibold text-muted-foreground">
+                        Our Location
+                    </h3>
+                    <div className="w-full h-56 lg:h-full min-h-[16rem] relative rounded-[1.5rem] overflow-hidden shadow-lg border border-border group">
+                        <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-black/5 dark:ring-white/10 rounded-[1.5rem] z-10" />
+                        <iframe
+                            title="SkillYards Location"
+                            className="absolute inset-0 w-full h-full border-0 filter dark:brightness-90 dark:contrast-125 dark:saturate-50" 
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3548.2462724676166!2d78.00276847614923!3d27.211416747188895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3974776a3f3b61d9%3A0xc26cc82e5a39a7fc!2sSkillyards%20Versatility%20Pvt.!5e0!3m2!1sen!2sin!4v1774862128520!5m2!1sen!2sin"
+                        />
+                    </div>
                 </div>
             </div>
 

@@ -23,7 +23,7 @@ const ProgramsShowcase = () => {
     const trainingPrograms = [
         {
             title: "Full-Stack Development",
-            description: "Build complete web apps with React, Node.js, MongoDB & more. Graduate with a live portfolio and job referrals.",
+            description: "Understand how real websites and applications are built, not just how they look. You work on live projects, learn frontend and backend logic, and build a portfolio recruiters care about.",
             link: "/programs/fullstack",
             icon: <Code2 className="w-6 h-6 md:w-8 md:h-8 text-teal-400" />,
             bg: "url('/images/programmes/full-stack.jpg')",

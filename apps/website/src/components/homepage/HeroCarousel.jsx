@@ -133,7 +133,7 @@ export default function HeroCarousel() {
                                                         variant="outline"
                                                         className={`rounded-full backdrop-blur border-border/50 bg-background/50 px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg font-semibold text-foreground hover:bg-muted transition-transform hover:scale-105 w-full sm:w-auto`}
                                                     >
-                                                        <Link href="/contact">Learn More</Link>
+                                                        <Link href="/contact">Book Free Career Counselling</Link>
                                                     </Button>
                                                 </m.div>
                                         </div>
