@@ -13,20 +13,27 @@ const courseSchema = getCourseSchema(course);
 const faqs = getPageFaqs("fullstack");
 const faqSchema = getFAQSchema(faqs);
 
-export const metadata = buildSEO(course.seo);
-
 const breadcrumbSchema = getBreadcrumbSchema([
   { name: "Home", url: "https://www.skillyards.in/" },
   { name: "Programs", url: "https://www.skillyards.in/programs" },
   { name: course.title, url: `https://www.skillyards.in${course.seo.path}` },
 ]);
 
+const combinedSchema = [
+  courseSchema,
+  breadcrumbSchema,
+  faqSchema,
+].filter(Boolean);
+
+export const metadata = buildSEO(course.seo);
+
 export default function FullStackPage() {
   return (
     <>
-      <JsonLd data={courseSchema} id="course-schema" />
-      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
-      <JsonLd data={faqSchema} id="faq-schema" />
+      <JsonLd
+        data={combinedSchema}
+        id="fullstack-schema"
+      />
 
       <div className="w-full overflow-x-hidden">
         <FSDLandingPage faqs={faqs} />

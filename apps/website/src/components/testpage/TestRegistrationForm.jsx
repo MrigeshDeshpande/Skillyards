@@ -1,57 +1,78 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowRight, Loader2 } from "lucide-react";
 
 export default function TestRegistrationForm() {
+    const router = useRouter();
+
     const [form, setForm] = useState({ name: "", email: "", phone: "" });
-    const [status, setStatus] = useState("idle"); // idle | loading | success | error
+    const [status, setStatus] = useState("idle"); 
     const [error, setError] = useState("");
 
     const handleChange = (e) => {
-        setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+        setForm((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
         setError("");
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) {
-            setError("Please fill in all fields to continue.");
-            return;
-        }
-        if (!/^\S+@\S+\.\S+$/.test(form.email)) {
-            setError("Please enter a valid email address.");
-            return;
-        }
-        if (!/^\d{10}$/.test(form.phone.replace(/\s/g, ""))) {
-            setError("Please enter a valid 10-digit phone number.");
+
+        if (!form.name || !form.email || !form.phone) {
+            setError("Please fill in all fields.");
+            console.warn("Validation failed — missing fields:", {
+                name: !!form.name,
+                email: !!form.email,
+                phone: !!form.phone,
+            });
             return;
         }
 
         setStatus("loading");
 
-        // TODO: wire to backend / form submission API
-        await new Promise((r) => setTimeout(r, 1200));
+        const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/test/register`;
 
-        // Placeholder — always succeeds for now
-        setStatus("success");
+        try {
+            const res = await fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: form.name,
+                    email: form.email,
+                    phone: form.phone,
+                }),
+            });
+
+            let data;
+
+            try {
+                data = await res.json();
+            } catch (parseErr) {
+                setError("Unexpected server response.");
+                setStatus("error");
+                return;
+            }
+
+            if (!res.ok) {
+                setError(data?.error || "Something went wrong.");
+                setStatus("error");
+                return;
+            }
+
+
+            router.push(`/test/start?leadId=${data.leadId}`);
+
+        } catch (err) {
+            setError("Network error. Please try again.");
+            setStatus("error");
+        }
     };
-
-    if (status === "success") {
-        return (
-            <section id="register" className="bg-muted/40 border-y border-border py-16 px-4 sm:px-6">
-                <div className="mx-auto max-w-md text-center">
-                    <CheckCircle2 size={48} className="mx-auto text-emerald-500 mb-4" />
-                    <h2 className="font-serif text-2xl sm:text-3xl font-extrabold text-foreground mb-3">
-                        You&apos;re registered!
-                    </h2>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                        We&apos;ll notify you at <strong className="text-foreground">{form.email}</strong> as soon as the test goes live. Get ready — it&apos;ll take less than 10 minutes.
-                    </p>
-                </div>
-            </section>
-        );
-    }
 
     return (
         <section id="register" className="bg-muted/40 border-y border-border py-16 px-4 sm:px-6">
@@ -70,14 +91,17 @@ export default function TestRegistrationForm() {
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSubmit(e);
+                }} className="flex flex-col gap-4" noValidate>
+
                     {/* Name */}
                     <div className="flex flex-col gap-1.5">
                         <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
                             Full Name
                         </label>
                         <input
-                            id="name"
                             name="name"
                             type="text"
                             placeholder="Rahul Sharma"
@@ -137,7 +161,7 @@ export default function TestRegistrationForm() {
                     <button
                         type="submit"
                         disabled={status === "loading"}
-                        className="mt-2 w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold text-sm px-6 py-3.5 rounded-full hover:bg-primary/90 hover:gap-3 transition-all duration-200 group disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="mt-2 w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold text-sm px-6 py-3.5 rounded-full hover:bg-primary/90 transition-all disabled:opacity-60"
                     >
                         {status === "loading" ? (
                             <>
@@ -147,7 +171,7 @@ export default function TestRegistrationForm() {
                         ) : (
                             <>
                                 Start Free Test
-                                <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                                <ArrowRight size={15} />
                             </>
                         )}
                     </button>
