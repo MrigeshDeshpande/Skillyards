@@ -20,9 +20,16 @@ export async function createTestSession(db, data) {
       leadId: data.leadId,
       testType: data.testType || "10_min_test",
       status: data.status || "started",
+      questionsSnapshot: data.questionsSnapshot || [],
       startedAt: new Date(),
     })
     .returning();
 
   return session;
+}
+
+export async function getSessionById(db, sessionId) {
+  return db.query.testSessions.findFirst({
+    where: (t, { eq }) => eq(t.id, sessionId),
+  });
 }

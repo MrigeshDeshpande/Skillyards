@@ -2,19 +2,12 @@ import { NextResponse } from "next/server";
 import { db } from "@repo/db";
 import { testLeads } from "@repo/db";
 import { eq } from "drizzle-orm";
+import { corsHeaders } from "@/utils/cors";
 
-function corsHeaders() {
-  return {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-  };
-}
-
-export async function OPTIONS() {
+export async function OPTIONS(request) {
   return new Response(null, {
     status: 204,
-    headers: corsHeaders(),
+    headers: corsHeaders(request),
   });
 }
 
@@ -27,7 +20,7 @@ export async function GET(req) {
   if (!leadId) {
     return NextResponse.json(
       { error: "Missing leadId" },
-      { status: 400, headers: corsHeaders() }
+      { status: 400, headers: corsHeaders(req) }
     );
   }
 
@@ -43,13 +36,13 @@ export async function GET(req) {
     if (!result.length) {
       return NextResponse.json(
         { error: "Invalid lead" },
-        { status: 404, headers: corsHeaders() }
+        { status: 404, headers: corsHeaders(req) }
       );
     }
 
     return NextResponse.json(
       { lead: result[0] },
-      { headers: corsHeaders() }
+      { headers: corsHeaders(req) }
     );
 
   } catch (err) {
@@ -57,7 +50,7 @@ export async function GET(req) {
 
     return NextResponse.json(
       { error: "Server error" },
-      { status: 500, headers: corsHeaders() }
+      { status: 500, headers: corsHeaders(req) }
     );
   }
 }

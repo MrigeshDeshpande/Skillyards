@@ -1,18 +1,11 @@
 import { NextResponse } from "next/server";
 import { getTestQuestions } from "@/modules/test/test.service";
+import { corsHeaders } from "@/utils/cors";
 
-function corsHeaders() {
-  return {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-  };
-}
-
-export async function OPTIONS() {
+export async function OPTIONS(request) {
   return new Response(null, {
     status: 204,
-    headers: corsHeaders(),
+    headers: corsHeaders(request),
   });
 }
 
@@ -26,14 +19,14 @@ export async function GET(req) {
 
     return NextResponse.json(
       { success: true, questions },
-      { headers: corsHeaders() }
+      { headers: corsHeaders(req) }
     );
   } catch (err) {
     console.error("QUESTIONS API ERROR:", err);
 
     return NextResponse.json(
       { error: "Failed to fetch questions" },
-      { status: 500, headers: corsHeaders() }
+      { status: 500, headers: corsHeaders(req) }
     );
   }
 }

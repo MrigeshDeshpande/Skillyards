@@ -7,55 +7,63 @@ import { Loader2, Clock, CheckCircle2, ChevronRight, ChevronLeft } from "lucide-
 function QuizContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
+
     const leadId = searchParams.get("leadId");
     const topics = searchParams.get("topics");
 
     const [questions, setQuestions] = useState([]);
+    const [sessionId, setSessionId] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [submitting, setSubmitting] = useState(false);
 
-    // Quiz State
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [answers, setAnswers] = useState({}); // { [questionId]: optionId }
-    const [timeLeft, setTimeLeft] = useState(600); // 10 minutes (600 seconds)
+    const [answers, setAnswers] = useState({});
+    const [timeLeft, setTimeLeft] = useState(600);
 
-    // Refs
     const timerRef = useRef(null);
     const isSubmitted = useRef(false);
 
-    // Initial Fetch
+    // 🚀 START TEST (NEW FLOW)
     useEffect(() => {
         if (!leadId) {
             router.push("/10-minutes-test");
             return;
         }
 
-        async function fetchQuestions() {
+        async function startTest() {
             try {
-                const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-                const topicsQuery = topics ? `?topics=${topics}` : '';
-                const res = await fetch(`${BASE_URL}/api/test/questions${topicsQuery}`);
-                if (!res.ok) throw new Error("Failed to fetch questions");
+                const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+                const topicsArr = topics ? topics.split(",") : [];
+
+                const res = await fetch(`${BASE_URL}/api/test/start`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        leadId,
+                        topics: topicsArr,
+                    }),
+                });
+
+                if (!res.ok) throw new Error("Failed to start test");
+
                 const data = await res.json();
-                
-                if (data.questions && data.questions.length > 0) {
-                    setQuestions(data.questions);
-                    setLoading(false);
-                } else {
-                    throw new Error("No questions found");
-                }
+
+                setSessionId(data.sessionId);
+                setQuestions(data.questions);
+                setLoading(false);
+
             } catch (err) {
                 console.error(err);
-                setError("Failed to load test. Please try refreshing.");
+                setError("Failed to load test. Please try again.");
                 setLoading(false);
             }
         }
 
-        fetchQuestions();
-    }, [leadId, router]);
+        startTest();
+    }, [leadId, topics, router]);
 
-    // Timer Logic
+    // ⏱ TIMER
     useEffect(() => {
         if (loading || error || isSubmitted.current) return;
 
@@ -81,17 +89,18 @@ function QuizContent() {
         return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
     };
 
-    const handleOptionSelect = (qId, oId) => {
-        setAnswers((prev) => ({ ...prev, [qId]: oId }));
+    const handleOptionSelect = (qId, option) => {
+        setAnswers((prev) => ({ ...prev, [qId]: option }));
     };
 
+    // 🚀 SUBMIT (SESSION-BASED)
     const submitTest = async (finalAnswers = answers) => {
-        if (isSubmitted.current) return;
+        if (isSubmitted.current || !sessionId) return;
+
         isSubmitted.current = true;
         setSubmitting(true);
         clearInterval(timerRef.current);
 
-        // Build payload
         const payload = Object.entries(finalAnswers).map(([questionId, selectedOptionId]) => ({
             questionId,
             selectedOptionId,
@@ -99,23 +108,28 @@ function QuizContent() {
 
         try {
             const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+
             const res = await fetch(`${BASE_URL}/api/test/submit`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ leadId, answers: payload }),
+                body: JSON.stringify({
+                    sessionId,
+                    answers: payload,
+                }),
             });
 
             const data = await res.json();
 
             if (res.ok) {
-                // Save wrong answers to sessionStorage for the result page
                 if (data.wrongAnswers) {
                     sessionStorage.setItem("wrongAnswers", JSON.stringify(data.wrongAnswers));
                 }
-                // Navigate to results
-                router.push(`/test/result?leadId=${leadId}&score=${data.score}&total=${data.total}`);
+
+                router.push(
+                    `/test/result?sessionId=${sessionId}&score=${data.score}&total=${data.total}`
+                );
             } else {
-                setError(data.error || "Failed to submit test. Please contact support.");
+                setError(data.error || "Failed to submit test.");
                 setSubmitting(false);
             }
         } catch (err) {
@@ -125,6 +139,7 @@ function QuizContent() {
         }
     };
 
+    // UI STATES
     if (loading) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-muted/20">
@@ -157,122 +172,61 @@ function QuizContent() {
 
     const currentQuestion = questions[currentIndex];
     const totalQuestions = questions.length;
-    const progress = ((currentIndex + 1) / totalQuestions) * 100;
 
     return (
-        <div className="min-h-screen bg-background relative overflow-hidden pt-36 pb-16 px-4 sm:px-6 flex flex-col items-center">
-            
-            {/* Decorative Background Elements */}
-            <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="min-h-screen p-6 flex flex-col items-center">
+            <div className="w-full max-w-2xl">
 
-            <div className="w-full max-w-3xl relative z-10 flex flex-col min-h-[85vh]">
-                
-                {/* Header & Timer Component */}
-                <div className="flex items-center justify-between mb-8 bg-muted/30 border border-border/50 backdrop-blur-md p-4 sm:px-6 sm:py-4 rounded-2xl shadow-sm">
-                    <div>
-                        <h1 className="text-xl sm:text-2xl font-black tracking-tight text-foreground">
-                            Skill Assessment
-                        </h1>
-                        <p className="text-xs sm:text-sm text-muted-foreground font-medium mt-0.5 tracking-wide uppercase">
-                            {topics ? topics.split(',').join(', ') : 'All Topics'}
-                        </p>
-                    </div>
-                    <div className={`flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-bold transition-all duration-300 ${
-                        timeLeft < 60 
-                        ? 'bg-destructive/10 text-destructive border border-destructive/20 shadow-[0_0_15px_rgba(239,68,68,0.2)] animate-pulse' 
-                        : 'bg-background border border-border shadow-sm text-foreground'
-                    }`}>
-                        <Clock size={18} className={timeLeft < 60 ? "animate-bounce" : ""} />
-                        <span className="tabular-nums tracking-wider">{formatTime(timeLeft)}</span>
-                    </div>
+                {/* HEADER */}
+                <div className="flex justify-between mb-6">
+                    <h1 className="text-xl font-bold">Skill Assessment</h1>
+                    <div>{formatTime(timeLeft)}</div>
                 </div>
 
-                {/* Progress Bar Container */}
-                <div className="flex items-center gap-4 mb-8">
-                    <span className="text-xs font-bold text-muted-foreground whitespace-nowrap">
-                        {Math.round(progress)}% COMPLETED
-                    </span>
-                    <div className="flex-1 bg-muted h-2.5 rounded-full overflow-hidden border border-border/50">
-                        <div 
-                            className="bg-primary h-full transition-all duration-500 ease-out rounded-full shadow-[0_0_10px_rgba(var(--primary),0.5)]"
-                            style={{ width: `${progress}%` }}
-                        />
-                    </div>
-                    <span className="text-xs font-bold text-muted-foreground whitespace-nowrap">
-                        {currentIndex + 1} / {totalQuestions}
-                    </span>
+                {/* QUESTION */}
+                <h2 className="text-lg font-semibold mb-4">
+                    {currentIndex + 1}. {currentQuestion.question}
+                </h2>
+
+                {/* OPTIONS */}
+                <div className="flex flex-col gap-3 mb-6">
+                    {currentQuestion.options.map((opt, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => handleOptionSelect(currentQuestion.id, opt)}
+                            className={`p-3 border rounded ${
+                                answers[currentQuestion.id] === opt
+                                    ? "border-blue-500"
+                                    : "border-gray-300"
+                            }`}
+                        >
+                            {opt}
+                        </button>
+                    ))}
                 </div>
 
-                {/* Main Question Card */}
-                <div className="flex-1 bg-background rounded-[2rem] border border-border p-6 sm:p-10 shadow-xl shadow-black/5 flex flex-col relative overflow-hidden group">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/40 via-blue-500/40 to-primary/40 opacity-50" />
-                    
-                    <div className="mb-8">
-                        <span className="inline-block px-3 py-1 mb-4 rounded-full bg-primary/10 text-primary text-xs font-black uppercase tracking-widest border border-primary/20">
-                            Question {currentIndex + 1}
-                        </span>
-                        <h2 className="text-2xl sm:text-3xl font-semibold leading-snug tracking-tight text-foreground">
-                            {currentQuestion.question}
-                        </h2>
-                    </div>
-
-                    {/* Options Grid */}
-                    <div className="flex flex-col gap-3 mt-auto">
-                        {currentQuestion.options.map((option, idx) => {
-                            const isSelected = answers[currentQuestion.id] === option;
-                            return (
-                                <button
-                                    key={idx}
-                                    onClick={() => handleOptionSelect(currentQuestion.id, option)}
-                                    className={`relative flex items-center w-full px-6 py-4 border-2 rounded-2xl text-left transition-all duration-200 group-hover:border-border ${
-                                        isSelected 
-                                        ? "border-primary bg-primary/5 shadow-md transform scale-[1.01]" 
-                                        : "border-transparent bg-muted/40 hover:bg-muted/80 hover:scale-[1.005] hover:border-border"
-                                    }`}
-                                >
-                                    <div className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
-                                        isSelected ? "border-primary bg-primary" : "border-muted-foreground/30 bg-background"
-                                    }`}>
-                                        {isSelected && <div className="w-2 h-2 bg-white rounded-full scale-in-center" />}
-                                    </div>
-                                    <span className={`text-sm sm:text-lg font-medium transition-colors ${
-                                        isSelected ? "text-primary" : "text-foreground/80"
-                                    }`}>
-                                        {option}
-                                    </span>
-                                </button>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                {/* Navigation Footer */}
-                <div className="flex items-center justify-between mt-8">
+                {/* NAV */}
+                <div className="flex justify-between">
                     <button
-                        onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
+                        onClick={() => setCurrentIndex((p) => Math.max(0, p - 1))}
                         disabled={currentIndex === 0}
-                        className="flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold border-2 border-border bg-transparent text-foreground hover:bg-muted/50 transition-all disabled:opacity-30 disabled:hover:bg-transparent"
                     >
-                        <ChevronLeft size={18} />
                         Previous
                     </button>
 
                     {currentIndex === totalQuestions - 1 ? (
-                        <button
-                            onClick={() => submitTest(answers)}
-                            className="flex items-center gap-2 px-8 py-3 rounded-full text-sm font-black bg-primary text-primary-foreground hover:scale-105 hover:shadow-lg transition-all"
-                        >
-                            Submit Assessment
-                            <CheckCircle2 size={18} />
+                        <button onClick={() => submitTest()}>
+                            Submit
                         </button>
                     ) : (
                         <button
-                            onClick={() => setCurrentIndex(prev => Math.min(totalQuestions - 1, prev + 1))}
-                            className="flex items-center gap-2 px-8 py-3 rounded-full text-sm font-black bg-foreground text-background hover:scale-105 hover:shadow-lg transition-all"
+                            onClick={() =>
+                                setCurrentIndex((p) =>
+                                    Math.min(totalQuestions - 1, p + 1)
+                                )
+                            }
                         >
-                            Next Question
-                            <ChevronRight size={18} />
+                            Next
                         </button>
                     )}
                 </div>

@@ -12,4 +12,8 @@ export const testSessions = pgTable("test_sessions", {
   startedAt: timestamp("started_at").defaultNow().notNull(),
 
   completedAt: timestamp("completed_at"),
+
+  score: integer("score"),
+
+  questionsSnapshot: jsonb("questions_snapshot"),
 });

@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@repo/db";
-import { registerTestSchema } from "@/modules/test/test.schema";
-import { registerTestLead } from "@/modules/test/test.service";
+import { startTest } from "@/modules/test/test.service";
 import { corsHeaders } from "@/utils/cors";
 
 export async function OPTIONS(request) {
@@ -14,35 +13,31 @@ export async function OPTIONS(request) {
 export async function POST(req) {
   try {
     const body = await req.json();
+    const { leadId, topics } = body;
 
-    const parsed = registerTestSchema.safeParse(body);
-
-    if (!parsed.success) {
+    if (!leadId || !Array.isArray(topics)) {
       return NextResponse.json(
-        { error: "Invalid input" },
+        { error: "Invalid payload" },
         { status: 400, headers: corsHeaders(req) }
       );
     }
 
-    const result = await registerTestLead({
-      db,
-      data: parsed.data,
-    });
+    const result = await startTest({ db, leadId, topics });
 
     return NextResponse.json(
       {
         success: true,
-        leadId: result.lead.id,
-        alreadyExists: result.alreadyExists,
+        sessionId: result.sessionId,
+        questions: result.questions,
       },
       { headers: corsHeaders(req) }
     );
 
   } catch (err) {
-    console.error(err);
+    console.error("START TEST ERROR:", err);
 
     return NextResponse.json(
-      { error: "Server error" },
+      { error: err.message || "Failed to start test" },
       { status: 500, headers: corsHeaders(req) }
     );
   }
