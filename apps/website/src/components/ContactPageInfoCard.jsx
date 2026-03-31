@@ -57,9 +57,7 @@ export default function ContactPageInfoCard() {
                         <div>
                             <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-1">Corporate Address</p>
                             <address className="not-italic text-base font-medium text-neutral-900 dark:text-neutral-100 leading-relaxed">
-                                A3, Behind Manoj Dhaba, <br />
-                                Bhagwan Talkies Xing, <br />
-                                Agra, Uttar Pradesh – 282005
+                                A-3, behind Manoj Dhaba, Bhagwan Talkies crossing, Indra Puri, New Agra Colony, Agra, Uttar Pradesh 282005
                             </address>
                         </div>
                     </div>

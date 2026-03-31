@@ -56,7 +56,7 @@ export default function SocialLinks({
 
     return (
         <div
-            className={`flex flex-wrap items-center gap-2 ${className}`}
+            className={`flex items-center gap-2 ${className}`}
         >
             {showLabel && (
                 <span className="text-sm text-neutral-500 dark:text-neutral-400">
@@ -72,7 +72,7 @@ export default function SocialLinks({
                     rel="noopener noreferrer"
                     aria-label={name}
                     title={name}
-                    className={`flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-neutral-100 text-neutral-600 transition dark:bg-neutral-800 dark:text-neutral-400 ${hover} hover:text-white`}
+                    className={`flex shrink-0 h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-neutral-100 text-neutral-600 transition dark:bg-neutral-800 dark:text-neutral-400 ${hover} hover:text-white`}
                 >
                     <Icon className="h-4 w-4 sm:h-4 sm:w-4" />
                 </a>
