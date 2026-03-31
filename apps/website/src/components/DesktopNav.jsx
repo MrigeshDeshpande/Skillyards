@@ -50,7 +50,7 @@ export default function DesktopNav({ theme, toggleTheme }) {
 
                 <Link href="/contact" className="hidden lg:flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground text-[13px] font-semibold px-5 py-2 rounded-full shadow-[0_4px_0_0_hsl(var(--primary))] hover:shadow-[0_6px_0_0_hsl(var(--primary))] hover:-translate-y-0.5 active:shadow-[0_0px_0_0_hsl(var(--primary))] active:translate-y-1 transition-all duration-150">
                     <Phone className="w-4 h-4" />
-                    Request a Call
+                    Request a Callback
                 </Link>
 
                 {/* Icons */}
