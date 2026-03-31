@@ -193,7 +193,7 @@ function ContactForm() {
 
             <div className="mt-8 pt-8 border-t border-primary flex flex-col items-center text-center">
                 <Lightbulb className="w-6 h-6 text-accent-foreground mb-3" />
-                <p className="text-xl text-primary italic font-bold">
+                <p className="text-lg sm:text-xl text-primary italic font-bold">
                     "The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice."
                 </p>
             </div>

@@ -72,9 +72,9 @@ export default function SocialLinks({
                     rel="noopener noreferrer"
                     aria-label={name}
                     title={name}
-                    className={`flex h-9 w-9 items-center justify-center rounded-full bg-neutral-100 text-neutral-600 transition dark:bg-neutral-800 dark:text-neutral-400 ${hover} hover:text-white`}
+                    className={`flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-neutral-100 text-neutral-600 transition dark:bg-neutral-800 dark:text-neutral-400 ${hover} hover:text-white`}
                 >
-                    <Icon className="h-4 w-4" />
+                    <Icon className="h-4 w-4 sm:h-4 sm:w-4" />
                 </a>
             ))}
         </div>

@@ -4,7 +4,7 @@ import { AlertTriangle, GraduationCap, Briefcase, Zap } from "lucide-react";
 
 export default function ProblemSection() {
     return (
-        <section className="relative py-16 md:py-20 overflow-hidden bg-bacground">
+        <section className="relative py-16 md:py-20 overflow-hidden bg-background text-foreground">
             <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
                 
                 {/* Left Side: The Headline */}
@@ -14,7 +14,7 @@ export default function ProblemSection() {
                         <span>The Reality Check</span>
                     </div>
                     
-                    <h2 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold font-playfair tracking-tight leading-[1.1] text-neutral-900 dark:text-neutral-50">
+                    <h2 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-[1.1]">
                         Degrees Are Not <br className="hidden md:block" />
                         Enough Anymore. <br className="hidden xl:block"/>
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent relative inline-block mt-2 xl:mt-0">
@@ -28,25 +28,25 @@ export default function ProblemSection() {
                 {/* Right Side: The Content Grid */}
                 <div className="flex-1 w-full flex flex-col gap-5 md:gap-6">
                     {/* Block 1 */}
-                    <div className="bg-white/80 dark:bg-neutral-900/60 backdrop-blur-xl border border-neutral-200 dark:border-neutral-800 rounded-3xl p-6 md:p-8 hover:shadow-xl transition-all duration-300 group">
-                        <div className="flex items-center justify-between text-neutral-600 dark:text-neutral-400 font-medium text-lg md:text-xl">
+                    <div className="bg-card/80 backdrop-blur-xl border border-border rounded-3xl p-6 md:p-8 hover:shadow-xl transition-all duration-300 group">
+                        <div className="flex items-center justify-between text-muted-foreground font-medium text-lg md:text-xl">
                             <div className="flex flex-col gap-2">
-                                <span className="flex items-center gap-2 text-xs md:text-sm text-neutral-500 uppercase tracking-wider font-semibold"><GraduationCap className="w-4 h-4 text-neutral-400" /> Colleges teach</span>
-                                <span className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-neutral-200 line-through decoration-destructive/60 decoration-4 -rotate-1 inline-block">Subjects.</span>
+                                <span className="flex items-center gap-2 text-xs md:text-sm uppercase tracking-wider font-semibold"><GraduationCap className="w-4 h-4 text-muted-foreground/80" /> Colleges teach</span>
+                                <span className="text-2xl md:text-3xl font-bold text-foreground line-through decoration-destructive/60 decoration-4 -rotate-1 inline-block">Subjects.</span>
                             </div>
-                            <div className="w-px h-16 bg-neutral-300 dark:bg-neutral-800 mx-3 md:mx-4" />
+                            <div className="w-px h-16 bg-border mx-3 md:mx-4" />
                             <div className="flex flex-col gap-2 text-right items-end">
-                                <span className="flex items-center gap-2 text-xs md:text-sm text-neutral-500 uppercase tracking-wider font-semibold"><Briefcase className="w-4 h-4 text-primary/70" /> Companies hire</span>
-                                <span className="text-2xl md:text-3xl font-bold text-primary dark:text-primary pb-1 border-b-2 border-primary/30 inline-block">Skills.</span>
+                                <span className="flex items-center gap-2 text-xs md:text-sm uppercase tracking-wider font-semibold"><Briefcase className="w-4 h-4 text-primary/70" /> Companies hire</span>
+                                <span className="text-2xl md:text-3xl font-bold text-primary pb-1 border-b-2 border-primary/30 inline-block">Skills.</span>
                             </div>
                         </div>
-                        <p className="mt-6 pt-5 border-t border-neutral-200 dark:border-neutral-800 text-base md:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed font-medium">
-                            For most students, that gap is the <strong className="font-bold text-destructive dark:text-red-400 bg-destructive/10 px-2 py-0.5 rounded-md">real problem.</strong>
+                        <p className="mt-6 pt-5 border-t border-border text-base md:text-lg text-foreground/80 leading-relaxed font-medium">
+                            For most students, that gap is the <strong className="font-bold text-destructive bg-destructive/10 px-2 py-0.5 rounded-md">real problem.</strong>
                         </p>
                     </div>
 
                     {/* Block 2 */}
-                    <div className="bg-primary text-primary-foreground rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden group">
+                    <div className="bg-foreground text-primary-foreground rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden group">
                         <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />
                         <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-secondary/20 rounded-full blur-2xl pointer-events-none" />
                         
@@ -61,9 +61,9 @@ export default function ProblemSection() {
                                 <span className="text-secondary/80 mt-1 font-bold text-xl leading-none">×</span>
                                 <span>You don’t need to be a <span className="line-through decoration-white/50">topper.</span></span>
                             </li>
-                            <li className="flex items-start gap-3 font-bold text-white pt-3 border-t border-white/10 mt-2">
-                                <span className="text-green-400 mt-1 text-xl leading-none">✓</span>
-                                <span className="text-lg md:text-xl drop-shadow-sm">What you need is the <span className="text-secondary italic font-playfair pr-1">desire</span> to learn.</span>
+                            <li className="flex items-start gap-3 font-bold pt-3 mt-2">
+                                <span className="text-secondary mt-1 text-xl leading-none">✓</span>
+                                <span className="text-lg md:text-xl drop-shadow-sm">What you need is the <span className="text-green-600 italic font-serif pr-1">desire</span> to learn.</span>
                             </li>
                         </ul>
                     </div>
@@ -72,3 +72,4 @@ export default function ProblemSection() {
         </section>
     );
 }
+

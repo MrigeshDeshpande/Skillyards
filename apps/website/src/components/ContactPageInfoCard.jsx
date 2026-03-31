@@ -6,13 +6,13 @@ import SocialLinks from "@/components/SocialLinks";
 
 export default function ContactPageInfoCard() {
     return (
-        <div className="flex flex-col gap-6 h-full">
+        <div className="flex flex-col gap-5 sm:gap-6 h-full">
             {/* Primary Info Card */}
-            <div className="bg-white/80 dark:bg-neutral-900/90 backdrop-blur-xl border border-neutral-200/60 dark:border-neutral-800 shadow-2xl rounded-[2.5rem] p-8 md:p-10 relative overflow-hidden group flex-1">
+            <div className="bg-white/80 dark:bg-neutral-900/90 backdrop-blur-xl border border-neutral-200/60 dark:border-neutral-800 shadow-2xl rounded-3xl md:rounded-[2.5rem] p-6 sm:p-8 md:p-10 relative overflow-hidden group flex-1">
                 {/* Accent glow */}
                 <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 dark:bg-primary/20 rounded-full blur-[80px] group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors duration-700" />
                 
-                <h3 className="text-3xl font-playfair font-semibold tracking-tight mb-2 relative z-10">
+                <h3 className="text-2xl sm:text-3xl font-playfair font-semibold tracking-tight mb-2 relative z-10">
                     SkillYards Head Office
                 </h3>
                 <p className="text-neutral-600 dark:text-neutral-400 mb-8 relative z-10">
@@ -66,13 +66,13 @@ export default function ContactPageInfoCard() {
                 </div>
 
                 <div className="mt-8 pt-8 border-t border-neutral-200 dark:border-neutral-800 relative z-10">
-                    <h4 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-4">Connect With Us</h4>
-                    <SocialLinks />
+                    <h4 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-4 text-center sm:text-left">Connect With Us</h4>
+                    <SocialLinks showLabel={false} className="justify-center sm:justify-start gap-3 md:gap-4" />
                 </div>
             </div>
 
             {/* Distances Section */}
-            <div className="bg-primary/95 dark:bg-primary/20 overflow-hidden text-primary-foreground dark:text-white shadow-2xl rounded-[2.5rem] p-8 md:p-10 relative group border border-transparent dark:border-primary/30">
+            <div className="bg-primary/95 dark:bg-primary/20 overflow-hidden text-primary-foreground dark:text-white shadow-2xl rounded-3xl md:rounded-[2.5rem] p-6 sm:p-8 md:p-10 relative group border border-transparent dark:border-primary/30">
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)', backgroundSize: '24px 24px' }} />
                 <div className="absolute -bottom-10 -right-10 text-white/10 dark:text-primary/10 group-hover:scale-110 group-hover:-rotate-12 transition-transform duration-700 ease-out">
                     <Map className="w-64 h-64" strokeWidth={1} />
