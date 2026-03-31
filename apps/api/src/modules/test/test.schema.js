@@ -14,7 +14,13 @@ export const registerTestSchema = z.object({
 
   phone: z
     .string()
-    .transform((val) => val.replace(/\D/g, '')) 
+    .transform((val) => val.replace(/\D/g, ''))
+    .transform((val) => {
+      if (val.length === 12 && val.startsWith("91")) {
+        return val.slice(2);
+      }
+      return val;
+    })
     .refine((val) => val.length === 10, {
       message: 'Invalid phone number',
     }),
