@@ -83,8 +83,8 @@ const programs = [
 
 export default function ProgramCards() {
   return (
-    <section className="bg-background py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="bg-background py-20 overflow-x-hidden w-full">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
         {/* Section header */}
         <div className="mb-12 text-center">
           <motion.div
@@ -106,7 +106,7 @@ export default function ProgramCards() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-6 lg:gap-8 md:grid-cols-2">
           {programs.map((prog, i) => (
             <motion.div
               key={prog.id}
@@ -116,73 +116,93 @@ export default function ProgramCards() {
               transition={{ delay: i * 0.1 }}
               className="h-full"
             >
-              <CardContainer className="w-full h-full" containerClassName="py-0 w-full h-full">
-                <CardBody className="group flex flex-col rounded-3xl border-2 border-border/60 hover:border-primary/50 bg-white dark:bg-zinc-950 p-6 shadow-md transition-all duration-300 hover:shadow-2xl w-full h-full !bg-opacity-100">
+              {/* === MOBILE & TABLET (Flat, safe, perfectly responsive) === */}
+              <div className="flex lg:hidden flex-col rounded-3xl border-2 border-border/60 hover:border-primary/50 bg-white dark:bg-zinc-950 p-5 md:p-8 shadow-md transition-all duration-300 hover:shadow-2xl w-full h-full !bg-opacity-100">
+                <div className="mb-5 flex flex-col md:flex-row items-start justify-between gap-4 w-full">
+                  <div>
+                    <span className={`mb-3 inline-block rounded-full px-3 py-1 text-xs font-bold ${prog.badgeBg}`}>{prog.badge}</span>
+                    <h3 className="font-serif text-2xl font-extrabold text-foreground leading-tight">{prog.name}</h3>
+                    <p className="text-sm text-muted-foreground mt-1">{prog.fullName}</p>
+                  </div>
+                  <span className={`shrink-0 rounded-full border px-3 py-1 text-xs font-bold ${prog.typeColor}`}>{prog.type}</span>
+                </div>
+                <div className="mb-6 text-sm leading-relaxed text-muted-foreground w-full">
+                  <strong className="text-foreground">Who it&apos;s for: </strong>{prog.targetAudience}
+                </div>
+                <div className="mb-6 w-full">
+                  <p className="mb-3 text-xs md:text-sm font-bold uppercase tracking-wider text-muted-foreground">What you&apos;ll learn</p>
+                  <ul className="flex flex-col gap-2 w-full">
+                    {prog.skills.map((skill) => (
+                      <li key={skill} className="flex items-center gap-2 text-xs md:text-sm text-foreground">
+                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />{skill}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* Dropdown for Meta Info on small screens */}
+                <details className="mb-6 w-full group/accordion">
+                  <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between font-bold text-sm text-foreground bg-slate-50 dark:bg-zinc-900 border border-border/50 rounded-2xl p-4 transition-all hover:bg-slate-100 dark:hover:bg-zinc-800/80">
+                    Program Details
+                    <span className="transition-transform group-open/accordion:rotate-180">▼</span>
+                  </summary>
+                  <div className="mt-3 flex flex-col md:grid md:grid-cols-2 gap-3.5 rounded-2xl bg-slate-50 dark:bg-zinc-900 border border-border/50 p-4 md:p-5 text-sm w-full">
+                    <div className="flex items-center gap-2.5 text-accent-foreground"><Clock size={15} className="shrink-0 text-accent-foreground" /><span><strong>Duration:</strong> {prog.duration}</span></div>
+                    <div className="flex items-center gap-2.5 text-accent-foreground"><Monitor size={15} className="text-foreground shrink-0" /><span><strong>Mode:</strong> {prog.mode}</span></div>
+                    <div className="flex items-start gap-2.5 md:col-span-2 text-accent-foreground"><GraduationCap size={15} className="text-foreground shrink-0 mt-0.5" /><span><strong>Eligibility:</strong> {prog.eligibility}</span></div>
+                    <div className="flex items-start gap-2.5 md:col-span-2 text-accent-foreground"><Briefcase size={15} className="text-foreground shrink-0 mt-0.5" /><span><strong>Certification:</strong> {prog.certification}</span></div>
+                    <div className="flex items-start gap-2.5 md:col-span-2 text-accent-foreground"><TrendingUp size={15} className="text-foreground shrink-0 mt-0.5" /><span><strong>Avg. Salary:</strong> {prog.avgSalary}</span></div>
+                  </div>
+                </details>
+                <div className="mt-auto w-full pt-2">
+                  <Button asChild className="w-full h-12 md:h-14 rounded-full bg-linear-to-r from-primary to-accent text-primary-foreground font-extrabold text-base tracking-wide transition-all shadow-lg">
+                    <Link href={prog.href} className="flex items-center justify-center">Explore {prog.name} <ArrowRight size={20} className="ml-2" /></Link>
+                  </Button>
+                </div>
+              </div>
+
+              {/* === DESKTOP (3D Card Effect) === */}
+              <CardContainer className="hidden lg:flex w-full h-full" containerClassName="py-0 w-full h-full hidden lg:flex">
+                <CardBody className="group flex flex-col rounded-3xl border-2 border-border/60 hover:border-primary/50 bg-white dark:bg-zinc-950 p-8 shadow-md transition-all duration-300 hover:shadow-2xl w-full h-full !bg-opacity-100 flex-1">
                   {/* Header */}
-                  <CardItem translateZ="50" className="mb-4 flex flex-col sm:flex-row items-start justify-between gap-3 w-full">
+                  <CardItem translateZ="50" className="mb-5 flex flex-col xl:flex-row items-start justify-between gap-4 w-full">
                     <div>
-                      <span className={`mb-2 inline-block rounded-full px-3 py-1 text-xs font-bold ${prog.badgeBg}`}>
-                        {prog.badge}
-                      </span>
-                      <h3 className="font-serif text-2xl font-extrabold text-foreground">{prog.name}</h3>
-                      <p className="text-sm text-muted-foreground">{prog.fullName}</p>
+                      <span className={`mb-3 inline-block rounded-full px-3 py-1 text-xs font-bold ${prog.badgeBg}`}>{prog.badge}</span>
+                      <h3 className="font-serif text-3xl font-extrabold text-foreground leading-tight">{prog.name}</h3>
+                      <p className="text-sm text-muted-foreground mt-1">{prog.fullName}</p>
                     </div>
-                    <span className={`shrink-0 rounded-full border px-3 py-1 text-xs font-bold ${prog.typeColor}`}>
-                      {prog.type}
-                    </span>
+                    <span className={`shrink-0 rounded-full border px-3 py-1 text-sm font-bold ${prog.typeColor}`}>{prog.type}</span>
                   </CardItem>
 
                   {/* For whom */}
-                  <CardItem translateZ="60" className="mb-4 text-sm leading-relaxed text-muted-foreground w-full">
+                  <CardItem translateZ="60" className="mb-6 text-base leading-relaxed text-muted-foreground w-full">
                     <strong className="text-foreground">Who it&apos;s for: </strong>{prog.targetAudience}
                   </CardItem>
 
                   {/* Skills */}
-                  <CardItem translateZ="70" className="mb-4 w-full">
-                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">What you&apos;ll learn</p>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1.5 w-full">
+                  <CardItem translateZ="70" className="mb-6 w-full">
+                    <p className="mb-3 text-sm font-bold uppercase tracking-wider text-muted-foreground">What you&apos;ll learn</p>
+                    <ul className="grid grid-cols-2 gap-x-3 gap-y-2 w-full">
                       {prog.skills.map((skill) => (
-                        <li key={skill} className="flex items-center gap-1.5 text-xs text-foreground">
-                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                          {skill}
+                        <li key={skill} className="flex items-center gap-2 text-sm text-foreground">
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />{skill}
                         </li>
                       ))}
                     </ul>
                   </CardItem>
 
                   {/* Meta row */}
-                  <CardItem translateZ="80" className="mb-5 grid grid-cols-1 sm:grid-cols-2 gap-3 rounded-2xl bg-slate-50 dark:bg-zinc-900 border border-border/50 p-4 text-xs w-full">
-                    <div className="flex items-center gap-2 text-accent-foreground">
-                      <Clock size={13} className="shrink-0 text-accent-foreground" />
-                      <span><strong>Duration:</strong> {prog.duration}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-accent-foreground">
-                      <Monitor size={13} className="text-foreground shrink-0" />
-                      <span><strong>Mode:</strong> {prog.mode}</span>
-                    </div>
-                    <div className="flex items-start gap-2 block sm:col-span-2 text-accent-foreground">
-                      <GraduationCap size={13} className="text-foreground shrink-0 mt-0.5" />
-                      <span><strong>Eligibility:</strong> {prog.eligibility}</span>
-                    </div>
-                    <div className="flex items-start gap-2 block sm:col-span-2 text-accent-foreground">
-                      <Briefcase size={13} className="text-foreground shrink-0 mt-0.5" />
-                      <span><strong>Certification:</strong> {prog.certification}</span>
-                    </div>
-                    <div className="flex items-start gap-2 block sm:col-span-2 text-accent-foreground">
-                      <TrendingUp size={13} className="text-foreground shrink-0 mt-0.5" />
-                      <span><strong>Avg. Starting Salary:</strong> {prog.avgSalary}</span>
-                    </div>
+                  <CardItem translateZ="80" className="mb-6 grid grid-cols-2 gap-3.5 rounded-2xl bg-slate-50 dark:bg-zinc-900 border border-border/50 p-5 text-sm w-full">
+                    <div className="flex items-center gap-2.5 text-accent-foreground"><Clock size={15} className="shrink-0 text-accent-foreground" /><span><strong>Duration:</strong> {prog.duration}</span></div>
+                    <div className="flex items-center gap-2.5 text-accent-foreground"><Monitor size={15} className="text-foreground shrink-0" /><span><strong>Mode:</strong> {prog.mode}</span></div>
+                    <div className="flex items-start gap-2.5 col-span-2 text-accent-foreground"><GraduationCap size={15} className="text-foreground shrink-0 mt-0.5" /><span><strong>Eligibility:</strong> {prog.eligibility}</span></div>
+                    <div className="flex items-start gap-2.5 col-span-2 text-accent-foreground"><Briefcase size={15} className="text-foreground shrink-0 mt-0.5" /><span><strong>Certification:</strong> {prog.certification}</span></div>
+                    <div className="flex items-start gap-2.5 col-span-2 text-accent-foreground"><TrendingUp size={15} className="text-foreground shrink-0 mt-0.5" /><span><strong>Avg. Salary:</strong> {prog.avgSalary}</span></div>
                   </CardItem>
 
                   {/* CTA */}
-                  <CardItem translateZ="100" className="mt-auto w-full">
-                    <Button
-                      asChild
-                      className="w-full h-12 rounded-full bg-linear-to-r from-primary to-accent text-primary-foreground font-extrabold text-base tracking-wide transition-all hover:scale-[1.03] shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50"
-                    >
-                      <Link href={prog.href} className="flex items-center justify-center">
-                        Explore {prog.name} <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Link>
+                  <CardItem translateZ="100" className="mt-auto w-full pt-2">
+                    <Button asChild className="w-full h-14 rounded-full bg-linear-to-r from-primary to-accent text-primary-foreground font-extrabold text-lg tracking-wide transition-all hover:scale-[1.03] shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50">
+                      <Link href={prog.href} className="flex items-center justify-center">Explore {prog.name} <ArrowRight size={20} className="ml-2 group-hover:translate-x-1.5 transition-transform" /></Link>
                     </Button>
                   </CardItem>
                 </CardBody>
