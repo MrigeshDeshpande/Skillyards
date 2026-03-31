@@ -1,14 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { faqCategories } from "@/data/faqs";
 import { motion, AnimatePresence } from "framer-motion";
 import { HelpCircle, Plus, Minus } from "lucide-react";
 import Link from "next/link";
 
-const faqs = faqCategories.digitalmarketing.faqs;
 
-export function DGMFAQ() {
+export function DGMFAQ({faqs}) {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (

@@ -15,7 +15,8 @@ import { FSDFAQ } from "./FAQ";
 import { FSDFinalCTA } from "./FinalCTA";
 import PartnersSlider from "@/components/common/PartnersSlider";
 
-export function FSDLandingPage() {
+export function FSDLandingPage({ faqs }) {
+
   return (
     <main className="w-full bg-background text-foreground">
       <FSDHero />
@@ -30,7 +31,7 @@ export function FSDLandingPage() {
       <FSDPlacementOutcomes />
       <PartnersSlider />
       <FSDAdmissionProcess />
-      <FSDFAQ />
+      <FSDFAQ faqs={faqs} />
       <FSDFinalCTA />
     </main>
   );
