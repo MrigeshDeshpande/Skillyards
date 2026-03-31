@@ -16,4 +16,6 @@ export const testSessions = pgTable("test_sessions", {
   score: integer("score"),
 
   questionsSnapshot: jsonb("questions_snapshot"),
+
+  evaluationSnapshot: jsonb("evaluation_snapshot"),
 });

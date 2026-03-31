@@ -7,25 +7,72 @@ import { CheckCircle, Medal, Mail, Home, XCircle, ChevronDown, ChevronUp, Loader
 
 function ResultContent() {
     const searchParams = useSearchParams();
+    const sessionId = searchParams.get("sessionId");
 
-    const score = Number(searchParams.get("score") || 0);
-    const total = Number(searchParams.get("total") || 30);
-    const percentage = Math.round((score / total) * 100) || 0;
-
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+    const [scoreData, setScoreData] = useState({ score: 0, total: 30, percentage: 0 });
     const [wrongAnswers, setWrongAnswers] = useState([]);
     const [showWrong, setShowWrong] = useState(false);
 
     useEffect(() => {
-        try {
-            const stored = sessionStorage.getItem("wrongAnswers");
-            if (stored) {
-                setWrongAnswers(JSON.parse(stored));
-                sessionStorage.removeItem("wrongAnswers");
-            }
-        } catch (e) {
-            console.error("Failed to parse wrong answers:", e);
+        if (!sessionId) {
+            setError("No secure session context found.");
+            setLoading(false);
+            return;
         }
-    }, []);
+
+        async function fetchResult() {
+            try {
+                const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+                const res = await fetch(`${BASE_URL}/api/test/result?sessionId=${sessionId}`);
+                const data = await res.json();
+
+                if (!res.ok) {
+                    setError(data.error || "Failed to retrieve results.");
+                    setLoading(false);
+                    return;
+                }
+
+                const pct = data.total > 0 ? Math.round((data.score / data.total) * 100) : 0;
+                setScoreData({ score: data.score, total: data.total, percentage: pct });
+                setWrongAnswers(data.evaluationSnapshot || []);
+                setLoading(false);
+            } catch (err) {
+                console.error("Result fetch failed:", err);
+                setError("Network error while trying to fetch results.");
+                setLoading(false);
+            }
+        }
+
+        fetchResult();
+    }, [sessionId]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-muted/10 flex flex-col items-center justify-center">
+                <Loader2 className="animate-spin text-primary mb-4 w-10 h-10" />
+                <h2 className="text-xl font-bold mb-2">Analyzing Assessment...</h2>
+                <p className="text-muted-foreground text-sm">Please wait securely.</p>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="min-h-screen bg-muted/10 flex items-center justify-center p-6">
+                <div className="bg-destructive/10 text-destructive px-6 py-5 rounded-2xl border border-destructive/20 max-w-sm text-center shadow-sm">
+                    <p className="font-bold text-lg mb-2">Unable to Load Result</p>
+                    <p className="text-sm opacity-90">{error}</p>
+                    <Link href="/10-minutes-test" className="mt-5 inline-flex bg-background border px-4 py-2 rounded-lg text-xs font-bold shadow-sm transition-colors hover:bg-muted">
+                        Return Home
+                    </Link>
+                </div>
+            </div>
+        );
+    }
+
+    const { score, total, percentage } = scoreData;
 
     let message = "Good Effort!";
     if (percentage >= 80) message = "Outstanding Performance! 🏆";
@@ -47,7 +94,7 @@ function ResultContent() {
 
                     <h1 className="text-3xl font-bold font-serif mb-2">Test Completed</h1>
                     <p className="text-muted-foreground text-sm mb-8">
-                        Your assessment has been recorded and evaluated successfully!
+                        Your assessment has been recorded and evaluated securely!
                     </p>
 
                     {/* Score Card */}

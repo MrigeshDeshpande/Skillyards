@@ -24,11 +24,23 @@ export async function POST(req) {
 
     const result = await startTest({ db, leadId, topics });
 
+    if (result.alreadyCompleted) {
+      return NextResponse.json(
+        {
+          success: true,
+          alreadyCompleted: true,
+          sessionId: result.sessionId,
+        },
+        { headers: corsHeaders(req) }
+      );
+    }
+
     return NextResponse.json(
       {
         success: true,
         sessionId: result.sessionId,
         questions: result.questions,
+        startedAt: result.startedAt,
       },
       { headers: corsHeaders(req) }
     );

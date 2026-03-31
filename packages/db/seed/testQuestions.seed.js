@@ -1,8 +1,7 @@
 import "dotenv/config";
 import { db } from "../src/client.js"; 
 import { testQuestions } from "../src/schema/testQuestions.js";
-
-import { TEST_QUESTIONS } from "../../../apps/api/src/modules/test/questions.js";
+import { TEST_QUESTIONS } from "./questions.data.js";
 
 async function seedTestQuestions() {
   console.log("🌱 Seeding test questions...");

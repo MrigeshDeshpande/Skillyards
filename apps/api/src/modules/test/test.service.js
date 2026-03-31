@@ -3,12 +3,11 @@ import {
   createLead,
 } from "./test.repository";
 
-import { getSessionById, createTestSession } from "./test.repository";
+import { getSessionById, createTestSession, getLatestSessionByLeadId, getRandomActiveQuestions } from "./test.repository";
 import { testSessions } from "@repo/db";
 import { eq } from "drizzle-orm";
 
-// ⚠️ TEMP: remove later when start API is fully used
-import { TEST_QUESTIONS } from "./questions";
+
 
 // ---------------- REGISTER ----------------
 
@@ -35,40 +34,58 @@ export async function registerTestLead({ db, data }) {
   };
 }
 
-// ---------------- TEMP QUESTIONS (legacy) ----------------
 
-export function getTestQuestions({ topics = [] } = {}) {
-  let filteredQuestions = TEST_QUESTIONS;
-
-  if (topics.length > 0) {
-    filteredQuestions = TEST_QUESTIONS.filter((q) =>
-      topics.includes(q.topic)
-    );
-  }
-
-  const shuffled = [...filteredQuestions].sort(() => 0.5 - Math.random());
-  const selected = shuffled.slice(0, 30);
-
-  return selected.map(({ correctAnswer, ...q }) => q);
-}
 
 // ---------------- START TEST ----------------
 
 export async function startTest({ db, leadId, topics }) {
-  const questions = getTestQuestions({ topics });
+  const existingSession = await getLatestSessionByLeadId(db, leadId);
 
-  // Capture exactly the full questions object including the correct answers 
-  // into the user's snapshot, so submit Test can check it later.
+  if (existingSession) {
+    if (existingSession.status === "completed") {
+      return { alreadyCompleted: true, sessionId: existingSession.id };
+    }
+
+    const elapsedMinutes = (new Date() - new Date(existingSession.startedAt)) / 60000;
+    if (elapsedMinutes > 10.5) {
+      // Auto-finalize the abandoned/expired session
+      await db
+        .update(testSessions)
+        .set({ status: "completed", completedAt: new Date() })
+        .where(eq(testSessions.id, existingSession.id));
+
+      return { alreadyCompleted: true, sessionId: existingSession.id };
+    }
+
+    // Resume Session
+    const questionsForFrontend = existingSession.questionsSnapshot.map(({ correctAnswer, ...q }) => q);
+    
+    return {
+      sessionId: existingSession.id,
+      questions: questionsForFrontend,
+      startedAt: existingSession.startedAt,
+    };
+  }
+
+  const rawQuestions = await getRandomActiveQuestions(db, topics);
+
+  if (!rawQuestions || rawQuestions.length === 0) {
+    throw new Error("No questions available for the selected topics in the database.");
+  }
+
   const session = await createTestSession(db, {
     leadId,
     testType: "10_min_test",
     status: "started",
-    questionsSnapshot: questions,
+    questionsSnapshot: rawQuestions, // DB saves full payload including correctAnswer!
   });
+
+  const questionsForFrontend = rawQuestions.map(({ correctAnswer, ...q }) => q);
 
   return {
     sessionId: session.id,
-    questions,
+    questions: questionsForFrontend,
+    startedAt: session.startedAt,
   };
 }
 
@@ -90,10 +107,16 @@ export async function submitTest({ db, sessionId, answers }) {
     throw new Error("Test already submitted");
   }
 
+  // 🚨 Strict Time Bounds Enforcement (11m bound to absorb network latency on 10 min test)
+  const elapsedMinutes = (new Date() - new Date(session.startedAt)) / 60000;
+  if (elapsedMinutes > 11) {
+    throw new Error("Test submission expired. Time limit exceeded.");
+  }
+
   const questions = session.questionsSnapshot;
 
   let score = 0;
-  const wrongAnswers = [];
+  const evaluationSnapshot = [];
 
   for (const userAns of answers) {
     const actualQ = questions.find(q => q.id === userAns.questionId);
@@ -105,7 +128,7 @@ export async function submitTest({ db, sessionId, answers }) {
     if (correctAnswer === givenAnswer) {
       score++;
     } else {
-      wrongAnswers.push({
+      evaluationSnapshot.push({
         question: actualQ.question,
         topic: actualQ.topic,
         yourAnswer: givenAnswer || "Not answered",
@@ -121,12 +144,12 @@ export async function submitTest({ db, sessionId, answers }) {
       status: "completed",
       completedAt: new Date(),
       score,
+      evaluationSnapshot,
     })
     .where(eq(testSessions.id, sessionId));
 
   return {
     score,
     total: questions.length,
-    wrongAnswers,
   };
 }
