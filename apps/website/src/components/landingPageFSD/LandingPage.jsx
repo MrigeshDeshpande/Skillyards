@@ -11,7 +11,6 @@ import { FSDComparisonTable } from "./ComparisonTable";
 import { FSDDayInTheLife } from "./DayInTheLife";
 import { FSDPlacementOutcomes } from "./PlacementOutcomes";
 import { FSDAdmissionProcess } from "./AdmissionProcess";
-import { FSDFeeDetails } from "./FeeDetails";
 import { FSDFAQ } from "./FAQ";
 import { FSDFinalCTA } from "./FinalCTA";
 import PartnersSlider from "@/components/common/PartnersSlider";
@@ -31,7 +30,6 @@ export function FSDLandingPage() {
       <FSDPlacementOutcomes />
       <PartnersSlider />
       <FSDAdmissionProcess />
-      <FSDFeeDetails />
       <FSDFAQ />
       <FSDFinalCTA />
     </main>

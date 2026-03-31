@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, GraduationCap, Briefcase, Clock, Monitor, BookOpen, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 
 const programs = [
   {
@@ -56,7 +57,7 @@ const programs = [
     eligibility: "10+2 pass | Basic computer knowledge",
     certification: "Industry Certificate + Portfolio Projects",
     avgSalary: "₹4 – 8 LPA",
-    href: "/contact",
+    href: "/programs/fullstack",
     accentClass: "border-green-300/50 hover:border-green-400/70 dark:border-green-800/50",
     badgeBg: "bg-green-100 text-green-800 dark:bg-green-950/50 dark:text-green-400",
   },
@@ -74,7 +75,7 @@ const programs = [
     eligibility: "10+2 pass | No prior experience needed",
     certification: "Google, Meta & SkillYards Certificates",
     avgSalary: "₹3 – 6 LPA",
-    href: "/contact",
+    href: "/programs/digitalmarketing",
     accentClass: "border-orange-300/50 hover:border-orange-400/70 dark:border-orange-800/50",
     badgeBg: "bg-orange-100 text-orange-800 dark:bg-orange-950/50 dark:text-orange-400",
   },
@@ -105,7 +106,7 @@ export default function ProgramCards() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2">
           {programs.map((prog, i) => (
             <motion.div
               key={prog.id}
@@ -113,75 +114,79 @@ export default function ProgramCards() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`group flex flex-col rounded-3xl border-2 bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-xl ${prog.accentClass}`}
+              className="h-full"
             >
-              {/* Header */}
-              <div className="mb-4 flex items-start justify-between gap-3">
-                <div>
-                  <span className={`mb-2 inline-block rounded-full px-3 py-1 text-xs font-bold ${prog.badgeBg}`}>
-                    {prog.badge}
-                  </span>
-                  <h3 className="font-serif text-2xl font-extrabold text-foreground">{prog.name}</h3>
-                  <p className="text-sm text-muted-foreground">{prog.fullName}</p>
-                </div>
-                <span className={`shrink-0 rounded-full border px-3 py-1 text-xs font-bold ${prog.typeColor}`}>
-                  {prog.type}
-                </span>
-              </div>
+              <CardContainer className="w-full h-full" containerClassName="py-0 w-full h-full">
+                <CardBody className="group flex flex-col rounded-3xl border-2 border-border/60 hover:border-primary/50 bg-white dark:bg-zinc-950 p-6 shadow-md transition-all duration-300 hover:shadow-2xl w-full h-full !bg-opacity-100">
+                  {/* Header */}
+                  <CardItem translateZ="50" className="mb-4 flex flex-col sm:flex-row items-start justify-between gap-3 w-full">
+                    <div>
+                      <span className={`mb-2 inline-block rounded-full px-3 py-1 text-xs font-bold ${prog.badgeBg}`}>
+                        {prog.badge}
+                      </span>
+                      <h3 className="font-serif text-2xl font-extrabold text-foreground">{prog.name}</h3>
+                      <p className="text-sm text-muted-foreground">{prog.fullName}</p>
+                    </div>
+                    <span className={`shrink-0 rounded-full border px-3 py-1 text-xs font-bold ${prog.typeColor}`}>
+                      {prog.type}
+                    </span>
+                  </CardItem>
 
-              {/* For whom */}
-              <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                <strong className="text-foreground">Who it&apos;s for: </strong>{prog.targetAudience}
-              </p>
+                  {/* For whom */}
+                  <CardItem translateZ="60" className="mb-4 text-sm leading-relaxed text-muted-foreground w-full">
+                    <strong className="text-foreground">Who it&apos;s for: </strong>{prog.targetAudience}
+                  </CardItem>
 
-              {/* Skills */}
-              <div className="mb-4">
-                <p className="mb-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">What you&apos;ll learn</p>
-                <ul className="grid grid-cols-2 gap-x-3 gap-y-1.5">
-                  {prog.skills.map((skill) => (
-                    <li key={skill} className="flex items-center gap-1.5 text-xs text-foreground">
-                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                  {/* Skills */}
+                  <CardItem translateZ="70" className="mb-4 w-full">
+                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">What you&apos;ll learn</p>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1.5 w-full">
+                      {prog.skills.map((skill) => (
+                        <li key={skill} className="flex items-center gap-1.5 text-xs text-foreground">
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardItem>
 
-              {/* Meta row */}
-              <div className="mb-5 grid grid-cols-2 gap-3 rounded-2xl bg-background/60 p-4 text-xs">
-                <div className="flex items-center gap-2 text-accent-foreground">
-                  <Clock size={13} className="shrink-0 text-accent-foreground" />
-                  <span><strong>Duration:</strong> {prog.duration}</span>
-                </div>
-                <div className="flex items-center gap-2 text-accent-foreground">
-                  <Monitor size={13} className="text-foreground shrink-0" />
-                  <span><strong>Mode:</strong> {prog.mode}</span>
-                </div>
-                <div className="flex items-center gap-2 col-span-2 text-accent-foreground">
-                  <GraduationCap size={13} className="text-foreground shrink-0" />
-                  <span><strong>Eligibility:</strong> {prog.eligibility}</span>
-                </div>
-                <div className="flex items-center gap-2 col-span-2 text-accent-foreground">
-                  <Briefcase size={13} className="text-foreground shrink-0" />
-                  <span><strong>Certification:</strong> {prog.certification}</span>
-                </div>
-                <div className="flex items-center gap-2 col-span-2 text-accent-foreground">
-                  <TrendingUp size={13} className="text-foreground shrink-0" />
-                  <span><strong>Avg. Starting Salary:</strong> {prog.avgSalary}</span>
-                </div>
-              </div>
+                  {/* Meta row */}
+                  <CardItem translateZ="80" className="mb-5 grid grid-cols-1 sm:grid-cols-2 gap-3 rounded-2xl bg-slate-50 dark:bg-zinc-900 border border-border/50 p-4 text-xs w-full">
+                    <div className="flex items-center gap-2 text-accent-foreground">
+                      <Clock size={13} className="shrink-0 text-accent-foreground" />
+                      <span><strong>Duration:</strong> {prog.duration}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-accent-foreground">
+                      <Monitor size={13} className="text-foreground shrink-0" />
+                      <span><strong>Mode:</strong> {prog.mode}</span>
+                    </div>
+                    <div className="flex items-start gap-2 block sm:col-span-2 text-accent-foreground">
+                      <GraduationCap size={13} className="text-foreground shrink-0 mt-0.5" />
+                      <span><strong>Eligibility:</strong> {prog.eligibility}</span>
+                    </div>
+                    <div className="flex items-start gap-2 block sm:col-span-2 text-accent-foreground">
+                      <Briefcase size={13} className="text-foreground shrink-0 mt-0.5" />
+                      <span><strong>Certification:</strong> {prog.certification}</span>
+                    </div>
+                    <div className="flex items-start gap-2 block sm:col-span-2 text-accent-foreground">
+                      <TrendingUp size={13} className="text-foreground shrink-0 mt-0.5" />
+                      <span><strong>Avg. Starting Salary:</strong> {prog.avgSalary}</span>
+                    </div>
+                  </CardItem>
 
-              {/* CTA */}
-              <div className="mt-auto">
-                <Button
-                  asChild
-                  className="w-full rounded-full bg-foreground text-primary-foreground font-bold transition-all hover:bg-primary/90 hover:scale-[1.02]"
-                >
-                  <Link href={prog.href}>
-                    Explore {prog.name} <ArrowRight size={16} className="ml-2" />
-                  </Link>
-                </Button>
-              </div>
+                  {/* CTA */}
+                  <CardItem translateZ="100" className="mt-auto w-full">
+                    <Button
+                      asChild
+                      className="w-full h-12 rounded-full bg-linear-to-r from-primary to-accent text-primary-foreground font-extrabold text-base tracking-wide transition-all hover:scale-[1.03] shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50"
+                    >
+                      <Link href={prog.href} className="flex items-center justify-center">
+                        Explore {prog.name} <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </Button>
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
             </motion.div>
           ))}
         </div>

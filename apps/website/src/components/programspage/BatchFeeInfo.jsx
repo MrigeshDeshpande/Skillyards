@@ -13,7 +13,7 @@ const batches = [
     fee: "Contact us",
     emi: true,
     seatsLeft: 12,
-    href: "/programs/bca",
+    href: "/contact",
   },
   {
     program: "BBA",
@@ -22,7 +22,7 @@ const batches = [
     fee: "Contact us",
     emi: true,
     seatsLeft: 10,
-    href: "/programs/bba",
+    href: "/contact",
   },
   {
     program: "Full-Stack Dev",
