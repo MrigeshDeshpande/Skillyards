@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@repo/db";
-import { testLeads } from "@repo/db";
-import { eq } from "drizzle-orm";
+import { getSessionById } from "@/modules/test/test.repository";
 import { corsHeaders } from "@/utils/cors";
 
 export async function OPTIONS(request) {
@@ -13,43 +12,39 @@ export async function OPTIONS(request) {
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
-  const leadId = searchParams.get("leadId");
+  const sessionId = searchParams.get("sessionId");
 
-  console.log("🔍 VALIDATE API HIT:", leadId);
-
-  if (!leadId) {
+  if (!sessionId) {
     return NextResponse.json(
-      { error: "Missing leadId" },
+      { error: "Missing sessionId" },
       { status: 400, headers: corsHeaders(req) }
     );
   }
 
   try {
-    const result = await db
-      .select()
-      .from(testLeads)
-      .where(eq(testLeads.id, leadId))
-      .limit(1);
+    const session = await getSessionById(db, sessionId);
 
-    console.log("📦 DB RESULT:", result);
-
-    if (!result.length) {
+    if (!session || session.status !== "completed") {
       return NextResponse.json(
-        { error: "Invalid lead" },
+        { error: "Test not finalized or missing" },
         { status: 404, headers: corsHeaders(req) }
       );
     }
 
     return NextResponse.json(
-      { lead: result[0] },
+      {
+        success: true,
+        score: session.score,
+        total: session.questionsSnapshot?.length || 0,
+        evaluationSnapshot: session.evaluationSnapshot || [],
+      },
       { headers: corsHeaders(req) }
     );
-
   } catch (err) {
-    console.error("❌ VALIDATE ERROR:", err);
+    console.error("RESULT GET ERROR:", err);
 
     return NextResponse.json(
-      { error: "Server error" },
+      { error: "Failed to fetch test results" },
       { status: 500, headers: corsHeaders(req) }
     );
   }

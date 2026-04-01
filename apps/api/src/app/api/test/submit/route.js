@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@repo/db";
-import { registerTestSchema } from "@/modules/test/test.schema";
-import { registerTestLead } from "@/modules/test/test.service";
+import { submitTest } from "@/modules/test/test.service";
 import { corsHeaders } from "@/utils/cors";
 
 export async function OPTIONS(request) {
@@ -14,35 +13,32 @@ export async function OPTIONS(request) {
 export async function POST(req) {
   try {
     const body = await req.json();
+    const { sessionId, answers } = body;
 
-    const parsed = registerTestSchema.safeParse(body);
-
-    if (!parsed.success) {
+    if (!sessionId || !Array.isArray(answers)) {
       return NextResponse.json(
-        { error: "Invalid input" },
+        { error: "Invalid payload format." },
         { status: 400, headers: corsHeaders(req) }
       );
     }
 
-    const result = await registerTestLead({
-      db,
-      data: parsed.data,
-    });
+    const result = await submitTest({ db, sessionId, answers });
 
     return NextResponse.json(
       {
         success: true,
-        leadId: result.lead.id,
-        alreadyExists: result.alreadyExists,
+        score: result.score,
+        total: result.total,
+        wrongAnswers: result.wrongAnswers,
       },
       { headers: corsHeaders(req) }
     );
 
   } catch (err) {
-    console.error(err);
+    console.error("❌ SUBMIT TEST ERROR:", err);
 
     return NextResponse.json(
-      { error: "Server error" },
+      { error: err.message || "Server error during submission." },
       { status: 500, headers: corsHeaders(req) }
     );
   }

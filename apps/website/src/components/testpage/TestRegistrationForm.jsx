@@ -34,7 +34,8 @@ export default function TestRegistrationForm() {
 
         setStatus("loading");
 
-        const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/test/register`;
+        const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+        const apiUrl = `${BASE_URL}/api/test/register`;
 
         try {
             const res = await fetch(apiUrl, {
