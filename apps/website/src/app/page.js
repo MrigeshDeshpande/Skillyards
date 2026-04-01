@@ -11,6 +11,7 @@ import PartnersSlider from "@/components/common/PartnersSlider";
 import ProgramsShowcase from "@/components/homepage/ProgrammeShowcase";
 import HearFromStudents from "@/components/homepage/HearFromStudents";
 import FeaturedRoles from "@/components/homepage/FeaturedRoles";
+import SkillTestSection from "@/components/homepage/SkillTestSection";
 
 import { buildSEO } from "@/lib/seo/buildSEO";
 import JsonLd from "@/components/JsonLd";
@@ -56,6 +57,7 @@ export default function Home() {
         <ProblemSection />
         <ProgramsShowcase />
         <FeaturesSection />
+        <SkillTestSection />
         <HearFromStudents />
         <FeaturedRoles />
         <ServicesSection />

@@ -1,63 +1,51 @@
-import chromium from "@sparticuz/chromium";
-import puppeteerCore from "puppeteer-core";
 import { resend } from "../notifications/resend.client";
-import { certificateTemplate, certificateEmailTemplate } from "./certificate.template";
+import {
+  certificateTemplate,
+  certificateEmailTemplate,
+} from "./certificate.template";
 
 /**
- * Generate a PDF certificate buffer from HTML using Puppeteer + @sparticuz/chromium.
- * Optimised for Vercel serverless functions.
+ * Generate a PDF buffer from HTML using PDFShift API.
+ * Fast (~2s), works on Vercel free tier, no Puppeteer needed.
  *
  * @param {string} html – Full HTML page string
  * @returns {Promise<Buffer>} PDF buffer
  */
 async function generatePdfBuffer(html) {
-  let browser = null;
+  const apiKey = process.env.PDFSHIFT_API_KEY;
 
-  try {
-    browser = await puppeteerCore.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
-    });
-
-    const page = await browser.newPage();
-
-    // Set viewport to exact certificate dimensions to prevent margin drift
-    await page.setViewport({ width: 842, height: 595 });
-
-    await page.setContent(html, { waitUntil: "networkidle0" });
-
-    const pdfBuffer = await page.pdf({
-      width: "842px",
-      height: "595px",
-      printBackground: true,
-      preferCSSPageSize: true,
-      margin: { top: "0px", right: "0px", bottom: "0px", left: "0px" },
-    });
-
-    return Buffer.from(pdfBuffer);
-  } finally {
-    if (browser) {
-      await browser.close();
-    }
+  if (!apiKey) {
+    throw new Error("PDFSHIFT_API_KEY is not set in environment variables");
   }
+
+  const response = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
+    method: "POST",
+    headers: {
+      Authorization: "Basic " + Buffer.from("api:" + apiKey).toString("base64"),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      source: html,
+      landscape: true,
+      format: "A4",
+      margin: "0",
+      use_print: false,
+    }),
+  });
+
+  if (!response.ok) {
+    const errText = await response.text();
+    throw new Error(`PDFShift error (${response.status}): ${errText}`);
+  }
+
+  return Buffer.from(await response.arrayBuffer());
 }
 
 /**
  * Full certificate pipeline:
  * 1. Render HTML certificate
- * 2. Convert to PDF via Puppeteer
+ * 2. Convert to PDF via PDFShift
  * 3. Send via Resend with PDF attachment
- *
- * @param {Object} data
- * @param {string} data.name
- * @param {string} data.email
- * @param {number} data.score
- * @param {number} data.total
- * @param {string[]} data.topics
- * @param {string} data.certificateId – Session UUID
- * @param {Date}   data.completedAt
  */
 export async function generateAndSendCertificate(data) {
   try {
@@ -74,22 +62,13 @@ export async function generateAndSendCertificate(data) {
       }),
     });
 
-    let attachments = [];
-    try {
-      const pdfBuffer = await generatePdfBuffer(html);
-      if (pdfBuffer) {
-        attachments = [
-          {
-            filename: `SkillYards-Certificate-${data.name.replace(/\s+/g, "-")}.pdf`,
-            content: pdfBuffer.toString("base64"),
-          },
-        ];
-      }
-    } catch (pdfErr) {
-      console.error("PDF Generation failed (Vercel limits), sending email without attachment:", pdfErr);
-    }
+    // Generate PDF via PDFShift
+    console.log("📄 Generating PDF for", data.name);
+    const pdfBuffer = await generatePdfBuffer(html);
+    console.log("✅ PDF generated, size:", pdfBuffer.length, "bytes");
 
-    const response = await resend.emails.send({
+    // Send email with PDF attachment
+    const result = await resend.emails.send({
       from: process.env.EMAIL_FROM || "SkillYards <certificates@skillyards.in>",
       to: [data.email],
       subject: `🏆 Your SkillYards Certificate — ${percentage}% Score`,
@@ -98,10 +77,18 @@ export async function generateAndSendCertificate(data) {
         percentage,
         score: data.score,
         total: data.total,
-      }) + (attachments.length === 0 ? "<br><p><em>Note: We were unable to attach your PDF certificate at this time. Your score is securely verified in our database!</em></p>" : ""),
-      attachments,
+      }),
+      attachments: [
+        {
+          filename: `SkillYards-Certificate-${data.name.replace(/\s+/g, "-")}.pdf`,
+          content: pdfBuffer.toString("base64"),
+        },
+      ],
     });
+
+    console.log(`✅ Certificate sent to ${data.email} (${percentage}%)`, result);
   } catch (err) {
-    console.error("CERTIFICATE FLOW FAILED:", err);
+    console.error("❌ CERTIFICATE FLOW FAILED:", err);
+    throw err;
   }
 }
