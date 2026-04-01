@@ -1,11 +1,13 @@
 import {
   findLeadByEmail,
   createLead,
+  getLeadById,
 } from "./test.repository";
 
 import { getSessionById, createTestSession, getLatestSessionByLeadId, getRandomActiveQuestions } from "./test.repository";
 import { testSessions } from "@repo/db";
 import { eq } from "drizzle-orm";
+import { generateAndSendCertificate } from "./certificate.service";
 
 
 
@@ -138,18 +140,49 @@ export async function submitTest({ db, sessionId, answers }) {
   }
 
   // ✅ update session
+  const completedAt = new Date();
   await db
     .update(testSessions)
     .set({
       status: "completed",
-      completedAt: new Date(),
+      completedAt,
       score,
       evaluationSnapshot,
     })
     .where(eq(testSessions.id, sessionId));
 
+  const total = questions.length;
+  const percentage = Math.round((score / total) * 100);
+
+  // 🎓 Fire-and-forget: generate certificate & email if score ≥ 70%
+  if (percentage >= 70) {
+    (async () => {
+      try {
+        const lead = await getLeadById(db, session.leadId);
+        if (!lead) {
+          console.error("❌ Certificate skipped: lead not found for", session.leadId);
+          return;
+        }
+
+        const topics = [...new Set(questions.map((q) => q.topic))];
+
+        await generateAndSendCertificate({
+          name: lead.name,
+          email: lead.email,
+          score,
+          total,
+          topics,
+          certificateId: sessionId,
+          completedAt,
+        });
+      } catch (err) {
+        console.error("❌ Certificate generation failed:", err);
+      }
+    })();
+  }
+
   return {
     score,
-    total: questions.length,
+    total,
   };
 }
