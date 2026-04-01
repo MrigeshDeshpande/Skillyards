@@ -1,4 +1,6 @@
 export function corsHeaders(request) {
+  const origin = request.headers.get("origin");
+
   const allowedOrigins = [
     "https://skillyards.in",
     "https://www.skillyards.in",
@@ -6,13 +8,11 @@ export function corsHeaders(request) {
     "http://localhost:3001",
   ];
 
-  const origin = request.headers.get("origin");
+  const isAllowed = origin && allowedOrigins.includes(origin);
 
   return {
-    "Access-Control-Allow-Origin": allowedOrigins.includes(origin)
-      ? origin
-      : "null",
+    "Access-Control-Allow-Origin": isAllowed ? origin : "",
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization"
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
   };
 }
