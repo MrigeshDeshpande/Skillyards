@@ -41,6 +41,12 @@ export async function getLatestSessionByLeadId(db, leadId) {
   });
 }
 
+export async function getLeadById(db, leadId) {
+  return db.query.testLeads.findFirst({
+    where: (t, { eq }) => eq(t.id, leadId),
+  });
+}
+
 export async function getRandomActiveQuestions(db, topics, maxCount = 30) {
   let conditions = eq(testQuestions.isActive, true);
   

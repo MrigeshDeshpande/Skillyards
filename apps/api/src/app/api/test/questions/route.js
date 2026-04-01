@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { getTestQuestions } from "@/modules/test/test.service";
+import { db } from "@repo/db";
+import { getRandomActiveQuestions } from "@/modules/test/test.repository";
 import { corsHeaders } from "@/utils/cors";
 
 export async function OPTIONS(request) {
@@ -15,7 +16,7 @@ export async function GET(req) {
     const topicsParam = searchParams.get("topics");
     const topics = topicsParam ? topicsParam.split(",") : [];
 
-    const questions = getTestQuestions({ topics });
+    const questions = await getRandomActiveQuestions(db, topics);
 
     return NextResponse.json(
       { success: true, questions },
