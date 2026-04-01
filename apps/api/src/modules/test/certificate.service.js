@@ -59,50 +59,41 @@ async function generatePdfBuffer(html) {
  * @param {string} data.certificateId – Session UUID
  * @param {Date}   data.completedAt
  */
-export async function generateAndSendCertificate({
-  name,
-  email,
-  score,
-  total,
-  topics,
-  certificateId,
-  completedAt,
-}) {
-  const percentage = Math.round((score / total) * 100);
+export async function generateAndSendCertificate(data) {
+  try {
+    const percentage = Math.round((data.score / data.total) * 100);
 
-  const date = new Date(completedAt).toLocaleDateString("en-IN", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
+    const html = certificateTemplate({
+      ...data,
+      percentage,
+      topics: [...new Set(data.topics)],
+      date: new Date(data.completedAt).toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      }),
+    });
 
-  // 1️⃣ Render certificate HTML
-  const html = certificateTemplate({
-    name,
-    score,
-    total,
-    percentage,
-    topics: [...new Set(topics)], // deduplicate
-    date,
-    certificateId,
-  });
+    const pdfBuffer = await generatePdfBuffer(html);
 
-  // 2️⃣ Generate PDF
-  const pdfBuffer = await generatePdfBuffer(html);
-
-  // 3️⃣ Send email with PDF attachment
-  await resend.emails.send({
-    from: process.env.EMAIL_FROM || "SkillYards <certificates@skillyards.in>",
-    to: [email],
-    subject: `🏆 Your SkillYards Certificate — ${percentage}% Score`,
-    html: certificateEmailTemplate({ name, percentage, score, total }),
-    attachments: [
-      {
-        filename: `SkillYards-Certificate-${name.replace(/\s+/g, "-")}.pdf`,
-        content: pdfBuffer.toString("base64"),
-      },
-    ],
-  });
-
-  console.log(`✅ Certificate sent to ${email} (${percentage}%)`);
+    const response = await resend.emails.send({
+      from: process.env.EMAIL_FROM || "SkillYards <certificates@skillyards.in>",
+      to: [data.email],
+      subject: `🏆 Your SkillYards Certificate — ${percentage}% Score`,
+      html: certificateEmailTemplate({
+        name: data.name,
+        percentage,
+        score: data.score,
+        total: data.total,
+      }),
+      attachments: [
+        {
+          filename: `SkillYards-Certificate-${data.name.replace(/\s+/g, "-")}.pdf`,
+          content: pdfBuffer.toString("base64"),
+        },
+      ],
+    });
+  } catch (err) {
+    console.error("CERTIFICATE FLOW FAILED:", err);
+  }
 }
