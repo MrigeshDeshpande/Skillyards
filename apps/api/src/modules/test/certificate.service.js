@@ -74,7 +74,20 @@ export async function generateAndSendCertificate(data) {
       }),
     });
 
-    const pdfBuffer = await generatePdfBuffer(html);
+    let attachments = [];
+    try {
+      const pdfBuffer = await generatePdfBuffer(html);
+      if (pdfBuffer) {
+        attachments = [
+          {
+            filename: `SkillYards-Certificate-${data.name.replace(/\s+/g, "-")}.pdf`,
+            content: pdfBuffer.toString("base64"),
+          },
+        ];
+      }
+    } catch (pdfErr) {
+      console.error("PDF Generation failed (Vercel limits), sending email without attachment:", pdfErr);
+    }
 
     const response = await resend.emails.send({
       from: process.env.EMAIL_FROM || "SkillYards <certificates@skillyards.in>",
@@ -85,13 +98,8 @@ export async function generateAndSendCertificate(data) {
         percentage,
         score: data.score,
         total: data.total,
-      }),
-      attachments: [
-        {
-          filename: `SkillYards-Certificate-${data.name.replace(/\s+/g, "-")}.pdf`,
-          content: pdfBuffer.toString("base64"),
-        },
-      ],
+      }) + (attachments.length === 0 ? "<br><p><em>Note: We were unable to attach your PDF certificate at this time. Your score is securely verified in our database!</em></p>" : ""),
+      attachments,
     });
   } catch (err) {
     console.error("CERTIFICATE FLOW FAILED:", err);
