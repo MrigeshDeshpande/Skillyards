@@ -91,7 +91,7 @@ export async function startTest({ db, leadId, topics }) {
   };
 }
 
-// ---------------- SUBMIT TEST (NEW CORE) ----------------
+// ---------------- SUBMIT TEST ----------------
 
 export async function submitTest({ db, sessionId, answers }) {
   if (!sessionId || !Array.isArray(answers)) {
@@ -104,12 +104,10 @@ export async function submitTest({ db, sessionId, answers }) {
     throw new Error("Session not found");
   }
 
-  // 🚨 Prevent resubmission
   if (session.status === "completed") {
     throw new Error("Test already submitted");
   }
 
-  // 🚨 Strict Time Bounds Enforcement (11m bound to absorb network latency on 10 min test)
   const elapsedMinutes = (new Date() - new Date(session.startedAt)) / 60000;
   if (elapsedMinutes > 11) {
     throw new Error("Test submission expired. Time limit exceeded.");
@@ -139,8 +137,8 @@ export async function submitTest({ db, sessionId, answers }) {
     }
   }
 
-  // ✅ update session
   const completedAt = new Date();
+
   await db
     .update(testSessions)
     .set({
@@ -154,35 +152,57 @@ export async function submitTest({ db, sessionId, answers }) {
   const total = questions.length;
   const percentage = Math.round((score / total) * 100);
 
-  // 🎓 Fire-and-forget: generate certificate & email if score ≥ 70%
-  if (percentage >= 70) {
-    (async () => {
-      try {
-        const lead = await getLeadById(db, session.leadId);
-        if (!lead) {
-          console.error("❌ Certificate skipped: lead not found for", session.leadId);
-          return;
-        }
+  const shouldSend =
+    percentage >= 70 || process.env.FORCE_SEND_EMAIL === "true";
 
-        const topics = [...new Set(questions.map((q) => q.topic))];
-
-        await generateAndSendCertificate({
-          name: lead.name,
-          email: lead.email,
-          score,
-          total,
-          topics,
-          certificateId: sessionId,
-          completedAt,
-        });
-      } catch (err) {
-        console.error("❌ Certificate generation failed:", err);
-      }
-    })();
+  if (shouldSend) {
+    await generateAndSendCertificateWrapper({
+      db,
+      session,
+      questions,
+      score,
+      total,
+      sessionId,
+      completedAt,
+    });
   }
 
   return {
     score,
     total,
   };
+}
+
+
+async function generateAndSendCertificateWrapper({
+  db,
+  session,
+  questions,
+  score,
+  total,
+  sessionId,
+  completedAt,
+}) {
+  try {
+    const lead = await getLeadById(db, session.leadId);
+
+    if (!lead) {
+      console.error("Lead not found:", session.leadId);
+      return;
+    }
+
+    const topics = [...new Set(questions.map((q) => q.topic))];
+
+    await generateAndSendCertificate({
+      name: lead.name,
+      email: lead.email,
+      score,
+      total,
+      topics,
+      certificateId: sessionId,
+      completedAt,
+    });
+  } catch (err) {
+    console.error("CERTIFICATE WRAPPER FAILED:", err);
+  }
 }
