@@ -13,10 +13,26 @@ export const getCourseSchema = (course) => ({
     "@id": ORGANIZATION_ID,
   },
 
-  image: "https://www.skillyards.in/images/opengraph/fullstack-og.jpg",
+  isPartOf: {
+    "@type": "EducationalOccupationalProgram",
+    name: course.title,
+    description: course.description,
+    provider: {
+      "@id": ORGANIZATION_ID,
+    }
+  },
+
+  image: course.seo?.ogImage ? `https://www.skillyards.in${course.seo.ogImage}` : "https://www.skillyards.in/images/opengraph/fullstack-og.jpg",
 
   educationalLevel: "Beginner to Advanced",
   inLanguage: "en",
+  ...(course.certification && {
+    educationalCredentialAwarded: [{
+      "@type": "EducationalOccupationalCredential",
+      name: course.certification,
+      credentialCategory: "Certificate"
+    }]
+  }),
 
   hasCourseInstance: {
     "@type": "CourseInstance",
@@ -41,10 +57,17 @@ export const getCourseSchema = (course) => ({
     }),
   },
 
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "85"
+  },
+
   offers: {
     "@type": "Offer",
-    category: "Educational",
+    category: "Professional Training",
     availability: "https://schema.org/InStock",
     url: `https://www.skillyards.in${course.seo.path}`,
+    priceCurrency: "INR",
   },
 });

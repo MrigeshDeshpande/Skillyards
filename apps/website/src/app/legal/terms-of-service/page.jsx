@@ -2,6 +2,8 @@ import { buildSEO } from "@/lib/seo/buildSEO";
 import PageHero from "@/components/PageHero";
 import Link from "next/link";
 import { HandshakeIcon, UserCheck, UserCog, BookOpen, CreditCard, Copyright, ShieldAlert, Ban, AlertTriangle, Scale, Globe, RefreshCw, Mail } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import { getWebPageSchema } from "@/lib/seo/schema/webPageSchema";
 
 export const metadata = buildSEO({
     title: "Terms of Service",
@@ -239,8 +241,15 @@ export default function TermsOfServicePage() {
         day: "numeric",
     });
 
+    const webPageSchema = getWebPageSchema({
+        url: "/legal/terms-of-service",
+        name: "Terms of Service",
+        description: "Read SkillYards' Terms of Service to understand the rules, responsibilities, and conditions for using our website, courses, and training programs."
+    });
+
     return (
         <>
+            <JsonLd data={webPageSchema} id="terms-of-service-schema" />
             <PageHero
                 title="Terms of Service"
                 description="These Terms of Service outline the rules, responsibilities, and conditions that govern your use of our website, products, and services."

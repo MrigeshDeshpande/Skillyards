@@ -1,6 +1,7 @@
 import { buildSEO } from "@/lib/seo/buildSEO";
 import JsonLd from "@/components/JsonLd";
 import RahulHero from "@/components/rahulsingh/RahulHero";
+import { getPersonSchema } from "@/lib/seo/schema/personSchema";
 
 const rahul = {
     name: "Rahul Singh",
@@ -24,16 +25,13 @@ export const metadata = buildSEO({
 });
 
 export default function RahulPage() {
-    const rahulSchema = {
-        "@context": "https://schema.org",
-        "@type": "Person",
+    const rahulSchema = getPersonSchema({
         name: rahul.name,
-        jobTitle: rahul.role,
+        role: rahul.role,
         image: rahul.avatar,
-        url: "https://www.skillyards.in/team/rahulsingh",
-        sameAs: [],
-        description: rahul.bio,
-    };
+        url: "/team/rahulsingh",
+        description: rahul.bio
+    });
 
     return (
         <>

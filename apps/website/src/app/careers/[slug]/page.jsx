@@ -2,6 +2,7 @@ import JsonLd from "@/components/JsonLd";
 import ApplyForm from "@/components/careerspage/ApplyForm";
 import Image from "next/image";
 import {withPageSEO} from "@/lib/seo";
+import { getJobPostingSchema } from "@/lib/seo/schema/jobPostingSchema";
 
 /**
  * Important: Careers job pages must be rendered at runtime
@@ -85,36 +86,6 @@ export async function generateMetadata({ params }) {
         // ✅ Separate OG images if you want
         ogImage: '/images/opengraph/skillyards-careers-og.webp',
     });
-}
-
-/* ----------------------------------------
-   JobPosting Schema
------------------------------------------ */
-function jobPostingSchema(job) {
-    return {
-        "@context": "https://schema.org",
-        "@type": "JobPosting",
-        title: job.title || "Job Opening",
-        description: job.description || "",
-        datePosted: job.created_at || new Date().toISOString(),
-        validThrough: job.apply_deadline ?? undefined,
-        employmentType: job.employment_type ? job.employment_type.toUpperCase().replace("-", "_") : "FULL_TIME",
-        hiringOrganization: {
-            "@type": "Organization",
-            name: "SkillYards",
-            sameAs: "https://www.skillyards.in",
-            logo: "https://www.skillyards.in/images/logo.png",
-        },
-        jobLocation: job.location
-            ? { "@type": "Place", address: { "@type": "PostalAddress", addressLocality: job.location, addressCountry: "IN" } }
-            : undefined,
-        baseSalary: job.salary_min && job.salary_max
-            ? { "@type": "MonetaryAmount", currency: "INR", value: { "@type": "QuantitativeValue", minValue: job.salary_min, maxValue: job.salary_max, unitText: "YEAR" } }
-            : undefined,
-        applyUrl: job.qr_code
-            ? `${process.env.NEXT_PUBLIC_API_URL}/qr/${job.qr_code.uuid}`
-            : `https://www.skillyards.in/careers/${job.slug}`,
-    };
 }
 
 /* ----------------------------------------
@@ -228,7 +199,7 @@ async function CareerJobPage({ params }) {
                     </div>
                 </section>
             )}
-            <JsonLd data={jobPostingSchema(job)} id={`job-schema-${job.id}`} />
+            <JsonLd data={getJobPostingSchema(job)} id={`job-schema-${job.id}`} />
         </>
     );
 }

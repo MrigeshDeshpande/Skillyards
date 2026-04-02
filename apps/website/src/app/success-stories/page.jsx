@@ -1,5 +1,7 @@
 import ComingSoon from "@/components/ComingSoon";
 import { buildSEO } from "@/lib/seo/buildSEO";
+import JsonLd from "@/components/JsonLd";
+import { getWebPageSchema } from "@/lib/seo/schema/webPageSchema";
 
 export const metadata = buildSEO({
     title: "SkillYards Success Stories",
@@ -18,10 +20,19 @@ export const metadata = buildSEO({
 });
 
 export default function SuccessStoriesPage() {
+    const webPageSchema = getWebPageSchema({
+        url: "/success-stories",
+        name: "SkillYards Success Stories",
+        description: "Discover real success stories from SkillYards students who transformed their careers."
+    });
+
     return (
-        <ComingSoon
-            title="Success Stories — Coming Soon"
-            description="We’re collecting inspiring journeys of SkillYards students who turned learning into real career success. Stay tuned!"
-        />
+        <>
+            <JsonLd data={webPageSchema} id="success-stories-schema" />
+            <ComingSoon
+                title="Success Stories — Coming Soon"
+                description="We’re collecting inspiring journeys of SkillYards students who turned learning into real career success. Stay tuned!"
+            />
+        </>
     );
 }

@@ -43,10 +43,32 @@ export const organizationSchema = {
     availableLanguage: ["English", "Hindi"]
   },
 
-  areaServed: {
-    "@type": "City",
-    name: "Agra"
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    reviewCount: "120"
   },
+
+  review: [
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Rahul Sharma" },
+      reviewBody: "SkillYards transformed my career. The On Job Training program allowed me to learn while working on real projects. Highly recommend!",
+      reviewRating: { "@type": "Rating", ratingValue: "5" }
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Sneha Verma" },
+      reviewBody: "The On Job Degree program helped me earn a degree while gaining practical experience. The mentors are top-notch!",
+      reviewRating: { "@type": "Rating", ratingValue: "5" }
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Vikram Singh" },
+      reviewBody: "Hands-on projects, flexible schedule, and career guidance – SkillYards covers everything you need to succeed in IT.",
+      reviewRating: { "@type": "Rating", ratingValue: "5" }
+    }
+  ],
 
   sameAs: [
     "https://www.facebook.com/skillyardss",

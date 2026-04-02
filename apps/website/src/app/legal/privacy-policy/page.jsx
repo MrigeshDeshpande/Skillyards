@@ -2,6 +2,8 @@ import { buildSEO } from "@/lib/seo/buildSEO";
 import PageHero from "@/components/PageHero";
 import Link from "next/link";
 import { Shield, Eye, Cookie, Share2, Lock, UserCheck, ExternalLink, RefreshCw, Mail } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import { getWebPageSchema } from "@/lib/seo/schema/webPageSchema";
 
 export const metadata = buildSEO({
     title: "Privacy Policy",
@@ -202,8 +204,15 @@ export default function PrivacyPolicyPage() {
         day: "numeric",
     });
 
+    const webPageSchema = getWebPageSchema({
+        url: "/legal/privacy-policy",
+        name: "Privacy Policy",
+        description: "Read SkillYards' Privacy Policy to understand how we collect, use, protect, and manage your personal information when you use our website and services."
+    });
+
     return (
         <>
+            <JsonLd data={webPageSchema} id="privacy-policy-schema" />
             <PageHero
                 title="Privacy Policy"
                 description="This Privacy Policy explains how SkillYards collects, uses, protects, and shares your personal information when you use our website, services, and digital platforms."

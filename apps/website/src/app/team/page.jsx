@@ -1,6 +1,8 @@
 import { buildSEO } from "@/lib/seo/buildSEO";
 import TeamSection from "@/components/teampage/TeamSection";
 import PageHero from "@/components/PageHero";
+import JsonLd from "@/components/JsonLd";
+import { getAboutPageSchema } from "@/lib/seo/schema/webPageSchema";
 
 export const metadata = buildSEO({
     title: "Meet the Team | SkillYards Agra",
@@ -56,8 +58,15 @@ const support = [
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function TeamPage() {
+    const aboutPageSchema = getAboutPageSchema({
+        url: "/team",
+        name: "Meet the Team | SkillYards Agra",
+        description: "Meet the SkillYards team — founders, mentors, instructors, and support staff dedicated to delivering industry-relevant learning and real-world skill development."
+    });
+
     return (
         <>
+            <JsonLd data={aboutPageSchema} id="team-schema" />
             <PageHero
                 title="Meet the Team"
                 subtitle="The people behind SkillYards — builders, educators, and mentors committed to your growth."
