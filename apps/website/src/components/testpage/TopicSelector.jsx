@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, Clock, FileText, ArrowRight } from "lucide-react";
 
 const TOPICS = [
     { id: "html", label: "HTML" },
@@ -21,76 +21,125 @@ export default function TopicSelector({ leadId }) {
     const [selectedTopics, setSelectedTopics] = useState([]);
 
     const toggleTopic = (id) => {
-        setSelectedTopics((prev) => 
-            prev.includes(id) 
-                ? prev.filter(t => t !== id)
+        setSelectedTopics((prev) =>
+            prev.includes(id)
+                ? prev.filter((t) => t !== id)
                 : [...prev, id]
         );
     };
 
+    const selectAll = () => {
+        if (selectedTopics.length === TOPICS.length) {
+            setSelectedTopics([]);
+        } else {
+            setSelectedTopics(TOPICS.map((t) => t.id));
+        }
+    };
+
     const isReady = selectedTopics.length >= 2;
+    const remaining = Math.max(0, 2 - selectedTopics.length);
 
     return (
-        <div className="bg-background rounded-2xl border border-border shadow-sm p-6 mt-6">
-            <h2 className="text-xl font-bold mb-2">Select Your Topics</h2>
-            <p className="text-sm text-muted-foreground mb-6">
-                Please select <strong>at least 2</strong> topics you want to be tested on. 
-                The test will consist of 30 random questions from your chosen subjects.
-            </p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
-                {TOPICS.map((topic) => {
-                    const isSelected = selectedTopics.includes(topic.id);
-                    return (
-                        <button
-                            key={topic.id}
-                            onClick={() => toggleTopic(topic.id)}
-                            className={`flex flex-col items-center justify-center p-4 rounded-xl border-2 transition-all ${
-                                isSelected 
-                                ? "border-primary bg-primary/5 shadow-sm scale-[1.02]" 
-                                : "border-transparent bg-muted/40 hover:bg-muted/80 hover:border-border"
-                            }`}
-                        >
-                            <div className={`w-6 h-6 rounded-full flex items-center justify-center mb-2 transition-colors border-2 ${
-                                isSelected ? "border-primary bg-primary text-primary-foreground" : "border-muted-foreground/30 bg-background"
-                            }`}>
-                                {isSelected && <Check size={14} strokeWidth={3} />}
-                            </div>
-                            <span className={`text-sm font-semibold ${isSelected ? "text-primary" : "text-foreground"}`}>
-                                {topic.label}
-                            </span>
-                        </button>
-                    );
-                })}
+        <div className="bg-card rounded-3xl border border-border shadow-lg overflow-hidden">
+            {/* Card header */}
+            <div className="px-6 pt-6 pb-4 border-b border-border/60">
+                <div className="flex items-center justify-between mb-1">
+                    <h2 className="text-lg font-bold text-foreground">Pick Your Topics</h2>
+                    <button
+                        onClick={selectAll}
+                        className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+                    >
+                        {selectedTopics.length === TOPICS.length ? "Deselect All" : "Select All"}
+                    </button>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                    Choose <strong>at least 2</strong> topics • {selectedTopics.length} of {TOPICS.length} selected
+                </p>
             </div>
 
-            <div className="flex items-center justify-center gap-6 text-sm font-medium mb-8">
-                <div className="flex flex-col items-center gap-1">
-                    <span className="text-2xl">⏳</span>
-                    <span>10 Minutes</span>
-                </div>
-                <div className="w-px h-10 bg-border"></div>
-                <div className="flex flex-col items-center gap-1">
-                    <span className="text-2xl">📝</span>
-                    <span>30 Questions</span>
+            {/* Topics grid */}
+            <div className="px-6 py-5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                    {TOPICS.map((topic) => {
+                        const isSelected = selectedTopics.includes(topic.id);
+                        return (
+                            <button
+                                key={topic.id}
+                                onClick={() => toggleTopic(topic.id)}
+                                className={`
+                                    relative flex items-center gap-3 p-3.5 rounded-2xl border-2 transition-all duration-200
+                                    ${isSelected
+                                        ? "border-primary bg-primary/5 shadow-sm"
+                                        : "border-border/50 bg-background hover:border-border hover:bg-muted/30"
+                                    }
+                                `}
+                            >
+                                {/* Checkbox */}
+                                <div
+                                    className={`
+                                        w-5 h-5 rounded-md flex items-center justify-center shrink-0 transition-all duration-200 border
+                                        ${isSelected
+                                            ? "bg-primary border-primary text-primary-foreground scale-105"
+                                            : "bg-background border-muted-foreground/25"
+                                        }
+                                    `}
+                                >
+                                    {isSelected && <Check size={12} strokeWidth={3} />}
+                                </div>
+
+                                <div className="min-w-0">
+                                    <span
+                                        className={`text-sm font-semibold truncate ${
+                                            isSelected ? "text-primary" : "text-foreground"
+                                        }`}
+                                    >
+                                        {topic.label}
+                                    </span>
+                                </div>
+                            </button>
+                        );
+                    })}
                 </div>
             </div>
 
-            {isReady ? (
-                <Link 
-                    href={`/test/quiz?leadId=${leadId}&topics=${selectedTopics.join(",")}`}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground shadow transition-colors hover:bg-primary/90"
-                >
-                    Start Your Test
-                </Link>
-            ) : (
-                <button 
-                    disabled
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-muted px-8 py-3.5 text-sm font-bold text-muted-foreground opacity-70 cursor-not-allowed"
-                >
-                    Select {Math.max(0, 2 - selectedTopics.length)} more topic{Math.max(0, 2 - selectedTopics.length) !== 1 ? 's' : ''} to start
-                </button>
-            )}
+            {/* Footer with stats + CTA */}
+            <div className="px-6 pb-6">
+                {/* Quick stats */}
+                <div className="flex items-center justify-center gap-6 py-4 mb-4 rounded-2xl bg-background border border-border/60">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Clock size={15} className="text-primary" />
+                        <span className="font-semibold text-foreground">10 min</span>
+                    </div>
+                    <div className="w-px h-5 bg-border" />
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <FileText size={15} className="text-primary" />
+                        <span className="font-semibold text-foreground">30 Qs</span>
+                    </div>
+                    <div className="w-px h-5 bg-border" />
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <span className="font-semibold text-foreground">{selectedTopics.length}</span>
+                        <span>selected</span>
+                    </div>
+                </div>
+
+                {/* CTA Button */}
+                {isReady ? (
+                    <Link
+                        href={`/test/quiz?leadId=${leadId}&topics=${selectedTopics.join(",")}`}
+                        className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-4 text-sm font-bold text-primary-foreground shadow-md transition-all hover:shadow-lg hover:scale-[1.01] active:scale-[0.99]"
+                    >
+                        Start Your Test
+                        <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                ) : (
+                    <button
+                        disabled
+                        className="flex w-full items-center justify-center gap-2 rounded-2xl bg-muted px-8 py-4 text-sm font-semibold text-muted-foreground cursor-not-allowed"
+                    >
+                        Select {remaining} more topic{remaining !== 1 ? "s" : ""} to start
+                    </button>
+                )}
+            </div>
         </div>
     );
 }

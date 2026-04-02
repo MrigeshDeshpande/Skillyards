@@ -9,7 +9,7 @@ const pills = [
 
 export default function TestHero() {
     return (
-        <section className="relative bg-primary overflow-hidden pt-24 pb-20 px-4 sm:px-6">
+        <section className="relative bg-foreground overflow-hidden pt-24 pb-20 px-4 sm:px-6">
             <div className="pointer-events-none absolute -top-40 -right-40 h-125 w-125 rounded-full bg-primary-foreground/5 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-24 h-87.5 w-87.5 rounded-full bg-primary-foreground/5 blur-3xl" />
 
@@ -47,7 +47,7 @@ export default function TestHero() {
                 {/* CTA */}
                 <Link
                     href="#register"
-                    className="inline-flex items-center gap-2 bg-white text-primary font-bold text-sm px-8 py-4 rounded-full hover:bg-white/90 hover:gap-3 transition-all duration-200 group shadow-lg shadow-black/20"
+                    className="inline-flex items-center gap-2 bg-accent text-foreground font-bold text-sm px-8 py-4 rounded-full  hover:gap-3 transition-all duration-200 group shadow-lg shadow-black/20"
                 >
                     Start Free Test
                     <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5" />

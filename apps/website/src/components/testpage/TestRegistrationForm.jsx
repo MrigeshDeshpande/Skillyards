@@ -76,7 +76,7 @@ export default function TestRegistrationForm() {
     };
 
     return (
-        <section id="register" className="bg-muted/40 border-y border-border py-16 px-4 sm:px-6">
+        <section id="register" className="bg-background border-y border-border py-16 px-4 sm:px-6">
             <div className="mx-auto max-w-lg">
                 {/* Header */}
                 <div className="text-center mb-10">
@@ -136,7 +136,7 @@ export default function TestRegistrationForm() {
                             Phone Number
                         </label>
                         <div className="flex rounded-xl border border-border bg-background overflow-hidden focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/10 transition-all">
-                            <span className="flex items-center px-3 text-sm text-muted-foreground border-r border-border bg-muted/50 select-none">
+                            <span className="flex items-center px-3 text-sm text-muted-foreground border-r border-border bg-muted select-none">
                                 +91
                             </span>
                             <input
