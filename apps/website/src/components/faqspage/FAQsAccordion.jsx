@@ -104,7 +104,7 @@ export default function FAQsAccordion() {
                                                     {idx + 1}
                                                 </span>
                                                 <span className={`text-sm font-semibold leading-snug transition-colors ${isOpen ? "text-primary" : "text-foreground"}`}>
-                                                    {faq.q}
+                                                    {faq.question}
                                                 </span>
                                             </div>
                                             <div className={`shrink-0 mt-0.5 rounded-full p-1 transition-all ${isOpen ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}>
@@ -120,7 +120,7 @@ export default function FAQsAccordion() {
                                                     transition={{ duration: 0.22, ease: "easeInOut" }}
                                                 >
                                                     <p className="pl-14 pr-5 pb-5 text-sm leading-relaxed text-muted-foreground">
-                                                        {faq.a}
+                                                        {faq.answer}
                                                     </p>
                                                 </motion.div>
                                             )}

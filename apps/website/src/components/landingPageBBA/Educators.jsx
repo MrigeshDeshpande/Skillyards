@@ -7,28 +7,10 @@ import { Linkedin, Twitter, ExternalLink } from "lucide-react";
 
 const educators = [
   {
-    name: "Dr. Sarah Johnson",
-    role: "Strategic Management",
-    specialization: "Harvard Business School Alumna",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=400&auto=format&fit=crop",
-  },
-  {
-    name: "Prof. Michael Chen",
-    role: "Digital Marketing",
-    specialization: "Ex-Google Marketing Lead",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop",
-  },
-  {
-    name: "Dr. Elena Rodriguez",
-    role: "Financial Analysis",
-    specialization: "Wall Street Veteran",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=400&auto=format&fit=crop",
-  },
-  {
-    name: "Prof. David Smith",
-    role: "Operations Excellence",
-    specialization: "6 Sigma Master Black Belt",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=400&auto=format&fit=crop",
+    name: "Neeraj Dang",
+    role: "SEO & Marketing Specialist",
+    specialization: "Digital Marketing Strategy",
+    image: "/images/team/Neeraj.png",
   },
 ];
 
@@ -67,7 +49,7 @@ export const Educators = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 gap-6 md:gap-8 lg:gap-10 max-w-sm mx-auto">
           {educators.map((edu, index) => (
             <motion.div
               key={index}

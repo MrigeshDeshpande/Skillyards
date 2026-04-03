@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(f''''Total: {len\\(d\\)}''''\\); print\\(''''Fields:'''', list\\(d[0].keys\\(\\)\\)\\)\")",
-      "Bash(node -e \"const d=require\\(''./apps/website/src/data/student-testimonials.json''\\); console.log\\(''Total:'', d.length\\); console.log\\(''Fields:'', Object.keys\\(d[0]\\)\\); console.log\\(''Sample roles:'', [...new Set\\(d.map\\(t=>t.role\\)\\)].slice\\(0,10\\)\\)\" c:/Users/sharm/Desktop/Skillyards)"
-    ]
-  }
-}

@@ -47,7 +47,7 @@ export function DGMFAQ({faqs}) {
                   className="flex w-full items-center justify-between p-5 text-left"
                 >
                   <span className={`text-sm font-bold transition-colors sm:text-base ${isOpen ? "text-primary" : "text-foreground"}`}>
-                    {faq.q}
+                    {faq.question}
                   </span>
                   <div className={`ml-4 shrink-0 rounded-full p-1.5 transition-all ${isOpen ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}>
                     {isOpen ? <Minus size={14} /> : <Plus size={14} />}
@@ -61,7 +61,7 @@ export function DGMFAQ({faqs}) {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25, ease: "easeInOut" }}
                     >
-                      <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">{faq.a}</p>
+                      <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>

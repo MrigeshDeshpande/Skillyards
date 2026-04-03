@@ -1,6 +1,9 @@
 import { buildSEO } from "@/lib/seo/buildSEO";
 import PageHero from "@/components/PageHero";
 import FAQsAccordion from "@/components/faqspage/FAQsAccordion";
+import JsonLd from "@/components/JsonLd";
+import { getFAQSchema } from "@/lib/seo/schema/faqSchema";
+import { faqCategories } from "@/data/faqs";
 
 export const metadata = buildSEO({
     title: "Frequently Asked Questions | SkillYards Agra",
@@ -20,6 +23,9 @@ export const metadata = buildSEO({
 });
 
 export default function FaqsPage() {
+    const allFaqs = Object.values(faqCategories).flatMap(cat => cat.faqs);
+    const faqSchema = getFAQSchema(allFaqs);
+
     return (
         <>
             <PageHero
@@ -31,6 +37,7 @@ export default function FaqsPage() {
                 ]}
             />
             <FAQsAccordion />
+            {faqSchema && <JsonLd data={faqSchema} id="faq-schema" />}
         </>
     );
 }

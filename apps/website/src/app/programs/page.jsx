@@ -9,6 +9,9 @@ import BatchFeeInfo from "@/components/programspage/BatchFeeInfo";
 import ProgramsFAQ from "@/components/programspage/ProgramsFAQ";
 import FinalCTA from "@/components/programspage/FinalCTA";
 import { buildSEO } from "@/lib/seo/buildSEO";
+import JsonLd from "@/components/JsonLd";
+import { getFAQSchema } from "@/lib/seo/schema/faqSchema";
+import { faqCategories } from "@/data/faqs";
 
 
 export const metadata = buildSEO({
@@ -29,6 +32,7 @@ export const metadata = buildSEO({
 });
 
 export default function ProgramsPage() {
+  const faqSchema = getFAQSchema(faqCategories.general.faqs);
   return (
     <main>
       <ProgramsHero />
@@ -41,6 +45,7 @@ export default function ProgramsPage() {
       <BatchFeeInfo />
       <ProgramsFAQ />
       <FinalCTA />
+        {faqSchema && <JsonLd data={faqSchema} id="faq-schema" />}
     </main>
   );
 }

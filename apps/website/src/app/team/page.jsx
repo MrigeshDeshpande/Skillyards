@@ -19,11 +19,21 @@ export const metadata = buildSEO({
 
 const leadership = [
     {
-        name: "Rajesh Sharma",
+        name: "Rahul Singh",
         role: "Founder & CEO",
-        bio: "Visionary behind SkillYards, with 15+ years in IT education and enterprise software development.",
-        image: "https://randomuser.me/api/portraits/men/32.jpg",
-        badge: "Founder",
+        bio: "Visionary behind SkillYards, dedicated to delivering industry-relevant learning and empowering tech professionals.",
+        image: "/images/team/rahul-singh.png",
+        badge: "Leadership",
+        socials: {
+            linkedin: "https://linkedin.com",
+        },
+    },
+    {
+        name: "Suryansh Upadhyay",
+        role: "Co-Founder & Director",
+        bio: "Driving product strategy and ensuring we deliver value to our students and industry partners.",
+        image: "/images/team/suryansh-upadhyay.png",
+        badge: "Leadership",
         socials: {
             linkedin: "https://linkedin.com",
         },
@@ -32,10 +42,37 @@ const leadership = [
 
 const instructors = [
     {
-        name: "Ankit Gupta",
-        role: "Digital Marketing Instructor",
-        bio: "Google & Meta certified marketer. Runs live ad campaigns for real clients alongside teaching.",
-        image: "https://randomuser.me/api/portraits/men/58.jpg",
+        name: "Suryansh Sir",
+        role: "Lead Instructor",
+        bio: "Expert mentor specializing in full-stack web development and core programming architectures.",
+        image: "/images/team/suryanshSir.webp",
+        socials: {
+            linkedin: "https://linkedin.com",
+        },
+    },
+    {
+        name: "Kaushal Sir",
+        role: "Senior Instructor",
+        bio: "Experienced developer and instructor with an eye for UI/UX and modern frontend technologies.",
+        image: "/images/team/KaushalSIr.png",
+        socials: {
+            linkedin: "https://linkedin.com",
+        },
+    },
+    {
+        name: "Neeraj",
+        role: "Technical Mentor",
+        bio: "Helps students debug, build projects, and understand complex software design patterns.",
+        image: "/images/team/Neeraj.png",
+        socials: {
+            linkedin: "https://linkedin.com",
+        },
+    },
+    {
+        name: "Bhanu",
+        role: "Software Developer Intern",
+        bio: "Building internal tools and participating in continuous software delivery and mentorship.",
+        image: "/images/team/Bhanu.jpg",
         socials: {
             linkedin: "https://linkedin.com",
         },
@@ -44,10 +81,10 @@ const instructors = [
 
 const support = [
     {
-        name: "Neha Agarwal",
-        role: "Placement Coordinator",
-        bio: "Connects students with hiring partners and prepares them for interviews from day one.",
-        image: "https://randomuser.me/api/portraits/women/68.jpg",
+        name: "Khushali",
+        role: "Community & Support",
+        bio: "Connects students with resources and ensures a smooth learning journey from enrolment.",
+        image: "/images/team/khushali.jpeg",
         socials: {
             linkedin: "https://linkedin.com",
         },

@@ -1,21 +1,26 @@
+import dynamic from "next/dynamic";
+
 import JsonLd from "@/components/JsonLd";
 import AboutHero from "@/components/aboutpage/AboutHero";
 import AboutMissionVision from "@/components/aboutpage/AboutMissionVision";
-import AboutWhyChoose from "@/components/aboutpage/AboutWhyChoose";
-import TestimonialsByInterns from "@/components/aboutpage/TestimonialsByInterns";
-import CTASection from "@/components/aboutpage/CTASection";
-import LifeAtSkillYards from "@/components/aboutpage/LifeAtSkillYards";
-import TechnologiesWeTeach from "@/components/aboutpage/TechnologiesWeTeach";
-import StudentSuccessStories from "@/components/aboutpage/StudentSuccessStories";
-import SkillYardsJourney from "@/components/aboutpage/SkillYardsJourney";
-import CtaBanner from "@/components/aboutpage/CtaBanner";
-import LeadersSection from "@/components/common/LeadersSection";
-import PartnersSlider from "@/components/common/PartnersSlider";
-import FAQSection from "@/components/common/FAQSection";
-import PlacementStats from "@/components/aboutpage/PlacementStats";
-import OtherTeam from "@/components/aboutpage/OtherTeam";
+
+const AboutWhyChoose = dynamic(() => import("@/components/aboutpage/AboutWhyChoose"));
+const TestimonialsByInterns = dynamic(() => import("@/components/aboutpage/TestimonialsByInterns"));
+const CTASection = dynamic(() => import("@/components/aboutpage/CTASection"));
+const LifeAtSkillYards = dynamic(() => import("@/components/aboutpage/LifeAtSkillYards"));
+const TechnologiesWeTeach = dynamic(() => import("@/components/aboutpage/TechnologiesWeTeach"));
+const StudentSuccessStories = dynamic(() => import("@/components/aboutpage/StudentSuccessStories"));
+const SkillYardsJourney = dynamic(() => import("@/components/aboutpage/SkillYardsJourney"));
+const CtaBanner = dynamic(() => import("@/components/aboutpage/CtaBanner"));
+const PartnersSlider = dynamic(() => import("@/components/common/PartnersSlider"));
+const FAQSection = dynamic(() => import("@/components/common/FAQSection"));
+const PlacementStats = dynamic(() => import("@/components/aboutpage/PlacementStats"));
+const OtherTeam = dynamic(() => import("@/components/aboutpage/OtherTeam"));
+const LeadersSection=dynamic(()=>import("@/components/common/LeadersSection"));
 
 import { buildSEO } from "@/lib/seo/buildSEO";
+import { getFAQSchema } from "@/lib/seo/schema/faqSchema";
+import { getPageFaqs } from "@/lib/seo/getFaqs";
 
 export const metadata = buildSEO({
   title: "About SkillYards",
@@ -59,6 +64,7 @@ export default function AboutPage() {
       "SkillYards is an IT training institute and software development company offering on job training and degrees in emerging IT technologies based in Agra, India.",
   };
 
+  const faqSchema = getFAQSchema(getPageFaqs("homepage", 4));
   return (
     <>
       <div className="bg-background text-foreground transition-colors duration-500">
@@ -80,6 +86,7 @@ export default function AboutPage() {
       </div>
 
       <JsonLd data={aboutPageSchema} id="about-page-schema-skillyards" />
+      {faqSchema && <JsonLd data={faqSchema} id="faq-schema" />}
     </>
   );
 }

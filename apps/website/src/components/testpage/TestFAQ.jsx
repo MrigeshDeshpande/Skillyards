@@ -39,7 +39,7 @@ export default function TestFAQ() {
                                     className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                                 >
                                     <span className={`text-sm font-bold leading-snug transition-colors ${isOpen ? "text-primary" : "text-foreground"}`}>
-                                        {faq.q}
+                                        {faq.question}
                                     </span>
                                     <div className={`shrink-0 rounded-full p-1.5 transition-all ${isOpen ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}>
                                         {isOpen ? <Minus size={13} /> : <Plus size={13} />}
@@ -47,7 +47,7 @@ export default function TestFAQ() {
                                 </button>
                                 {isOpen && (
                                     <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">
-                                        {faq.a}
+                                        {faq.answer}
                                     </p>
                                 )}
                             </div>

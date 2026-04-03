@@ -7,28 +7,16 @@ import { Linkedin, Twitter } from "lucide-react";
 
 const educators = [
   {
-    name: "Dr. Arjun Mehta",
-    role: "Full Stack Development",
-    specialization: "Ex-Google Senior Engineer",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=400&auto=format&fit=crop",
+    name: "Mrigesh Deshpande",
+    role: "Sr. Full Stack Developer",
+    specialization: "Backend & Systems Design",
+    image: "/images/team/Mrigesh-Deshpande.jpg",
   },
   {
-    name: "Prof. Priya Sharma",
-    role: "Data Science & AI",
-    specialization: "IIT Delhi Alumna · Ex-Microsoft",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=400&auto=format&fit=crop",
-  },
-  {
-    name: "Dr. Rahul Verma",
-    role: "Cloud & DevOps",
-    specialization: "AWS Certified Solutions Architect",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop",
-  },
-  {
-    name: "Prof. Anjali Singh",
-    role: "Cyber Security",
-    specialization: "CISSP · Ex-IBM Security Lead",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=400&auto=format&fit=crop",
+    name: "Chakresh Chakshu",
+    role: "Jr. Full Stack Developer",
+    specialization: "Next.js & Frontend Architecture",
+    image: "/images/team/Chakresh-Chakshu.webp",
   },
 ];
 
@@ -66,7 +54,7 @@ export const BCAEducators = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 lg:gap-10 max-w-4xl mx-auto">
           {educators.map((edu, index) => (
             <motion.div
               key={index}

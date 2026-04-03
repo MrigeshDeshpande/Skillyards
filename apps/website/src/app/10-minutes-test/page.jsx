@@ -5,6 +5,9 @@ import HowItWorks from "@/components/testpage/HowItWorks";
 import CertificateSection from "@/components/testpage/CertificateSection";
 import TestRegistrationForm from "@/components/testpage/TestRegistrationForm";
 import TestFAQ from "@/components/testpage/TestFAQ";
+import JsonLd from "@/components/JsonLd";
+import { getFAQSchema } from "@/lib/seo/schema/faqSchema";
+import { faqCategories } from "@/data/faqs";
 
 export const metadata = buildSEO({
     title: "Free 10-Minute Skill Test | HTML, CSS, JS & SEO Certificate — SkillYards",
@@ -23,6 +26,7 @@ export const metadata = buildSEO({
 });
 
 export default function TenMinuteTestPage() {
+    const faqSchema = getFAQSchema(faqCategories.test.faqs);
     return (
         <div className="w-full overflow-x-hidden">
             <TestHero />
@@ -31,6 +35,7 @@ export default function TenMinuteTestPage() {
             <CertificateSection />
             <TestRegistrationForm />
             <TestFAQ />
+            {faqSchema && <JsonLd data={faqSchema} id="faq-schema" />}
         </div>
     );
 }
