@@ -3,6 +3,7 @@ import GalleryVideosContent from "./GalleryVideosContent";
 import JsonLd from "@/components/JsonLd";
 import { getVideoGallerySchema } from "@/lib/seo/schema/webPageSchema";
 import { getBreadcrumbSchema } from "@/lib/seo/schema/breadcrumbSchema";
+import Image from "next/image";
 
 const galleryVideoKeywords = ["SkillYards video gallery", "IT training videos", "student success videos", "learning sessions", "workshop videos"];
 

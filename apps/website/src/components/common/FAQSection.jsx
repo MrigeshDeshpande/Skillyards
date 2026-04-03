@@ -64,7 +64,7 @@ export default function FAQSection({ category = "homepage", limit = 4 }) {
                       isOpen ? "text-primary" : "text-foreground"
                     }`}
                   >
-                    {faq.q}
+                    {faq.question}
                   </span>
 
                   <div
@@ -87,7 +87,7 @@ export default function FAQSection({ category = "homepage", limit = 4 }) {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
                       <div className="px-6 pb-6 pt-0 text-muted-foreground text-base leading-relaxed max-w-[90%]">
-                        {faq.a}
+                        {faq.answer}
                       </div>
                     </motion.div>
                   )}

@@ -71,7 +71,7 @@ export default function SupportFAQ() {
                                     className="flex w-full items-center justify-between gap-4 p-4 sm:p-5 text-left"
                                 >
                                     <span className={`text-sm sm:text-base font-bold leading-snug transition-colors ${isOpen ? "text-primary" : "text-foreground"}`}>
-                                        {faq.q}
+                                        {faq.question}
                                     </span>
                                     <div className={`shrink-0 rounded-full p-1.5 transition-all ${isOpen ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}>
                                         {isOpen ? <Minus size={13} /> : <Plus size={13} />}
@@ -86,7 +86,7 @@ export default function SupportFAQ() {
                                             transition={{ duration: 0.25, ease: "easeInOut" }}
                                         >
                                             <p className="px-4 sm:px-5 pb-4 sm:pb-5 text-sm leading-relaxed text-muted-foreground">
-                                                {faq.a}
+                                                {faq.answer}
                                             </p>
                                         </motion.div>
                                     )}

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useCallback, memo } from 'react';
+import Image from 'next/image';
 import { useGesture } from '@use-gesture/react';
 
 
@@ -112,13 +113,13 @@ const DomeItem = memo(({ it, i, imageBorderRadius, grayscale, onOpen }) => {
           backfaceVisibility: 'hidden'
         }}
       >
-        <img
+        <Image
           src={it.src}
           draggable={false}
           alt={it.alt}
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover pointer-events-none"
+          fill
+          sizes="(max-width: 768px) 30vw, 15vw"
+          className="object-cover pointer-events-none"
           style={{
             backfaceVisibility: 'hidden',
             filter: `var(--image-filter, ${grayscale ? 'grayscale(1)' : 'none'})`

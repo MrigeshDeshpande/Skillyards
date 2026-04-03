@@ -21,9 +21,6 @@ export default function LeadersSection() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary mb-4">
-                        The Team
-                    </p>
                     <h2 className="text-4xl sm:text-5xl font-extrabold text-foreground tracking-tight">
                         Visionary Leadership
                     </h2>

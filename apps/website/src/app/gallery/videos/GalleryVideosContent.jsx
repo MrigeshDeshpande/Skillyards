@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useState, useRef } from "react";
 import PageHero from "@/components/PageHero";
 import { Play, MonitorPlay } from "lucide-react";
@@ -191,9 +191,10 @@ export default function GalleryVideosContent() {
                             >
                                 {/* Thumbnail */}
                                 <div className="relative aspect-video w-full overflow-hidden">
-                                    <img
+                                    <Image
                                         src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
                                         alt={video.title}
+                                        fill
                                         onError={(e) => {
                                             if (!e.target.dataset.fallback) {
                                                 e.target.dataset.fallback = "1";

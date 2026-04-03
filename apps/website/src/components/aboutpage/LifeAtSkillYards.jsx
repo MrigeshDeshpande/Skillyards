@@ -73,19 +73,19 @@ export default function LifeAtSkillYards() {
           width: "100%",
           height: isMobile 
   ? "clamp(450px, 75vh, 800px)" 
-  : "clamp(600px, 85vh, 1100px)", 
+  : "clamp(550px, 75vh, 900px)", 
         }}
       >
         <DomeGallery
           images={allImages}
           fit={isMobile ? 0.9 : 0.8}
-          minRadius={isMobile ? 200 : 260}
+          minRadius={isMobile ? 200 : 240}
           maxVerticalRotationDeg={6}
           segments={isMobile ? 16 : 20}                    
           dragDampening={1}
           grayscale={false}
           overlayBlurColor="transparent"
-            autoRotate={true}
+          autoRotate={true}
         />
 
         {/* Mobile — top/bottom solid masks to hide globe poles */}

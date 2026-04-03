@@ -55,7 +55,6 @@ const support = [
         },
     },
 ];
-// ─────────────────────────────────────────────────────────────────────────────
 
 export default function TeamPage() {
     const aboutPageSchema = getAboutPageSchema({

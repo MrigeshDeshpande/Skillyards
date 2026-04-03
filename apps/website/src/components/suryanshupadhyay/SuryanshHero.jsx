@@ -24,10 +24,10 @@ export default function SuryanshHero() {
                 <div className="absolute -inset-3 rounded-full bg-linear-to-br from-primary/30 via-secondary/20 to-transparent blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden ring-4 ring-primary/20 shadow-2xl">
                     <Image
-                        src="/images/team/suryansh-upadhyay.png"
+                        src="/images/team/suryanshSir.webp"
                         alt="Suryansh Upadhyay"
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="object-cover mt-3transition-transform duration-700 group-hover:scale-110"
                     />
                 </div>
             </div>

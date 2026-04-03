@@ -40,7 +40,7 @@ const nextConfig = {
                         "connect-src 'self' https://api.github.com https://www.google.com https://www.gstatic.com https://skillyards-backend.vercel.app https://www.googletagmanager.com; " +
                         
                         // Images
-                        "img-src 'self' data: blob: https://picsum.photos https://images.unsplash.com https://cdn.sanity.io https://cdn.simpleicons.org; " +
+                        "img-src 'self' data: blob: https://picsum.photos https://images.unsplash.com https://cdn.sanity.io https://cdn.simpleicons.org https://img.youtube.com; " +
 
                         // Styles
                         "style-src 'self' 'unsafe-inline'; " +
@@ -61,6 +61,7 @@ const nextConfig = {
         remotePatterns: [
             { protocol: "https", hostname: "picsum.photos" },
             { protocol: "https", hostname: "randomuser.me" },
+            { protocol: "https", hostname: "img.youtube.com" },
             {
                 protocol: "https",
                 hostname: "images.unsplash.com",

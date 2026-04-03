@@ -7,28 +7,16 @@ import { Linkedin, Twitter } from "lucide-react";
 
 const educators = [
   {
-    name: "Dr. Arjun Mehta",
-    role: "Full Stack Development",
-    specialization: "Ex-Google Senior Engineer",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=400&auto=format&fit=crop",
+    name: "Mrigesh Deshpande",
+    role: "Sr. Full Stack Developer",
+    specialization: "Backend & Systems Design",
+    image: "/images/team/Mrigesh-Deshpande.jpg",
   },
   {
-    name: "Prof. Priya Sharma",
-    role: "Data Science & AI",
-    specialization: "IIT Delhi Alumna · Ex-Microsoft",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=400&auto=format&fit=crop",
-  },
-  {
-    name: "Dr. Rahul Verma",
-    role: "Cloud & DevOps",
-    specialization: "AWS Certified Solutions Architect",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop",
-  },
-  {
-    name: "Prof. Anjali Singh",
-    role: "Cyber Security",
-    specialization: "CISSP · Ex-IBM Security Lead",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=400&auto=format&fit=crop",
+    name: "Chakresh Chakshu",
+    role: "Jr. Full Stack Developer",
+    specialization: "Next.js & Frontend Architecture",
+    image: "/images/team/Chakresh-Chakshu.webp",
   },
 ];
 
@@ -66,7 +54,7 @@ export const BCAEducators = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 lg:gap-10 max-w-4xl mx-auto">
           {educators.map((edu, index) => (
             <motion.div
               key={index}
@@ -76,12 +64,12 @@ export const BCAEducators = () => {
               transition={{ delay: index * 0.1 }}
               className="group relative"
             >
-              <div className="relative aspect-square rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden mb-6 md:mb-8 shadow-2xl border-4 border-border transition-all duration-500 group-hover:rounded-[2rem] md:group-hover:rounded-[2.5rem]">
+              <div className="relative aspect-[4/5] rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden mb-6 md:mb-8 shadow-2xl border-4 border-border transition-all duration-500 group-hover:rounded-[2rem] md:group-hover:rounded-[2.5rem]">
                 <Image
                   src={edu.image}
                   alt={edu.name}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="object-cover object-top group-hover:scale-110 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-3 md:gap-4 backdrop-blur-xs">
@@ -91,13 +79,6 @@ export const BCAEducators = () => {
                     className="w-10 h-10 md:w-12 md:h-12 bg-background text-primary rounded-full flex items-center justify-center shadow-xl hover:bg-primary hover:text-primary-foreground transition-colors"
                   >
                     <Linkedin size={18} />
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 md:w-12 md:h-12 bg-background text-primary rounded-full flex items-center justify-center shadow-xl hover:bg-primary hover:text-primary-foreground transition-colors"
-                  >
-                    <Twitter size={18} />
                   </motion.button>
                 </div>
               </div>

@@ -56,7 +56,7 @@ export default function ProgramsFAQ() {
                   className="flex w-full items-center justify-between p-5 text-left"
                 >
                   <span className={`text-base font-bold transition-colors ${isOpen ? "text-primary" : "text-foreground"}`}>
-                    {faq.q}
+                    {faq.question}
                   </span>
                   <div
                     className={`ml-4 shrink-0 rounded-full p-1.5 transition-all ${
@@ -75,7 +75,7 @@ export default function ProgramsFAQ() {
                       transition={{ duration: 0.25, ease: "easeInOut" }}
                     >
                       <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">
-                        {faq.a}
+                        {faq.answer}
                       </p>
                     </motion.div>
                   )}

@@ -12,14 +12,14 @@ export default function AboutHero() {
   if (!data) return null;
 
   return (
-    <section className="relative overflow-hidden bg-background text-foreground py-20 sm:py-32 lg:py-28">
+    <section className="relative overflow-hidden bg-background text-foreground py-12 pt-6 sm:py-24 lg:py-28">
       
       {/* Dynamic Background Elements */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/5 blur-[100px] rounded-full translate-y-1/4 -translate-x-1/4 pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
           
           {/* Left Side: Content */}
           <motion.div
@@ -27,50 +27,50 @@ export default function AboutHero() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="flex flex-col space-y-8 text-center lg:text-left z-10"
+            className="flex flex-col space-y-6 lg:space-y-8 text-center lg:text-left z-10 pt-4"
           >
             <div className="inline-block mx-auto lg:mx-0">
               <Breadcrumbs />
             </div>
 
-            <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.05] text-foreground">
+            <div className="space-y-3 lg:space-y-4">
+              <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.1] sm:leading-[1.05] text-foreground">
                 {data.title}{" "}
                 <span className="relative inline-block text-primary italic">
                   {data.highlight}
-                  <svg className="absolute -bottom-2 left-0 w-full h-3 text-secondary/30 -z-10" viewBox="0 0 100 20" preserveAspectRatio="none">
+                  <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-3 text-secondary/30 -z-10" viewBox="0 0 100 20" preserveAspectRatio="none">
                     <path d="M0 10 Q 25 20 50 10 T 100 10" stroke="currentColor" strokeWidth="4" fill="transparent" />
                   </svg>
                 </span>
               </h1>
-              <p className="text-xl sm:text-2xl font-semibold text-primary/80 tracking-tight">
+              <p className="text-lg sm:text-2xl font-semibold text-primary/80 tracking-tight">
                 {data.tagline}
               </p>
             </div>
 
-            <div className="space-y-5 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
+            <div className="space-y-4 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
               <p>{data.description1}</p>
               <p>{data.description2}</p>
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-6">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-4 sm:pt-6">
               <a
                 href={data.primaryCTA.link}
-                className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl
-                bg-primary text-primary-foreground font-bold text-lg
-                hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 hover:-translate-y-1 overflow-hidden"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl
+                bg-primary text-primary-foreground font-bold text-base sm:text-lg
+                hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 hover:-translate-y-1 overflow-hidden w-full sm:w-auto"
               >
                 <span className="relative z-10">{data.primaryCTA.text}</span>
-                <ArrowRight className="relative z-10 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="relative z-10 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
                 <div className="absolute inset-0 bg-linear-to-r from-white/0 via-white/10 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               </a>
 
               <a
                 href={data.secondaryCTA.link}
-                className="inline-flex items-center justify-center px-8 py-4 rounded-2xl
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-2xl
                 border-2 border-primary/10 bg-background/50 backdrop-blur-md
-                font-bold text-lg text-foreground hover:bg-muted hover:border-primary/20 transition-all hover:-translate-y-1"
+                font-bold text-base sm:text-lg text-foreground hover:bg-muted hover:border-primary/20 transition-all hover:-translate-y-1 w-full sm:w-auto"
               >
                 {data.secondaryCTA.text}
               </a>
@@ -83,15 +83,15 @@ export default function AboutHero() {
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="relative lg:h-[600px] flex items-center justify-center pt-8 lg:pt-0"
+            className="relative w-full flex items-center justify-center pt-8 sm:pt-12 lg:pt-0"
           >
             {/* Decorative Frames - Slightly slanted */}
-            <div className="absolute inset-0 border-2 border-primary/10 rounded-[3rem] -rotate-3 scale-95 pointer-events-none" />
-            <div className="absolute inset-0 bg-secondary/10 rounded-[3rem] rotate-2 scale-105 -z-10 pointer-events-none" />
+            <div className="absolute inset-0 border-2 border-primary/10 rounded-2xl sm:rounded-[3rem] -rotate-3 scale-95 pointer-events-none hidden sm:block" />
+            <div className="absolute inset-0 bg-secondary/10 rounded-2xl sm:rounded-[3rem] rotate-2 scale-105 -z-10 pointer-events-none hidden sm:block" />
 
             {/* Main Slanted Container - Subtle 2deg rotation */}
-            <div className="relative w-full aspect-4/5 sm:aspect-video lg:h-full lg:w-full rotate-2 rounded-[3rem] overflow-hidden shadow-2xl border-4 border-background/50">
-              <div className="absolute inset-0 -rotate-2 scale-110">
+            <div className="relative w-full aspect-video lg:aspect-[5/4] xl:aspect-[4/3] sm:rotate-2 rounded-2xl sm:rounded-[3rem] overflow-hidden shadow-xl sm:shadow-2xl border-2 sm:border-4 border-background/50 max-w-sm sm:max-w-none mx-auto sm:mx-0">
+              <div className="absolute inset-0 sm:-rotate-2 sm:scale-110">
                 <Image
                   src={data.image}
                   alt="SkillYards Career Training"
