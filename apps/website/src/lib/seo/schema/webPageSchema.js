@@ -9,6 +9,7 @@ export const getWebPageSchema = (page) => {
     url: `https://www.skillyards.in${page.url}`,
     name: page.name,
     ...(page.description && { description: page.description }),
+    ...(page.keywords && { keywords: page.keywords }),
     isPartOf: {
       "@id": "https://www.skillyards.in/#website"
     },

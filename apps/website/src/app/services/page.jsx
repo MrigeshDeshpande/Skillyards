@@ -5,11 +5,13 @@ import { getWebPageSchema } from "@/lib/seo/schema/webPageSchema";
 import { getServiceSchema } from "@/lib/seo/schema/serviceSchema";
 import { getBreadcrumbSchema } from "@/lib/seo/schema/breadcrumbSchema";
 
+const serviceKeywords = ["SkillYards services", "IT services Agra", "digital marketing services Agra", "web development Agra", "industrial training Agra"];
+
 export const metadata = buildSEO({
     title: "Our Services | SkillYards Agra",
     description: "Full-service technology and digital marketing solutions built for businesses that want to grow. Industrial training, web development, and digital marketing services.",
     path: "/services",
-    keywords: ["SkillYards services", "IT services Agra", "digital marketing services Agra", "web development Agra", "industrial training Agra"],
+    keywords: serviceKeywords,
     ogImage: "/images/opengraph/home-og.jpg",
 });
 
@@ -17,7 +19,8 @@ export default function ServicesPage() {
     const webPageSchema = getWebPageSchema({
         url: "/services",
         name: "Our Services | SkillYards Agra",
-        description: "Full-service technology and digital marketing solutions built for businesses that want to grow."
+        description: "Full-service technology and digital marketing solutions built for businesses that want to grow.",
+        keywords: serviceKeywords
     });
 
     const serviceSchema = getServiceSchema({

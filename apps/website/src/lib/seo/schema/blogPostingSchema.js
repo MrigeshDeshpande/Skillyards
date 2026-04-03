@@ -19,8 +19,16 @@ export const getBlogPostingSchema = (post) => {
       name: post.author?.name || "SkillYards Team"
     },
     publisher: {
-      "@id": ORGANIZATION_ID
+      "@id": ORGANIZATION_ID,
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.skillyards.in/images/logo-dark.png"
+      }
     },
+    keywords: post.seo?.keywords || ["SkillYards", "tech tutorials", "career advice"],
+    articleSection: post.category?.title || "Technology",
+    ...(post.content && { wordCount: post.content.split(/\s+/).length }),
+    ...(post.readingTime && { timeRequired: `PT${post.readingTime}M` }),
     ...(post.excerpt && { description: post.excerpt })
   };
 };

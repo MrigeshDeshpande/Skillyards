@@ -11,7 +11,43 @@ export const organizationSchema = {
   url: "https://www.skillyards.in",
 
   description:
-    "SkillYards is a next-generation learning and certification platform based in Agra, India, offering industry-aligned training and professional certifications.",
+    "SkillYards is a next-generation learning and certification platform in Agra, specializing in On Job Training (OJT), industrial certifications, and job-ready skill development in Full Stack, Data Science, and Management.",
+  
+  foundingDate: "2023",
+  founder: [
+    {
+      "@type": "Person",
+      name: "Rahul Singh",
+      jobTitle: "Chief Operating Officer"
+    },
+    {
+      "@type": "Person",
+      name: "Suryansh Upadhyay",
+      jobTitle: "Chief Executive Officer"
+    }
+  ],
+  
+  knowsAbout: [
+    "Full Stack Web Development",
+    "Data Science & Analytics",
+    "On Job Training (OJT)",
+    "Industrial Certifications",
+    "Career Placement",
+    "Digital Marketing",
+    "BCA & MCA Specialized Training"
+  ],
+
+  areaServed: [
+    {
+      "@type": "City",
+      "name": "Agra"
+    },
+    {
+      "@type": "Country",
+      "name": "India"
+    }
+  ],
+
   logo: {
     "@type": "ImageObject",
     url: "https://www.skillyards.in/images/logo-square.png",
@@ -46,7 +82,9 @@ export const organizationSchema = {
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.8",
-    reviewCount: "120"
+    reviewCount: "120",
+    bestRating: "5",
+    worstRating: "1"
   },
 
   review: [

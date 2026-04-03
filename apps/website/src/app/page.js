@@ -20,12 +20,25 @@ import { getFAQSchema } from "@/lib/seo/schema/faqSchema";
 import { getWebPageSchema } from "@/lib/seo/schema/webPageSchema";
 import { faqCategories } from "@/data/faqs";
 
+const homeKeywords = [
+  "SkillYards",
+  "online courses India",
+  "skill development platform",
+  "professional certifications",
+  "live online training",
+  "job-ready skills",
+  "IT training India",
+  "career growth",
+  "e-learning platform",
+];
+
 const homepageFaqs = faqCategories.homepage.faqs.slice(0, 4);
 const faqSchema = getFAQSchema(homepageFaqs);
 const webPageSchema = getWebPageSchema({
   url: "/",
   name: "Learn, Train & Get Certified Online | SkillYards",
-  description: "SkillYards is a skill-based learning platform offering online courses, live training, and professional certifications to help you build job-ready skills."
+  description: "SkillYards is a skill-based learning platform offering online courses, live training, and professional certifications to help you build job-ready skills.",
+  keywords: homeKeywords
 });
 
 const combinedSchema = [faqSchema, webPageSchema].filter(Boolean);
@@ -35,17 +48,7 @@ export const metadata = buildSEO({
   description:
     "SkillYards is a skill-based learning platform offering online courses, live training, and professional certifications to help you build job-ready skills.",
   path: "/",
-  keywords: [
-    "SkillYards",
-    "online courses India",
-    "skill development platform",
-    "professional certifications",
-    "live online training",
-    "job-ready skills",
-    "IT training India",
-    "career growth",
-    "e-learning platform",
-  ],
+  keywords: homeKeywords,
   ogImage: "/images/opengraph/home-og.jpg",
 });
 

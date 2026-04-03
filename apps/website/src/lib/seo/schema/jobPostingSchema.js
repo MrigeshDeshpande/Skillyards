@@ -14,6 +14,9 @@ export const getJobPostingSchema = (job) => {
     hiringOrganization: {
       "@id": ORGANIZATION_ID
     },
+    skills: job.skills || "Communication, Technical Proficiency, Teamwork",
+    responsibilities: job.responsibilities || "Execute projects, maintain quality, collaborate with teams",
+    experienceRequirements: job.experience || "Entry Level",
     jobLocation: {
       "@type": "Place",
       name: "SkillYards",

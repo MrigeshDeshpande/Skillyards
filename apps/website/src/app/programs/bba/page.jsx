@@ -22,7 +22,8 @@ const breadcrumbSchema = getBreadcrumbSchema([
 const webPageSchema = getWebPageSchema({
     url: course.seo.path,
     name: course.title,
-    description: course.seo.description
+    description: course.seo.description,
+    keywords: course.seo.keywords
 });
 
 const combinedSchema = [courseSchema, breadcrumbSchema, webPageSchema].filter(Boolean);

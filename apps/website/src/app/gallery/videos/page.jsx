@@ -4,11 +4,13 @@ import JsonLd from "@/components/JsonLd";
 import { getVideoGallerySchema } from "@/lib/seo/schema/webPageSchema";
 import { getBreadcrumbSchema } from "@/lib/seo/schema/breadcrumbSchema";
 
+const galleryVideoKeywords = ["SkillYards video gallery", "IT training videos", "student success videos", "learning sessions", "workshop videos"];
+
 export const metadata = buildSEO({
     title: "SkillYards Video Gallery | Learning in Action",
     description: "Watch sessions, workshops, student stories, and real learning moments from SkillYards Agra.",
     path: "/gallery/videos",
-    keywords: ["SkillYards video gallery", "IT training videos", "student success videos", "learning sessions", "workshop videos"],
+    keywords: galleryVideoKeywords,
     ogImage: "/images/opengraph/gallery-og.jpg",
 });
 
@@ -16,7 +18,8 @@ export default function GalleryVideosPage() {
     const gallerySchema = getVideoGallerySchema({
         url: "/gallery/videos",
         name: "SkillYards Video Gallery | Learning in Action",
-        description: "Watch sessions, workshops, student stories, and real learning moments from SkillYards Agra."
+        description: "Watch sessions, workshops, student stories, and real learning moments from SkillYards Agra.",
+        keywords: galleryVideoKeywords
     });
 
     const breadcrumbSchema = getBreadcrumbSchema([

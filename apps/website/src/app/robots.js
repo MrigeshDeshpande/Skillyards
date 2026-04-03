@@ -7,9 +7,11 @@ export default function robots() {
                 disallow: [
                     "/_next/",
                     "/api/",
+                    "/admin/",
+                    "/_error/",
                 ],
             },
         ],
-        sitemap: "https://skillyards.in/sitemap.xml",
+        sitemap: "https://www.skillyards.in/sitemap.xml",
     };
 }

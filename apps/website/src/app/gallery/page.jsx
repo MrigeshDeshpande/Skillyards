@@ -4,19 +4,21 @@ import JsonLd from "@/components/JsonLd";
 import { getCollectionPageSchema } from "@/lib/seo/schema/webPageSchema";
 import { getBreadcrumbSchema } from "@/lib/seo/schema/breadcrumbSchema";
 
+const galleryKeywords = [
+  "SkillYards gallery",
+  "SkillYards campus gallery",
+  "IT training institute gallery",
+  "SkillYards events photos and videos",
+  "Student learning moments",
+  "SkillYards classroom gallery",
+];
+
 export const metadata = buildSEO({
   title: "SkillYards Gallery",
   description:
     "Explore the SkillYards gallery featuring photos and videos from our campus, training sessions, workshops, events, and student learning experiences.",
   path: "/gallery",
-  keywords: [
-    "SkillYards gallery",
-    "SkillYards campus gallery",
-    "IT training institute gallery",
-    "SkillYards events photos and videos",
-    "Student learning moments",
-    "SkillYards classroom gallery",
-  ],
+  keywords: galleryKeywords,
   ogImage: "/images/opengraph/gallery-og.jpg",
 });
 
@@ -24,7 +26,8 @@ export default function GalleryPage() {
   const collectionSchema = getCollectionPageSchema({
     url: "/gallery",
     name: "SkillYards Gallery",
-    description: "Explore the SkillYards gallery featuring photos and videos from our campus, training sessions, workshops, and events."
+    description: "Explore the SkillYards gallery featuring photos and videos from our campus, training sessions, workshops, and events.",
+    keywords: galleryKeywords
   });
 
   const breadcrumbSchema = getBreadcrumbSchema([

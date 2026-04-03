@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }) {
 
     const readingTime = calculateReadingTime(post.content);
     const headings = extractHeadings(post.content);
-    const blogPostingSchema = getBlogPostingSchema(post);
+    const blogPostingSchema = getBlogPostingSchema({ ...post, readingTime });
 
     return (
         <div className="min-h-screen bg-background text-foreground transition-colors duration-300">

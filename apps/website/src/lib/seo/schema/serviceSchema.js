@@ -8,6 +8,7 @@ export const getServiceSchema = (service) => {
     "@id": `https://www.skillyards.in${service.url}#service`,
     name: service.name,
     description: service.description,
+    keywords: service.keywords || ["SkillYards services", "industrial training", "career support"],
     provider: {
       "@id": ORGANIZATION_ID
     },
@@ -43,9 +44,10 @@ export const getQuizSchema = (quiz) => {
     "@id": `https://www.skillyards.in${quiz.url}#quiz`,
     name: quiz.name,
     description: quiz.description,
+    keywords: quiz.keywords || ["skill test", "online quiz", "certification", "Agra IT test"],
     learningResourceType: "Quiz",
     educationalLevel: "Beginner to Advanced",
-    assesses: "HTML, CSS, JavaScript, SEO",
+    assesses: quiz.assesses || "HTML, CSS, JavaScript, SEO",
     publisher: {
       "@id": ORGANIZATION_ID
     }
