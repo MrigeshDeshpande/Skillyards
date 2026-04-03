@@ -2,6 +2,8 @@ import { buildSEO } from "@/lib/seo/buildSEO";
 import PageHero from "@/components/PageHero";
 import Link from "next/link";
 import { FileText, BookOpen, CheckCircle, XCircle, AlertTriangle, Clock, MessageCircle, RefreshCw, Mail } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import { getWebPageSchema } from "@/lib/seo/schema/webPageSchema";
 
 export const metadata = buildSEO({
     title: "Refund Policy",
@@ -217,8 +219,15 @@ export default function RefundPolicyPage() {
         day: "numeric",
     });
 
+    const webPageSchema = getWebPageSchema({
+        url: "/legal/refund-policy",
+        name: "Refund Policy",
+        description: "Review SkillYards' Refund Policy to understand eligibility, timelines, and conditions for refunds on courses, subscriptions, and training programs."
+    });
+
     return (
         <>
+            <JsonLd data={webPageSchema} id="refund-policy-schema" />
             <PageHero
                 title="Refund Policy"
                 description="This Refund Policy explains the eligibility, process, and conditions under which refunds may be requested for our courses, services, or digital products."

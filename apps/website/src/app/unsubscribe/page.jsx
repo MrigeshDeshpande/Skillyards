@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import UnsubscribeClient from "./UnsubscribeClient";
 import { buildSEO } from "@/lib/seo/buildSEO";
+import JsonLd from "@/components/JsonLd";
+import { getWebPageSchema } from "@/lib/seo/schema/webPageSchema";
 
 export const dynamic = "force-dynamic";
 
@@ -20,10 +22,19 @@ export const metadata = buildSEO({
 });
 
 export default function Page() {
+  const webPageSchema = getWebPageSchema({
+    url: "/unsubscribe",
+    name: "Unsubscribe from Emails | SkillYards",
+    description: "Manage your email preferences on SkillYards."
+  });
+
   return (
-    <Suspense fallback={<Loading />}>
+    <>
+      <JsonLd data={webPageSchema} id="unsubscribe-webpage-schema" />
+      <Suspense fallback={<Loading />}>
       <UnsubscribeClient />
-    </Suspense>
+      </Suspense>
+    </>
   );
 }
 

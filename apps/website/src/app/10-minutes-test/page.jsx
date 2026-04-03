@@ -1,4 +1,7 @@
 import { buildSEO } from "@/lib/seo/buildSEO";
+import JsonLd from "@/components/JsonLd";
+import { getWebPageSchema } from "@/lib/seo/schema/webPageSchema";
+import { getQuizSchema } from "@/lib/seo/schema/serviceSchema";
 import TestHero from "@/components/testpage/TestHero";
 import TestTopics from "@/components/testpage/TestTopics";
 import HowItWorks from "@/components/testpage/HowItWorks";
@@ -23,8 +26,22 @@ export const metadata = buildSEO({
 });
 
 export default function TenMinuteTestPage() {
+    const webPageSchema = getWebPageSchema({
+        url: "/10-minutes-test",
+        name: "Free 10-Minute Skill Test | SkillYards",
+        description: "Take SkillYards' free 10-minute skill assessment in HTML, CSS, JavaScript, and SEO."
+    });
+
+    const quizSchema = getQuizSchema({
+        url: "/10-minutes-test",
+        name: "Skill assessment in HTML, CSS, JavaScript, and SEO",
+        description: "Evaluate your core web development and digital marketing skills in just 10 minutes."
+    });
+
     return (
         <div className="w-full overflow-x-hidden">
+            <JsonLd data={webPageSchema} id="test-webpage-schema" />
+            <JsonLd data={quizSchema} id="test-quiz-schema" />
             <TestHero />
             <TestTopics />
             <HowItWorks />

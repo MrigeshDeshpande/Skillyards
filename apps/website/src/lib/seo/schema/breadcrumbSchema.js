@@ -5,6 +5,6 @@ export const getBreadcrumbSchema = (items) => ({
     "@type": "ListItem",
     position: index + 1,
     name: item.name,
-    item: item.url,
+    item: item.url.startsWith("http") ? item.url : `https://www.skillyards.in${item.url}`,
   })),
 });

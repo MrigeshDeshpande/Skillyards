@@ -9,6 +9,8 @@ import { portableTextComponents } from "@/lib/sanity/portableTextComponents";
 import Image from "next/image";
 import Comments from "@/components/blog/Comments";
 import { buildSEO } from "@/lib/seo/buildSEO";
+import JsonLd from "@/components/JsonLd";
+import { getBlogPostingSchema } from "@/lib/seo/schema/blogPostingSchema";
 
 const CalendarIcon = () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>;
 const ClockIcon = () => <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
@@ -78,10 +80,11 @@ export default async function BlogPostPage({ params }) {
 
     const readingTime = calculateReadingTime(post.content);
     const headings = extractHeadings(post.content);
+    const blogPostingSchema = getBlogPostingSchema({ ...post, readingTime });
 
     return (
         <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-
+            <JsonLd data={blogPostingSchema} id="blog-posting-schema" />
             <header className="relative w-full bg-muted/30 border-b border-border pt-24 pb-12 px-6 transition-colors duration-300">
                 <div className="max-w-6xl mx-auto">
 

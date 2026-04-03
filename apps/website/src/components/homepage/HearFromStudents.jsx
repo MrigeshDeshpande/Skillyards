@@ -10,36 +10,6 @@ import JsonLd from "@/components/JsonLd";
 import Image from "next/image";
 import Link from "next/link";
 
-const testimonialsSchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": testimonials.map((t, idx) => ({
-        "@type": "ListItem",
-        "position": idx + 1,
-        "item": {
-            "@type": "Review",
-            "author": {
-                "@type": "Person",
-                "name": t.name
-            },
-            "datePublished": new Date().toISOString(),
-            "reviewBody": t.feedback,
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": t.rating,
-                "bestRating": "5",
-                "worstRating": "1"
-            },
-            "itemReviewed": {
-                "@type": "Organization",
-                "name": "SkillYards"
-            }
-        }
-    }))
-};
-
-
-
 
 const QuoteCard = ({ info, truncate = false }) => {
     const fallbackImg = "/images/default-avatar.jpg";
@@ -209,7 +179,7 @@ export default function HearFromStudents() {
                 </DialogContent>
             </Dialog>
 
-            <JsonLd data={testimonialsSchema} id="student-testimonials-schema" />
+
         </>
     );
 }

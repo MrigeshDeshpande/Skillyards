@@ -2,18 +2,16 @@ export const getFAQSchema = (faqs = []) => {
   const validFaqs = faqs
     .filter(
       (faq) =>
-        faq?.question &&
-        faq?.answer &&
-        typeof faq.question === "string" &&
-        typeof faq.answer === "string"
+        (faq?.question || faq?.q) &&
+        (faq?.answer || faq?.a)
     )
     .map((faq) => ({
       "@type": "Question",
-      name: faq.question.trim(),
+      name: (faq.question || faq.q).trim(),
       acceptedAnswer: {
         "@type": "Answer",
-        text: faq.answer
-          .replace(/<[^>]*>/g, "") 
+        text: (faq.answer || faq.a)
+          .replace(/<[^>]*>/g, "")
           .trim(),
       },
     }));

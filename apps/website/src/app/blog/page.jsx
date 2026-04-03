@@ -2,6 +2,8 @@ import { buildSEO } from "@/lib/seo/buildSEO";
 import { sanityClient } from "@/lib/sanity/client";
 import { POSTS_QUERY } from "@/lib/sanity/queries";
 import BlogSearch from "@/components/blog/BlogSearch";
+import JsonLd from "@/components/JsonLd";
+import { getBlogSchema } from "@/lib/seo/schema/blogPostingSchema";
 
 export const metadata = buildSEO({
   title: "SkillYards Blog",
@@ -21,9 +23,11 @@ export const metadata = buildSEO({
 
 export default async function BlogPage() {
   const posts = await sanityClient.fetch(POSTS_QUERY);
+  const blogSchema = getBlogSchema();
 
   return (
     <div className="bg-background min-h-screen pt-20">
+      <JsonLd data={blogSchema} id="blog-collection-schema" />
       <section className="py-16">
         <div className="max-w-[1200px] mx-auto px-6 sm:px-12 space-y-12">
           <div className="text-center space-y-4">
