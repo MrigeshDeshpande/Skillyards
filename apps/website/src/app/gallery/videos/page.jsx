@@ -34,10 +34,8 @@ export default function GalleryVideosPage() {
 
     return (
         <>
-<<<<<<< HEAD
             <JsonLd data={combinedSchema} id="gallery-videos-schema" />
             <GalleryVideosContent />
-=======
             <PageHero
                 title="Video Gallery"
                 description="Watch sessions, workshops, student stories, and real learning moments from SkillYards."
@@ -133,7 +131,6 @@ export default function GalleryVideosPage() {
                     </div>
                 </div>
             </div>
->>>>>>> deaa6e7 (refactor: update image components, refine team section logic, adjust educator card styling, and remove unused FAQ schema code)
         </>
     );
 }
