@@ -7,12 +7,12 @@ export const organizationSchema = {
 
   "@id": ORGANIZATION_ID,
 
-  name: "SkillYards",
+  name: "SkillYards Versatility Pvt Ltd",
   url: "https://www.skillyards.in",
 
   description:
     "SkillYards is a next-generation learning and certification platform in Agra, specializing in On Job Training (OJT), industrial certifications, and job-ready skill development in Full Stack, Data Science, and Management.",
-  
+
   foundingDate: "2023",
   founder: [
     {
@@ -26,7 +26,7 @@ export const organizationSchema = {
       jobTitle: "Chief Executive Officer"
     }
   ],
-  
+
   knowsAbout: [
     "Full Stack Web Development",
     "Data Science & Analytics",
@@ -64,7 +64,7 @@ export const organizationSchema = {
 
   address: {
     "@type": "PostalAddress",
-    streetAddress: "A3, Behind Manoj Dhaba, Bhagwan Talkies Xing",
+   streetAddress : "A3, Behind Manoj Dhaba, Bhagwan Talkies Crossing, Indra Puri, New Agra",
     addressLocality: "Agra",
     addressRegion: "Uttar Pradesh",
     postalCode: "282005",
