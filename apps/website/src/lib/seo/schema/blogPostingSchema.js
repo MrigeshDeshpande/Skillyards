@@ -27,7 +27,7 @@ export const getBlogPostingSchema = (post) => {
     },
     keywords: post.seo?.keywords || ["SkillYards", "tech tutorials", "career advice"],
     articleSection: post.category?.title || "Technology",
-    ...(post.content && { wordCount: post.content.split(/\s+/).length }),
+    ...(typeof post.content === "string" && { wordCount: post.content.split(/\s+/).length }),
     ...(post.readingTime && { timeRequired: `PT${post.readingTime}M` }),
     ...(post.excerpt && { description: post.excerpt })
   };
