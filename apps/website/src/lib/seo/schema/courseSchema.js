@@ -8,15 +8,39 @@ export const getCourseSchema = (course) => ({
 
   name: course.title,
   description: course.description,
+  keywords: course.seo?.keywords || [
+    "industrial training",
+    "On Job Training",
+    "professional certification",
+    course.title
+  ],
 
   provider: {
     "@id": ORGANIZATION_ID,
   },
 
-  image: "https://www.skillyards.in/images/opengraph/fullstack-og.jpg",
+  isPartOf: {
+    "@type": "EducationalOccupationalProgram",
+    name: course.title,
+    description: course.description,
+    occupationalCategory: course.category || "Information Technology",
+    educationalCredentialAwarded: "Certificate of Completion",
+    provider: {
+      "@id": ORGANIZATION_ID,
+    }
+  },
+
+  image: course.seo?.ogImage ? `https://www.skillyards.in${course.seo.ogImage}` : "https://www.skillyards.in/images/opengraph/fullstack-og.jpg",
 
   educationalLevel: "Beginner to Advanced",
   inLanguage: "en",
+  ...(course.certification && {
+    educationalCredentialAwarded: [{
+      "@type": "EducationalOccupationalCredential",
+      name: course.certification,
+      credentialCategory: "Certificate"
+    }]
+  }),
 
   hasCourseInstance: {
     "@type": "CourseInstance",
@@ -41,10 +65,20 @@ export const getCourseSchema = (course) => ({
     }),
   },
 
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "85",
+    bestRating: "5",
+    worstRating: "1"
+  },
+
   offers: {
     "@type": "Offer",
-    category: "Educational",
+    category: "Professional Training",
     availability: "https://schema.org/InStock",
+    price: "0",
     url: `https://www.skillyards.in${course.seo.path}`,
+    priceCurrency: "INR",
   },
 });

@@ -5,29 +5,13 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 
 import { buildSEO } from "@/lib/seo/buildSEO";
 
-const contactPageSchema = {
-  "@context": "https://schema.org",
-  "@type": "ContactPage",
-  name: "Contact SkillYards",
-  url: "https://www.skillyards.in/contact",
-  mainEntity: {
-    "@type": "Organization",
-    name: "SkillYards",
-    url: "https://www.skillyards.in",
-    logo: "https://www.skillyards.in/images/logo.png",
-    email: "support@skillyards.in",
-    telephone: "+91-7060-100-561",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Agra",
-      addressLocality: "Agra",
-      addressRegion: "Uttar Pradesh",
-      postalCode: "282005",
-      addressCountry: "IN",
-    },
-  },
-};
+import { getContactPageSchema } from "@/lib/seo/schema/webPageSchema";
 
+const contactPageSchema = getContactPageSchema({
+  url: "/contact",
+  name: "Contact SkillYards",
+  description: "Contact SkillYards for course inquiries, training support, partnerships, or general questions. We’re here to help you grow your skills and career."
+});
 export const metadata = buildSEO({
   title: "Contact SkillYards",
   description:
@@ -119,7 +103,7 @@ export default function ContactPage() {
       </div>
 
       <JsonLd
-        schema={contactPageSchema}
+        data={contactPageSchema}
         id="contact-page-schema-skillyards"
       />
     </>

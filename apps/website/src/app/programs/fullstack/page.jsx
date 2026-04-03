@@ -6,6 +6,7 @@ import { courses } from "@/data/courses";
 import { getBreadcrumbSchema } from "@/lib/seo/schema/breadcrumbSchema";
 import { getFAQSchema } from "@/lib/seo/schema/faqSchema";
 import { getPageFaqs } from "@/lib/seo/getFaqs";
+import { getWebPageSchema } from "@/lib/seo/schema/webPageSchema";
 
 const course = courses.fullstack;
 const courseSchema = getCourseSchema(course);
@@ -14,15 +15,23 @@ const faqs = getPageFaqs("fullstack");
 const faqSchema = getFAQSchema(faqs);
 
 const breadcrumbSchema = getBreadcrumbSchema([
-  { name: "Home", url: "https://www.skillyards.in/" },
-  { name: "Programs", url: "https://www.skillyards.in/programs" },
-  { name: course.title, url: `https://www.skillyards.in${course.seo.path}` },
+  { name: "Home", url: "/" },
+  { name: "Programs", url: "/programs" },
+  { name: course.title, url: course.seo.path },
 ]);
+
+const webPageSchema = getWebPageSchema({
+  url: course.seo.path,
+  name: course.title,
+  description: course.seo.description,
+  keywords: course.seo.keywords
+});
 
 const combinedSchema = [
   courseSchema,
   breadcrumbSchema,
   faqSchema,
+  webPageSchema
 ].filter(Boolean);
 
 export const metadata = buildSEO(course.seo);

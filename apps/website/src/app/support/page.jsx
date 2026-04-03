@@ -4,8 +4,7 @@ import SupportCategories from "@/components/supportpage/SupportCategories";
 import SupportFAQ from "@/components/supportpage/SupportFAQ";
 import SupportChannels from "@/components/supportpage/SupportChannels";
 import JsonLd from "@/components/JsonLd";
-import { getFAQSchema } from "@/lib/seo/schema/faqSchema";
-import { faqCategories } from "@/data/faqs";
+import { getContactPageSchema } from "@/lib/seo/schema/webPageSchema";
 
 export const metadata = buildSEO({
     title: "Support Center | SkillYards Agra",
@@ -24,21 +23,19 @@ export const metadata = buildSEO({
 });
 
 export default function SupportPage() {
-    const supportFaqs = [
-        ...faqCategories.general.faqs.slice(0, 3),
-        ...faqCategories.general.faqs.slice(5, 8),
-        ...faqCategories.general.faqs.slice(4, 6),
-        ...faqCategories.support.faqs.slice(0, 2),
-    ];
-    const faqSchema = getFAQSchema(supportFaqs);
+    const supportPageSchema = getContactPageSchema({
+        url: "/support",
+        name: "Support Center | SkillYards Agra",
+        description: "Get help with admissions, fees, placement, technical issues, and more. SkillYards support is available via WhatsApp, phone, and email."
+    });
 
     return (
         <div className="w-full overflow-x-hidden">
+            <JsonLd data={supportPageSchema} id="support-page-schema" />
             <SupportHero />
             <SupportCategories />
             <SupportFAQ />
             <SupportChannels />
-            {faqSchema && <JsonLd data={faqSchema} id="faq-schema" />}
         </div>
     );
 }

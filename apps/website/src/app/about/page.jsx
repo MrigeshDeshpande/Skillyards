@@ -38,31 +38,14 @@ export const metadata = buildSEO({
   ogImage: "/images/opengraph/about-og.jpg",
 });
 
+import { getAboutPageSchema } from "@/lib/seo/schema/webPageSchema";
+
 export default function AboutPage() {
-  const aboutPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "SkillYards",
-    url: "https://www.skillyards.in",
-    logo: "/images/logo.png",
-    sameAs: [
-      process.env.NEXT_PUBLIC_FACEBOOK_URL,
-      process.env.NEXT_PUBLIC_TWITTER_URL,
-      process.env.NEXT_PUBLIC_LINKEDIN_URL,
-      process.env.NEXT_PUBLIC_INSTAGRAM_URL,
-      process.env.NEXT_PUBLIC_YOUTUBE_URL,
-    ],
-    contactPoint: [
-      {
-        "@type": "ContactPoint",
-        email: process.env.NEXT_PUBLIC_EMAIL,
-        telephone: process.env.NEXT_PUBLIC_PHONE,
-        contactType: "customer support",
-      },
-    ],
-    description:
-      "SkillYards is an IT training institute and software development company offering on job training and degrees in emerging IT technologies based in Agra, India.",
-  };
+  const aboutPageSchema = getAboutPageSchema({
+    url: "/about",
+    name: "About SkillYards",
+    description: "Learn about SkillYards, a skill-based learning platform empowering professionals with industry-relevant training, live classes, and certifications led by experts."
+  });
 
   const faqSchema = getFAQSchema(getPageFaqs("homepage", 4));
   return (

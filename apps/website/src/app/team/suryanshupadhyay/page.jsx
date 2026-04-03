@@ -1,6 +1,7 @@
 import { buildSEO } from "@/lib/seo/buildSEO";
 import JsonLd from "@/components/JsonLd";
 import SuryanshHero from "@/components/suryanshupadhyay/SuryanshHero";
+import { getPersonSchema } from "@/lib/seo/schema/personSchema";
 
 const suryansh = {
   name: "Suryansh Upadhyay",
@@ -26,14 +27,13 @@ export const metadata = buildSEO({
 });
 
 export default function SuryanshPage() {
-  const suryanshSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
+  const suryanshSchema = getPersonSchema({
     name: suryansh.name,
-    jobTitle: suryansh.role,
+    role: suryansh.role,
     image: suryansh.avatar,
-    description: suryansh.bio,
-  };
+    url: "/team/suryanshupadhyay",
+    description: suryansh.bio
+  });
 
   return (
     <>
