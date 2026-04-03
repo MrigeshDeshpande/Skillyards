@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 
-const MOCK_MEMBERS = [
+const TEAM_MEMBERS = [
   {
     id: "1",
     name: "Neeraj Dang",
@@ -99,7 +99,7 @@ const TeamCarousel = ({
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [direction, setDirection] = useState(0); // 0: no movement, 1: next, -1: prev
   const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const totalMembers = members.length;
 
@@ -254,6 +254,7 @@ const TeamCarousel = ({
   const handleTouchStart = (e) => {
     if (!touchNavigation) return;
     setTouchStart(e.targetTouches[0].clientX);
+    setTouchEnd(null);
   };
 
   const handleTouchMove = (e) => {
@@ -262,7 +263,7 @@ const TeamCarousel = ({
   };
 
   const handleTouchEnd = () => {
-    if (!touchNavigation) return;
+    if (!touchNavigation || touchEnd === null) return;
 
     const swipeThreshold = 50;
     const diff = touchStart - touchEnd;
@@ -274,6 +275,8 @@ const TeamCarousel = ({
         paginate(-1);
       }
     }
+    
+    setTouchEnd(null);
   };
 
   const titleSizeClasses = {
@@ -487,25 +490,8 @@ const TeamCarousel = ({
 };
 
 export default function OtherTeam() {
-  const [members, setMembers] = useState(MOCK_MEMBERS);
+  const [members, setMembers] = useState(TEAM_MEMBERS);
 
-  // TODO: Re-enable when API is ready
-  // useEffect(() => {
-  //     fetch("https://admin.skillyards.in/api/team/members")
-  //         .then((res) => res.json())
-  //         .then((json) => {
-  //             if (json?.status && json?.data?.length > 0) {
-  //                 setMembers(json.data.map(member => ({
-  //                     ...member,
-  //                     image: member.avatar,
-  //                     role: member.username
-  //                 })));
-  //             }
-  //         })
-  //         .catch((err) => {
-  //             console.error("Failed to fetch team members:", err);
-  //         });
-  // }, []);
 
   return (
     <section className="relative bg-background overflow-hidden border-t">

@@ -20,19 +20,9 @@ const itemVariants = {
     },
 };
 
-/**
- * TeamSection
- *
- * Props:
- * @param {string}   title    — Section heading e.g. "Leadership"
- * @param {string}   [subtitle] — Optional subheading
- * @param {Array}    members  — Array of TeamMemberCard props objects
- * @param {boolean}  featured — If true, render larger cards (e.g., for Leadership)
- */
 export default function TeamSection({ title, subtitle, members = [], featured = false }) {
     if (!members.length) return null;
 
-    // Adjust grid based on featured status vs regular tier
     const gridClass = featured 
         ? "grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 max-w-4xl mx-auto"
         : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8";

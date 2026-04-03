@@ -64,12 +64,12 @@ export const BCAEducators = () => {
               transition={{ delay: index * 0.1 }}
               className="group relative"
             >
-              <div className="relative aspect-square rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden mb-6 md:mb-8 shadow-2xl border-4 border-border transition-all duration-500 group-hover:rounded-[2rem] md:group-hover:rounded-[2.5rem]">
+              <div className="relative aspect-[4/5] rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden mb-6 md:mb-8 shadow-2xl border-4 border-border transition-all duration-500 group-hover:rounded-[2rem] md:group-hover:rounded-[2.5rem]">
                 <Image
                   src={edu.image}
                   alt={edu.name}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="object-cover object-top group-hover:scale-110 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-3 md:gap-4 backdrop-blur-xs">
@@ -79,13 +79,6 @@ export const BCAEducators = () => {
                     className="w-10 h-10 md:w-12 md:h-12 bg-background text-primary rounded-full flex items-center justify-center shadow-xl hover:bg-primary hover:text-primary-foreground transition-colors"
                   >
                     <Linkedin size={18} />
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 md:w-12 md:h-12 bg-background text-primary rounded-full flex items-center justify-center shadow-xl hover:bg-primary hover:text-primary-foreground transition-colors"
-                  >
-                    <Twitter size={18} />
                   </motion.button>
                 </div>
               </div>
