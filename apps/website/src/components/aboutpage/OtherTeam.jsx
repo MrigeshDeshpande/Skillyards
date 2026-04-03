@@ -15,13 +15,7 @@ const TEAM_MEMBERS = [
     image: "/images/team/Mrigesh-Deshpande.jpg",
     bio: "Full Stack Engineer focused on backend scalability, system design, and real-world production systems.  "
   },
-  {
-    id: "2",
-    name: "Chakresh Chakshu",
-    role: "Jr. Full Stack Developer",
-    image: "/images/team/Chakresh-Chakshu.webp",
-    bio: "React & Next.js developer obsessed with performance, motion, and clean UX.",
-  },
+ 
   {
     id: "3",
     name: "Neeraj Dang",
@@ -64,6 +58,14 @@ const TEAM_MEMBERS = [
     image: "/images/team/Saurav.webp",
     bio: "Selling solutions not just products.",
   },
+   {
+    id: "2",
+    name: "Chakresh Chakshu",
+    role: "Jr. Full Stack Developer",
+    image: "/images/team/Chakresh-Chakshu.webp",
+    bio: "React & Next.js developer obsessed with performance, motion, and clean UX.",
+  },
+  
 ];
 
 const TeamCarousel = ({
