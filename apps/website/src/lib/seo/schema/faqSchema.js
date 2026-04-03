@@ -15,7 +15,7 @@ export const getFAQSchema = (faqs = []) => {
           .trim(),
       },
     }));
-
+    
   if (!validFaqs.length) return null;
 
   return {
