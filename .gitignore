@@ -16,6 +16,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # system
-.
+.DS_Store
 
+# tools / local configs
 .claude/
